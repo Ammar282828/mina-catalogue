@@ -1,5 +1,5 @@
 {
- "_about": "The house's own ring images, not Shopify's: AI renders (Nano Banana) of the shop's DSC photographs, padded onto white at 1500px — from iCloud heroes-white-1500 (179 files, see its _REVIEW.txt). heroes: an image put first on a Shopify piece (by handle). pieces: rings known only from these images, no price (Price on request); name, collection, plating and stones were read off the image on 2026-09-23 and may be corrected. also: more images of the same piece; photoPlating: which plating an image shows. held: images deliberately not shown, with the reason. Originals live on the server at /catalog-src/local/<id>.png (never in git). Bangles and bracelets (ids bb-NNN.jpg, 2026-09-23): the photographs in ~/Downloads/House of Mina — Bangles & Bracelets 3.pdf, extracted by their No.; story is that catalogue's description. Its 20 pieces already on Shopify are not repeated.",
+ "_about": "The house's own ring images, not Shopify's: AI renders (Nano Banana) of the shop's DSC photographs, padded onto white at 1500px — from iCloud heroes-white-1500 (179 files, see its _REVIEW.txt). heroes: an image put first on a Shopify piece (by handle). pieces: rings known only from these images, no price (Price on request); name, collection, plating and stones were read off the image on 2026-09-23 and may be corrected. also: more images of the same piece; photoPlating: which plating an image shows. held: images deliberately not shown, with the reason. Originals live on the server at /catalog-src/local/<id>.png (never in git). Bangles and bracelets (ids bb-NNN.jpg, 2026-09-23): the photographs in ~/Downloads/House of Mina — Bangles & Bracelets 3.pdf, extracted by their No.; story is that catalogue's description. Its 20 pieces already on Shopify are not repeated, and its 25 Taheri photographs (green-backdrop shoots, 'new — Taheri' in the item list) are held.",
  "addedAt": "2026-09-23",
  "heroes": {
   "cosette-pearl-ring": [
@@ -858,48 +858,6 @@
    "px": 1200, "story": ["A pair of ruby line bangles with safety chains, with a matching ring."]
   },
   {
-   "id": "bb-010.jpg",
-   "t": "Princess Ruby Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Rose Gold"], "stone": ["Ruby"], "setting": [],
-   "px": 1200, "story": ["925 sterling silver bangle and ring set with princess-cut natural rubies."]
-  },
-  {
-   "id": "bb-011.jpg",
-   "t": "Marquise Ruby Two-Tone Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": [],
-   "px": 1200, "story": ["925 sterling silver bangle and ring in a two-tone finish, with marquise natural rubies and American Diamonds."]
-  },
-  {
-   "id": "bb-012.jpg",
-   "t": "Round Ruby Pavé Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby"], "setting": ["Pavé"],
-   "px": 1200, "story": ["925 sterling silver bangle and ring, pavé-set with round natural rubies."]
-  },
-  {
-   "id": "bb-013.jpg",
-   "t": "Full Pavé Ruby Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby"], "setting": ["Pavé"],
-   "px": 1200, "story": ["925 sterling silver bangle and ring, fully pavé-set with natural rubies."]
-  },
-  {
-   "id": "bb-014.jpg",
-   "t": "Ruby and Pearl Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby", "Pearl"], "setting": [],
-   "px": 1200, "story": ["925 sterling silver bangle of natural rubies and pearls, with its matching ring."]
-  },
-  {
-   "id": "bb-015.jpg",
-   "t": "Ruby Pearl Halo Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby", "Pearl"], "setting": ["Halo"],
-   "px": 1200, "story": ["925 sterling silver bangle and ring with natural rubies ringed in pearls."]
-  },
-  {
    "id": "bb-016.jpg",
    "t": "Ruby and Emerald Marquise Bangle & Ring",
    "co": "bangles-and-cuffs",
@@ -912,13 +870,6 @@
    "co": "bangles-and-cuffs",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby", "Emerald", "American Diamond"], "setting": [],
    "px": 1200, "story": ["Rubies, emeralds and American Diamonds around a gold bangle, with its matching ring."]
-  },
-  {
-   "id": "bb-018.jpg",
-   "t": "Dark Stone Lattice Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": [], "setting": ["Pavé"],
-   "px": 1200, "story": ["925 sterling silver bangle and ring, pavé-set with dark natural stones over a lattice band."]
   },
   {
    "id": "bb-019.jpg",
@@ -984,83 +935,6 @@
    "px": 1200, "story": ["Two fine pavé bangles in gold worn together, with a pavé ring."]
   },
   {
-   "id": "bb-028.jpg",
-   "t": "Filigree Flower Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
-   "px": 1200, "story": ["925 sterling silver bangle and ring in a two-tone finish, with a floral filigree centre of American Diamonds."]
-  },
-  {
-   "id": "bb-029.jpg",
-   "t": "Sky Blue Wave Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
-   "px": 1200, "story": ["925 sterling silver bangle and ring with a sky-blue wave motif and American Diamonds."]
-  },
-  {
-   "id": "bb-030.jpg",
-   "t": "Two-Tone Diamond Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
-   "px": 1200, "story": ["925 sterling silver bangle and ring in a two-tone finish, set with American Diamonds."]
-  },
-  {
-   "id": "bb-031.jpg",
-   "t": "Geometric Pavé Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"],
-   "px": 1200, "story": ["925 sterling silver bangle and ring, pavé-set with American Diamonds in a geometric pattern."]
-  },
-  {
-   "id": "bb-032.jpg",
-   "t": "Rose Gold Bypass Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Rose Gold"], "stone": ["American Diamond"], "setting": ["Pavé"],
-   "px": 1200, "story": ["925 sterling silver in a rose gold finish — a pavé bypass bangle with its matching ring."]
-  },
-  {
-   "id": "bb-033.jpg",
-   "t": "Gold Bypass Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"],
-   "px": 1200, "story": ["925 sterling silver in a gold finish — a pavé bypass bangle with its matching ring."]
-  },
-  {
-   "id": "bb-034.jpg",
-   "t": "Baguette Bar Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"],
-   "px": 1200, "story": ["925 sterling silver pavé bangle with a baguette bar accent, with its matching ring."]
-  },
-  {
-   "id": "bb-035.jpg",
-   "t": "Floral Cluster Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
-   "px": 1200, "story": ["925 sterling silver bangle and ring with a floral cluster of American Diamonds."]
-  },
-  {
-   "id": "bb-036.jpg",
-   "t": "Classic Pavé Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"],
-   "px": 1200, "story": ["925 sterling silver pavé bangle with a matching pavé ring."]
-  },
-  {
-   "id": "bb-037.jpg",
-   "t": "Pavé Barrel Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"],
-   "px": 1200, "story": ["925 sterling silver bangle with a pavé barrel centre, with its matching ring."]
-  },
-  {
-   "id": "bb-038.jpg",
-   "t": "Halo Centre Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Halo"],
-   "px": 1200, "story": ["925 sterling silver bangle with a halo centre of American Diamonds, with its matching ring."]
-  },
-  {
    "id": "bb-039.jpg",
    "t": "Emerald Pavé Bangle & Ring",
    "co": "bangles-and-cuffs",
@@ -1110,13 +984,6 @@
    "px": 1200, "story": ["Marquise emeralds meeting like leaves on an American Diamond bangle, with its matching ring."]
   },
   {
-   "id": "bb-046.jpg",
-   "t": "Emerald Halo Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"],
-   "px": 1200, "story": ["925 sterling silver bangle and ring, each with an emerald-cut natural emerald in a halo of American Diamonds."]
-  },
-  {
    "id": "bb-047.jpg",
    "t": "Sapphire Spaced Bangle & Ring",
    "co": "bangles-and-cuffs",
@@ -1159,13 +1026,6 @@
    "px": 1200, "story": ["Sapphires and American Diamonds around a gold bangle, with its matching ring."]
   },
   {
-   "id": "bb-053.jpg",
-   "t": "Blue Pear Open Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": [], "stone": [], "setting": [],
-   "px": 1200, "story": ["925 sterling silver open bangle with pear-cut natural blue stones, with its matching ring."]
-  },
-  {
    "id": "bb-054.jpg",
    "t": "Citrine and Pearl Jhumki Bangles & Ring",
    "co": "bangles-and-cuffs",
@@ -1180,25 +1040,11 @@
    "px": 1200, "story": ["An emerald-cut amethyst on a woven gold bangle, ring included."]
   },
   {
-   "id": "bb-056.jpg",
-   "t": "Amethyst and Pearl Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": [], "stone": ["Pearl"], "setting": [],
-   "px": 1200, "story": ["925 sterling silver bangle with an emerald-cut natural amethyst over rows of pearls, sold with its ring."]
-  },
-  {
    "id": "bb-057.jpg",
    "t": "Topaz Locket Set with Bangle",
    "co": "bangles-and-cuffs",
    "type": "Set", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": [],
    "px": 1080, "story": ["A boxed set in topaz and American Diamonds — locket, earrings, ring and bangle."]
-  },
-  {
-   "id": "bb-058.jpg",
-   "t": "Blue Topaz Halo Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": [], "stone": ["Blue Topaz", "American Diamond"], "setting": ["Halo"],
-   "px": 1200, "story": ["925 sterling silver bangle and ring, each with an emerald-cut natural blue topaz in a halo of American Diamonds."]
   },
   {
    "id": "bb-059.jpg",
@@ -1215,32 +1061,11 @@
    "px": 1200, "story": ["A pearl-beaded gold bangle with its matching ring."]
   },
   {
-   "id": "bb-061.jpg",
-   "t": "Pearl-Tipped Bypass Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Pearl"], "setting": [],
-   "px": 1200, "story": ["925 sterling silver bypass bangle tipped with natural pearls, with its matching ring."]
-  },
-  {
    "id": "bb-062.jpg",
    "t": "Opal and Ruby Bangle & Ring",
    "co": "bangles-and-cuffs",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby"], "setting": [],
    "px": 1024, "story": ["A natural opal ringed in natural rubies, on a slim gold bangle with its ring."]
-  },
-  {
-   "id": "bb-063.jpg",
-   "t": "Opal Rainbow Halo Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": [], "setting": ["Halo"],
-   "px": 1200, "story": ["925 sterling silver bangle and ring, each with a natural opal in a halo of natural coloured stones."]
-  },
-  {
-   "id": "bb-064.jpg",
-   "t": "Opal and Ruby Halo Bangle & Ring",
-   "co": "bangles-and-cuffs",
-   "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby"], "setting": ["Halo"],
-   "px": 1200, "story": ["925 sterling silver bangle and ring, each with a natural opal in a halo of natural rubies."]
   },
   {
    "id": "bb-065.jpg",
@@ -1514,6 +1339,31 @@
   "DSC09063": "_REVIEW.txt: side marquise clusters rearranged into a full sunburst",
   "DSC09107": "_REVIEW.txt: orange-red heart rendered as ruby red",
   "DSC09123": "_REVIEW.txt: hard, detached shadow bar under the ring",
-  "DSC09156": "_REVIEW.txt: tall, tilted composition unlike the rest"
+  "DSC09156": "_REVIEW.txt: tall, tilted composition unlike the rest",
+  "bb-010.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Princess Ruby Bangle & Ring\")",
+  "bb-011.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Marquise Ruby Two-Tone Bangle & Ring\")",
+  "bb-012.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Round Ruby Pavé Bangle & Ring\")",
+  "bb-013.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Full Pavé Ruby Bangle & Ring\")",
+  "bb-014.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Ruby and Pearl Bangle & Ring\")",
+  "bb-015.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Ruby Pearl Halo Bangle & Ring\")",
+  "bb-018.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Dark Stone Lattice Bangle & Ring\")",
+  "bb-028.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Filigree Flower Bangle & Ring\")",
+  "bb-029.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Sky Blue Wave Bangle & Ring\")",
+  "bb-030.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Two-Tone Diamond Bangle & Ring\")",
+  "bb-031.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Geometric Pavé Bangle & Ring\")",
+  "bb-032.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Rose Gold Bypass Bangle & Ring\")",
+  "bb-033.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Gold Bypass Bangle & Ring\")",
+  "bb-034.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Baguette Bar Bangle & Ring\")",
+  "bb-035.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Floral Cluster Bangle & Ring\")",
+  "bb-036.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Classic Pavé Bangle & Ring\")",
+  "bb-037.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Pavé Barrel Bangle & Ring\")",
+  "bb-038.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Halo Centre Bangle & Ring\")",
+  "bb-046.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Emerald Halo Bangle & Ring\")",
+  "bb-053.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Blue Pear Open Bangle & Ring\")",
+  "bb-056.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Amethyst and Pearl Bangle & Ring\")",
+  "bb-058.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Blue Topaz Halo Bangle & Ring\")",
+  "bb-061.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Pearl-Tipped Bypass Bangle & Ring\")",
+  "bb-063.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Opal Rainbow Halo Bangle & Ring\")",
+  "bb-064.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Opal and Ruby Halo Bangle & Ring\")"
  }
 }

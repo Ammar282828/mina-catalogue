@@ -64,7 +64,9 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   - **Bangles & bracelets, 2026-09-23:** the 122 photographs in `~/Downloads/House of Mina — Bangles & Bracelets 3.pdf`
     (built in `house-of-mina-theme/tools/catalogue/bangles/`; source images lost with a scratch folder / Work SSD 1),
     extracted from the PDF by each image's "No." label → `catalog-src/local/bb-NNN.jpg`. 20 of them are already Shopify
-    products (Raya, Aylin, Soleil, Lyra, Cuban…) and are not repeated: 101 pieces (Nos. 77 and 78 are one bangle).
+    products (Raya, Aylin, Soleil, Lyra, Cuban…) and are not repeated; the 25 marked "new — Taheri" in the item list
+    are **Taheri's photographs** (the green-backdrop shoots and a few on black boxes) and the owner had them taken off —
+    they are `held`, never to be shown here. 76 pieces remain (Nos. 77 and 78 are one bangle).
     `story` is the PDF's description (No. 44's "rhodium" dropped — its photo is gold). Plating is left empty where the
     text and photo disagree. Verso and Zobi cuffs → Men's Bracelets.
   - **Removing a piece:** the deploy never deletes, so its old page stays on the server — delete
