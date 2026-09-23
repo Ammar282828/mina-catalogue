@@ -1599,6 +1599,20 @@
    "co": "lockets",
    "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1024, "story": ["The name Allah in American Diamonds on a round gold lattice, bordered in American Diamonds."], "src": "f6a83448-494b-47a6-b28f-665f97f49b8e.JPG"
+  },
+  {
+   "id": "PHOTO-2026-09-21-14-31-23.jpg",
+   "t": "Emerald & Ruby Square Halo Bracelets",
+   "co": "wristwear",
+   "type": "Bracelet", "plating": ["Rhodium"], "stone": ["Emerald", "Ruby", "American Diamond"], "setting": ["Halo"],
+   "px": 1080, "story": ["Line bracelets of square simulated emeralds or simulated rubies, each in a halo of American Diamonds."]
+  },
+  {
+   "id": "PHOTO-2026-09-21-14-31-41.jpg",
+   "t": "Sapphire Baguette Bangles & Ring",
+   "co": "wristwear",
+   "type": "Bangle & Ring", "plating": ["Rhodium"], "stone": ["Sapphire", "American Diamond"], "setting": [],
+   "px": 1080, "story": ["A pair of bangles set with oval simulated sapphires between baguette American Diamonds, with a ring to match."]
   }
  ],
  "held": {
