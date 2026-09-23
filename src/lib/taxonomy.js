@@ -69,6 +69,9 @@ export function classify(product, tags) {
   const type = lc(product.product_type);
   if (type === 'ring') return 'rings-and-bands';
   if (type === 'earrings') return 'earrings';
+  // A bracelet (or bangle) with its ring is worn on the wrist — taheri.shop files
+  // "Bangle & Ring" under Wristwear too. Sets proper are necklace sets.
+  if (type === 'set' && (product.options || []).some((o) => /bracelet|bangle/i.test(o.name))) return 'wristwear';
   if (type === 'set') return 'sets';
   if (type === 'bracelet' || type === 'bangle' || tags.has('cuff') || tags.has("men's cuff")) return 'wristwear';
   if (type === 'necklace' || type === 'pendant' || type === 'chain') return 'chains-and-pendants';
@@ -84,13 +87,13 @@ export function classify(product, tags) {
 export const FACETS = [
   {
     key: 'stone', label: 'Stone', values: [
-      { label: 'American Diamond', match: ['american diamonds', 'american diamond', 'cubic zirconia'] },
+      // Zircon / CZ is what the house calls American Diamonds (src/lib/stones.js).
+      { label: 'American Diamond', match: ['american diamonds', 'american diamond', 'cubic zirconia', 'zircon', 'european zircon', 'european zircons', 'green zircon', 'green zirconia', 'pavé zircon'] },
       { label: 'Moissanite', match: ['moissanite'] },
       { label: 'Pearl', match: ['freshwater pearl', 'freshwater pearls', 'pearl'] },
       { label: 'Emerald', match: ['emerald', 'simulated emerald'] },
       { label: 'Ruby', match: ['ruby'] },
       { label: 'Blue Topaz', match: ['blue topaz'] },
-      { label: 'Zircon', match: ['zircon', 'european zircon', 'european zircons', 'green zircon', 'green zirconia', 'pavé zircon'] },
       { label: 'Lab-Grown Diamond', match: ['lab-grown diamonds'] },
       { label: 'No Stone', match: ['no stone', 'plain'] },
     ],

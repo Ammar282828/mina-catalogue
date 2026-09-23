@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { imageUrls, piecePath, priceLabel, formatPKR, galleryPath, SITE } from '../lib/catalog.js';
 import { enquiry } from '../lib/contact.js';
+import { stoneLabel } from '../lib/stones.js';
 import { useFavourites, noteViewed, useRecent } from '../lib/store.js';
 import { Link, Breadcrumbs, Photo, PieceGrid, HeartIcon, ShareIcon, WhatsAppIcon, ChevronLeft, ChevronRight, CloseIcon } from './ui.jsx';
 
@@ -234,7 +235,7 @@ export default function Piece({ route, cat }) {
             <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-line pt-8 text-[13px]">
               <div><p className="eyebrow text-ink-2">Metal</p><p className="mt-1 text-ink">925 sterling silver</p></div>
               {p.plating?.length > 0 && <div><p className="eyebrow text-ink-2">Plating</p><p className="mt-1 text-ink">{p.plating.map((v) => PLATING_LABEL[v] || v).join(' or ')}{p.nickelFree ? '; nickel-free on request' : ''}</p></div>}
-              {p.facets?.stone && <div><p className="eyebrow text-ink-2">Stones</p><p className="mt-1 text-ink">{p.facets.stone.join(', ')}</p></div>}
+              {p.facets?.stone && <div><p className="eyebrow text-ink-2">Stones</p><p className="mt-1 text-ink">{p.facets.stone.map(stoneLabel).join(', ')}</p></div>}
               <div><p className="eyebrow text-ink-2">Care</p><p className="mt-1 text-ink">One free repolish on every piece</p></div>
             </div>
 

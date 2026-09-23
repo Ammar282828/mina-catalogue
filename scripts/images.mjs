@@ -20,7 +20,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
-import { localFile, localImageIds } from '../src/lib/catalog.js';
+import { localFile, localImageIds, renderKey } from '../src/lib/catalog.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SOURCES = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'image-sources.json'), 'utf8'));
@@ -29,6 +29,13 @@ const LOCAL = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'local.json')
 const LOCAL_ORIGIN = 'https://catalogue.houseofmina.store/catalog-src/local';
 for (const id of localImageIds(LOCAL)) {
   SOURCES[`local/${id.replace(/\.[a-z0-9]+$/i, '')}`] = `${LOCAL_ORIGIN}/${localFile(id)}`;
+}
+// Their 3D renders (data/renders.json), uploaded by scripts/sync-renders.mjs.
+const RENDERS = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'renders.json'), 'utf8'));
+const USED = new Set(localImageIds(LOCAL).map((id) => id.replace(/\.[a-z0-9]+$/i, '')));
+for (const [id, r] of Object.entries(RENDERS)) {
+  if (!USED.has(id)) continue;   // a held image's render is not shown either
+  SOURCES[renderKey(id, r)] = `https://catalogue.houseofmina.store/catalog-src/local-3d/${id}.png?v=${r.v}`;
 }
 const FORCE = process.argv.includes('--force');
 const CONCURRENCY = 6;

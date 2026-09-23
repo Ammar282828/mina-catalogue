@@ -23,6 +23,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const STORE = 'https://houseofmina.store';
 const CATALOG_PATH = path.join(ROOT, 'src', 'catalog.json');
 const SOURCES_PATH = path.join(ROOT, 'data', 'image-sources.json');
+const DRAFTS_PATH = path.join(ROOT, 'data', 'shopify-drafts.json');
 const FORCE = process.argv.includes('--force');
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -145,13 +146,29 @@ async function main() {
     }
     await sleep(250);
   }
-  console.log(`  ${products.length} products, ${collections.length} collections`);
+  const published = products.length;
+  console.log(`  ${published} products, ${collections.length} collections`);
+
+  // Drafts: not in the public feed, so kept in data/shopify-drafts.json (written
+  // from the Admin API by scripts/drafts-from-admin.mjs). Treated exactly like a
+  // published product; their collection memberships come with them.
+  try {
+    const drafts = JSON.parse(await fs.readFile(DRAFTS_PATH, 'utf8')).products || [];
+    const live = new Set(products.map((p) => p.handle));
+    for (const d of drafts) {
+      if (live.has(d.handle)) continue;   // published since it was drafted: the feed wins
+      products.push(d);
+      members.set(d.handle, new Set(d.collections || []));
+    }
+    console.log(`  + ${products.length - published} drafts from ${path.relative(ROOT, DRAFTS_PATH)}`);
+  } catch (e) { if (e.code !== 'ENOENT') throw e; }
 
   // A feed that suddenly returns far fewer pieces is an outage, not a clearance.
   try {
     const prev = JSON.parse(await fs.readFile(CATALOG_PATH, 'utf8'));
-    if (!FORCE && prev.pieces?.length && products.length < prev.pieces.length * 0.6) {
-      throw new Error(`Shopify returned ${products.length} products; the catalogue has ${prev.pieces.length}. Refusing to shrink it by that much — run with --force if this is real.`);
+    const before = prev.published ?? prev.pieces?.length;
+    if (!FORCE && before && published < before * 0.6) {
+      throw new Error(`Shopify returned ${published} published products; the catalogue had ${before}. Refusing to shrink it by that much — run with --force if this is real.`);
     }
   } catch (e) { if (e.code !== 'ENOENT' && !/SyntaxError/.test(e.name)) throw e; }
 
@@ -242,7 +259,7 @@ async function main() {
     return { slug: e.slug, title: e.title, blurb: text(c?.body_html || '') || e.blurb || '', count };
   }).filter((e) => e.count > 0);
 
-  const catalog = { syncedAt: new Date().toISOString(), source: STORE, count: pieces.length, edits, pieces };
+  const catalog = { syncedAt: new Date().toISOString(), source: STORE, count: pieces.length, published, edits, pieces };
   await fs.mkdir(path.dirname(SOURCES_PATH), { recursive: true });
   await fs.writeFile(CATALOG_PATH, JSON.stringify(catalog) + '\n');
   await fs.writeFile(SOURCES_PATH, JSON.stringify(sources, null, 0).replace(/","/g, '",\n"') + '\n');

@@ -8,7 +8,8 @@
     "sync": "node scripts/sync-shopify.mjs",
     "images": "node scripts/images.mjs",
     "build": "vite build && node scripts/prerender.mjs",
-    "preview": "vite preview --port 5191"
+    "preview": "vite preview --port 5191",
+    "renders": "node scripts/sync-renders.mjs --publish"
   },
   "dependencies": {
     "react": "^18.2.0",

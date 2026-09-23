@@ -72,7 +72,7 @@ jobs:
           path: |
             public/catalog-thumb
             public/catalog-full
-          key: photos-${{ hashFiles('data/image-sources.json', 'data/local.json') }}
+          key: photos-${{ hashFiles('data/image-sources.json', 'data/local.json', 'data/renders.json') }}
           restore-keys: photos-
 
       - run: npm run images

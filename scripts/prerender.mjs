@@ -27,7 +27,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(ROOT, 'dist');
 const shopify = JSON.parse(await fs.readFile(path.join(ROOT, 'src', 'catalog.json'), 'utf8'));
 const local = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'local.json'), 'utf8'));
-const cat = buildCatalog(mergeLocal(shopify, local), []);
+const renders = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'renders.json'), 'utf8'));
+const cat = buildCatalog(mergeLocal(shopify, local, renders), []);
 const template = await fs.readFile(path.join(DIST, 'index.html'), 'utf8');
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -68,7 +69,7 @@ const contact = `<p>Enquire on WhatsApp: <a href="https://wa.me/923161930960">${
 function body(route) {
   switch (route.kind) {
     case 'home':
-      return `${nav}<h1>House of Mina</h1><p>Fine jewelry in 925 sterling silver, plated in 21k gold or rhodium and handcrafted to order in Karachi. ${cat.pieces.length} pieces.</p>
+      return `${nav}<h1>House of Mina</h1><p>Fine jewelry in 925 sterling silver, plated in 21k gold or rhodium, set with simulated stones and American Diamonds, and handcrafted to order in Karachi. ${cat.pieces.length} pieces.</p>
 <section><h2>Categories</h2><ul>${cat.chapters.map((ch) => `<li><a href="${galleryPath(ch.slug)}">${esc(ch.title)}</a> (${ch.pieces.length}) — ${esc(ch.blurb)}</li>`).join('')}</ul></section>
 <section><h2>The Edits</h2><ul>${cat.edits.map((e) => `<li><a href="${galleryPath(e.slug)}">${esc(e.title)}</a> (${e.pieces.length})</li>`).join('')}</ul></section>
 <section><h2><a href="${galleryPath('new-arrivals')}">New Arrivals</a></h2>${grid(cat.newArrivals.pieces.slice(0, 12))}</section>${contact}`;
@@ -159,7 +160,7 @@ Sitemap: ${SITE}/image-sitemap.xml
 
 await fs.writeFile(path.join(DIST, 'llms.txt'), `# House of Mina — Catalogue
 
-> Fine jewelry in 925 sterling silver, plated in 21k gold or rhodium and handcrafted to order in Karachi, Pakistan. ${cat.pieces.length} pieces; prices in Pakistani rupees. Enquiries and orders on WhatsApp ${WHATSAPP_DISPLAY}. Instagram ${INSTAGRAM.handle}.
+> Fine jewelry in 925 sterling silver, plated in 21k gold or rhodium, set with simulated stones and American Diamonds, and handcrafted to order in Karachi, Pakistan. ${cat.pieces.length} pieces; prices in Pakistani rupees. Enquiries and orders on WhatsApp ${WHATSAPP_DISPLAY}. Instagram ${INSTAGRAM.handle}.
 
 ## Categories
 ${cat.chapters.map((ch) => `- [${ch.title}](${SITE}${galleryPath(ch.slug)}): ${ch.blurb} ${ch.pieces.length} pieces`).join('\n')}

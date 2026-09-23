@@ -16,7 +16,8 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
 | | |
 |---|---|
 | `npm run dev` | dev server on :5190 (launch config "mina-catalogue" in `taheri-shop/.claude/launch.json`) |
-| `npm run sync` | re-copy the catalogue from Shopify → `src/catalog.json` + `data/image-sources.json` (commit both) |
+| `npm run sync` | re-copy the catalogue from Shopify → `src/catalog.json` + `data/image-sources.json` (commit both); includes the drafts in `data/shopify-drafts.json` |
+| `npm run renders` | take any new 3D renders from iCloud onto the site (upload + `data/renders.json` + push) — owner's Mac only |
 | `npm run images` | build any missing photo variants into `public/catalog-thumb|full` (gitignored) |
 | `npm run build` | `vite build` + `scripts/prerender.mjs` (one HTML document per route, sitemaps, llms.txt, catalog-tree.json) |
 | `npm run preview` | serve `dist/` on :5191 (launch config "mina-catalogue (build)") |
@@ -34,6 +35,16 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
 - `scripts/sync-shopify.mjs` — reads `houseofmina.store/products.json` + `collections.json` (public, no token).
   Refuses to shrink the catalogue by >40% without `--force`. Piece URLs use a slug of the **name**
   (`/rings-and-bands/adele`), not Shopify's handle (often a stock code); a clash falls back to the handle.
+- **Drafts are on the site too** (owner, 2026-09-23). Shopify's public feed has only published products, so
+  `data/shopify-drafts.json` holds the drafts in the feed's shape, written by `scripts/drafts-from-admin.mjs` from an
+  Admin GraphQL export (the owner's Shopify connector; CI has no Admin token). Refresh: export `status:draft` products
+  (fields listed in that script; `variants(first: 250)` plus a `reverse: true` tail for 300-variant sets), run the
+  script, then `npm run sync`. 95 drafts on 2026-09-23 (53 rings, 22 sets, 18 earrings…); 5 unpriced → "Price on request".
+- **Stone wording** — `src/lib/stones.js` `houseWording()`, applied to every piece's story/facts/stone options at build:
+  a coloured stone is always "simulated" (never real/natural/genuine, no mine of origin), CZ / zircon → American
+  Diamond(s); the stone filter says "Simulated Emerald". The theme WORKLOG's rule, restated by the owner 2026-09-23.
+  **Moissanite and lab-grown diamond are left alone** — priced options Shopify sells (Adele 27,000 vs 101,000); the owner
+  was asked. Names are never rewritten. The site-wide material line says "set with simulated stones and American Diamonds".
 - `src/lib/catalog.js` — `buildCatalog()` and `resolvePath()`: the app and the prerender share them,
   so a crawled page and the app's page are always the same page. `src/lib/seo.js` — titles, descriptions,
   JSON-LD (Product with Offer/AggregateOffer, CollectionPage + ItemList, BreadcrumbList).
@@ -73,6 +84,14 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     and Zobi cuffs, turned out to be Shopify's "Verso - Men's Cuff" / "Zobi - Men's Silver Cuff" and are `held`).
     `story` is the PDF's description (No. 44's "rhodium" dropped — its photo is gold). Plating is left empty where the
     text and photo disagree.
+  - **Drafts that are these renders (2026-09-23):** 31 Shopify drafts (the Heirloom collection) were made from the same
+    DSC photos; their render is now the draft's lead image (`heroes`) and the guessed local piece is gone, so the draft's
+    name, description and price win. Two wrist-shot bangle sets likewise (Nos. 44, 95 → held).
+  - **3D renders (2026-09-23, arriving):** the owner's render session writes `heroes-white-1500/3d-renders/DSC#####.png`.
+    `scripts/sync-renders.mjs` uploads each finished one to `catalog-src/local-3d/` and records `{v: hash, w, h}` in
+    `data/renders.json`; `mergeLocal()` then shows the render wherever that DSC image appears (a local piece or a hero),
+    as `local-3d/<id>-<hash>` — a re-roll is a new file name. Held images stay held. New files first appear on this Mac as
+    iCloud placeholders ("dataless"); the script asks iCloud for them and takes them on a later pass.
   - **Removing a piece:** the deploy never deletes, so its old page stays on the server — delete
     `public_html/<category>/<slug>.html` over SSH after the deploy.
 - **Drop folder** — photos uploaded from the POS's Add Photos land in

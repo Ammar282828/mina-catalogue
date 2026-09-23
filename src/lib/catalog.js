@@ -8,6 +8,7 @@
  */
 
 import { CHAPTERS, EDITS } from './taxonomy.js';
+import { houseWording } from './stones.js';
 
 export const SITE = 'https://catalogue.houseofmina.store';
 export const PAGE_SIZE = 36;
@@ -87,10 +88,22 @@ export function localImageIds(local) {
   ];
 }
 
-const localImg = (id, plating, px = 1500) => ({ f: `local/${localKey(id)}`, w: px, h: px, ...(plating ? { plating } : {}) });
+/**
+ * The 3D render of a DSC image, when there is one (data/renders.json, written by
+ * scripts/sync-renders.mjs from iCloud heroes-white-1500/3d-renders/): it takes
+ * the image's place everywhere. The hash is in the file name, so a re-rolled
+ * render is a new URL and no browser keeps the old one.
+ */
+export const renderKey = (id, r) => `local-3d/${localKey(id)}-${r.v}`;
 
-export function mergeLocal(data, local) {
+export function mergeLocal(data, local, renders = {}) {
   if (!local) return data;
+  const localImg = (id, plating, px = 1500) => {
+    const r = renders[localKey(id)];
+    return r
+      ? { f: renderKey(id, r), w: r.w || px, h: r.h || px, ...(plating ? { plating } : {}) }
+      : { f: `local/${localKey(id)}`, w: px, h: px, ...(plating ? { plating } : {}) };
+  };
   const heroes = local.heroes || {};
   const taken = new Set(data.pieces.map((p) => p.s || p.h));
   const hero = (x) => (typeof x === 'string' ? localImg(x) : localImg(x.id, x.plating, x.px));
@@ -118,9 +131,28 @@ export function mergeLocal(data, local) {
 /** The piece that stands for a collection: a best seller where there is one, else the newest. */
 const coverOf = (pieces) => pieces.find((p) => p.edits?.includes('best-sellers')) || pieces.find((p) => !p.drop) || pieces[0];
 
+/**
+ * A piece in the house's words: every coloured stone simulated, CZ / zircon as
+ * American Diamonds (src/lib/stones.js). Names are left as they are.
+ */
+function worded(p) {
+  const st = p.facets?.stone || [];
+  // A moissanite / lab-grown piece with no coloured stone: its "emerald" is the cut.
+  const emeraldIsCut = (st.includes('Moissanite') || st.includes('Lab-Grown Diamond')) && !st.some((x) => /Emerald|Ruby|Topaz/.test(x));
+  const w = (t) => houseWording(t, { emeraldIsCut });
+  const stone = st.length ? [...new Set(st.map((x) => (x === 'Zircon' ? 'American Diamond' : x)))] : null;
+  return {
+    ...p,
+    ...(stone ? { facets: { ...p.facets, stone } } : {}),
+    story: (p.story || []).map(w),
+    facts: (p.facts || []).map(w),
+    ...(p.stones ? { stones: p.stones.map((v) => w(`Stone: ${v}`).slice('Stone: '.length)) } : {}),
+  };
+}
+
 export function buildCatalog(data, drops = [], now = Date.now()) {
   const dropped = drops.map(dropPiece).filter(Boolean);
-  const pieces = [...dropped, ...data.pieces].sort((a, b) => (b.at || '').localeCompare(a.at || ''));
+  const pieces = [...dropped, ...data.pieces].map(worded).sort((a, b) => (b.at || '').localeCompare(a.at || ''));
   const byHandle = new Map(pieces.map((p) => [p.h, p]));
   const bySlug = new Map(pieces.map((p) => [p.s || p.h, p]));
   const cutoff = new Date(now - NEW_DAYS * 864e5).toISOString().slice(0, 10);

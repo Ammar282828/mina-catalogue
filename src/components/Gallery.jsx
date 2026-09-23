@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { FACETS, PRICE_BANDS } from '../lib/taxonomy.js';
 import { PAGE_SIZE, galleryPath, trail } from '../lib/catalog.js';
+import { stoneLabel } from '../lib/stones.js';
 import { Link, Breadcrumbs, Headline, PieceGrid, Pagination, ChevronDown, CloseIcon } from './ui.jsx';
 
 const SORTS = [
@@ -89,7 +90,7 @@ export default function Gallery({ route, cat }) {
       .filter((o) => o.count);
     if (plating.length > 1) menus.push({ key: 'plating', label: 'Plating', options: plating });
     for (const f of FACETS) {
-      const options = f.values.map((v) => ({ value: v.label, label: v.label, count: g.pieces.filter((p) => p.facets?.[f.key]?.includes(v.label)).length })).filter((o) => o.count);
+      const options = f.values.map((v) => ({ value: v.label, label: f.key === 'stone' ? stoneLabel(v.label) : v.label, count: g.pieces.filter((p) => p.facets?.[f.key]?.includes(v.label)).length })).filter((o) => o.count);
       if (options.length > 1) menus.push({ key: f.key, label: f.label, options });
     }
     const price = PRICE_BANDS.map((b) => ({ value: b.key, label: b.label, count: g.pieces.filter((p) => matches(p, { price: [b.key] })).length })).filter((o) => o.count);

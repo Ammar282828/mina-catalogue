@@ -8,7 +8,7 @@
 import { SITE, PAGE_SIZE, piecePath, galleryPath, imageUrls, priceLabel } from './catalog.js';
 
 export const BRAND = 'House of Mina';
-const MATERIAL = '925 sterling silver with 21k gold or rhodium plating';
+const MATERIAL = '925 sterling silver with 21k gold or rhodium plating, set with simulated stones and American Diamonds';
 
 const clip = (s, n = 158) => {
   const t = String(s || '').replace(/\s+/g, ' ').trim();

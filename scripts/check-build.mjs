@@ -5,7 +5,8 @@ import { mergeLocal } from '../src/lib/catalog.js';
 
 const shopify = JSON.parse(fs.readFileSync('src/catalog.json', 'utf8'));
 const local = JSON.parse(fs.readFileSync('data/local.json', 'utf8'));
-const pieces = mergeLocal(shopify, local).pieces;
+const renders = JSON.parse(fs.readFileSync('data/renders.json', 'utf8'));
+const pieces = mergeLocal(shopify, local, renders).pieces;
 const pages = fs.readdirSync('dist', { recursive: true }).filter((f) => f.endsWith('.html')).length;
 const missing = pieces.flatMap((p) => p.img).filter((i) => i.f && (!fs.existsSync(`dist/catalog-thumb/${i.f}.webp`) || !fs.existsSync(`dist/catalog-full/${i.f}.webp`)));
 

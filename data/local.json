@@ -1,5 +1,5 @@
 {
- "_about": "The house's own ring images, not Shopify's: AI renders (Nano Banana) of the shop's DSC photographs, padded onto white at 1500px — from iCloud heroes-white-1500 (179 files, see its _REVIEW.txt). heroes: an image put first on a Shopify piece (by handle). pieces: rings known only from these images, no price (Price on request); name, collection, plating and stones were read off the image on 2026-09-23 and may be corrected. also: more images of the same piece; photoPlating: which plating an image shows. held: images deliberately not shown, with the reason. Originals live on the server at /catalog-src/local/<id>.png (never in git). Bangles and bracelets (ids bb-NNN.jpg, 2026-09-23): the photographs in ~/Downloads/House of Mina — Bangles & Bracelets 3.pdf, extracted by their No.; story is that catalogue's description. Its 22 pieces already on Shopify are not repeated, and its 25 Taheri photographs (green-backdrop shoots, 'new — Taheri' in the item list) are held.",
+ "_about": "The house's own ring images, not Shopify's: AI renders (Nano Banana) of the shop's DSC photographs, padded onto white at 1500px — from iCloud heroes-white-1500 (179 files, see its _REVIEW.txt). heroes: an image put first on a Shopify piece (by handle). pieces: rings known only from these images, no price (Price on request); name, collection, plating and stones were read off the image on 2026-09-23 and may be corrected. also: more images of the same piece; photoPlating: which plating an image shows. held: images deliberately not shown, with the reason. Originals live on the server at /catalog-src/local/<id>.png (never in git). Bangles and bracelets (ids bb-NNN.jpg, 2026-09-23): the photographs in ~/Downloads/House of Mina — Bangles & Bracelets 3.pdf, extracted by their No.; story is that catalogue's description. Its 22 pieces already on Shopify are not repeated, and its 25 Taheri photographs (green-backdrop shoots, 'new — Taheri' in the item list) are held. Shopify drafts (data/shopify-drafts.json, 2026-09-23): 31 of them are the same pieces as renders here; those renders are now the drafts' lead images (heroes) and the guessed pieces are gone.",
  "addedAt": "2026-09-23",
  "heroes": {
   "cosette-pearl-ring": [
@@ -37,6 +37,108 @@
   ],
   "rosetta-halo-ring": [
    "DSC09061"
+  ],
+  "ruby-petal-cluster-ring": [
+   "DSC09108"
+  ],
+  "emerald-double-halo-ring": [
+   "DSC09072"
+  ],
+  "emerald-sunburst-halo-ring": [
+   "DSC09082"
+  ],
+  "ruby-three-stone-ring": [
+   "DSC09097",
+   "DSC09096"
+  ],
+  "sapphire-floral-cluster-ring": [
+   "DSC09026"
+  ],
+  "emerald-split-halo-ring": [
+   {
+    "id": "DSC09074",
+    "plating": "Rhodium"
+   },
+   {
+    "id": "DSC09076",
+    "plating": "Gold"
+   }
+  ],
+  "ruby-floral-cluster-ring": [
+   "DSC09054"
+  ],
+  "opal-ruby-cluster-ring": [
+   "DSC09058"
+  ],
+  "ruby-eternity-band": [
+   "DSC09060"
+  ],
+  "oval-ruby-halo-ring": [
+   "DSC09053"
+  ],
+  "ruby-baguette-ring": [
+   "DSC09052"
+  ],
+  "vintage-sapphire-ring": [
+   "DSC09030"
+  ],
+  "ruby-solitaire-ring": [
+   "DSC09046"
+  ],
+  "ruby-twist-ring": [
+   "DSC09103"
+  ],
+  "emerald-halo-ring": [
+   "DSC09084"
+  ],
+  "firoza-pear-ruby-double-halo-ring": [
+   "DSC08997"
+  ],
+  "noori-oval-ruby-sunburst-halo-ring": [
+   "DSC08998"
+  ],
+  "mirabelle": [
+   "DSC09111"
+  ],
+  "sienna-marquise-illusion-ring": [
+   "DSC09130",
+   "DSC09134"
+  ],
+  "elodie-floral-cocktail-ring": [
+   "DSC09118"
+  ],
+  "solitaire-round-halo-ring": [
+   "DSC09114"
+  ],
+  "fleur": [
+   "DSC09113"
+  ],
+  "maya-oval-emerald-sunburst-halo-ring": [
+   "DSC09080"
+  ],
+  "samira-emerald-deco-halo-cocktail-ring": [
+   "DSC09066"
+  ],
+  "astraea": [
+   "DSC09073"
+  ],
+  "anaya-oval-emerald-baguette-halo-ring": [
+   "DSC09087"
+  ],
+  "hira-square-emerald-pave-ring": [
+   "DSC09069"
+  ],
+  "bushra-oval-emerald-woven-halo-ring": [
+   "DSC09088"
+  ],
+  "fiora-oval-halo-ring": [
+   "DSC09091"
+  ],
+  "mahira-emerald-cut-ruby-cocktail-ring": [
+   "DSC09101"
+  ],
+  "aurelie-infinity-twist-ring": [
+   "DSC09098"
   ]
  },
  "pieces": [
@@ -83,16 +185,6 @@
   {
    "id": "DSC08996",
    "t": "Ruby Cushion Starburst Ring",
-   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": []
-  },
-  {
-   "id": "DSC08997",
-   "t": "Ruby Pear Double Halo Ring",
-   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
-  },
-  {
-   "id": "DSC08998",
-   "t": "Ruby Oval Marquise Cluster Ring",
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
@@ -196,11 +288,6 @@
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
-   "id": "DSC09026",
-   "t": "Sapphire Marquise Flower Ring",
-   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": []
-  },
-  {
    "id": "DSC09028",
    "t": "Violet Emerald-Cut Ring",
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
@@ -208,11 +295,6 @@
   {
    "id": "DSC09029",
    "t": "Sapphire Oval Pavé Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
-  },
-  {
-   "id": "DSC09030",
-   "t": "Sapphire Split-Shank Ring",
    "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
@@ -271,11 +353,6 @@
    "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo", "Pavé"]
   },
   {
-   "id": "DSC09046",
-   "t": "Ruby Oval Trilliant Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
-  },
-  {
    "id": "DSC09047",
    "t": "Ruby Baguette Halo Ring",
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
@@ -296,21 +373,6 @@
    "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
-   "id": "DSC09052",
-   "t": "Ruby Baguette Band",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby"], "setting": []
-  },
-  {
-   "id": "DSC09053",
-   "t": "Ruby Cluster Split-Shank Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
-  },
-  {
-   "id": "DSC09054",
-   "t": "Ruby Compass Flower Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
-  },
-  {
    "id": "DSC09055",
    "t": "Ruby Baguette Frame Ring",
    "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
@@ -326,19 +388,9 @@
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"]
   },
   {
-   "id": "DSC09058",
-   "t": "Opal Ruby Flower Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby"], "setting": []
-  },
-  {
    "id": "DSC09059",
    "t": "Ruby Round Halo Pavé Ring",
    "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo", "Pavé"]
-  },
-  {
-   "id": "DSC09060",
-   "t": "Ruby Eternity Band",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09062",
@@ -356,11 +408,6 @@
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": []
   },
   {
-   "id": "DSC09066",
-   "t": "Emerald Baguette Burst Ring",
-   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": []
-  },
-  {
    "id": "DSC09067",
    "t": "Emerald Oval Marquise-Cluster Ring",
    "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": []
@@ -371,33 +418,9 @@
    "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": []
   },
   {
-   "id": "DSC09069",
-   "t": "Emerald Square Pavé Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
-  },
-  {
    "id": "DSC09071",
    "t": "Ruby and Pearl Cluster Ring",
    "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "Pearl", "American Diamond"], "setting": ["Halo"]
-  },
-  {
-   "id": "DSC09072",
-   "t": "Emerald Oval Double Halo Ring",
-   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
-  },
-  {
-   "id": "DSC09073",
-   "t": "Emerald Oval Star Halo Ring",
-   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
-  },
-  {
-   "id": "DSC09074",
-   "t": "Emerald Halo Split-Shank Ring",
-   "co": "rings-and-bands", "plating": ["Rhodium", "Gold"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo", "Pavé"], "also": ["DSC09076"],
-   "photoPlating": {
-    "DSC09074": "Rhodium",
-    "DSC09076": "Gold"
-   }
   },
   {
    "id": "DSC09075",
@@ -420,29 +443,14 @@
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": []
   },
   {
-   "id": "DSC09080",
-   "t": "Emerald Oval Cluster Ring",
-   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
-  },
-  {
    "id": "DSC09081",
    "t": "Emerald Cushion Statement Ring",
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
   },
   {
-   "id": "DSC09082",
-   "t": "Emerald Sunburst Halo Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
-  },
-  {
    "id": "DSC09083",
    "t": "Emerald Oval Solitaire",
    "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald"], "setting": ["Solitaire"]
-  },
-  {
-   "id": "DSC09084",
-   "t": "Golden Emerald Cluster Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09085",
@@ -455,16 +463,6 @@
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
   },
   {
-   "id": "DSC09087",
-   "t": "Emerald Vintage Halo Ring",
-   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
-  },
-  {
-   "id": "DSC09088",
-   "t": "Emerald Filigree Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": []
-  },
-  {
    "id": "DSC09089",
    "t": "Emerald Bezel Filigree Ring",
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": []
@@ -473,11 +471,6 @@
    "id": "DSC09090",
    "t": "Emerald Triple-Row Ring",
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
-  },
-  {
-   "id": "DSC09091",
-   "t": "Ruby Oval Filigree Cluster Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09092",
@@ -500,21 +493,6 @@
    "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
-   "id": "DSC09096",
-   "t": "Ruby Emerald-Cut Cluster Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
-  },
-  {
-   "id": "DSC09097",
-   "t": "Ruby Cushion Cluster Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
-  },
-  {
-   "id": "DSC09098",
-   "t": "Ruby Oval Bypass Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
-  },
-  {
    "id": "DSC09099",
    "t": "Ruby Halo Split-Band Ring",
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo", "Pavé"]
@@ -525,19 +503,9 @@
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
-   "id": "DSC09101",
-   "t": "Ruby Emerald-Cut Halo Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
-  },
-  {
    "id": "DSC09102",
    "t": "Ruby Five-Stone Band",
    "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby"], "setting": []
-  },
-  {
-   "id": "DSC09103",
-   "t": "Ruby Crossover Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09104",
@@ -555,34 +523,14 @@
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
   },
   {
-   "id": "DSC09108",
-   "t": "Ruby Pear Blossom Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
-  },
-  {
    "id": "DSC09110",
    "t": "Ruby Oval Scroll Ring",
    "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
-   "id": "DSC09111",
-   "t": "Ruby Oval Cluster Ring",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
-  },
-  {
    "id": "DSC09112",
    "t": "Baguette Band Solitaire",
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"]
-  },
-  {
-   "id": "DSC09113",
-   "t": "Blush Flower Halo Ring",
-   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"]
-  },
-  {
-   "id": "DSC09114",
-   "t": "Rose Swirl Solitaire",
-   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Halo"]
   },
   {
    "id": "DSC09115",
@@ -597,11 +545,6 @@
   {
    "id": "DSC09117",
    "t": "Gold Beaded Crossover Band",
-   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
-  },
-  {
-   "id": "DSC09118",
-   "t": "Gold Blossom Cocktail Ring",
    "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
   },
   {
@@ -643,11 +586,6 @@
    "id": "DSC09129",
    "t": "Grand Pavé Band",
    "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
-  },
-  {
-   "id": "DSC09130",
-   "t": "Marquise Halo Split-Shank Ring",
-   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"], "also": ["DSC09134"]
   },
   {
    "id": "DSC09131",
@@ -970,13 +908,6 @@
    "px": 1080, "story": ["A smooth emerald cabochon on an open gold bangle, with its ring."]
   },
   {
-   "id": "bb-044.jpg",
-   "t": "Emerald-Cut Emerald Bangle & Ring",
-   "co": "wristwear",
-   "type": "Bangle & Ring", "plating": [], "stone": ["Emerald"], "setting": [],
-   "px": 1024, "story": ["An emerald-cut emerald on a slim bangle, with its matching ring."]
-  },
-  {
    "id": "bb-045.jpg",
    "t": "Emerald Leaf Bangle & Ring",
    "co": "wristwear",
@@ -1229,13 +1160,6 @@
    "px": 1200, "story": ["A two-tone American Diamond crossover bracelet, with its matching ring."]
   },
   {
-   "id": "bb-095.jpg",
-   "t": "Marquise Bracelet & Flower Ring",
-   "co": "wristwear",
-   "type": "Bracelet & Ring", "plating": [], "stone": ["American Diamond"], "setting": [],
-   "px": 1300, "story": ["A marquise American Diamond bracelet with a floral ring."]
-  },
-  {
    "id": "bb-096.jpg",
    "t": "Double-Row Bezel Tennis Bracelet",
    "co": "wristwear",
@@ -1352,6 +1276,8 @@
   "bb-063.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Opal Rainbow Halo Bangle & Ring\")",
   "bb-064.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Opal and Ruby Halo Bangle & Ring\")",
   "bb-084.jpg": "already on Shopify as \"Verso - Men's Cuff\" (with its price) — a duplicate, removed 2026-09-23 (was \"Verso Cuff\")",
-  "bb-085.jpg": "already on Shopify as \"Zobi - Men's Silver Cuff\" (with its price) — a duplicate, removed 2026-09-23 (was \"Zobi Cuff\")"
+  "bb-085.jpg": "already on Shopify as \"Zobi - Men's Silver Cuff\" (with its price) — a duplicate, removed 2026-09-23 (was \"Zobi Cuff\")",
+  "bb-044.jpg": "the same set as Shopify draft \"emerald-halo-set-bracelet\" — a duplicate, removed 2026-09-23 (was \"Emerald-Cut Emerald Bangle & Ring\")",
+  "bb-095.jpg": "the same set as Shopify draft \"pave-vine-set\" — a duplicate, removed 2026-09-23 (was \"Marquise Bracelet & Flower Ring\")"
  }
 }

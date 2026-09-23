@@ -154,7 +154,7 @@ export function Footer({ cat }) {
           <div>
             <Wordmark className="h-[18px] w-auto text-accent" />
             <p className="mt-6 max-w-[34ch] text-[14px] leading-relaxed text-ink-2">
-              Fine jewelry in 925 sterling silver, plated in 21k gold or rhodium and handcrafted to order in Karachi.
+              Fine jewelry in 925 sterling silver, plated in 21k gold or rhodium, set with simulated stones and American Diamonds, and handcrafted to order in Karachi.
             </p>
           </div>
           <div>
