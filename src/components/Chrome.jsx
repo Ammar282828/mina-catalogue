@@ -48,7 +48,8 @@ function Search({ cat, onClose }) {
     const words = q.toLowerCase().split(/\s+/).filter((w) => w.length > 1);
     if (!words.length) return [];
     return cat.pieces.filter((p) => {
-      const hay = [p.t, p.type, cat.galleries.get(p.co)?.title, ...(p.plating || []), ...Object.values(p.facets || {}).flat(), ...(p.story || [])].join(' ').toLowerCase();
+      const home = cat.galleries.get(p.co);
+      const hay = [p.t, p.type, home?.title, home?.parent?.title, ...(p.plating || []), ...Object.values(p.facets || {}).flat(), ...(p.story || [])].join(' ').toLowerCase();
       return words.every((w) => hay.includes(w));
     }).slice(0, 30);
   }, [q, cat]);
@@ -116,6 +117,8 @@ export function Header({ cat, home }) {
   }, []);
 
   const solid = !home || scrolled;
+  const mens = cat.chapters.find((c) => c.collections);
+  const inMens = !!mens && [mens, ...mens.collections].some((g) => path === galleryPath(g.slug) || path.startsWith(`${galleryPath(g.slug)}/`));
   return (
     <>
       <header className={`fixed inset-x-0 z-40 transition-colors duration-300 ${home ? 'top-8' : 'top-0'} ${solid ? 'bg-bg/90 backdrop-blur-md border-b border-line' : 'bg-transparent border-b border-transparent'}`}>
@@ -123,18 +126,25 @@ export function Header({ cat, home }) {
           <Link to="/" aria-label="House of Mina — home" className="text-accent">
             <Wordmark className="h-[13px] w-auto md:h-[15px]" />
           </Link>
-          <nav className="flex items-center gap-1 sm:gap-2" aria-label="Site">
+          <nav className="flex items-center gap-0.5 sm:gap-2" aria-label="Site">
             <Link to="/collections" aria-current={path === '/collections' ? 'page' : undefined}
-              className={`eyebrow px-2.5 py-2 transition-colors ${path === '/collections' ? 'text-accent' : 'text-ink hover:text-accent'}`}>
+              className={`eyebrow px-2 sm:px-2.5 py-2 transition-colors ${path === '/collections' ? 'text-accent' : 'text-ink hover:text-accent'}`}>
               Collections
             </Link>
-            <span className="mx-1 h-4 w-px bg-line" aria-hidden="true" />
-            <button type="button" onClick={() => setSearching(true)} className="press p-2 text-ink hover:text-accent" aria-label="Search (press /)"><SearchIcon /></button>
-            <Link to="/favourites" className="press relative p-2 text-ink hover:text-accent" aria-label={`Saved pieces${fav.list.length ? `, ${fav.list.length}` : ''}`}>
+            {/* Men's is a section of its own, one tap from anywhere. */}
+            {mens && (
+              <Link to={galleryPath(mens.slug)} aria-current={inMens ? 'page' : undefined}
+                className={`eyebrow px-1.5 sm:px-2.5 py-2 transition-colors ${inMens ? 'text-accent' : 'text-ink hover:text-accent'}`}>
+                {mens.title}
+              </Link>
+            )}
+            <span className="mx-1 hidden h-4 w-px bg-line sm:block" aria-hidden="true" />
+            <button type="button" onClick={() => setSearching(true)} className="press p-1.5 sm:p-2 text-ink hover:text-accent" aria-label="Search (press /)"><SearchIcon /></button>
+            <Link to="/favourites" className="press relative p-1.5 sm:p-2 text-ink hover:text-accent" aria-label={`Saved pieces${fav.list.length ? `, ${fav.list.length}` : ''}`}>
               <HeartIcon filled={fav.list.length > 0} />
               {fav.list.length > 0 && <span className="absolute -right-0.5 -top-0.5 min-w-[16px] rounded-full bg-accent px-1 text-center text-[9.5px] leading-4 text-on-accent tabular-nums">{fav.list.length}</span>}
             </Link>
-            <button type="button" onClick={toggleTheme} className="press p-2 text-ink hover:text-accent" aria-label={theme === 'dark' ? 'Light theme' : 'Dark theme'}>
+            <button type="button" onClick={toggleTheme} className="press p-1.5 sm:p-2 text-ink hover:text-accent" aria-label={theme === 'dark' ? 'Light theme' : 'Dark theme'}>
               {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
             </button>
           </nav>
@@ -204,7 +214,7 @@ export function CollectionsPage({ cat }) {
           {cat.pieces.length} pieces in {cat.chapters.length} categories, and the edits that run across them.
         </p>
 
-        <ul className="mt-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 p-0">
+        <ul className="mt-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 p-0">
           {cat.chapters.map((ch) => (
             <li key={ch.slug} className="list-none">
               <Link to={galleryPath(ch.slug)} className="group block">
@@ -214,6 +224,15 @@ export function CollectionsPage({ cat }) {
                 <p className="serif mt-3 text-[19px] text-ink group-hover:text-accent transition-colors">{ch.title}</p>
                 <p className="text-[12px] text-ink-2">{ch.pieces.length} {ch.pieces.length === 1 ? 'piece' : 'pieces'}</p>
               </Link>
+              {ch.collections && (
+                <ul className="mt-2 space-y-1 p-0">
+                  {ch.collections.map((k) => (
+                    <li key={k.slug} className="list-none">
+                      <Link to={galleryPath(k.slug)} className="text-[13px] text-ink-2 hover:text-accent">{k.title} <span className="opacity-60">{k.pieces.length}</span></Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))}
         </ul>

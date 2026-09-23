@@ -17,7 +17,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { CHAPTERS, EDITS, classify, isMens, facetsOf, allGallerySlugs } from '../src/lib/taxonomy.js';
+import { CHAPTERS, EDITS, classify, chapterOf, facetsOf, allGallerySlugs } from '../src/lib/taxonomy.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const STORE = 'https://houseofmina.store';
@@ -179,7 +179,7 @@ async function main() {
   for (const p of products) {
     const tags = new Set((p.tags || []).map((t) => String(t).trim().toLowerCase()));
     const mem = members.get(p.handle) || new Set();
-    const home = classify(p, tags);
+    const home = classify(p, tags, mem);
 
     const prices = p.variants.map((v) => Number(v.price)).filter((n) => Number.isFinite(n) && n > 0);
     const platingIdx = optIndex(p, /^plating$/i);
@@ -217,7 +217,7 @@ async function main() {
       h: p.handle,
       t: p.title.trim(),
       type: p.product_type || '',
-      ch: home,
+      ch: chapterOf(home).slug,
       co: home,
       price: prices.length ? [Math.min(...prices), Math.max(...prices)] : null,
       ...(priceBy(p) ? { priceBy: priceBy(p) } : {}),
@@ -228,7 +228,7 @@ async function main() {
       facets: facetsOf(tags),
       story,
       facts,
-      edits: [...[...mem].map((h) => editByHandle.get(h)?.slug).filter(Boolean), ...(isMens(tags, mem) ? ['for-him'] : [])],
+      edits: [...mem].map((h) => editByHandle.get(h)?.slug).filter(Boolean),
       at: (p.published_at || p.created_at || '').slice(0, 10),
       img: images,
     });
@@ -266,7 +266,8 @@ async function main() {
 
   // A readable summary of where everything landed.
   for (const ch of CHAPTERS) {
-    console.log(`  ${ch.title.padEnd(22)} ${String(pieces.filter((p) => p.co === ch.slug).length).padStart(4)}`);
+    console.log(`  ${ch.title.padEnd(22)} ${String(pieces.filter((p) => p.ch === ch.slug).length).padStart(4)}`);
+    for (const k of ch.collections || []) console.log(`    ${k.title.padEnd(20)} ${String(pieces.filter((p) => p.co === k.slug).length).padStart(4)}`);
   }
   console.log(`  Edits: ${edits.map((e) => `${e.title} ${e.count}`).join(' · ')}`);
   console.log(`Wrote ${pieces.length} pieces, ${Object.keys(sources).length} photographs.`);

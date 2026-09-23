@@ -23,15 +23,24 @@
 
   # The catalogue was first arranged by style (Engagement Rings, Gemstone Rings,
   # Studs…); since 2026-09-23 it is five categories by what the piece is, as on
-  # taheri.shop. Old addresses keep working: a retired collection goes to its
-  # category, a piece under it to the same piece there (piece slugs are unique
-  # site-wide, so /gemstone-rings/x is /rings-and-bands/x). Mirrors RETIRED in
-  # src/lib/taxonomy.js.
-  RewriteRule ^(?:rings|engagement-rings|gemstone-rings|cocktail-rings|everyday-rings|mens-rings)(/.*)?$ /rings-and-bands$1 [R=301,L]
-  RewriteRule ^(?:bracelets|tennis-bracelets|everyday-bracelets|bangles-and-cuffs|mens-bracelets)(/.*)?$ /wristwear$1 [R=301,L]
-  RewriteRule ^(?:necklaces|pendants|chokers|everyday-necklaces|mens-chains)(/.*)?$ /chains-and-pendants$1 [R=301,L]
+  # taheri.shop, and a Men's section. Old addresses keep working: a retired
+  # collection goes to its category, a piece under it to the same piece there
+  # (piece slugs are unique site-wide, so /gemstone-rings/x is /rings-and-bands/x).
+  # Mirrors RETIRED in src/lib/taxonomy.js.
+  RewriteRule ^(?:rings|engagement-rings|gemstone-rings|cocktail-rings|everyday-rings)(/.*)?$ /rings-and-bands$1 [R=301,L]
+  RewriteRule ^(?:bracelets|tennis-bracelets|everyday-bracelets|bangles-and-cuffs)(/.*)?$ /wristwear$1 [R=301,L]
+  RewriteRule ^(?:necklaces|pendants|chokers|everyday-necklaces)(/.*)?$ /chains-and-pendants$1 [R=301,L]
   RewriteRule ^(?:studs|hoops-and-huggies|statement-earrings|everyday-earrings)(/.*)?$ /earrings$1 [R=301,L]
-  RewriteRule ^men(/.*)?$ /for-him$1 [R=301,L]
+
+  # Men's became a section of its own later on 2026-09-23, with sub-categories
+  # (/men, /mens-rings, /natural-ruby-rings, /mens-chains, /mens-bracelets); the
+  # For Him edit it replaces goes there, and each men's piece moved out of the
+  # category of its type to the same slug under its sub-category.
+  RewriteRule ^for-him(/.*)?$ /men$1 [R=301,L]
+  RewriteRule ^rings-and-bands/(emblem-ring|grooved-baguette-band|metro-ring|ridge-ring|tri-channel-ring)$ /mens-rings/$1 [R=301,L]
+  RewriteRule ^rings-and-bands/(natural-ruby-ring-no-[0-9]+)$ /natural-ruby-rings/$1 [R=301,L]
+  RewriteRule ^chains-and-pendants/(box-chain|cuban-chain|curb-diamond-cut-chain|rope-chain|snake-chain)$ /mens-chains/$1 [R=301,L]
+  RewriteRule ^wristwear/(verso-mens-cuff|zobi-mens-silver-cuff|cuban-bracelet|link-bracelet|rope-bracelet)$ /mens-bracelets/$1 [R=301,L]
 
   # /rings-and-bands.html and /rings-and-bands are one page; send the .html form to the clean one.
   RewriteCond %{THE_REQUEST} \s/+([^?\s]+)\.html[\s?] [NC]

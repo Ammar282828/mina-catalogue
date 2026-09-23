@@ -26,10 +26,13 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
 
 - `src/lib/taxonomy.js` — **the arrangement**, **like taheri.shop's** (the owner's call, 2026-09-23): five
   categories by what a piece *is* — **Rings & Bands, Wristwear, Chains & Pendants, Sets, Earrings** — one level,
-  **no sub-collections**. Style (stone, setting, occasion…) is a gallery filter, not a place. Men's pieces sit in
-  those by type and also in the **For Him** edit (`isMens()`); 10 more edits are Shopify campaign collections.
-  `classify()` gives every product exactly one category from its Shopify product type (its page lives at
-  `/<category>/<piece>`). The first arrangement (5 chapters → 18 style collections: Engagement / Gemstone /
+  **no sub-collections**. Style (stone, setting, occasion…) is a gallery filter, not a place. 10 edits are Shopify
+  campaign collections. **Men's is a sixth, separate section with sub-categories** (the owner, later on 2026-09-23;
+  it replaced the For Him edit): **Men's Rings, Natural Ruby Rings, Men's Chains, Men's Bracelets & Cuffs**
+  (`/mens-rings`, `/natural-ruby-rings`, `/mens-chains`, `/mens-bracelets`; `/men` lists them all, and the header
+  links to it). A chapter with `collections` is such a section; `chapterOf()` finds a home's chapter. A men's piece
+  (`isMens()`: Shopify's men's collections or the "men's cuff" tag) lives in Men's, **not** in the category of its
+  type. `classify()` gives every product exactly one home (its page lives at `/<home>/<piece>`). The first arrangement (5 chapters → 18 style collections: Engagement / Gemstone /
   Cocktail / Everyday Rings, Studs, Men's…) is retired: `RETIRED` maps each old slug to its category and
   `public/.htaccess` 301-redirects the old addresses (piece slugs are unique, so `/gemstone-rings/x` → `/rings-and-bands/x`).
 - `scripts/sync-shopify.mjs` — reads `houseofmina.store/products.json` + `collections.json` (public, no token).
@@ -96,10 +99,13 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     iCloud placeholders ("dataless"); the script asks iCloud for them and takes them on a later pass.
   - **Gents' natural ruby rings (2026-09-23):** 13 real photographs (Sony RAW, `~/Downloads/New Folder With Items 3`,
     DSC07562–74), each a different ring: silver, a natural ruby in a gold-plated crown bezel. Converted with `sips`
-    (the full-size conversion is portrait, the camera's true orientation; `sips -Z` previews drop it), cropped square
-    around the ring at 1500px → `catalog-src/local/DSC075NN.jpg`. Named **Natural Ruby Ring No. 1–13** in shoot order
-    (a longer name hides the number on a gallery card), in Rings & Bands and the For Him edit, `natural: true`, plating
-    left empty (silver band, gold-plated bezel).
+    (the full-size conversion is portrait, the camera's true orientation; `sips -Z` previews drop it). The owner
+    found them too dark and wanted them uncropped: **the whole frame, 1333×2000**, shadows and midtones lifted
+    (gamma 0.78), the warm cast eased from the white velvet holder, colour +10% → `catalog-src/local/DSC075NN-v2.jpg`
+    (`px: [1333, 2000]`; a replaced photo needs a new name, since the photo cache keeps the old one). The first
+    square crops (`DSC075NN.jpg`) are unused. Named **Natural Ruby Ring No. 1–13** in shoot order (a longer name hides
+    the number on a gallery card), in Men's → Natural Ruby Rings, `natural: true`, plating left empty (silver band,
+    gold-plated bezel). A portrait photo shows whole on a piece page (frame up to 2:3); tiles stay square.
   - **Sets from Instagram posts (2026-09-23):** seven "Full Set" posts (1080px, `~/Downloads/PHOTO-2026-….jpg`); four
     were already on the site (Ruby Line, Pavé Fan Bridal, Aqua Bloom, and Sapphire Two-Row — that post shows it gold
     with darker stones) and were not repeated. The other three are local pieces under their file names: Sapphire
@@ -108,7 +114,7 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     `public_html/<category>/<slug>.html` over SSH after the deploy.
 - **Drop folder** — photos uploaded from the POS's Add Photos land in
   `public_html/catalog-drop/<Category>/<Category>/` (two deep because that is the POS's drop contract; a category is
-  its own one collection, like taheri.shop's Watches/Watches) via `public/api/upload.php` (bearer
+  its own one collection, like taheri.shop's Watches/Watches; Men's has real ones, `Men's/Men's Rings/`) via `public/api/upload.php` (bearer
   secret in `~/domains/catalogue.houseofmina.store/.website-upload-secret`, outside the web root).
   `api/catalog.php` lists them, `api/img.php` resizes them; the app folds them in at load as
   "price on request" pieces. `catalog-tree.json` (written by the prerender) tells the POS which folders exist and

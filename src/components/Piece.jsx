@@ -107,9 +107,13 @@ export default function Piece({ route, cat }) {
   const seen = recent.filter((h) => h !== p.h).map((h) => cat.byHandle.get(h)).filter(Boolean).slice(0, 4);
   const edits = cat.edits.filter((e) => p.edits?.includes(e.slug));
   const saved = fav.has(p.h);
+  // A portrait photograph is shown whole, in its own shape (up to 2:3); anything else in a square.
+  const shown = p.img[index];
+  const tall = shown.w && shown.h && shown.h > shown.w * 1.02;
 
   const crumbs = [
     { title: 'Home', path: '/' },
+    ...(co?.parent ? [{ title: co.parent.title, path: galleryPath(co.parent.slug) }] : []),
     ...(co ? [{ title: co.title, path: galleryPath(co.slug) }] : []),
     { title: p.t, path: piecePath(p) },
   ];
@@ -122,7 +126,9 @@ export default function Piece({ route, cat }) {
         <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-16">
           {/* Photographs */}
           <div>
-            <button type="button" onClick={() => setViewer(true)} className="relative block w-full aspect-square overflow-hidden bg-bg-2 cursor-zoom-in" aria-label="Open the photographs full screen">
+            <button type="button" onClick={() => setViewer(true)} aria-label="Open the photographs full screen"
+              style={tall ? { aspectRatio: `${shown.w} / ${Math.min(shown.h, shown.w * 1.5)}` } : undefined}
+              className={`relative block w-full overflow-hidden bg-bg-2 cursor-zoom-in ${tall ? '' : 'aspect-square'}`}>
               <Photo key={p.img[index].f || p.img[index].thumb} src={imageUrls(p.img[index]).full} alt={p.img[index].alt || p.t} eager className="h-full w-full object-cover" />
             </button>
             {p.img.length > 1 && (

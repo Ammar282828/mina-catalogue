@@ -10,9 +10,14 @@
  * the wrist, a chain or pendant, a set, earrings) — one level, no style
  * sub-collections (the owner's call, 2026-09-23; the style of a piece is a
  * filter — stone, setting, occasion — not a place). Every piece has exactly one
- * category and its page lives at /<category>/<piece>. Shopify lets a product sit
- * in a dozen collections; here those memberships become edits (Ascension,
- * Heirloom, For Him…) and link to the piece without owning it.
+ * home and its page lives at /<home>/<piece>. Shopify lets a product sit in a
+ * dozen collections; here those memberships become edits (Ascension,
+ * Heirloom…) and link to the piece without owning it.
+ *
+ * Men's is the one section with sub-categories (the owner, later on 2026-09-23):
+ * a men's piece lives there — /mens-rings/emblem-ring — not in the category of
+ * its type. A chapter with `collections` is that kind of section; its own page
+ * lists every piece of its sub-categories.
  *
  * `CHAPTERS` keeps its name: the landing scrolls through them as chapters.
  */
@@ -22,18 +27,34 @@ export const CHAPTERS = [
   { slug: 'chains-and-pendants', title: 'Chains & Pendants', shape: 'chains', blurb: 'Pendants, chokers and fine chains.' },
   { slug: 'sets', title: 'Sets', shape: 'gem', blurb: 'Pieces made to be worn together.' },
   { slug: 'earrings', title: 'Earrings', shape: 'earrings', blurb: 'Studs, hoops, huggies and drops.' },
+  {
+    slug: 'men', title: "Men's", noun: "Men's Jewelry", shape: 'band',
+    blurb: 'Rings, natural rubies, chains, bracelets and cuffs with clean lines.',
+    material: '925 sterling silver, some set with natural rubies',
+    collections: [
+      { slug: 'mens-rings', title: "Men's Rings", blurb: 'Bands and signets, cut clean.' },
+      { slug: 'natural-ruby-rings', title: 'Natural Ruby Rings', blurb: "Gents' rings in silver, each set with a natural ruby in a gold-plated bezel.",
+        material: 'silver, each set with a natural ruby' },
+      { slug: 'mens-chains', title: "Men's Chains", blurb: 'Box, Cuban, curb, rope and snake.' },
+      { slug: 'mens-bracelets', title: "Men's Bracelets & Cuffs", blurb: 'Links, chains and cuffs for the wrist.' },
+    ],
+  },
 ];
+
+/** The chapter a home belongs to: a category, or the section a sub-category sits in. */
+export const chapterOf = (slug) => CHAPTERS.find((c) => (c.collections ? c.collections.some((k) => k.slug === slug) : c.slug === slug));
 
 /** Where each retired style collection (and chapter) went — the .htaccess redirects say the same. */
 export const RETIRED = {
   rings: 'rings-and-bands', 'engagement-rings': 'rings-and-bands', 'gemstone-rings': 'rings-and-bands',
-  'cocktail-rings': 'rings-and-bands', 'everyday-rings': 'rings-and-bands', 'mens-rings': 'rings-and-bands',
+  'cocktail-rings': 'rings-and-bands', 'everyday-rings': 'rings-and-bands',
   bracelets: 'wristwear', 'tennis-bracelets': 'wristwear', 'everyday-bracelets': 'wristwear',
-  'bangles-and-cuffs': 'wristwear', 'mens-bracelets': 'wristwear',
+  'bangles-and-cuffs': 'wristwear',
   necklaces: 'chains-and-pendants', pendants: 'chains-and-pendants', chokers: 'chains-and-pendants',
-  'everyday-necklaces': 'chains-and-pendants', 'mens-chains': 'chains-and-pendants',
+  'everyday-necklaces': 'chains-and-pendants',
   studs: 'earrings', 'hoops-and-huggies': 'earrings', 'statement-earrings': 'earrings', 'everyday-earrings': 'earrings',
-  men: 'for-him',
+  // For Him was an edit until Men's became a section of its own.
+  'for-him': 'men',
 };
 
 /**
@@ -52,21 +73,27 @@ export const EDITS = [
   { handle: 'birthstone-jewelry', slug: 'birthstones', title: 'Birthstones' },
   { handle: 'campaign-valentines', slug: 'valentines-edit', title: "Valentine's Edit" },
   { handle: 'best-sellers', slug: 'best-sellers', title: 'Best Sellers' },
-  // Not a Shopify collection: every men's piece (see isMens), so they stay one
-  // tap away now that Men's is no longer a category.
-  { handle: null, slug: 'for-him', title: 'For Him', blurb: 'Rings, chains, bracelets and cuffs with clean lines.' },
 ];
 
 const lc = (s) => String(s || '').trim().toLowerCase();
 
-/** A men's piece, by Shopify's men's collections or tag. It joins the For Him edit. */
+/** A men's piece, by Shopify's men's collections or tag. Its home is in Men's. */
 export function isMens(tags, memberships) {
   return ['mens-collection', 'mens-rings', 'mens-chains', 'mens-bracelets'].some((x) => memberships.has(x)) || tags.has("men's cuff");
 }
 
-/** The category of one Shopify product, by what it is. `tags` is a set of lower-cased tags. */
-export function classify(product, tags) {
+/**
+ * The home of one Shopify product: a men's piece in its Men's sub-category, any
+ * other in the category of what it is. `tags` is a set of lower-cased tags,
+ * `memberships` the handles of its Shopify collections.
+ */
+export function classify(product, tags, memberships = new Set()) {
   const type = lc(product.product_type);
+  if (isMens(tags, memberships)) {
+    if (type === 'ring') return 'mens-rings';
+    if (type === 'bracelet' || type === 'bangle' || tags.has('cuff') || tags.has("men's cuff")) return 'mens-bracelets';
+    return 'mens-chains';
+  }
   if (type === 'ring') return 'rings-and-bands';
   if (type === 'earrings') return 'earrings';
   // A bracelet (or bangle) with its ring is worn on the wrist — taheri.shop files
@@ -160,7 +187,7 @@ export const PRICE_BANDS = [
 /** Every route slug a gallery can own. Used to refuse a collision at sync time. */
 export function allGallerySlugs() {
   return [
-    ...CHAPTERS.map((c) => c.slug),
+    ...CHAPTERS.flatMap((c) => [c.slug, ...(c.collections || []).map((k) => k.slug)]),
     ...EDITS.map((e) => e.slug),
   ];
 }

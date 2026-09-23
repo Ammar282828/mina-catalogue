@@ -112,8 +112,11 @@ export default function Gallery({ route, cat }) {
   const from = filtering || sort !== 'new' ? 1 : (page - 1) * PAGE_SIZE + 1;
 
   const set = (key, vals) => setState((s) => ({ ...s, filters: { ...s.filters, [key]: vals } }));
-  // A category offers the others beside it — one level, as on taheri.shop.
-  const siblings = g.kind === 'chapter' ? cat.chapters : null;
+  // A category offers the others beside it — one level, as on taheri.shop. Men's,
+  // the one section with sub-categories, also offers those, under the categories.
+  const section = g.kind === 'collection' ? g.parent : g.collections ? g : null;
+  const siblings = g.kind === 'chapter' || g.kind === 'collection' ? cat.chapters : null;
+  const here = section ? section.slug : g.slug;
 
   return (
     <div className="px-5 sm:px-8 md:px-12 pt-28 md:pt-32 pb-24">
@@ -135,7 +138,18 @@ export default function Gallery({ route, cat }) {
           <nav aria-label="Categories" className="no-scrollbar mt-10 -mx-5 px-5 flex gap-2 overflow-x-auto">
             {siblings.map((c) => (
               <Link key={c.slug} to={galleryPath(c.slug)} aria-current={c.slug === g.slug ? 'page' : undefined}
-                className={`eyebrow shrink-0 rounded-full border px-4 py-2 ${c.slug === g.slug ? 'border-accent bg-accent text-on-accent' : 'border-line text-ink-2 hover:text-ink'}`}>
+                className={`eyebrow shrink-0 rounded-full border px-4 py-2 ${c.slug === here ? 'border-accent bg-accent text-on-accent' : 'border-line text-ink-2 hover:text-ink'}`}>
+                {c.title} <span className="opacity-60">{c.pieces.length}</span>
+              </Link>
+            ))}
+          </nav>
+        )}
+
+        {section && (
+          <nav aria-label={`${section.title} categories`} className="no-scrollbar mt-3 -mx-5 px-5 flex gap-2 overflow-x-auto">
+            {[{ slug: section.slug, title: `All ${section.title}`, pieces: section.pieces }, ...section.collections].map((c) => (
+              <Link key={c.slug} to={galleryPath(c.slug)} aria-current={c.slug === g.slug ? 'page' : undefined}
+                className={`eyebrow shrink-0 rounded-full border px-4 py-2 ${c.slug === g.slug ? 'border-accent text-accent' : 'border-line text-ink-2 hover:text-ink'}`}>
                 {c.title} <span className="opacity-60">{c.pieces.length}</span>
               </Link>
             ))}

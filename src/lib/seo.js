@@ -52,13 +52,14 @@ export function metaFor(route, cat, path = '/') {
       const pages = Math.max(1, Math.ceil(g.pieces.length / PAGE_SIZE));
       const first = g.pieces[(route.page - 1) * PAGE_SIZE];
       const suffix = route.page > 1 ? ` — Page ${route.page} of ${pages}` : '';
-      const noun = g.kind === 'edit' ? g.title : `${g.title} in Sterling Silver`;
+      const noun = g.kind === 'edit' ? g.title : `${g.noun || g.title} in Sterling Silver`;
       const crumbs = [{ name: 'Home', url: abs('/') }];
+      if (g.parent) crumbs.push({ name: g.parent.title, url: abs(galleryPath(g.parent.slug)) });
       crumbs.push({ name: g.title, url: abs(galleryPath(g.slug)) });
       const onPage = g.pieces.slice((route.page - 1) * PAGE_SIZE, route.page * PAGE_SIZE);
       return {
         title: `${noun}${suffix} | ${BRAND}`,
-        description: clip(`${g.blurb ? `${g.blurb} ` : ''}${g.pieces.length} pieces in ${MATERIAL}, from ${BRAND}, Karachi. Prices shown; enquire on WhatsApp.`),
+        description: clip(`${g.blurb ? `${g.blurb} ` : ''}${g.pieces.length} pieces in ${g.material || MATERIAL}, from ${BRAND}, Karachi. Prices shown; enquire on WhatsApp.`),
         canonical: abs(galleryPath(g.slug, route.page)),
         image: first ? abs(imageUrls(first.img[0]).full) : DEFAULT_IMAGE,
         prev: route.page > 1 ? abs(galleryPath(g.slug, route.page - 1)) : null,
@@ -83,6 +84,7 @@ export function metaFor(route, cat, path = '/') {
       const lead = p.story?.[0] || `${p.t}, ${MATERIAL}.`;
       const crumbs = [
         { name: 'Home', url: abs('/') },
+        ...(co?.parent ? [{ name: co.parent.title, url: abs(galleryPath(co.parent.slug)) }] : []),
         ...(co ? [{ name: co.title, url: abs(galleryPath(co.slug)) }] : []),
         { name: p.t, url: abs(piecePath(p)) },
       ];
