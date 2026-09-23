@@ -82,7 +82,8 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   source, so a photo replaced in Shopify gets a new file.
 - **Standard whitespace for rings** (the owner, 2026-09-24) — `scripts/whitespace.mjs`, run by `npm run images` on every
   photograph of a piece in `RING_HOMES` (catalog.js): on a plain light background the ring (with its reflection) is
-  centred in a square and spans `FILL` = 78% of it, the backdrop continued from its own edges (read off all four, so a
+  centred in a square and spans `FILL` = 55.5% of it — the share houseofmina.store's own product photos give their rings
+  (measured 2026-09-24: 130 photos, 55–56.5% for nine in ten, 0.5% below centre, `DROP`) —, the backdrop continued from its own edges (read off all four, so a
   vignette is not mistaken for the ring). Scenes — hands, fabric, boxes, lettering — are left alone. Which were framed
   is in `data/framed.json` (committed; the site makes those square and adds `?v=<VERSION>` to their URLs) and in
   `public/catalog-full/.framing.json` beside the cached variants. Raise `VERSION` after changing the rule and the next

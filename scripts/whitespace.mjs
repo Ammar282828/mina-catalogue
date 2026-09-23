@@ -3,7 +3,8 @@
 // A ring photographed on a plain, light background is re-framed so that it sits
 // in the middle of a square and spans the same share of it as every other ring:
 // its outline (with its reflection or shadow, which belong to the photograph)
-// fills FILL of the square's longer side. The background is the photograph's own,
+// fills FILL of the square's side — the share houseofmina.store's own product
+// photographs give their rings. The background is the photograph's own,
 // taken from its edges; where the new frame reaches past the photograph it is
 // continued in that colour. A transparent image is laid on white first.
 //
@@ -18,9 +19,15 @@
 
 import sharp from 'sharp';
 
-export const VERSION = 2;
-/** The ring's outline spans this share of the square. */
-export const FILL = 0.78;
+export const VERSION = 3;
+/**
+ * The ring's outline spans this share of the square, and its middle sits this far
+ * below the square's: houseofmina.store's own ring photographs, measured with
+ * measure() on 2026-09-24 (130 of them: 55.5% median, 55–56.5% for nine in ten;
+ * centred across, 0.5% low), so every ring here matches the website.
+ */
+export const FILL = 0.555;
+export const DROP = 0.005;
 
 const ANALYSE = 400;      // analysis size, px on the longer side
 const BORDER = 0.04;      // the band along each edge that must be background
@@ -28,10 +35,10 @@ const TOLERANCE = 22;     // how far a pixel may differ from the background and 
 const PLAIN = 0.9;        // share of the border band that must be background
 
 /**
- * { buffer, framed, reason } — `framed` false means the photograph was left alone.
- * The buffer is a lossless PNG, at most 2400 px, for the variant builder.
+ * Where the piece is in a photograph: { plain, reason, W, H, full, C, med, box: [x0, y0, x1, y1] }
+ * in the photograph's own pixels, or plain: false for a scene.
  */
-export async function standardWhitespace(input) {
+export async function measure(input) {
   const base = sharp(input).rotate().flatten({ background: '#ffffff' });
   const { data: full, info: fi } = await base.clone().raw().toBuffer({ resolveWithObject: true });
   const W = fi.width, H = fi.height, C = fi.channels;
@@ -52,8 +59,8 @@ export async function standardWhitespace(input) {
   const near = (p) => Math.max(Math.abs(p[0] - med[0]), Math.abs(p[1] - med[1]), Math.abs(p[2] - med[2])) <= TOLERANCE;
   const plainShare = band.filter(near).length / band.length;
   const light = 0.2126 * med[0] + 0.7152 * med[1] + 0.0722 * med[2];
-  if (plainShare < PLAIN) return { buffer: input, framed: false, reason: `edges not plain (${Math.round(plainShare * 100)}%)` };
-  if (light < 200) return { buffer: input, framed: false, reason: `background too dark (${Math.round(light)})` };
+  if (plainShare < PLAIN) return { plain: false, reason: `edges not plain (${Math.round(plainShare * 100)}%)` };
+  if (light < 200) return { plain: false, reason: `background too dark (${Math.round(light)})` };
 
   // The background where the piece is: a studio backdrop is rarely one flat colour (a
   // grey vignette, a lighter centre), so it is read off the four edges and blended
@@ -85,12 +92,23 @@ export async function standardWhitespace(input) {
   const minRow = Math.max(1, Math.round(w * 0.004)), minCol = Math.max(1, Math.round(h * 0.004));
   const y0 = rows.findIndex((n) => n >= minRow), y1 = h - 1 - [...rows].reverse().findIndex((n) => n >= minRow);
   const x0 = cols.findIndex((n) => n >= minCol), x1 = w - 1 - [...cols].reverse().findIndex((n) => n >= minCol);
-  if (y0 < 0 || x0 < 0 || x1 <= x0 || y1 <= y0) return { buffer: input, framed: false, reason: 'no piece found' };
+  if (y0 < 0 || x0 < 0 || x1 <= x0 || y1 <= y0) return { plain: false, reason: 'no piece found' };
+  return { plain: true, W, H, C, full, med, box: [x0 / k, y0 / k, (x1 + 1) / k, (y1 + 1) / k] };
+}
+
+/**
+ * { buffer, framed, reason } — `framed` false means the photograph was left alone.
+ * The buffer is a lossless PNG, at most 2400 px, for the variant builder.
+ */
+export async function standardWhitespace(input) {
+  const m = await measure(input);
+  if (!m.plain) return { buffer: input, framed: false, reason: m.reason };
+  const { W, H, C, full, med } = m;
+  const [bx0, by0, bx1, by1] = m.box;
 
   // The new square, in the photograph's own pixels.
-  const bx0 = x0 / k, by0 = y0 / k, bx1 = (x1 + 1) / k, by1 = (y1 + 1) / k;
   const side = Math.round(Math.max(bx1 - bx0, by1 - by0) / FILL);
-  const left = Math.round((bx0 + bx1) / 2 - side / 2), top = Math.round((by0 + by1) / 2 - side / 2);
+  const left = Math.round((bx0 + bx1) / 2 - side / 2), top = Math.round((by0 + by1) / 2 - side / 2 - DROP * side);
   const pad = { left: Math.max(0, -left), top: Math.max(0, -top), right: Math.max(0, left + side - W), bottom: Math.max(0, top + side - H) };
   const background = { r: med[0], g: med[1], b: med[2] };
 
