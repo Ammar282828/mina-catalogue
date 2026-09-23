@@ -223,6 +223,13 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
   newArrivals.cover = newArrivals.pieces[0];
   galleries.set(newArrivals.slug, newArrivals);
 
+  // Covers chosen by hand (data/lead.json `covers`), wherever the piece is in that gallery.
+  for (const [slug, s] of Object.entries(data.lead?.covers || {})) {
+    const g = galleries.get(slug);
+    const p = g?.pieces.find((x) => (x.s || x.h) === s);
+    if (p) g.cover = p;
+  }
+
   return { pieces, byHandle, bySlug, galleries, chapters, edits, newArrivals, syncedAt: data.syncedAt, isNew: (p) => p.at >= cutoff };
 }
 

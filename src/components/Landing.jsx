@@ -171,7 +171,7 @@ export default function Landing({ cat }) {
             {cat.edits.map((e) => (
               <li key={e.slug} className="list-none">
                 <Link to={galleryPath(e.slug)} className="group block">
-                  <div className="aspect-[4/5] overflow-hidden bg-bg-2">
+                  <div className="aspect-square overflow-hidden bg-bg-2">
                     <Photo src={imageUrls((e.cover || e.pieces[0]).img[0]).thumb} alt="" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
                   </div>
                   <p className="serif mt-3 text-[17px] text-ink group-hover:text-accent transition-colors">{e.title}</p>

@@ -1,5 +1,5 @@
 {
- "_about": "The pieces a category opens with, in this order; everything else follows, newest first. Rings & Bands: the best-looking rings first (the owner, 2026-09-24), chosen for statement designs and clean studio photographs, colours alternating row by row.",
+ "_about": "The pieces a category opens with, in this order; everything else follows, newest first. Rings & Bands: the best-looking rings first (the owner, 2026-09-24), chosen for statement designs and clean studio photographs, colours alternating row by row. covers: the piece whose first photograph stands for each gallery on the Collections page, the landing and the POS (the owner asked for all of them to be chosen, 2026-09-24); a gallery not listed uses its first named piece, else a best seller, else its newest.",
  "rings-and-bands": [
   "canary-radiant-starburst-ring",
   "ruby-cushion-starburst-ring",
@@ -37,5 +37,29 @@
   "golden-opal-halo-ring",
   "oval-sunburst-halo-ring",
   "ruby-baguette-frame-ring"
- ]
+ ],
+ "covers": {
+  "rings-and-bands": "ruby-cushion-starburst-ring",
+  "wristwear": "ruby-cluster-emerald-bangle-and-ring",
+  "chains-and-pendants": "cleo-necklace",
+  "lockets": "allah-sunray-medallion-locket",
+  "sets": "sapphire-two-row-set",
+  "earrings": "emerald-baguette-halo-studs",
+  "men": "verso-mens-cuff",
+  "mens-rings": "emblem-ring",
+  "natural-ruby-rings": "natural-ruby-ring-no-5",
+  "mens-chains": "cuban-chain",
+  "mens-bracelets": "cuban-bracelet",
+  "new-arrivals": "amethyst-pearl-blossom-ring",
+  "spring-drop-26": "lyla-pendant-necklace",
+  "ascension": "axis",
+  "heirloom": "ruby-floral-cluster-ring",
+  "gemstone-edit": "azira-sapphire-ring",
+  "painted-summer": "nimbus-drops",
+  "moissanite": "katerina",
+  "pearl": "drop-pearl-pendant",
+  "birthstones": "july-birthstone-earrings",
+  "valentines-edit": "vera",
+  "best-sellers": "leaf-bracelet"
+ }
 }
