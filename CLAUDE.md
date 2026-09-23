@@ -45,6 +45,8 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   Diamond(s); the stone filter says "Simulated Emerald". The theme WORKLOG's rule, restated by the owner 2026-09-23.
   **Moissanite and lab-grown diamond are left alone** — priced options Shopify sells (Adele 27,000 vs 101,000); the owner
   was asked. Names are never rewritten. The site-wide material line says "set with simulated stones and American Diamonds".
+  **The one exception is a natural stone**: a local piece marked `natural: true` skips the rewording (`worded()` in
+  `catalog.js`) — the gents' natural ruby rings (owner, 2026-09-23), whose stone filter value is "Natural Ruby".
 - `src/lib/catalog.js` — `buildCatalog()` and `resolvePath()`: the app and the prerender share them,
   so a crawled page and the app's page are always the same page. `src/lib/seo.js` — titles, descriptions,
   JSON-LD (Product with Offer/AggregateOffer, CollectionPage + ItemList, BreadcrumbList).
@@ -92,6 +94,16 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     `data/renders.json`; `mergeLocal()` then shows the render wherever that DSC image appears (a local piece or a hero),
     as `local-3d/<id>-<hash>` — a re-roll is a new file name. Held images stay held. New files first appear on this Mac as
     iCloud placeholders ("dataless"); the script asks iCloud for them and takes them on a later pass.
+  - **Gents' natural ruby rings (2026-09-23):** 13 real photographs (Sony RAW, `~/Downloads/New Folder With Items 3`,
+    DSC07562–74), each a different ring: silver, a natural ruby in a gold-plated crown bezel. Converted with `sips`
+    (the full-size conversion is portrait, the camera's true orientation; `sips -Z` previews drop it), cropped square
+    around the ring at 1500px → `catalog-src/local/DSC075NN.jpg`. Named **Natural Ruby Ring No. 1–13** in shoot order
+    (a longer name hides the number on a gallery card), in Rings & Bands and the For Him edit, `natural: true`, plating
+    left empty (silver band, gold-plated bezel).
+  - **Sets from Instagram posts (2026-09-23):** seven "Full Set" posts (1080px, `~/Downloads/PHOTO-2026-….jpg`); four
+    were already on the site (Ruby Line, Pavé Fan Bridal, Aqua Bloom, and Sapphire Two-Row — that post shows it gold
+    with darker stones) and were not repeated. The other three are local pieces under their file names: Sapphire
+    Pearl Choker Set, Emerald Swirl Set, Emerald Cascade Set.
   - **Removing a piece:** the deploy never deletes, so its old page stays on the server — delete
     `public_html/<category>/<slug>.html` over SSH after the deploy.
 - **Drop folder** — photos uploaded from the POS's Add Photos land in

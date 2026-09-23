@@ -1,5 +1,5 @@
 {
- "_about": "The house's own ring images, not Shopify's: AI renders (Nano Banana) of the shop's DSC photographs, padded onto white at 1500px — from iCloud heroes-white-1500 (179 files, see its _REVIEW.txt). heroes: an image put first on a Shopify piece (by handle). pieces: rings known only from these images, no price (Price on request); name, collection, plating and stones were read off the image on 2026-09-23 and may be corrected. also: more images of the same piece; photoPlating: which plating an image shows. held: images deliberately not shown, with the reason. Originals live on the server at /catalog-src/local/<id>.png (never in git). Bangles and bracelets (ids bb-NNN.jpg, 2026-09-23): the photographs in ~/Downloads/House of Mina — Bangles & Bracelets 3.pdf, extracted by their No.; story is that catalogue's description. Its 22 pieces already on Shopify are not repeated, and its 25 Taheri photographs (green-backdrop shoots, 'new — Taheri' in the item list) are held. Shopify drafts (data/shopify-drafts.json, 2026-09-23): 31 of them are the same pieces as renders here; those renders are now the drafts' lead images (heroes) and the guessed pieces are gone.",
+ "_about": "The house's own ring images, not Shopify's: AI renders (Nano Banana) of the shop's DSC photographs, padded onto white at 1500px — from iCloud heroes-white-1500 (179 files, see its _REVIEW.txt). heroes: an image put first on a Shopify piece (by handle). pieces: rings known only from these images, no price (Price on request); name, collection, plating and stones were read off the image on 2026-09-23 and may be corrected. also: more images of the same piece; photoPlating: which plating an image shows. held: images deliberately not shown, with the reason. Originals live on the server at /catalog-src/local/<id>.png (never in git). Bangles and bracelets (ids bb-NNN.jpg, 2026-09-23): the photographs in ~/Downloads/House of Mina — Bangles & Bracelets 3.pdf, extracted by their No.; story is that catalogue's description. Its 22 pieces already on Shopify are not repeated, and its 25 Taheri photographs (green-backdrop shoots, 'new — Taheri' in the item list) are held. Shopify drafts (data/shopify-drafts.json, 2026-09-23): 31 of them are the same pieces as renders here; those renders are now the drafts' lead images (heroes) and the guessed pieces are gone. Gents' natural ruby rings (ids DSC075NN.jpg, 2026-09-23): the owner's own photographs (Sony RAW, ~/Downloads/New Folder With Items 3), cropped square around each ring; 13 rings, each its own stone, named Natural Ruby Ring No. 1–13 in shoot order (short enough that the number shows on a desktop card). They are set with natural rubies (the owner's words), so `natural: true` keeps their text as written, with no 'simulated'. Sets from Instagram posts (ids PHOTO-2026-….jpg, 1080px, 2026-09-23): the three not already on the site; four more from the same batch were here already (Ruby Line, Pavé Fan Bridal, Aqua Bloom, Sapphire Two-Row) and are not repeated.",
  "addedAt": "2026-09-23",
  "heroes": {
   "cosette-pearl-ring": [
@@ -1235,6 +1235,118 @@
    "co": "wristwear",
    "type": "Bangle", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1024, "story": ["Delicate stacking bangles in gold — round, floral and geometric, made to layer."]
+  },
+  {
+   "id": "DSC07562.jpg",
+   "t": "Natural Ruby Ring No. 1",
+   "co": "rings-and-bands",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"], "edits": ["for-him"],
+   "story": ["A gents' ring: an oval natural ruby in a gold-plated crown bezel, on a silver band with ribbed shoulders."]
+  },
+  {
+   "id": "DSC07563.jpg",
+   "t": "Natural Ruby Ring No. 2",
+   "co": "rings-and-bands",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"], "edits": ["for-him"],
+   "story": ["A gents' ring: a tall oval natural ruby in a gold-plated crown bezel, on a silver band with wide ribbed shoulders."]
+  },
+  {
+   "id": "DSC07564.jpg",
+   "t": "Natural Ruby Ring No. 3",
+   "co": "rings-and-bands",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"], "edits": ["for-him"],
+   "story": ["A gents' ring: an oval natural ruby in a gold-plated crown bezel, on a silver band with ribbed shoulders."]
+  },
+  {
+   "id": "DSC07565.jpg",
+   "t": "Natural Ruby Ring No. 4",
+   "co": "rings-and-bands",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"], "edits": ["for-him"],
+   "story": ["A gents' ring: an oval natural ruby in a gold-plated crown bezel, on a plain, tapered silver band."]
+  },
+  {
+   "id": "DSC07566.jpg",
+   "t": "Natural Ruby Ring No. 5",
+   "co": "rings-and-bands",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"], "edits": ["for-him"],
+   "story": ["A gents' ring: an oval natural ruby in a gold-plated crown bezel, on a silver band with ribbed shoulders."]
+  },
+  {
+   "id": "DSC07567.jpg",
+   "t": "Natural Ruby Ring No. 6",
+   "co": "rings-and-bands",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"], "edits": ["for-him"],
+   "story": ["A gents' ring: an oval natural ruby in a gold-plated crown bezel, on a silver band with flat bevelled shoulders."]
+  },
+  {
+   "id": "DSC07568.jpg",
+   "t": "Natural Ruby Ring No. 7",
+   "co": "rings-and-bands",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"], "edits": ["for-him"],
+   "story": ["A gents' ring: an oval natural ruby in a gold-plated crown bezel, on a silver band fluted all the way round."]
+  },
+  {
+   "id": "DSC07569.jpg",
+   "t": "Natural Ruby Ring No. 8",
+   "co": "rings-and-bands",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"], "edits": ["for-him"],
+   "story": ["A gents' ring: an oval natural ruby in a gold-plated crown bezel, on a silver band with flat bevelled shoulders."]
+  },
+  {
+   "id": "DSC07570.jpg",
+   "t": "Natural Ruby Ring No. 9",
+   "co": "rings-and-bands",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"], "edits": ["for-him"],
+   "story": ["A gents' ring: an oval natural ruby in a gold-plated crown bezel, on a silver band with ribbed shoulders."]
+  },
+  {
+   "id": "DSC07571.jpg",
+   "t": "Natural Ruby Ring No. 10",
+   "co": "rings-and-bands",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"], "edits": ["for-him"],
+   "story": ["A gents' ring: a tall oval natural ruby in a gold-plated crown bezel, on a silver band with wide ribbed shoulders."]
+  },
+  {
+   "id": "DSC07572.jpg",
+   "t": "Natural Ruby Ring No. 11",
+   "co": "rings-and-bands",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Round"], "edits": ["for-him"],
+   "story": ["A gents' ring: a round natural ruby in a gold-plated crown bezel, on a plain, tapered silver band."]
+  },
+  {
+   "id": "DSC07573.jpg",
+   "t": "Natural Ruby Ring No. 12",
+   "co": "rings-and-bands",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"], "edits": ["for-him"],
+   "story": ["A gents' ring: an oval natural ruby in a gold-plated crown bezel, on a silver band with wide ribbed shoulders."]
+  },
+  {
+   "id": "DSC07574.jpg",
+   "t": "Natural Ruby Ring No. 13",
+   "co": "rings-and-bands",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"], "edits": ["for-him"],
+   "story": ["A gents' ring: a tall oval natural ruby in a gold-plated crown bezel, on a silver band with ribbed shoulders."]
+  },
+  {
+   "id": "PHOTO-2026-09-21-14-32-09.jpg",
+   "t": "Sapphire Pearl Choker Set",
+   "co": "sets",
+   "type": "Set", "plating": ["Rhodium"], "stone": ["Sapphire", "Pearl", "American Diamond"], "setting": [],
+   "px": 1080, "story": ["A choker of pearl strands with a flower of simulated sapphires at its centre, ringed in simulated rubies and American Diamonds, with earrings to match."]
+  },
+  {
+   "id": "PHOTO-2026-09-21-14-32-35.jpg",
+   "t": "Emerald Swirl Set",
+   "co": "sets",
+   "type": "Set", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": [],
+   "px": 1080, "story": ["Simulated emeralds in open swirls of American Diamonds, in gold — necklace, earrings and ring."]
+  },
+  {
+   "id": "PHOTO-2026-09-10-16-07-01.jpg",
+   "t": "Emerald Cascade Set",
+   "co": "sets",
+   "type": "Set", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": [],
+   "px": 1080, "story": ["Square simulated emeralds, each framed in clusters of American Diamonds — a statement necklace with long drop earrings."]
   }
  ],
  "held": {

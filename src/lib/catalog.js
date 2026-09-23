@@ -121,7 +121,7 @@ export function mergeLocal(data, local, renders = {}) {
     return {
       h: `local-${localKey(x.id).toLowerCase()}`, s, t: x.t, type: x.type || 'Ring', ch: chapter.slug, co: x.co,
       price: null, plating: x.plating || [], facets, story: x.story || [], facts: x.facts || [], edits: x.edits || [],
-      at: x.addedAt || local.addedAt, img: imgs, local: true,
+      at: x.addedAt || local.addedAt, img: imgs, local: true, ...(x.natural ? { natural: true } : {}),
     };
   }).filter(Boolean);
   return { ...data, pieces: [...shopify, ...own] };
@@ -134,8 +134,11 @@ const coverOf = (pieces) => pieces.find((p) => p.edits?.includes('best-sellers')
 /**
  * A piece in the house's words: every coloured stone simulated, CZ / zircon as
  * American Diamonds (src/lib/stones.js). Names are left as they are.
+ * A piece the house marks `natural` (data/local.json) is set with a natural
+ * stone, and its words are kept as written.
  */
 function worded(p) {
+  if (p.natural) return p;
   const st = p.facets?.stone || [];
   // A moissanite / lab-grown piece with no coloured stone: its "emerald" is the cut.
   const emeraldIsCut = (st.includes('Moissanite') || st.includes('Lab-Grown Diamond')) && !st.some((x) => /Emerald|Ruby|Topaz/.test(x));

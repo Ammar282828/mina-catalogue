@@ -93,6 +93,8 @@ export const FACETS = [
       { label: 'Pearl', match: ['freshwater pearl', 'freshwater pearls', 'pearl'] },
       { label: 'Emerald', match: ['emerald', 'simulated emerald'] },
       { label: 'Ruby', match: ['ruby'] },
+      // A real stone, not simulated: the gents' silver rings (data/local.json, `natural`).
+      { label: 'Natural Ruby', match: ['natural ruby'] },
       { label: 'Blue Topaz', match: ['blue topaz'] },
       { label: 'Lab-Grown Diamond', match: ['lab-grown diamonds'] },
       { label: 'No Stone', match: ['no stone', 'plain'] },

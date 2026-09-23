@@ -11,6 +11,10 @@
  * Moissanite and lab-grown diamond are left alone: they are options the shop
  * prices and sells as such (Adele: moissanite PKR 27,000, lab-grown 101,000).
  * Product NAMES are left alone too ("Azira Sapphire Ring" is a name).
+ *
+ * The one exception is a piece set with a natural stone, which the owner names as
+ * such: the gents' silver rings with natural rubies (2026-09-23). Those are marked
+ * `natural` in data/local.json and never pass through here (catalog.js `worded`).
  */
 
 const GEMS = 'rub(?:y|ies)|emeralds?|sapphires?|amethysts?|topaz(?:es)?|peridots?|opals?|citrines?|garnets?|aquamarines?|morganites?|tourmalines?|tanzanites?|spinels?|onyx';
