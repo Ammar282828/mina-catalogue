@@ -108,13 +108,12 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     and Zobi cuffs, turned out to be Shopify's "Verso - Men's Cuff" / "Zobi - Men's Silver Cuff" and are `held`).
     `story` is the PDF's description (No. 44's "rhodium" dropped — its photo is gold). Plating is left empty where the
     text and photo disagree.
-  - **Drafts that are these renders (2026-09-23):** 31 Shopify drafts (the Heirloom collection) were made from the same
-    DSC photos; their render is now the draft's lead image (`heroes`) and the guessed local piece is gone, so the draft's
-    name, description and price win. Two wrist-shot bangle sets likewise (Nos. 44, 95 → held).
-    **Three pairings were wrong** (the owner spotted the first, 2026-09-24; all 42 heroes were then checked side by side
-    against each product's own photo): DSC08998 on Ruby Sunburst Halo Ring, DSC08989 on Ember Opal Ring and DSC09114 on
-    Solitaire Round Halo Ring are different rings. Their heroes are gone and each render is its own piece again
-    (Ruby Oval Marquise Cluster Ring, Fire Opal Pavé Halo Ring, Rose Swirl Solitaire).
+  - **Renders are never another product's photo** (the owner, 2026-09-24). On 2026-09-23 renders were paired with 11
+    published rings and 31 drafts as their lead images (`heroes`), and the drafts' guessed pieces removed; the owner said
+    those were different products. All of it is undone: `heroes` is empty, the 32 pieces come back as they were, the 10
+    renders that had only ever been heroes are pieces of their own (named off the image), and bangle Nos. 44 and 95 are
+    no longer held as "the same as" drafts. Verso and Zobi stay held — the bangle catalogue names them as the Shopify cuffs.
+    Don't pair a render with a Shopify product by eye again; ask the owner.
   - **3D renders (2026-09-23, arriving):** the owner's render session writes `heroes-white-1500/3d-renders/DSC#####.png`.
     `scripts/sync-renders.mjs` uploads each finished one to `catalog-src/local-3d/` and records `{v: hash, w, h}` in
     `data/renders.json`; `mergeLocal()` then shows the render wherever that DSC image appears (a local piece or a hero),
