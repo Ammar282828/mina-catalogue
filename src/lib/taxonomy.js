@@ -25,6 +25,8 @@ export const CHAPTERS = [
   { slug: 'rings-and-bands', title: 'Rings & Bands', shape: 'rings', blurb: 'Solitaires, halos, coloured stones and the bands worn every day.' },
   { slug: 'wristwear', title: 'Wristwear', shape: 'bangles', blurb: 'Bracelets, bangles and cuffs — and bangles with a ring to match.' },
   { slug: 'chains-and-pendants', title: 'Chains & Pendants', shape: 'chains', blurb: 'Pendants, chokers and fine chains.' },
+  // Calligraphy pendants and lockets that open (the owner, 2026-09-24): a category of their own.
+  { slug: 'lockets', title: 'Lockets', shape: 'heart', blurb: 'Allah, the Kalma, Ali and calligraphy coins — pendants and lockets that open.' },
   { slug: 'sets', title: 'Sets', shape: 'gem', blurb: 'Pieces made to be worn together.' },
   { slug: 'earrings', title: 'Earrings', shape: 'earrings', blurb: 'Studs, hoops, huggies and drops.' },
   {
@@ -101,6 +103,7 @@ export function classify(product, tags, memberships = new Set()) {
   if (type === 'set' && (product.options || []).some((o) => /bracelet|bangle/i.test(o.name))) return 'wristwear';
   if (type === 'set') return 'sets';
   if (type === 'bracelet' || type === 'bangle' || tags.has('cuff') || tags.has("men's cuff")) return 'wristwear';
+  if (tags.has('locket') || /\blockets?\b/i.test(product.title || '')) return 'lockets';
   if (type === 'necklace' || type === 'pendant' || type === 'chain') return 'chains-and-pendants';
   // A type this list has not met yet. Better a home than no page.
   return 'rings-and-bands';

@@ -26,6 +26,8 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
 
 - `src/lib/taxonomy.js` — **the arrangement**, **like taheri.shop's** (the owner's call, 2026-09-23): five
   categories by what a piece *is* — **Rings & Bands, Wristwear, Chains & Pendants, Sets, Earrings** — one level,
+  plus **Lockets** (calligraphy pendants and lockets that open, the owner 2026-09-24; a Shopify product tagged or titled
+  "locket" is filed there),
   **no sub-collections**. Style (stone, setting, occasion…) is a gallery filter, not a place. 10 edits are Shopify
   campaign collections. **Men's is a sixth, separate section with sub-categories** (the owner, later on 2026-09-23;
   it replaced the For Him edit): **Men's Rings, Natural Ruby Rings, Men's Chains, Men's Bracelets & Cuffs**
@@ -110,6 +112,15 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     were already on the site (Ruby Line, Pavé Fan Bridal, Aqua Bloom, and Sapphire Two-Row — that post shows it gold
     with darker stones) and were not repeated. The other three are local pieces under their file names: Sapphire
     Pearl Choker Set, Emerald Swirl Set, Emerald Cascade Set.
+  - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
+    (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
+    Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.
+  - **Lockets (2026-09-24):** 34 images from `~/Downloads/New Folder With Items 4` → `lk-NN.jpg` (`src` on each piece
+    names its file), 30 pieces (repeat photos folded into `also`). All are AI-drawn, including the May "photos"
+    (1024², no camera data), so small inscriptions (verse coins, the engraved locket, filigree cells) are not legible
+    Arabic. The big Allah / Kalma / Ali calligraphy reads true. The coins are "Calligraphy Coin …" until the owner says
+    which verse each carries. The five `locket-IMG_58xx` renders' source photos were taken at a counter with Taheri's
+    sign in view — check with the owner if any are Taheri's pieces.
   - **Removing a piece:** the deploy never deletes, so its old page stays on the server — delete
     `public_html/<category>/<slug>.html` over SSH after the deploy.
 - **Drop folder** — photos uploaded from the POS's Add Photos land in

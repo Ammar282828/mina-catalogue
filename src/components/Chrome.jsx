@@ -214,7 +214,7 @@ export function CollectionsPage({ cat }) {
           {cat.pieces.length} pieces in {cat.chapters.length} categories, and the edits that run across them.
         </p>
 
-        <ul className="mt-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 p-0">
+        <ul className="mt-14 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-6 p-0">
           {cat.chapters.map((ch) => (
             <li key={ch.slug} className="list-none">
               <Link to={galleryPath(ch.slug)} className="group block">

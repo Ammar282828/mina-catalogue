@@ -1,5 +1,5 @@
 {
- "_about": "The house's own ring images, not Shopify's: AI renders (Nano Banana) of the shop's DSC photographs, padded onto white at 1500px — from iCloud heroes-white-1500 (179 files, see its _REVIEW.txt). heroes: an image put first on a Shopify piece (by handle). pieces: rings known only from these images, no price (Price on request); name, collection, plating and stones were read off the image on 2026-09-23 and may be corrected. also: more images of the same piece; photoPlating: which plating an image shows. held: images deliberately not shown, with the reason. Originals live on the server at /catalog-src/local/<id>.png (never in git). Bangles and bracelets (ids bb-NNN.jpg, 2026-09-23): the photographs in ~/Downloads/House of Mina — Bangles & Bracelets 3.pdf, extracted by their No.; story is that catalogue's description. Its 22 pieces already on Shopify are not repeated, and its 25 Taheri photographs (green-backdrop shoots, 'new — Taheri' in the item list) are held. Shopify drafts (data/shopify-drafts.json, 2026-09-23): 31 of them are the same pieces as renders here; those renders are now the drafts' lead images (heroes) and the guessed pieces are gone. Gents' natural ruby rings (ids DSC075NN-v2.jpg, 2026-09-23): the owner's own photographs (Sony RAW, ~/Downloads/New Folder With Items 3), the whole frame (1333×2000, portrait), brightened (shadows and midtones lifted, the warm cast eased) because the owner found them too dark; the first, square crops (DSC075NN.jpg) are no longer used; 13 rings, each its own stone, named Natural Ruby Ring No. 1–13 in shoot order (short enough that the number shows on a desktop card). They are set with natural rubies (the owner's words), so `natural: true` keeps their text as written, with no 'simulated'. Sets from Instagram posts (ids PHOTO-2026-….jpg, 1080px, 2026-09-23): the three not already on the site; four more from the same batch were here already (Ruby Line, Pavé Fan Bridal, Aqua Bloom, Sapphire Two-Row) and are not repeated.",
+ "_about": "The house's own ring images, not Shopify's: AI renders (Nano Banana) of the shop's DSC photographs, padded onto white at 1500px — from iCloud heroes-white-1500 (179 files, see its _REVIEW.txt). heroes: an image put first on a Shopify piece (by handle). pieces: rings known only from these images, no price (Price on request); name, collection, plating and stones were read off the image on 2026-09-23 and may be corrected. also: more images of the same piece; photoPlating: which plating an image shows. held: images deliberately not shown, with the reason. Originals live on the server at /catalog-src/local/<id>.png (never in git). Bangles and bracelets (ids bb-NNN.jpg, 2026-09-23): the photographs in ~/Downloads/House of Mina — Bangles & Bracelets 3.pdf, extracted by their No.; story is that catalogue's description. Its 22 pieces already on Shopify are not repeated, and its 25 Taheri photographs (green-backdrop shoots, 'new — Taheri' in the item list) are held. Shopify drafts (data/shopify-drafts.json, 2026-09-23): 31 of them are the same pieces as renders here; those renders are now the drafts' lead images (heroes) and the guessed pieces are gone. Gents' natural ruby rings (ids DSC075NN-v2.jpg, 2026-09-23): the owner's own photographs (Sony RAW, ~/Downloads/New Folder With Items 3), the whole frame (1333×2000, portrait), brightened (shadows and midtones lifted, the warm cast eased) because the owner found them too dark; the first, square crops (DSC075NN.jpg) are no longer used; 13 rings, each its own stone, named Natural Ruby Ring No. 1–13 in shoot order (short enough that the number shows on a desktop card). They are set with natural rubies (the owner's words), so `natural: true` keeps their text as written, with no 'simulated'. Sets from Instagram posts (ids PHOTO-2026-….jpg, 1080px, 2026-09-23): the three not already on the site; four more from the same batch were here already (Ruby Line, Pavé Fan Bridal, Aqua Bloom, Sapphire Two-Row) and are not repeated. Rings from Gemini renders (ids ring-0N-….jpg, 2026-09-23; output/imagegen/mina-catalogue-2026-09-23 in taheri-shop): six, each its own piece (the owner, when some looked like Shopify rings). Lockets (ids lk-NN.jpg, 2026-09-24; ~/Downloads/New Folder With Items 4, `src` gives each file): 34 images, 30 pieces, in the Lockets category. Every one is AI-drawn, so fine inscriptions (the verse coins, the engraved locket, the filigree cells) are not legible Arabic; the large Allah, Kalma and Ali calligraphy reads true. Verse coins are named 'Calligraphy Coin' until the owner says which verse each carries.",
  "addedAt": "2026-09-23",
  "heroes": {
   "cosette-pearl-ring": [
@@ -1347,6 +1347,258 @@
    "co": "sets",
    "type": "Set", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": [],
    "px": 1080, "story": ["Square simulated emeralds, each framed in clusters of American Diamonds — a statement necklace with long drop earrings."]
+  },
+  {
+   "id": "ring-01-pink-floral.jpg",
+   "t": "Pink Cushion Floral Halo Ring",
+   "co": "rings-and-bands",
+   "type": "Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Halo"],
+   "px": 2048, "story": ["A cushion-cut simulated pink diamond in a double halo of American Diamonds with marquise petals, in gold."], "src": "Gemini render, ring-01-pink-floral.png"
+  },
+  {
+   "id": "ring-02-red-pear.jpg",
+   "t": "Ruby Pear Chevron Ring",
+   "co": "rings-and-bands",
+   "type": "Ring", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Pavé"],
+   "px": 2048, "story": ["A pear-cut simulated ruby held between two chevrons of American Diamond pavé."], "src": "Gemini render, ring-02-red-pear.png"
+  },
+  {
+   "id": "ring-03-blue-emerald-cut.jpg",
+   "t": "Aqua Emerald-Cut Split-Shank Ring",
+   "co": "rings-and-bands",
+   "type": "Ring", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"],
+   "px": 2048, "story": ["An emerald-cut aqua-blue stone in a halo of American Diamonds, on a split pavé shank."], "src": "Gemini render, ring-03-blue-emerald-cut.png"
+  },
+  {
+   "id": "ring-04-yellow-starburst.jpg",
+   "t": "Canary Radiant Starburst Ring",
+   "co": "rings-and-bands",
+   "type": "Ring", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"],
+   "px": 2048, "story": ["A canary-yellow radiant stone at the heart of a starburst of baguette and marquise American Diamonds."], "src": "Gemini render, ring-04-yellow-starburst.png"
+  },
+  {
+   "id": "ring-05-purple-pearl.jpg",
+   "t": "Amethyst Pearl Blossom Ring",
+   "co": "rings-and-bands",
+   "type": "Ring", "plating": ["Gold"], "stone": ["Amethyst", "Pearl", "American Diamond"], "setting": ["Halo"],
+   "px": 2048, "story": ["An emerald-cut simulated amethyst ringed with pearls and blossoms of American Diamonds, in gold."], "src": "Gemini render, ring-05-purple-pearl.png"
+  },
+  {
+   "id": "ring-06-green-oval.jpg",
+   "t": "Emerald Oval Blossom Halo Ring",
+   "co": "rings-and-bands",
+   "type": "Ring", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"],
+   "px": 2048, "story": ["An oval simulated emerald in a double halo of American Diamonds."], "src": "Gemini render, ring-06-green-oval.png"
+  },
+  {
+   "id": "lk-01.jpg",
+   "t": "Allah Square Filigree Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 2048, "story": ["The name Allah in American Diamonds at the centre of a square of fine gold filigree calligraphy, framed in American Diamonds."], "src": "locket-IMG_5860.png"
+  },
+  {
+   "id": "lk-02.jpg",
+   "t": "Allah Oval Filigree Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 2048, "story": ["An oval of calligraphy cells in gold and white around the name Allah in American Diamonds, bordered in American Diamonds."], "src": "locket-IMG_5861.png"
+  },
+  {
+   "id": "lk-03.jpg",
+   "t": "Kalma Oval Openwork Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 2048, "story": ["The Kalma in open gold calligraphy inside an oval halo of American Diamonds."], "src": "locket-IMG_5862.png"
+  },
+  {
+   "id": "lk-04.jpg",
+   "t": "Calligraphy Coin Lattice Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 2048, "story": ["A calligraphy coin in gold, ringed in American Diamonds and a lattice of gold and white loops."], "src": "locket-IMG_5871.png"
+  },
+  {
+   "id": "lk-05.jpg",
+   "t": "Allah Sunray Medallion Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 2048, "story": ["The name Allah in polished gold within a sunray frame, edged in waves of American Diamonds."], "src": "locket-IMG_5874.png"
+  },
+  {
+   "id": "lk-06.jpg",
+   "t": "Allah Pavé Calligraphy Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [], "also": ["lk-22.jpg"],
+   "px": 1024, "story": ["The name Allah drawn in American Diamond pavé, with gold detail."], "src": "0d6e6c71-570d-44fc-abcc-ee9761faa9c1.JPG"
+  },
+  {
+   "id": "lk-07.jpg",
+   "t": "Engraved Calligraphy Oval Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": [], "setting": [],
+   "px": 1024, "story": ["An oval locket that opens, its face engraved with calligraphy in gold."], "src": "4cb2d5ae-de91-4c0f-9a74-5b5345196871.JPG"
+  },
+  {
+   "id": "lk-08.jpg",
+   "t": "Mother of Pearl Allah Oval Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["Mother of Pearl", "American Diamond"], "setting": [],
+   "px": 1024, "story": ["The name Allah in gold on mother of pearl, inside an oval of American Diamonds."], "src": "7b58eb65-a410-4126-9f21-5bc098180ee8.JPG"
+  },
+  {
+   "id": "lk-09.jpg",
+   "t": "Black Filigree Allah Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": [], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["An oval of blackened calligraphy cells around the name Allah in American Diamonds."], "src": "IMG_0921.PNG"
+  },
+  {
+   "id": "lk-10.jpg",
+   "t": "Allah Wave Frame Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [], "also": ["lk-11.jpg", "lk-19.jpg"],
+   "px": [776, 847], "story": ["The name Allah in gold within a double wave frame of American Diamonds."], "src": "PHOTO-2026-05-21-13-31-43.jpg"
+  },
+  {
+   "id": "lk-12.jpg",
+   "t": "Calligraphy Coin Oval Halo Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["An oval calligraphy coin in gold with a halo of American Diamonds."], "src": "PHOTO-2026-05-22-14-23-03 10.jpg"
+  },
+  {
+   "id": "lk-13.jpg",
+   "t": "Calligraphy Coin Sunburst Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["A small oval calligraphy coin in gold with a sunburst of American Diamonds."], "src": "PHOTO-2026-05-22-14-23-03 11.jpg"
+  },
+  {
+   "id": "lk-14.jpg",
+   "t": "Allah Window Oval Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": [], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["The name Allah in gold in a clear oval window, framed in American Diamonds."], "src": "PHOTO-2026-05-22-14-23-03 12.jpg"
+  },
+  {
+   "id": "lk-15.jpg",
+   "t": "Allah Teardrop Pavé Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["The name Allah as a teardrop of American Diamond pavé, edged in gold."], "src": "PHOTO-2026-05-22-14-23-03 13.jpg"
+  },
+  {
+   "id": "lk-16.jpg",
+   "t": "Allah Petite Pavé Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["A small name Allah in American Diamond pavé, with a gold bail."], "src": "PHOTO-2026-05-22-14-23-03 14.jpg"
+  },
+  {
+   "id": "lk-17.jpg",
+   "t": "Allah Slim Oval Halo Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["The name Allah in gold inside a slim oval of American Diamonds."], "src": "PHOTO-2026-05-22-14-23-03 15.jpg"
+  },
+  {
+   "id": "lk-18.jpg",
+   "t": "Allah White Oval Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["The name Allah in gold on white, inside an oval of American Diamonds."], "src": "PHOTO-2026-05-22-14-23-03 16.jpg"
+  },
+  {
+   "id": "lk-20.jpg",
+   "t": "Allah Open Circle Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["The name Allah in fine gold inside an open circle of American Diamonds."], "src": "PHOTO-2026-05-22-14-23-03 18.jpg"
+  },
+  {
+   "id": "lk-21.jpg",
+   "t": "Allah Grand Oval Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["A larger name Allah in gold inside an open oval of American Diamonds."], "src": "PHOTO-2026-05-22-14-23-03 19.jpg"
+  },
+  {
+   "id": "lk-23.jpg",
+   "t": "Ruby Frame Allah Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["Ruby", "Mother of Pearl", "American Diamond"], "setting": [],
+   "px": 1024, "story": ["The name Allah in gold on mother of pearl, framed in simulated rubies and American Diamonds."], "src": "PHOTO-2026-05-22-14-23-03 20.jpg"
+  },
+  {
+   "id": "lk-24.jpg",
+   "t": "Ali Calligraphy Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["The name Ali in American Diamond pavé, with a gold bail."], "src": "PHOTO-2026-05-22-14-23-03 21.jpg"
+  },
+  {
+   "id": "lk-25.jpg",
+   "t": "Allah Open Oval Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["The name Allah in gold inside an open oval frame of American Diamonds."], "src": "PHOTO-2026-05-22-14-23-03 3.jpg"
+  },
+  {
+   "id": "lk-26.jpg",
+   "t": "Calligraphy Coin Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": [], "setting": [],
+   "px": 1024, "story": ["A round calligraphy coin in plain gold."], "src": "PHOTO-2026-05-22-14-23-03 4.jpg"
+  },
+  {
+   "id": "lk-27.jpg",
+   "t": "Allah Crescent Star Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [], "also": ["lk-31.jpg"],
+   "px": 1024, "story": ["The name Allah within a crescent of American Diamonds, a star at the top."], "src": "PHOTO-2026-05-22-14-23-03 5.jpg"
+  },
+  {
+   "id": "lk-28.jpg",
+   "t": "Allah Tag Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["The name Allah in white on gold filigree, a small tag framed in American Diamonds."], "src": "PHOTO-2026-05-22-14-23-03 6.jpg"
+  },
+  {
+   "id": "lk-29.jpg",
+   "t": "Kalma Rectangle Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["The Kalma in gold and white calligraphy inside a rectangle of American Diamonds."], "src": "PHOTO-2026-05-22-14-23-03 7.jpg"
+  },
+  {
+   "id": "lk-30.jpg",
+   "t": "Allah Swirl Teardrop Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["The name Allah in swirls of American Diamond pavé, set in a gold teardrop."], "src": "PHOTO-2026-05-22-14-23-03 8.jpg"
+  },
+  {
+   "id": "lk-32.jpg",
+   "t": "Allah Sculpted Pavé Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": [], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["The name Allah sculpted in American Diamond pavé, with a gold bail."], "src": "PHOTO-2026-05-22-14-23-03.jpg"
+  },
+  {
+   "id": "lk-33.jpg",
+   "t": "Enamel Floral Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": [], "setting": [],
+   "px": 1024, "story": ["An oval locket that opens, its face in red, blue and white enamel florals on gold."], "src": "c1a074aa-c0ee-409e-8360-1c5820b5d165.JPG"
+  },
+  {
+   "id": "lk-34.jpg",
+   "t": "Allah Lattice Medallion Locket",
+   "co": "lockets",
+   "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1024, "story": ["The name Allah in American Diamonds on a round gold lattice, bordered in American Diamonds."], "src": "f6a83448-494b-47a6-b28f-665f97f49b8e.JPG"
   }
  ],
  "held": {
