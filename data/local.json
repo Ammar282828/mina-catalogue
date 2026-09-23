@@ -5,9 +5,6 @@
   "cosette-pearl-ring": [
    "DSC08985"
   ],
-  "ember-opal-ring": [
-   "DSC08989"
-  ],
   "lottie": [
    "DSC09051"
   ],
@@ -91,9 +88,6 @@
   "firoza-pear-ruby-double-halo-ring": [
    "DSC08997"
   ],
-  "noori-oval-ruby-sunburst-halo-ring": [
-   "DSC08998"
-  ],
   "mirabelle": [
    "DSC09111"
   ],
@@ -103,9 +97,6 @@
   ],
   "elodie-floral-cocktail-ring": [
    "DSC09118"
-  ],
-  "solitaire-round-halo-ring": [
-   "DSC09114"
   ],
   "fleur": [
    "DSC09113"
@@ -1626,6 +1617,27 @@
    "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Rhodium"], "stone": ["Sapphire", "American Diamond"], "setting": [],
    "px": 1080, "story": ["A pair of bangles set with oval simulated sapphires between baguette American Diamonds, with a ring to match."]
+  },
+  {
+   "id": "DSC08998",
+   "t": "Ruby Oval Marquise Cluster Ring",
+   "co": "rings-and-bands",
+   "type": "Ring", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"],
+   "story": ["An oval cabochon simulated ruby in a sunburst of marquise and round American Diamonds, on a split shank set with American Diamonds."]
+  },
+  {
+   "id": "DSC08989",
+   "t": "Fire Opal Pavé Halo Ring",
+   "co": "rings-and-bands",
+   "type": "Ring", "plating": ["Rhodium"], "stone": ["Opal", "American Diamond"], "setting": ["Halo", "Pavé"],
+   "story": ["An oval fire opal in a halo of American Diamonds, on a split shank set with American Diamonds."]
+  },
+  {
+   "id": "DSC09114",
+   "t": "Rose Swirl Solitaire",
+   "co": "rings-and-bands",
+   "type": "Ring", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Halo"],
+   "story": ["A round American Diamond solitaire held in a crescent of rose-gold-set American Diamonds, on a band set with American Diamonds."]
   }
  ],
  "held": {
