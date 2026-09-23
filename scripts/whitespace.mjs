@@ -6,7 +6,8 @@
 // fills FILL of the square's side — the share houseofmina.store's own product
 // photographs give their rings. The background is the photograph's own,
 // taken from its edges; where the new frame reaches past the photograph it is
-// continued in that colour. A transparent image is laid on white first.
+// continued from those edges, softened, so there is no seam. A transparent image
+// is laid on white first.
 //
 // A photograph that is not a plain background — on a hand, on a box, in a scene,
 // with lettering — is returned as it was: re-framing a scene would cut it up.
@@ -19,7 +20,7 @@
 
 import sharp from 'sharp';
 
-export const VERSION = 3;
+export const VERSION = 4;
 /**
  * The ring's outline spans this share of the square, and its middle sits this far
  * below the square's: houseofmina.store's own ring photographs, measured with
@@ -103,20 +104,27 @@ export async function measure(input) {
 export async function standardWhitespace(input) {
   const m = await measure(input);
   if (!m.plain) return { buffer: input, framed: false, reason: m.reason };
-  const { W, H, C, full, med } = m;
+  const { W, H, C, full } = m;
   const [bx0, by0, bx1, by1] = m.box;
 
   // The new square, in the photograph's own pixels.
   const side = Math.round(Math.max(bx1 - bx0, by1 - by0) / FILL);
   const left = Math.round((bx0 + bx1) / 2 - side / 2), top = Math.round((by0 + by1) / 2 - side / 2 - DROP * side);
   const pad = { left: Math.max(0, -left), top: Math.max(0, -top), right: Math.max(0, left + side - W), bottom: Math.max(0, top + side - H) };
-  const background = { r: med[0], g: med[1], b: med[2] };
 
   let out = sharp(full, { raw: { width: W, height: H, channels: C } });
   if (pad.left || pad.top || pad.right || pad.bottom) {
-    out = sharp(await out.extend({ ...pad, background }).raw().toBuffer(), {
-      raw: { width: W + pad.left + pad.right, height: H + pad.top + pad.bottom, channels: C },
-    });
+    // Where the square reaches past the photograph, the backdrop is continued from its
+    // own edges and softened, so a vignette or a grey studio sweep runs on without a
+    // seam; the photograph itself is laid back on top, untouched.
+    const PW = W + pad.left + pad.right, PH = H + pad.top + pad.bottom;
+    const sigma = Math.max(8, Math.round(Math.max(PW, PH) / 60));
+    const soft = await sharp(full, { raw: { width: W, height: H, channels: C } })
+      .extend({ ...pad, extendWith: 'copy' }).blur(sigma).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+    const joined = await sharp(soft.data, { raw: soft.info })
+      .composite([{ input: full, raw: { width: W, height: H, channels: C }, left: pad.left, top: pad.top }])
+      .removeAlpha().raw().toBuffer({ resolveWithObject: true });
+    out = sharp(joined.data, { raw: joined.info });
   }
   const buffer = await out
     .extract({ left: left + pad.left, top: top + pad.top, width: side, height: side })

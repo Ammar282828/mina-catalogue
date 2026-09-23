@@ -21,9 +21,17 @@ const NEW_ARRIVALS = { slug: 'new-arrivals', title: 'New Arrivals', blurb: 'The 
 export const piecePath = (p) => `/${p.co}/${p.s || p.h}`;
 export const galleryPath = (slug, page = 1) => (page > 1 ? `/${slug}/${page}` : `/${slug}`);
 
+/**
+ * The version of every photograph this site builds (scripts/images.mjs): raised when
+ * they all change — the MINA wordmark (scripts/brand.mjs) is version 1 — so a browser
+ * fetches the new file instead of keeping the old. A re-framed ring adds its framing
+ * version (data/framed.json): "1.3".
+ */
+export const PHOTO_VERSION = 1;
+
 export function imageUrls(img) {
   if (img.thumb) return { thumb: img.thumb, full: img.full || img.thumb };
-  const v = img.v ? `?v=${img.v}` : '';
+  const v = `?v=${PHOTO_VERSION}${img.v ? `.${img.v}` : ''}`;
   return { thumb: `/catalog-thumb/${img.f}.webp${v}`, full: `/catalog-full/${img.f}.webp${v}` };
 }
 

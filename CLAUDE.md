@@ -93,6 +93,14 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   is in `data/framed.json` (committed; the site makes those square and adds `?v=<VERSION>` to their URLs) and in
   `public/catalog-full/.framing.json` beside the cached variants. Raise `VERSION` after changing the rule and the next
   build frames every ring again. 763 of 1,014 ring photographs framed on 2026-09-24.
+- **The MINA wordmark on every photograph** (the owner, 2026-09-24) — `scripts/brand.mjs`, run by `npm run images` after
+  the ring framing: the site's own wordmark, top right, 19% of the width, 4.8% in and 3.7% down (as on the bangles
+  catalogue's photos), maroon on a light corner and white on a dark one. Photographs that already carry it are listed in
+  `data/marked.json` (47 on 2026-09-24: the posts, the bangles, some lockets) and left alone; before adding a post's
+  photograph, run `python3 scripts/find-marks.py <file>` on the original and list it if it prints "marked" (OpenCV;
+  owner's Mac only). `PHOTO_VERSION` in catalog.js goes into every photo URL (`?v=1`, rings `?v=1.4`); raise it after
+  changing the mark. `public/catalog-full/.branding.json` records which cached variants carry it. Photos the counter
+  uploads from the POS (catalog-drop) are resized by the server and are not branded.
 - **The house's own images** — `data/local.json` (committed) lists images that are not on Shopify: `heroes` puts one
   first on a Shopify piece (by handle); `pieces` are pieces known only from an image (no price → "Price on request"),
   with `also` (more images of the piece) and `photoPlating` (the plating chip then shows that image); `held` records

@@ -23,8 +23,9 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
-import { localFile, localImageIds, renderKey, mergeLocal, RING_HOMES } from '../src/lib/catalog.js';
+import { localFile, localImageIds, renderKey, mergeLocal, RING_HOMES, PHOTO_VERSION } from '../src/lib/catalog.js';
 import { standardWhitespace, VERSION as FRAMING } from './whitespace.mjs';
+import { brand } from './brand.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SOURCES = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'image-sources.json'), 'utf8'));
@@ -54,6 +55,16 @@ try {
   const r = JSON.parse(await fs.readFile(RECORD, 'utf8'));
   if (r.version === FRAMING) record = r.framed || {};
 } catch { /* first run, or a new framing version: every ring is framed again */ }
+
+// The MINA wordmark goes on every photograph not already carrying it (data/marked.json);
+// which variants carry it at PHOTO_VERSION is kept beside them.
+const MARKED = new Set(JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'marked.json'), 'utf8')).marked);
+const BRANDING = path.join(ROOT, 'public', 'catalog-full', '.branding.json');
+let branded = {};
+try {
+  const r = JSON.parse(await fs.readFile(BRANDING, 'utf8'));
+  if (r.version === PHOTO_VERSION) branded = r.done || {};
+} catch { /* first run, or a new PHOTO_VERSION: every photograph is branded again */ }
 
 export const VARIANTS = [
   { dir: 'catalog-thumb', maxEdge: 720, quality: 74 },
@@ -86,6 +97,7 @@ async function build(f, src) {
     record[f] = r.framed;
     input = r.buffer;
   }
+  if (!MARKED.has(f)) input = await brand(input);
   for (const v of VARIANTS) {
     const out = outPath(v.dir, f);
     await fs.mkdir(path.dirname(out), { recursive: true });
@@ -95,10 +107,11 @@ async function build(f, src) {
       .webp({ quality: v.quality, effort: 5 })
       .toFile(out);
   }
+  if (!MARKED.has(f)) branded[f] = true;
 }
 
 const todo = Object.entries(SOURCES).filter(([f]) => FORCE || VARIANTS.some((v) => !existsSync(outPath(v.dir, f)))
-  || (RINGS.has(f) && !(f in record)));
+  || (RINGS.has(f) && !(f in record)) || (!MARKED.has(f) && !branded[f]));
 console.log(`${Object.keys(SOURCES).length} photographs; ${todo.length} to build.`);
 
 let done = 0, failed = 0;
@@ -115,6 +128,7 @@ console.log(`Built ${done}${failed ? `, ${failed} failed` : ''}.`);
 
 await fs.mkdir(path.dirname(RECORD), { recursive: true });
 await fs.writeFile(RECORD, JSON.stringify({ version: FRAMING, framed: record }));
+await fs.writeFile(BRANDING, JSON.stringify({ version: PHOTO_VERSION, done: branded }));
 const framed = [...RINGS].filter((f) => record[f]).sort();
 await fs.writeFile(path.join(ROOT, 'data', 'framed.json'), `${JSON.stringify({ version: FRAMING, framed }, null, 0).replace(/","/g, '",\n"')}\n`);
 console.log(`Rings: ${framed.length} of ${RINGS.size} photographs given standard whitespace; the rest are scenes, left as they are.`);
