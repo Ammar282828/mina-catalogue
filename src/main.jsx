@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import data from './catalog.json';
-import { buildCatalog } from './lib/catalog.js';
+import shopify from './catalog.json';
+import local from '../data/local.json';
+import { buildCatalog, mergeLocal } from './lib/catalog.js';
 import { loadDrops } from './lib/drops.js';
 import App from './App.jsx';
 
@@ -24,7 +25,7 @@ class ErrorBoundary extends React.Component {
 }
 
 loadDrops().then((drops) => {
-  const cat = buildCatalog(data, drops);
+  const cat = buildCatalog(mergeLocal(shopify, local), drops);
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
       <ErrorBoundary><App cat={cat} /></ErrorBoundary>

@@ -72,7 +72,7 @@ jobs:
           path: |
             public/catalog-thumb
             public/catalog-full
-          key: photos-${{ hashFiles('data/image-sources.json') }}
+          key: photos-${{ hashFiles('data/image-sources.json', 'data/local.json') }}
           restore-keys: photos-
 
       - run: npm run images
@@ -86,7 +86,9 @@ jobs:
             const fs = require("fs");
             const cat = JSON.parse(fs.readFileSync("src/catalog.json", "utf8"));
             const pages = fs.readdirSync("dist", { recursive: true }).filter(f => f.endsWith(".html")).length;
-            const missing = cat.pieces.flatMap(p => p.img).filter(i => !fs.existsSync(`dist/catalog-thumb/${i.f}.webp`) || !fs.existsSync(`dist/catalog-full/${i.f}.webp`));
+            const local = JSON.parse(fs.readFileSync("data/local.json", "utf8"));
+            const own = [...Object.values(local.heroes || {}).flat(), ...(local.pieces || []).map(p => p.id)].map(id => ({ f: `local/${id}` }));
+            const missing = [...cat.pieces.flatMap(p => p.img), ...own].filter(i => !fs.existsSync(`dist/catalog-thumb/${i.f}.webp`) || !fs.existsSync(`dist/catalog-full/${i.f}.webp`));
             console.log(`pieces: ${cat.pieces.length}   documents: ${pages}   photographs missing: ${missing.length}`);
             if (cat.pieces.length < 150) { console.error("catalog.json looks truncated — refusing to deploy"); process.exit(1); }
             if (pages < 200) { console.error("too few prerendered pages — refusing to deploy"); process.exit(1); }

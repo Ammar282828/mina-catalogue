@@ -18,15 +18,16 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { buildCatalog, resolvePath, piecePath, galleryPath, imageUrls, priceLabel, PAGE_SIZE, SITE } from '../src/lib/catalog.js';
+import { buildCatalog, mergeLocal, resolvePath, piecePath, galleryPath, imageUrls, priceLabel, PAGE_SIZE, SITE } from '../src/lib/catalog.js';
 import { metaFor, BRAND } from '../src/lib/seo.js';
 import { CHAPTERS } from '../src/lib/taxonomy.js';
 import { WHATSAPP_DISPLAY, INSTAGRAM, enquiry } from '../src/lib/contact.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(ROOT, 'dist');
-const data = JSON.parse(await fs.readFile(path.join(ROOT, 'src', 'catalog.json'), 'utf8'));
-const cat = buildCatalog(data, []);
+const shopify = JSON.parse(await fs.readFile(path.join(ROOT, 'src', 'catalog.json'), 'utf8'));
+const local = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'local.json'), 'utf8'));
+const cat = buildCatalog(mergeLocal(shopify, local), []);
 const template = await fs.readFile(path.join(DIST, 'index.html'), 'utf8');
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -135,7 +136,7 @@ for (const r of routes) {
 await emit('/404', render({ kind: 'notfound' }, '/404').replace('</title>', '</title>\n    <meta name="robots" content="noindex" />'));
 
 // ── Sitemaps and friends ────────────────────────────────────────────────────
-const day = (data.syncedAt || new Date().toISOString()).slice(0, 10);
+const day = (shopify.syncedAt || new Date().toISOString()).slice(0, 10);
 const lastmod = (r) => (r.route.kind === 'piece' && r.route.piece.at ? r.route.piece.at : day);
 await fs.writeFile(path.join(DIST, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

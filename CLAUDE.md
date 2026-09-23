@@ -50,6 +50,13 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
 - Never in git. `data/image-sources.json` records each photo's Shopify CDN source; `npm run images`
   (locally or in CI, with a cache) makes a 720px and a 2000px WebP. File names carry a hash of the
   source, so a photo replaced in Shopify gets a new file.
+- **The house's own photographs** — `data/local.json` (committed) lists studio shots that are not on Shopify:
+  `heroes` puts one first on a Shopify piece (by handle), `pieces` are rings known only from a photo
+  (no price → "Price on request"; name, collection, plating and stones read off the photo on 2026-09-23 —
+  the owner may correct them). Originals: `public_html/catalog-src/local/<id>.png` on the server (uploaded by
+  scp, chmod 644; never in git; rsync never deletes them). `mergeLocal()` in `catalog.js` folds them in for
+  the app and the prerender; `npm run images` builds their variants from the server. To add more: upload the
+  PNGs there, add entries, push. The first batch was 48 shots from iCloud `heroes-white-1500` (6 heroes, 42 new rings).
 - **Drop folder** — photos uploaded from the POS's Add Photos land in
   `public_html/catalog-drop/<Chapter title>/<Collection title>/` via `public/api/upload.php` (bearer
   secret in `~/domains/catalogue.houseofmina.store/.website-upload-secret`, outside the web root).

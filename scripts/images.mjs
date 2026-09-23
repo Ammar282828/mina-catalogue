@@ -11,6 +11,7 @@
 //
 // The hash in the name is of the source URL, so a photo replaced in Shopify
 // gets a new file rather than silently keeping the old one under a cached URL.
+// Photographs in data/local.json come from catalog-src/local/ on the server.
 // These folders are gitignored; CI runs this same script (with a cache) and
 // rsyncs the result, so photography never has to enter the repository.
 
@@ -22,6 +23,12 @@ import sharp from 'sharp';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SOURCES = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'image-sources.json'), 'utf8'));
+// The house's own photographs (data/local.json): originals on the server, never in git.
+const LOCAL = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'local.json'), 'utf8'));
+const LOCAL_ORIGIN = 'https://catalogue.houseofmina.store/catalog-src/local';
+for (const id of [...Object.values(LOCAL.heroes || {}).flat(), ...(LOCAL.pieces || []).map((p) => p.id)]) {
+  SOURCES[`local/${id}`] = `${LOCAL_ORIGIN}/${id}.png`;
+}
 const FORCE = process.argv.includes('--force');
 const CONCURRENCY = 6;
 

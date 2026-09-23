@@ -67,6 +67,36 @@ function dropPiece(d) {
   };
 }
 
+// ── The house's own photographs ─────────────────────────────────────────────
+// data/local.json: studio photographs that are not on Shopify. `heroes` puts one
+// first on a Shopify piece; `pieces` are pieces known only from a photograph
+// (no price — "Price on request"). scripts/images.mjs builds their variants
+// from the originals on the server (catalog-src/local/<id>.png).
+const localImg = (id) => ({ f: `local/${id}`, w: 1500, h: 1500 });
+
+export function mergeLocal(data, local) {
+  if (!local) return data;
+  const heroes = local.heroes || {};
+  const taken = new Set(data.pieces.map((p) => p.s || p.h));
+  const shopify = data.pieces.map((p) => (heroes[p.h] ? { ...p, img: [...heroes[p.h].map(localImg), ...p.img] } : p));
+  const own = (local.pieces || []).map((x) => {
+    const chapter = CHAPTERS.find((c) => c.collections.some((k) => k.slug === x.co));
+    if (!chapter) return null;
+    const base = slugify(x.t);
+    let s = base;
+    for (let n = 2; taken.has(s); n++) s = `${base}-${n}`;
+    taken.add(s);
+    const facets = {};
+    for (const k of ['stone', 'setting', 'cut', 'occasion', 'style']) if (x[k]?.length) facets[k] = x[k];
+    return {
+      h: `local-${x.id.toLowerCase()}`, s, t: x.t, type: x.type || 'Ring', ch: chapter.slug, co: x.co,
+      price: null, plating: x.plating || [], facets, story: [], facts: [], edits: [],
+      at: x.addedAt || local.addedAt, img: [localImg(x.id)], local: true,
+    };
+  }).filter(Boolean);
+  return { ...data, pieces: [...shopify, ...own] };
+}
+
 // ── Build ───────────────────────────────────────────────────────────────────
 /** The piece that stands for a collection: a best seller where there is one, else the newest. */
 const coverOf = (pieces) => pieces.find((p) => p.edits?.includes('best-sellers')) || pieces.find((p) => !p.drop) || pieces[0];

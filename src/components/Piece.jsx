@@ -145,6 +145,7 @@ export default function Piece({ route, cat }) {
               {chosenPrice ? formatPKR(chosenPrice) : priceLabel(p)}
             </p>
             {p.drop && <p className="mt-1 text-[13px] text-ink-2">Newly photographed at the counter — ask us for the price and details.</p>}
+            {p.local && <p className="mt-1 text-[13px] text-ink-2">New to the house — ask us on WhatsApp for the price, platings and sizes.</p>}
 
             {/* Choices, carried into the WhatsApp message */}
             <div className="mt-8 space-y-6">
