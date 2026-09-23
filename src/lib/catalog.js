@@ -148,6 +148,17 @@ export function mergeLocal(data, local, renders = {}) {
 const coverOf = (pieces) => pieces.find((p) => p.edits?.includes('best-sellers')) || pieces.find((p) => !p.drop) || pieces[0];
 
 /**
+ * A gallery's own order: the pieces data/lead.json names for it first, in that
+ * order, then the rest as they were (newest first). Its first piece is then the cover.
+ */
+function led(list, slugs) {
+  if (!slugs?.length) return { pieces: list, cover: coverOf(list) };
+  const at = new Map(slugs.map((s, i) => [s, i]));
+  const pieces = [...list].sort((a, b) => (at.get(a.s || a.h) ?? Infinity) - (at.get(b.s || b.h) ?? Infinity));
+  return { pieces, cover: at.has(pieces[0]?.s || pieces[0]?.h) ? pieces[0] : coverOf(pieces) };
+}
+
+/**
  * A piece in the house's words: every coloured stone simulated, CZ / zircon as
  * American Diamonds (src/lib/stones.js). Names are left as they are.
  * A piece the house marks `natural` (data/local.json) is set with a natural
@@ -182,17 +193,16 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
   // them one after another, in their order.
   const chapters = CHAPTERS.map((ch) => {
     if (!ch.collections) {
-      const list = pieces.filter((p) => p.co === ch.slug);
-      const chapter = { ...ch, kind: 'chapter', pieces: list, cover: coverOf(list) };
+      const chapter = { ...ch, kind: 'chapter', ...led(pieces.filter((p) => p.co === ch.slug), data.lead?.[ch.slug]) };
       galleries.set(ch.slug, chapter);
       return chapter;
     }
     const collections = ch.collections
-      .map((k) => ({ ...k, kind: 'collection', pieces: pieces.filter((p) => p.co === k.slug) }))
+      .map((k) => ({ ...k, kind: 'collection', ...led(pieces.filter((p) => p.co === k.slug), data.lead?.[k.slug]) }))
       .filter((k) => k.pieces.length);
     const list = collections.flatMap((k) => k.pieces);
-    const chapter = { ...ch, kind: 'chapter', collections, pieces: list, cover: coverOf(list) };
-    for (const k of collections) { k.parent = chapter; k.cover = coverOf(k.pieces); galleries.set(k.slug, k); }
+    const chapter = { ...ch, kind: 'chapter', collections, ...led(list, data.lead?.[ch.slug]) };
+    for (const k of collections) { k.parent = chapter; galleries.set(k.slug, k); }
     galleries.set(ch.slug, chapter);
     return chapter;
   }).filter((c) => c.pieces.length);
