@@ -56,8 +56,10 @@ async function fetchImage(src) {
       if (!res.ok) throw new Error(`${res.status}`);
       return Buffer.from(await res.arrayBuffer());
     } catch (e) {
-      if (attempt >= 4) throw new Error(`${src}: ${e.message}`);
-      await new Promise((r) => setTimeout(r, 1500 * attempt));
+      // Our own host (catalog-src/) sometimes refuses a runner for a minute; be patient with it.
+      const ours = src.includes('catalogue.houseofmina.store');
+      if (attempt >= (ours ? 7 : 4)) throw new Error(`${src}: ${e.message}`);
+      await new Promise((r) => setTimeout(r, ours ? 2000 * 2 ** attempt : 1500 * attempt));
     }
   }
 }

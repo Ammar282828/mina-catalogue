@@ -124,7 +124,7 @@ jobs:
         run: |
           ssh site "cd '$SITE_DIR' \
             && test -s index.html && test -s .htaccess && test -s api/upload.php && test -s catalog-tree.json \
-            && test -s engagement-rings.html && test -d catalog-thumb && test -d catalog-full \
+            && test -s rings-and-bands.html && test -d catalog-thumb && test -d catalog-full \
             && echo \"ok: pages, api, tree and \$(find catalog-full -name '*.webp' | wc -l) photographs on the server\""
 
       # Advisory: what the world sees. A miss here is a warning, not a failure —
@@ -134,7 +134,7 @@ jobs:
         run: |
           for attempt in 1 2 3; do
             ok=1
-            for p in / /engagement-rings /rings/2 /catalog-tree.json; do
+            for p in / /rings-and-bands /rings-and-bands/2 /catalog-tree.json; do
               code=$(curl -sS -o /dev/null -w '%{http_code}' -L --max-time 30 "https://catalogue.houseofmina.store$p" || echo 000)
               echo "  $p  →  $code"; [ "$code" = "200" ] || ok=0
             done
