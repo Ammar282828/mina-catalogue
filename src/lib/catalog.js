@@ -67,18 +67,33 @@ function dropPiece(d) {
   };
 }
 
-// ── The house's own photographs ─────────────────────────────────────────────
-// data/local.json: studio photographs that are not on Shopify. `heroes` puts one
-// first on a Shopify piece; `pieces` are pieces known only from a photograph
-// (no price — "Price on request"). scripts/images.mjs builds their variants
-// from the originals on the server (catalog-src/local/<id>.png).
-const localImg = (id) => ({ f: `local/${id}`, w: 1500, h: 1500 });
+// ── The house's own images ──────────────────────────────────────────────────
+// data/local.json: images that are not on Shopify. `heroes` puts one first on a
+// Shopify piece; `pieces` are pieces known only from an image (no price —
+// "Price on request"), with `also` for more images of the same piece and
+// `photoPlating` for which plating an image shows. An image id is a file under
+// the server's catalog-src/local/ — "DSC08985" means DSC08985.png, anything with
+// an extension is that file. scripts/images.mjs builds the variants from there.
+export const localFile = (id) => (/\.[a-z0-9]+$/i.test(id) ? id : `${id}.png`);
+const localKey = (id) => id.replace(/\.[a-z0-9]+$/i, '');
+
+/** Every image id data/local.json uses (heroes and pieces, not `held`). */
+export function localImageIds(local) {
+  const ids = (xs) => (xs || []).map((x) => (typeof x === 'string' ? x : x.id));
+  return [
+    ...Object.values(local?.heroes || {}).flatMap(ids),
+    ...(local?.pieces || []).flatMap((p) => [p.id, ...(p.also || [])]),
+  ];
+}
+
+const localImg = (id, plating, px = 1500) => ({ f: `local/${localKey(id)}`, w: px, h: px, ...(plating ? { plating } : {}) });
 
 export function mergeLocal(data, local) {
   if (!local) return data;
   const heroes = local.heroes || {};
   const taken = new Set(data.pieces.map((p) => p.s || p.h));
-  const shopify = data.pieces.map((p) => (heroes[p.h] ? { ...p, img: [...heroes[p.h].map(localImg), ...p.img] } : p));
+  const hero = (x) => (typeof x === 'string' ? localImg(x) : localImg(x.id, x.plating, x.px));
+  const shopify = data.pieces.map((p) => (heroes[p.h] ? { ...p, img: [...heroes[p.h].map(hero), ...p.img] } : p));
   const own = (local.pieces || []).map((x) => {
     const chapter = CHAPTERS.find((c) => c.collections.some((k) => k.slug === x.co));
     if (!chapter) return null;
@@ -88,10 +103,11 @@ export function mergeLocal(data, local) {
     taken.add(s);
     const facets = {};
     for (const k of ['stone', 'setting', 'cut', 'occasion', 'style']) if (x[k]?.length) facets[k] = x[k];
+    const imgs = [x.id, ...(x.also || [])].map((id) => localImg(id, x.photoPlating?.[id], x.px));
     return {
-      h: `local-${x.id.toLowerCase()}`, s, t: x.t, type: x.type || 'Ring', ch: chapter.slug, co: x.co,
-      price: null, plating: x.plating || [], facets, story: [], facts: [], edits: [],
-      at: x.addedAt || local.addedAt, img: [localImg(x.id)], local: true,
+      h: `local-${localKey(x.id).toLowerCase()}`, s, t: x.t, type: x.type || 'Ring', ch: chapter.slug, co: x.co,
+      price: null, plating: x.plating || [], facets, story: x.story || [], facts: x.facts || [], edits: [],
+      at: x.addedAt || local.addedAt, img: imgs, local: true,
     };
   }).filter(Boolean);
   return { ...data, pieces: [...shopify, ...own] };

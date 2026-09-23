@@ -20,14 +20,15 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
+import { localFile, localImageIds } from '../src/lib/catalog.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SOURCES = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'image-sources.json'), 'utf8'));
-// The house's own photographs (data/local.json): originals on the server, never in git.
+// The house's own images (data/local.json): originals on the server, never in git.
 const LOCAL = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'local.json'), 'utf8'));
 const LOCAL_ORIGIN = 'https://catalogue.houseofmina.store/catalog-src/local';
-for (const id of [...Object.values(LOCAL.heroes || {}).flat(), ...(LOCAL.pieces || []).map((p) => p.id)]) {
-  SOURCES[`local/${id}`] = `${LOCAL_ORIGIN}/${id}.png`;
+for (const id of localImageIds(LOCAL)) {
+  SOURCES[`local/${id.replace(/\.[a-z0-9]+$/i, '')}`] = `${LOCAL_ORIGIN}/${localFile(id)}`;
 }
 const FORCE = process.argv.includes('--force');
 const CONCURRENCY = 6;

@@ -50,13 +50,19 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
 - Never in git. `data/image-sources.json` records each photo's Shopify CDN source; `npm run images`
   (locally or in CI, with a cache) makes a 720px and a 2000px WebP. File names carry a hash of the
   source, so a photo replaced in Shopify gets a new file.
-- **The house's own photographs** — `data/local.json` (committed) lists studio shots that are not on Shopify:
-  `heroes` puts one first on a Shopify piece (by handle), `pieces` are rings known only from a photo
-  (no price → "Price on request"; name, collection, plating and stones read off the photo on 2026-09-23 —
-  the owner may correct them). Originals: `public_html/catalog-src/local/<id>.png` on the server (uploaded by
-  scp, chmod 644; never in git; rsync never deletes them). `mergeLocal()` in `catalog.js` folds them in for
-  the app and the prerender; `npm run images` builds their variants from the server. To add more: upload the
-  PNGs there, add entries, push. The first batch was 48 shots from iCloud `heroes-white-1500` (6 heroes, 42 new rings).
+- **The house's own images** — `data/local.json` (committed) lists images that are not on Shopify: `heroes` puts one
+  first on a Shopify piece (by handle); `pieces` are pieces known only from an image (no price → "Price on request"),
+  with `also` (more images of the piece) and `photoPlating` (the plating chip then shows that image); `held` records
+  images deliberately left off, with the reason. Originals: `public_html/catalog-src/local/<id>` on the server
+  ("DSC08985" = DSC08985.png; an id with an extension is that file), uploaded by rsync + `chmod 644` (macOS rsync has
+  no `--chmod`; iCloud files arrive 600 → HTTP 403). Never in git; rsync never deletes them. `mergeLocal()` in
+  `catalog.js` folds them in for the app, the prerender and the deploy gate (`scripts/check-build.mjs`).
+  - **Rings, 2026-09-23:** iCloud `heroes-white-1500`, 179 files. These are **AI renders** (Nano Banana) of the shop's
+    DSC photos, not photographs; the folder's `_REVIEW.txt` flags ten that differ from the real piece — those are
+    `held`. 150 ring pieces, 12 Shopify rings with a new lead image. Names, collections, platings and stones were read
+    off the images; the owner may correct them. The owner removed Blossom Pearl Ring's lead image.
+  - **Removing a piece:** the deploy never deletes, so its old page stays on the server — delete
+    `public_html/<collection>/<slug>.html` over SSH after the deploy.
 - **Drop folder** — photos uploaded from the POS's Add Photos land in
   `public_html/catalog-drop/<Chapter title>/<Collection title>/` via `public/api/upload.php` (bearer
   secret in `~/domains/catalogue.houseofmina.store/.website-upload-secret`, outside the web root).
