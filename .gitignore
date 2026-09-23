@@ -1,0 +1,11 @@
+node_modules/
+dist/
+upload/
+.DS_Store
+*.log
+# Photography never enters git: the variants are rebuilt from data/image-sources.json
+public/catalog-thumb/
+public/catalog-full/
+public/catalog-drop/
+.env*.local
+graphify-out/cache/

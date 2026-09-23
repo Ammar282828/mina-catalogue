@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <meta name="theme-color" content="#FAF7F2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#140B0B" media="(prefers-color-scheme: dark)" />
+
+    <!-- route-head:start — replaced per route by scripts/prerender.mjs -->
+    <title>House of Mina — Sterling Silver Jewelry, Karachi</title>
+    <meta name="description" content="The House of Mina catalogue: rings, earrings, necklaces and bracelets in 925 sterling silver with 21k gold or rhodium plating, handcrafted in Karachi." />
+    <link rel="canonical" href="https://catalogue.houseofmina.store/" />
+    <!-- route-head:end -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Red+Hat+Text:wght@400;500&display=swap" />
+
+    <!-- The theme is chosen before first paint, so a returning visitor who
+         picked dark never sees a cream flash. Cream is the house's own ground,
+         so it is the default whatever the device prefers. -->
+    <script>
+      try { if (JSON.parse(localStorage.getItem('mina:theme')) === 'dark') document.documentElement.classList.add('dark'); } catch (e) {}
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "JewelryStore",
+        "@id": "https://catalogue.houseofmina.store/#store",
+        "name": "House of Mina",
+        "url": "https://catalogue.houseofmina.store/",
+        "logo": "https://catalogue.houseofmina.store/logo.png",
+        "image": "https://catalogue.houseofmina.store/logo.png",
+        "description": "Fine jewelry in 925 sterling silver with 21k gold or rhodium plating, handcrafted to order in Karachi.",
+        "telephone": "+92 316 1930960",
+        "priceRange": "PKR 4,000 – 60,000",
+        "address": { "@type": "PostalAddress", "addressLocality": "Karachi", "addressCountry": "PK" },
+        "sameAs": ["https://www.instagram.com/houseofmina__", "https://www.tiktok.com/@houseofmina"]
+      }
+    </script>
+  </head>
+  <body class="bg-bg text-ink font-sans antialiased">
+    <div id="root"><!-- route-body --></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

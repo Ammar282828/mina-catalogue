@@ -1,0 +1,78 @@
+# mina-catalogue — catalogue.houseofmina.store
+
+House of Mina's own catalogue site: every piece from its Shopify store — name, photographs, price,
+platings, sizes, stones — presented the way taheri.shop presents Taheri's, and ending in a WhatsApp
+enquiry rather than a cart. **Separate from Shopify** by the owner's choice: it reads Shopify's public
+product feed when synced, copies the photographs onto its own server, and never links to or loads
+from the Shopify store at runtime.
+
+Sibling of **taheri-site** (`~/Projects/taheri-site`, taheri.shop) — same engine ideas (particle landing,
+chapters → collections, prerendered routes, drop folder), deliberately **not** the same codebase: the
+two differ in brand, taxonomy and pricing model (fixed Shopify prices here, gold-rate quotes there).
+The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read its CLAUDE.md.
+
+## Commands
+
+| | |
+|---|---|
+| `npm run dev` | dev server on :5190 (launch config "mina-catalogue" in `taheri-shop/.claude/launch.json`) |
+| `npm run sync` | re-copy the catalogue from Shopify → `src/catalog.json` + `data/image-sources.json` (commit both) |
+| `npm run images` | build any missing photo variants into `public/catalog-thumb|full` (gitignored) |
+| `npm run build` | `vite build` + `scripts/prerender.mjs` (one HTML document per route, sitemaps, llms.txt, catalog-tree.json) |
+| `npm run preview` | serve `dist/` on :5191 (launch config "mina-catalogue (build)") |
+
+## How it fits together
+
+- `src/lib/taxonomy.js` — **the arrangement**: 5 chapters (Rings, Earrings, Necklaces & Pendants,
+  Bracelets & Bangles, Men's) → 18 collections, 10 edits (Shopify campaign collections), filter facets.
+  `classify()` gives every product exactly one home collection (its page lives at `/<collection>/<piece>`);
+  precedence is men's → gemstone (by tag *or* by name) → engagement → cocktail → everyday.
+  Shopify tags are hand-typed and inconsistent — fix a misfiled piece here, not in the data.
+- `scripts/sync-shopify.mjs` — reads `houseofmina.store/products.json` + `collections.json` (public, no token).
+  Refuses to shrink the catalogue by >40% without `--force`. Piece URLs use a slug of the **name**
+  (`/engagement-rings/adele`), not Shopify's handle (often a stock code); a clash falls back to the handle.
+- `src/lib/catalog.js` — `buildCatalog()` and `resolvePath()`: the app and the prerender share them,
+  so a crawled page and the app's page are always the same page. `src/lib/seo.js` — titles, descriptions,
+  JSON-LD (Product with Offer/AggregateOffer, CollectionPage + ItemList, BreadcrumbList).
+- `src/components/` — `Landing.jsx` + `particles.js` (Three.js, lazy chunk; the cloud assembles the MINA
+  wordmark, then a ring, earrings, a pendant, bangles, a men's band, a cut stone, a heart), `Gallery.jsx`
+  (filters in the query string), `Piece.jsx` (plating chips switch to that plating's photo; size or
+  option picks the exact price; all of it goes into the WhatsApp message), `Chrome.jsx` (ribbon,
+  header, search, footer, Collections page), `Favourites.jsx` (send the saved list on WhatsApp).
+- Brand: cream `#FAF7F2` / maroon `#3A0000` / rose `#E8A5AE`, Newsreader + Red Hat Text — taken from the
+  Shopify theme (`~/Projects/house-of-mina-theme`). The wordmark is an inline SVG redrawn from
+  `public/logo.png`'s strokes. Light is the default theme; dark is maroon-black with rose accents.
+- Contact: WhatsApp **+92 316 1930960** (from the Shopify theme), Instagram @houseofmina__, TikTok @houseofmina.
+  Copy says **Karachi**, never "Saddar" (the owner's rule for Taheri, applied here too).
+
+## Photography
+
+- Never in git. `data/image-sources.json` records each photo's Shopify CDN source; `npm run images`
+  (locally or in CI, with a cache) makes a 720px and a 2000px WebP. File names carry a hash of the
+  source, so a photo replaced in Shopify gets a new file.
+- **Drop folder** — photos uploaded from the POS's Add Photos land in
+  `public_html/catalog-drop/<Chapter title>/<Collection title>/` via `public/api/upload.php` (bearer
+  secret in `~/domains/catalogue.houseofmina.store/.website-upload-secret`, outside the web root).
+  `api/catalog.php` lists them, `api/img.php` resizes them; the app folds them in at load as
+  "price on request" pieces. `catalog-tree.json` (written by the prerender) tells the POS which folders exist.
+
+## Deploy (`.github/workflows/deploy.yml`)
+
+Push to `main` → build (photos from cache or Shopify's CDN) → sanity gate → rsync over SSH to
+`~/domains/catalogue.houseofmina.store/public_html` on the same Hostinger account as taheri.shop.
+Gated by the repository variable `DEPLOY_ENABLED=1`. "Run workflow" with **sync** ticked re-copies
+from Shopify first and commits it. rsync never deletes; `catalog-drop/` is never touched.
+
+## Go-live status
+
+See "Open items" — the site is built and deployable, but the host and DNS need the owner (below).
+
+## Open items
+
+- **Owner:** add `catalogue.houseofmina.store` as a website in hPanel (same account as taheri.shop), and add
+  the DNS record hPanel asks for at GoDaddy (houseofmina.store's DNS is at domaincontrol.com).
+- Then: set `DEPLOY_ENABLED=1`, run the workflow; create the upload secret (Secret Manager in
+  hom-pos-52710474-ceeea with the App Hosting SAs' access + `.website-upload-secret` on Hostinger, same
+  value, never printed); set in `taheri-shop/apphosting.mina.yaml`: `NEXT_PUBLIC_STORE_WEBSITE_URL`,
+  `WEBSITE_ORIGIN`, `WEBSITE_UPLOAD_SECRET`, `NEXT_PUBLIC_STORE_WEBSITE_WEIGHTS=0`.
+- Duplicate listings: the same products (and descriptions) are on houseofmina.store. Both are self-canonical.

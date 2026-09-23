@@ -1,0 +1,155 @@
+# Push to main → build → rsync to catalogue.houseofmina.store over SSH.
+#
+# Unlike taheri.shop, the photography CAN be rebuilt here: every photo's source
+# is recorded in data/image-sources.json (House of Mina's own Shopify CDN), so
+# the runner fetches whatever the cache does not already hold, makes the WebP
+# variants, and ships them with the pages. Nothing depends on anyone's laptop.
+#
+# "Run workflow" with sync ticked first copies the catalogue from Shopify again
+# (npm run sync) and commits the result, so a new product reaches the site from
+# the GitHub page alone. That commit, pushed with the workflow's own token, does
+# not trigger another run.
+#
+# Off until the site exists on the host: set the repository variable
+# DEPLOY_ENABLED to 1 (Settings → Secrets and variables → Actions → Variables).
+#
+# Secrets — the same deploy key and account as taheri.shop's workflow:
+#   SSH_PRIVATE_KEY, SSH_HOST (145.79.26.82), SSH_PORT (65002), SSH_USER (u870899616)
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      sync:
+        description: Copy the catalogue from Shopify first
+        type: boolean
+        default: false
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  SITE_DIR: domains/catalogue.houseofmina.store/public_html
+
+jobs:
+  deploy:
+    if: vars.DEPLOY_ENABLED == '1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci --no-audit --no-fund
+
+      - name: Sync from Shopify
+        if: inputs.sync
+        run: |
+          npm run sync
+          if ! git diff --quiet -- src/catalog.json data/image-sources.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add src/catalog.json data/image-sources.json
+            git commit -m "Sync the catalogue from Shopify"
+            git push
+          else
+            echo "Nothing changed in Shopify."
+          fi
+
+      # The photographs, from the cache where possible.
+      - uses: actions/cache@v4
+        with:
+          path: |
+            public/catalog-thumb
+            public/catalog-full
+          key: photos-${{ hashFiles('data/image-sources.json') }}
+          restore-keys: photos-
+
+      - run: npm run images
+
+      - run: npm run build
+
+      # Refuse to ship a build that lost the catalogue or its photographs.
+      - name: Sanity-check the build
+        run: |
+          node -e '
+            const fs = require("fs");
+            const cat = JSON.parse(fs.readFileSync("src/catalog.json", "utf8"));
+            const pages = fs.readdirSync("dist", { recursive: true }).filter(f => f.endsWith(".html")).length;
+            const missing = cat.pieces.flatMap(p => p.img).filter(i => !fs.existsSync(`dist/catalog-thumb/${i.f}.webp`) || !fs.existsSync(`dist/catalog-full/${i.f}.webp`));
+            console.log(`pieces: ${cat.pieces.length}   documents: ${pages}   photographs missing: ${missing.length}`);
+            if (cat.pieces.length < 150) { console.error("catalog.json looks truncated — refusing to deploy"); process.exit(1); }
+            if (pages < 200) { console.error("too few prerendered pages — refusing to deploy"); process.exit(1); }
+            if (missing.length) { console.error("photographs missing: " + missing.slice(0, 5).map(i => i.f).join(", ")); process.exit(1); }
+          '
+
+      - name: Connect
+        env:
+          KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          HOST: ${{ secrets.SSH_HOST }}
+          PORT: ${{ secrets.SSH_PORT }}
+        run: |
+          set -e
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/deploy && chmod 600 ~/.ssh/deploy
+          # The shared host drops connections when it is busy; ask a few times.
+          for i in 1 2 3 4 5; do
+            ssh-keyscan -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null && break
+            echo "keyscan attempt $i failed; waiting"; sleep 15
+          done
+          grep -q . ~/.ssh/known_hosts
+          printf 'Host site\n  HostName %s\n  Port %s\n  User %s\n  IdentityFile ~/.ssh/deploy\n  IdentitiesOnly yes\n  ServerAliveInterval 30\n' "$HOST" "$PORT" "${{ secrets.SSH_USER }}" > ~/.ssh/config
+
+      # The target must be this site: either it carries our marker, or it is
+      # the fresh folder hPanel made (a default page and little else). Anything
+      # else — a typo in SITE_DIR, another site's folder — and nothing is written.
+      - name: Confirm the target is this site
+        run: |
+          ssh site "cd '$SITE_DIR' && if test -f .mina-catalogue; then echo 'ok: marker present'; \
+            elif [ \$(ls -A | grep -vE '^(default\.php|index\.php|index\.html|\.htaccess|\.well-known|cgi-bin)\$' | wc -l) -eq 0 ]; then echo 'ok: fresh site folder'; \
+            else echo 'refusing: this folder is not the catalogue'; ls -A | head; exit 1; fi"
+
+      # No --delete: the server keeps what the build does not carry — the
+      # counter's uploads in catalog-drop/ and their cache.
+      - name: Sync to the live site
+        run: |
+          rsync -rlptz --no-perms --no-owner --no-group --omit-dir-times --itemize-changes \
+            --exclude 'catalog-drop/' --exclude 'catalog-drop-cache/' \
+            -e "ssh" dist/ "site:$SITE_DIR/" \
+          | tee rsync.log | grep -cE '^[<>]f' | xargs echo "files written:"
+          # The host's placeholder page, if hPanel left one, would shadow ours.
+          ssh site "cd '$SITE_DIR' && rm -f default.php && touch .mina-catalogue && mkdir -p catalog-drop"
+
+      - name: Confirm the files landed
+        run: |
+          ssh site "cd '$SITE_DIR' \
+            && test -s index.html && test -s .htaccess && test -s api/upload.php && test -s catalog-tree.json \
+            && test -s engagement-rings.html && test -d catalog-thumb && test -d catalog-full \
+            && echo \"ok: pages, api, tree and \$(find catalog-full -name '*.webp' | wc -l) photographs on the server\""
+
+      # Advisory: what the world sees. A miss here is a warning, not a failure —
+      # the files are already verified on the server.
+      - name: Verify what the server serves (advisory)
+        continue-on-error: true
+        run: |
+          for attempt in 1 2 3; do
+            ok=1
+            for p in / /engagement-rings /rings/2 /catalog-tree.json; do
+              code=$(curl -sS -o /dev/null -w '%{http_code}' -L --max-time 30 "https://catalogue.houseofmina.store$p" || echo 000)
+              echo "  $p  →  $code"; [ "$code" = "200" ] || ok=0
+            done
+            [ "$ok" = "1" ] && { echo "serving as expected"; exit 0; }
+            echo "attempt $attempt: not as expected; waiting"; sleep 30
+          done
+          echo "::warning::HTTP verification did not pass from the runner; files are confirmed on the server"
+          exit 1
