@@ -1524,11 +1524,12 @@
    "px": 1024, "story": ["A larger name Allah in gold inside an open oval of American Diamonds."], "src": "PHOTO-2026-05-22-14-23-03 19.jpg"
   },
   {
-   "id": "lk-23.jpg",
+   "id": "lk-36.jpg",
+   "also": ["lk-23.jpg"],
    "t": "Ruby Frame Allah Locket",
    "co": "lockets",
    "type": "Locket", "plating": ["Gold"], "stone": ["Ruby", "Mother of Pearl", "American Diamond"], "setting": [],
-   "px": 1024, "story": ["The name Allah in gold on mother of pearl, framed in simulated rubies and American Diamonds."], "src": "PHOTO-2026-05-22-14-23-03 20.jpg"
+   "px": 1280, "story": ["The name Allah in gold on mother of pearl, framed in simulated rubies and American Diamonds."], "src": "PHOTO-2026-07-20-18-31-15.jpg (lk-23: PHOTO-2026-05-22-14-23-03 20.jpg)"
   },
   {
    "id": "lk-24.jpg",
@@ -1599,6 +1600,27 @@
    "co": "lockets",
    "type": "Locket", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1024, "story": ["The name Allah in American Diamonds on a round gold lattice, bordered in American Diamonds."], "src": "f6a83448-494b-47a6-b28f-665f97f49b8e.JPG"
+  },
+  {
+   "id": "lk-35.jpg",
+   "t": "Ya Hussain Octagon Locket",
+   "co": "lockets", "addedAt": "2026-09-24",
+   "type": "Locket", "plating": ["Gold"], "stone": ["Ruby", "Emerald", "American Diamond"], "setting": [],
+   "px": 1600, "story": ["Ya Hussain in red enamel on a gold honeycomb mesh, framed in simulated rubies, with simulated emeralds and American Diamonds on open gold filigree branches around it."], "src": "PHOTO-2026-07-06-18-18-24.jpg"
+  },
+  {
+   "id": "lk-37.jpg",
+   "t": "Allah Ruby Twist Locket",
+   "co": "lockets", "addedAt": "2026-09-24",
+   "type": "Locket", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": [],
+   "px": 1280, "story": ["The name Allah in polished gold inside a ring of simulated rubies, framed by bands of simulated rubies and American Diamonds that twist around it, on an American Diamond bail."], "src": "PHOTO-2026-07-20-18-31-59.jpg"
+  },
+  {
+   "id": "lk-38.jpg",
+   "t": "Panjatan Flower Locket",
+   "co": "lockets", "addedAt": "2026-09-24",
+   "type": "Locket", "plating": ["Gold"], "stone": ["Ruby", "Mother of Pearl"], "setting": [],
+   "px": 1280, "story": ["Allah at the heart of a five-petal flower of mother of pearl, with the names of the Panjatan (Muhammad, Ali, Fatima, Hasan and Husain) in gold on its petals, edged in simulated rubies."], "src": "PHOTO-2026-07-20-18-33-32.jpg"
   },
   {
    "id": "PHOTO-2026-09-21-14-31-23.jpg",

@@ -125,6 +125,10 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     Arabic. The big Allah / Kalma / Ali calligraphy reads true. The coins are "Calligraphy Coin …" until the owner says
     which verse each carries. The five `locket-IMG_58xx` renders' source photos were taken at a counter with Taheri's
     sign in view — check with the owner if any are Taheri's pieces.
+    **Four more, 2026-09-24** (the owner's Instagram posts, `~/Downloads/PHOTO-2026-07-…`): `lk-35` Ya Hussain Octagon
+    Locket (it shows no bail and may be a brooch — ask), `lk-37` Allah Ruby Twist Locket, `lk-38` Panjatan Flower Locket;
+    `lk-36` is the same design as lk-23 and is now that piece's lead photo (lk-23 in `also`). A fifth,
+    PHOTO-2026-06-30-14-01-28, is the same image as lk-09 and was not repeated.
   - **Removing a piece:** the deploy never deletes, so its old page stays on the server — delete
     `public_html/<category>/<slug>.html` over SSH after the deploy.
 - **Drop folder** — photos uploaded from the POS's Add Photos land in
