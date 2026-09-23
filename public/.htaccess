@@ -42,6 +42,9 @@
   RewriteRule ^chains-and-pendants/(box-chain|cuban-chain|curb-diamond-cut-chain|rope-chain|snake-chain)$ /mens-chains/$1 [R=301,L]
   RewriteRule ^wristwear/(verso-mens-cuff|zobi-mens-silver-cuff|cuban-bracelet|link-bracelet|rope-bracelet)$ /mens-bracelets/$1 [R=301,L]
 
+  # Two photos first listed as two lockets are the front and back of one (the owner, 2026-09-24).
+  RewriteRule ^lockets/enamel-floral-locket$ /lockets/engraved-calligraphy-oval-locket [R=301,L]
+
   # /rings-and-bands.html and /rings-and-bands are one page; send the .html form to the clean one.
   RewriteCond %{THE_REQUEST} \s/+([^?\s]+)\.html[\s?] [NC]
   RewriteCond %1 !^(?:index|404)$

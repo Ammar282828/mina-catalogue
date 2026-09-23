@@ -1434,10 +1434,11 @@
   },
   {
    "id": "lk-07.jpg",
+   "also": ["lk-33.jpg"],
    "t": "Engraved Calligraphy Oval Locket",
    "co": "lockets",
    "type": "Locket", "plating": ["Gold"], "stone": [], "setting": [],
-   "px": 1024, "story": ["An oval locket that opens, its face engraved with calligraphy in gold."], "src": "4cb2d5ae-de91-4c0f-9a74-5b5345196871.JPG"
+   "px": 1024, "story": ["An oval locket that opens: one face engraved with calligraphy in gold, the other in red, blue and white enamel florals."], "src": "4cb2d5ae-de91-4c0f-9a74-5b5345196871.JPG (back, lk-33: c1a074aa-c0ee-409e-8360-1c5820b5d165.JPG)"
   },
   {
    "id": "lk-08.jpg",
@@ -1586,13 +1587,6 @@
    "co": "lockets",
    "type": "Locket", "plating": [], "stone": ["American Diamond"], "setting": [],
    "px": 1024, "story": ["The name Allah sculpted in American Diamond pavé, with a gold bail."], "src": "PHOTO-2026-05-22-14-23-03.jpg"
-  },
-  {
-   "id": "lk-33.jpg",
-   "t": "Enamel Floral Locket",
-   "co": "lockets",
-   "type": "Locket", "plating": ["Gold"], "stone": [], "setting": [],
-   "px": 1024, "story": ["An oval locket that opens, its face in red, blue and white enamel florals on gold."], "src": "c1a074aa-c0ee-409e-8360-1c5820b5d165.JPG"
   },
   {
    "id": "lk-34.jpg",

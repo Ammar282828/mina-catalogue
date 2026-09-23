@@ -132,6 +132,8 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     Locket (it shows no bail and may be a brooch — ask), `lk-37` Allah Ruby Twist Locket, `lk-38` Panjatan Flower Locket;
     `lk-36` is the same design as lk-23 and is now that piece's lead photo (lk-23 in `also`). A fifth,
     PHOTO-2026-06-30-14-01-28, is the same image as lk-09 and was not repeated.
+    lk-07 and lk-33 are the front and back of one locket (the owner): one piece, Engraved Calligraphy Oval Locket, with
+    lk-33 in `also`; `/lockets/enamel-floral-locket` 301s to it (`public/.htaccess`).
   - **Removing a piece:** the deploy never deletes, so its old page stays on the server — delete
     `public_html/<category>/<slug>.html` over SSH after the deploy.
 - **Drop folder** — photos uploaded from the POS's Add Photos land in
