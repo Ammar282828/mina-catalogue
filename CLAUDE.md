@@ -61,6 +61,12 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     DSC photos, not photographs; the folder's `_REVIEW.txt` flags ten that differ from the real piece — those are
     `held`. 150 ring pieces, 12 Shopify rings with a new lead image. Names, collections, platings and stones were read
     off the images; the owner may correct them. The owner removed Blossom Pearl Ring's lead image.
+  - **Bangles & bracelets, 2026-09-23:** the 122 photographs in `~/Downloads/House of Mina — Bangles & Bracelets 3.pdf`
+    (built in `house-of-mina-theme/tools/catalogue/bangles/`; source images lost with a scratch folder / Work SSD 1),
+    extracted from the PDF by each image's "No." label → `catalog-src/local/bb-NNN.jpg`. 20 of them are already Shopify
+    products (Raya, Aylin, Soleil, Lyra, Cuban…) and are not repeated: 101 pieces (Nos. 77 and 78 are one bangle).
+    `story` is the PDF's description (No. 44's "rhodium" dropped — its photo is gold). Plating is left empty where the
+    text and photo disagree. Verso and Zobi cuffs → Men's Bracelets.
   - **Removing a piece:** the deploy never deletes, so its old page stays on the server — delete
     `public_html/<collection>/<slug>.html` over SSH after the deploy.
 - **Drop folder** — photos uploaded from the POS's Add Photos land in
