@@ -90,7 +90,7 @@ export function PieceTile({ piece, isNew = false, eager = false }) {
   const [a, b] = piece.img;
   return (
     <li className="group relative list-none">
-      <Link to={piecePath(piece)} className="block" aria-label={`${piece.t}, ${priceLabel(piece)}`}>
+      <Link to={piecePath(piece)} className="block" aria-label={priceLabel(piece) ? `${piece.t}, ${priceLabel(piece)}` : piece.t}>
         <div className="relative aspect-square overflow-hidden bg-bg-2">
           <Photo src={imageUrls(a).thumb} alt={a.alt || piece.t} eager={eager} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
           {/* The second photograph on hover — usually the piece worn, or the other plating. */}
@@ -103,7 +103,7 @@ export function PieceTile({ piece, isNew = false, eager = false }) {
         <div className="mt-3 flex items-baseline justify-between gap-3 pr-8">
           <h3 className="serif text-[15px] md:text-[16px] leading-snug text-ink truncate">{piece.t}</h3>
         </div>
-        <p className="mt-0.5 text-[12.5px] tabular-nums text-ink-2">{priceLabel(piece)}</p>
+        {priceLabel(piece) && <p className="mt-0.5 text-[12.5px] tabular-nums text-ink-2">{priceLabel(piece)}</p>}
       </Link>
       <button
         type="button"

@@ -27,7 +27,7 @@ export function enquiry(piece, choices = {}, price = null) {
 export function enquireList(pieces) {
   return whatsapp([
     'Hi House of Mina, these are the pieces I have saved:',
-    ...pieces.map((p, i) => `${i + 1}. ${p.t} — ${priceLabel(p)}\n   ${SITE}${piecePath(p)}`),
+    ...pieces.map((p, i) => `${i + 1}. ${p.t}${priceLabel(p) ? ` — ${priceLabel(p)}` : ''}\n   ${SITE}${piecePath(p)}`),
   ].join('\n'));
 }
 

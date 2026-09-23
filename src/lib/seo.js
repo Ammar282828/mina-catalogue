@@ -5,7 +5,7 @@
  * previews. One source, so the two can never disagree.
  */
 
-import { SITE, PAGE_SIZE, piecePath, galleryPath, imageUrls, priceLabel } from './catalog.js';
+import { SITE, PAGE_SIZE, SHOW_PRICES, piecePath, galleryPath, imageUrls, priceLabel } from './catalog.js';
 
 export const BRAND = 'House of Mina';
 const MATERIAL = '925 sterling silver with 21k gold or rhodium plating, set with simulated stones and American Diamonds';
@@ -59,7 +59,7 @@ export function metaFor(route, cat, path = '/') {
       const onPage = g.pieces.slice((route.page - 1) * PAGE_SIZE, route.page * PAGE_SIZE);
       return {
         title: `${noun}${suffix} | ${BRAND}`,
-        description: clip(`${g.blurb ? `${g.blurb} ` : ''}${g.pieces.length} pieces in ${g.material || MATERIAL}, from ${BRAND}, Karachi. Prices shown; enquire on WhatsApp.`),
+        description: clip(`${g.blurb ? `${g.blurb} ` : ''}${g.pieces.length} pieces in ${g.material || MATERIAL}, from ${BRAND}, Karachi. ${SHOW_PRICES ? 'Prices shown; enquire' : 'Prices and orders'} on WhatsApp.`),
         canonical: abs(galleryPath(g.slug, route.page)),
         image: first ? abs(imageUrls(first.img[0]).full) : DEFAULT_IMAGE,
         prev: route.page > 1 ? abs(galleryPath(g.slug, route.page - 1)) : null,

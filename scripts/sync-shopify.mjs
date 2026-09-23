@@ -18,6 +18,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { CHAPTERS, EDITS, classify, chapterOf, facetsOf, allGallerySlugs } from '../src/lib/taxonomy.js';
+import { SHOW_PRICES } from '../src/lib/catalog.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const STORE = 'https://houseofmina.store';
@@ -219,8 +220,10 @@ async function main() {
       type: p.product_type || '',
       ch: chapterOf(home).slug,
       co: home,
-      price: prices.length ? [Math.min(...prices), Math.max(...prices)] : null,
-      ...(priceBy(p) ? { priceBy: priceBy(p) } : {}),
+      // Prices stay out of the catalogue while they are off (SHOW_PRICES); the option
+      // that decides one is kept, without its figures, so an enquiry still names it.
+      price: SHOW_PRICES && prices.length ? [Math.min(...prices), Math.max(...prices)] : null,
+      ...(priceBy(p) ? { priceBy: SHOW_PRICES ? priceBy(p) : { ...priceBy(p), values: priceBy(p).values.map(({ v }) => ({ v })) } } : {}),
       plating,
       ...(sizeIdx >= 0 ? { size: { name: p.options[sizeIdx].name, range: sizesOf(p.options[sizeIdx].values) } } : {}),
       ...(stoneIdx >= 0 ? { stones: p.options[stoneIdx].values } : {}),

@@ -18,7 +18,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { buildCatalog, mergeLocal, resolvePath, trail as trailOf, piecePath, galleryPath, imageUrls, priceLabel, PAGE_SIZE, SITE } from '../src/lib/catalog.js';
+import { buildCatalog, mergeLocal, resolvePath, trail as trailOf, piecePath, galleryPath, imageUrls, priceLabel, PAGE_SIZE, SITE, SHOW_PRICES } from '../src/lib/catalog.js';
 import { metaFor, BRAND } from '../src/lib/seo.js';
 import { CHAPTERS } from '../src/lib/taxonomy.js';
 import { WHATSAPP_DISPLAY, INSTAGRAM, enquiry } from '../src/lib/contact.js';
@@ -61,7 +61,7 @@ const nav = `<nav aria-label="Site"><a href="/">House of Mina</a><a href="/colle
 const crumbs = (items) => `<nav aria-label="Breadcrumb"><ol style="list-style:none;padding:0;display:flex;gap:.5rem;flex-wrap:wrap">${items.map((c) => `<li><a href="${esc(c.path)}">${esc(c.title)}</a></li>`).join('<li aria-hidden="true">/</li>')}</ol></nav>`;
 const tile = (p) => {
   const co = cat.galleries.get(p.co);
-  return `<li><a href="${esc(piecePath(p))}"><img src="${esc(imageUrls(p.img[0]).thumb)}" alt="${esc(`${p.t} — ${co?.title || ''}, ${BRAND}`)}" width="720" height="720" loading="lazy" /><strong>${esc(p.t)}</strong><br /><span>${esc(priceLabel(p))}</span></a></li>`;
+  return `<li><a href="${esc(piecePath(p))}"><img src="${esc(imageUrls(p.img[0]).thumb)}" alt="${esc(`${p.t} — ${co?.title || ''}, ${BRAND}`)}" width="720" height="720" loading="lazy" /><strong>${esc(p.t)}</strong>${priceLabel(p) ? `<br /><span>${esc(priceLabel(p))}</span>` : ''}</a></li>`;
 };
 const grid = (pieces) => `<ul class="grid">${pieces.map(tile).join('')}</ul>`;
 // A category, and — for Men's — the sub-categories inside it.
@@ -94,7 +94,7 @@ function body(route) {
       const p = route.piece;
       const co = cat.galleries.get(p.co);
       const trail = [{ title: 'Home', path: '/' }, ...(co?.parent ? [{ title: co.parent.title, path: galleryPath(co.parent.slug) }] : []), ...(co ? [{ title: co.title, path: galleryPath(co.slug) }] : []), { title: p.t, path: piecePath(p) }];
-      return `${nav}${crumbs(trail)}<article><h1>${esc(p.t)}</h1><p><strong>${esc(priceLabel(p))}</strong>${p.priceBy ? ` — ${p.priceBy.values.map((v) => `${esc(p.priceBy.name)} ${esc(v.v)}: PKR ${v.price.toLocaleString('en-US')}`).join('; ')}` : ''}</p>
+      return `${nav}${crumbs(trail)}<article><h1>${esc(p.t)}</h1><p><strong>${esc(priceLabel(p) || 'Ask us on WhatsApp for the price.')}</strong>${SHOW_PRICES && p.priceBy ? ` — ${p.priceBy.values.map((v) => `${esc(p.priceBy.name)} ${esc(v.v)}: PKR ${v.price.toLocaleString('en-US')}`).join('; ')}` : ''}</p>
 ${p.img.map((im, i) => `<img src="${esc(imageUrls(im).full)}" alt="${esc(im.alt || `${p.t}, view ${i + 1} — ${BRAND}`)}" width="${im.w || 2000}" height="${im.h || 2000}" ${i ? 'loading="lazy"' : ''} />`).join('')}
 ${p.story.map((s) => `<p>${esc(s)}</p>`).join('')}${p.facts.length ? `<ul>${p.facts.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>` : ''}
 <p>925 sterling silver${p.plating.length ? `, ${esc(p.plating.map((x) => (x === 'Gold' ? '21k gold' : x.toLowerCase())).join(' or '))} plating` : ''}. Handcrafted to order in Karachi.</p>
@@ -163,7 +163,7 @@ Sitemap: ${SITE}/image-sitemap.xml
 
 await fs.writeFile(path.join(DIST, 'llms.txt'), `# House of Mina — Catalogue
 
-> Fine jewelry in 925 sterling silver, plated in 21k gold or rhodium, set with simulated stones and American Diamonds, and handcrafted to order in Karachi, Pakistan. ${cat.pieces.length} pieces; prices in Pakistani rupees. Enquiries and orders on WhatsApp ${WHATSAPP_DISPLAY}. Instagram ${INSTAGRAM.handle}.
+> Fine jewelry in 925 sterling silver, plated in 21k gold or rhodium, set with simulated stones and American Diamonds, and handcrafted to order in Karachi, Pakistan. ${cat.pieces.length} pieces; ${SHOW_PRICES ? 'prices in Pakistani rupees' : 'prices on request'}. Enquiries and orders on WhatsApp ${WHATSAPP_DISPLAY}. Instagram ${INSTAGRAM.handle}.
 
 ## Categories
 ${cat.chapters.map((ch) => [`- [${ch.title}](${SITE}${galleryPath(ch.slug)}): ${ch.blurb} ${ch.pieces.length} pieces`,
@@ -173,7 +173,7 @@ ${cat.chapters.map((ch) => [`- [${ch.title}](${SITE}${galleryPath(ch.slug)}): ${
 ${[cat.newArrivals, ...cat.edits].map((e) => `- [${e.title}](${SITE}${galleryPath(e.slug)}): ${e.pieces.length} pieces`).join('\n')}
 
 ## Pieces
-${cat.pieces.map((p) => `- [${p.t}](${SITE}${piecePath(p)}) — ${cat.galleries.get(p.co)?.title}, ${priceLabel(p)}`).join('\n')}
+${cat.pieces.map((p) => `- [${p.t}](${SITE}${piecePath(p)}) — ${cat.galleries.get(p.co)?.title}${priceLabel(p) ? `, ${priceLabel(p)}` : ''}`).join('\n')}
 `);
 
 // The POS's Add Photos reads this to offer the counter exactly these folders.

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { galleryPath, imageUrls, piecePath, priceLabel } from '../lib/catalog.js';
+import { galleryPath, imageUrls, piecePath, priceLabel, SHOW_PRICES } from '../lib/catalog.js';
 import { hello, WHATSAPP_DISPLAY, INSTAGRAM, TIKTOK } from '../lib/contact.js';
 import { useFavourites, useTheme } from '../lib/store.js';
 import { Link, Wordmark, HeartIcon, SearchIcon, SunIcon, MoonIcon, CloseIcon, Photo, useNav, WhatsAppIcon, ArrowRight } from './ui.jsx';
@@ -87,7 +87,7 @@ function Search({ cat, onClose }) {
               <Link to={piecePath(p)} onClick={onClose} className="group block">
                 <div className="aspect-square overflow-hidden bg-bg-2"><Photo src={imageUrls(p.img[0]).thumb} alt="" className="h-full w-full object-cover" /></div>
                 <p className="serif mt-2 text-[14.5px] text-ink group-hover:text-accent truncate">{p.t}</p>
-                <p className="text-[12px] text-ink-2">{priceLabel(p)}</p>
+                {priceLabel(p) && <p className="text-[12px] text-ink-2">{priceLabel(p)}</p>}
               </Link>
             </li>
           ))}
@@ -193,7 +193,7 @@ export function Footer({ cat }) {
         </div>
         <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6 text-[12px] text-ink-2">
           <p>© {new Date().getFullYear()} House of Mina · Karachi</p>
-          <p>Prices in Pakistani rupees · {cat.pieces.length} pieces</p>
+          <p>{SHOW_PRICES ? 'Prices in Pakistani rupees' : 'Prices on WhatsApp'} · {cat.pieces.length} pieces</p>
         </div>
       </div>
     </footer>

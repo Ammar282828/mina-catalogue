@@ -52,6 +52,10 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   was asked. Names are never rewritten. The site-wide material line says "set with simulated stones and American Diamonds".
   **The one exception is a natural stone**: a local piece marked `natural: true` skips the rewording (`worded()` in
   `catalog.js`) — the gents' natural ruby rings (owner, 2026-09-23), whose stone filter value is "Natural Ruby".
+- **No prices** (the owner, 2026-09-24): `SHOW_PRICES = false` in `src/lib/catalog.js`. The sync writes `price: null` and
+  keeps the option that decided a price (`priceBy`) without its figures, so no price reaches the pages or the app's
+  script. Piece pages say "Ask us on WhatsApp for the price"; there is no price filter or sort, no `Offer` in the
+  JSON-LD and no `priceRange` in `index.html`. Flip the switch and run a sync to bring prices back.
 - `src/lib/catalog.js` — `buildCatalog()` and `resolvePath()`: the app and the prerender share them,
   so a crawled page and the app's page are always the same page. `src/lib/seo.js` — titles, descriptions,
   JSON-LD (Product with Offer/AggregateOffer, CollectionPage + ItemList, BreadcrumbList).

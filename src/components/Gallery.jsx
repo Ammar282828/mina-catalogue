@@ -1,13 +1,15 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { FACETS, PRICE_BANDS } from '../lib/taxonomy.js';
-import { PAGE_SIZE, galleryPath, trail } from '../lib/catalog.js';
+import { PAGE_SIZE, SHOW_PRICES, galleryPath, trail } from '../lib/catalog.js';
 import { stoneLabel } from '../lib/stones.js';
 import { Link, Breadcrumbs, Headline, PieceGrid, Pagination, ChevronDown, CloseIcon } from './ui.jsx';
 
 const SORTS = [
   { key: 'new', label: 'Newest' },
-  { key: 'low', label: 'Price: low to high' },
-  { key: 'high', label: 'Price: high to low' },
+  ...(SHOW_PRICES ? [
+    { key: 'low', label: 'Price: low to high' },
+    { key: 'high', label: 'Price: high to low' },
+  ] : []),
 ];
 
 /** Filters live in the query string, so a filtered gallery can be shared as a link. */

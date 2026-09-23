@@ -27,10 +27,22 @@ export function imageUrls(img) {
 }
 
 // ── Money ───────────────────────────────────────────────────────────────────
+/**
+ * No prices anywhere on the catalogue (the owner, 2026-09-24): every piece is
+ * "ask us on WhatsApp". scripts/sync-shopify.mjs leaves them out of
+ * src/catalog.json as well, so none reach the pages or the app's script. Set
+ * true and run a sync to bring them back.
+ */
+export const SHOW_PRICES = false;
+
 export const formatPKR = (n) => `PKR ${Math.round(n).toLocaleString('en-US')}`;
 
-/** "PKR 10,000", "From PKR 10,000", or — for a piece the counter photographed but has not priced — "Price on request". */
+/**
+ * "PKR 10,000", "From PKR 10,000", or — for a piece the counter photographed but
+ * has not priced — "Price on request". Nothing at all while prices are off.
+ */
 export function priceLabel(p) {
+  if (!SHOW_PRICES) return '';
   if (!p.price) return 'Price on request';
   const [lo, hi] = p.price;
   return lo === hi ? formatPKR(lo) : `From ${formatPKR(lo)}`;
