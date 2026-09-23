@@ -132,6 +132,11 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     `data/renders.json`; `mergeLocal()` then shows the render wherever that DSC image appears (a local piece or a hero),
     as `local-3d/<id>-<hash>` — a re-roll is a new file name. Held images stay held. New files first appear on this Mac as
     iCloud placeholders ("dataless"); the script asks iCloud for them and takes them on a later pass.
+    **Brightened (2026-09-24):** the owner found six rings' metal dull — Ruby Halo Split-Band (DSC09099), Ruby Pear Halo
+    (09105), Baguette Band Solitaire (09112), Baguette Dome (09116), Round Halo Solitaire (09121), Peridot Oval Swirl
+    (09133, which had no 3D render). Each was re-rendered with gemini-3-pro-image to bright polished rhodium, everything
+    else kept, and written into `3d-renders/` so the render sync publishes it; the dull versions are not kept there.
+    Say "no yellow gold anywhere" for a rhodium piece, or the model gilds the claws.
   - **Gents' natural ruby rings (2026-09-23):** 13 real photographs (Sony RAW, `~/Downloads/New Folder With Items 3`,
     DSC07562–74), each a different ring: silver, a natural ruby in a gold-plated crown bezel. Converted with `sips`
     (the full-size conversion is portrait, the camera's true orientation; `sips -Z` previews drop it). The owner
