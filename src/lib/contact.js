@@ -10,6 +10,14 @@ export const WHATSAPP_DISPLAY = '+92 316 1930960';
 export const INSTAGRAM = { handle: '@houseofmina__', url: 'https://www.instagram.com/houseofmina__' };
 export const TIKTOK = { handle: '@houseofmina', url: 'https://www.tiktok.com/@houseofmina' };
 
+/**
+ * A piece's own page on houseofmina.store — only for pieces published there
+ * (`shop`, set by the sync from Shopify's public feed; drafts and the house's
+ * own images have none). The owner's ask, 2026-09-24.
+ */
+export const SHOP = 'https://houseofmina.store';
+export const shopUrl = (piece) => (piece?.shop ? `${SHOP}/products/${piece.h}` : null);
+
 export const whatsapp = (text) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 
 /** An enquiry about one piece, with the choices made on its page and the price they come to. */

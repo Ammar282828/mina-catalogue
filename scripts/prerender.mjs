@@ -21,7 +21,7 @@ import { fileURLToPath } from 'node:url';
 import { buildCatalog, mergeLocal, resolvePath, trail as trailOf, piecePath, galleryPath, imageUrls, priceLabel, PAGE_SIZE, SITE, SHOW_PRICES } from '../src/lib/catalog.js';
 import { metaFor, BRAND } from '../src/lib/seo.js';
 import { CHAPTERS } from '../src/lib/taxonomy.js';
-import { WHATSAPP_DISPLAY, INSTAGRAM, enquiry } from '../src/lib/contact.js';
+import { WHATSAPP_DISPLAY, INSTAGRAM, enquiry, shopUrl } from '../src/lib/contact.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(ROOT, 'dist');
@@ -100,7 +100,7 @@ function body(route) {
 ${p.img.map((im, i) => `<img src="${esc(imageUrls(im).full)}" alt="${esc(im.alt || `${p.t}, view ${i + 1} — ${BRAND}`)}" width="${im.w || 2000}" height="${im.h || 2000}" ${i ? 'loading="lazy"' : ''} />`).join('')}
 ${p.story.map((s) => `<p>${esc(s)}</p>`).join('')}${p.facts.length ? `<ul>${p.facts.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>` : ''}
 <p>925 sterling silver${p.plating.length ? `, ${esc(p.plating.map((x) => (x === 'Gold' ? '21k gold' : x.toLowerCase())).join(' or '))} plating` : ''}. Handcrafted to order in Karachi.</p>
-<p><a href="${esc(enquiry(p))}">Enquire about the ${esc(p.t)} on WhatsApp</a>${co ? ` · <a href="${galleryPath(co.slug)}">More ${esc(co.title)}</a>` : ''}</p></article>`;
+<p><a href="${esc(enquiry(p))}">Enquire about the ${esc(p.t)} on WhatsApp</a>${shopUrl(p) ? ` · <a href="${esc(shopUrl(p))}">Buy it online at houseofmina.store</a>` : ''}${co ? ` · <a href="${galleryPath(co.slug)}">More ${esc(co.title)}</a>` : ''}</p></article>`;
     }
 
     case 'favourites':

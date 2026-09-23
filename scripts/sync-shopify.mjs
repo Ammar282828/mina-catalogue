@@ -148,6 +148,9 @@ async function main() {
     await sleep(250);
   }
   const published = products.length;
+  // Everything in the public feed is published on houseofmina.store; a piece
+  // from it links to its product page there (`shop`). Drafts never do.
+  const live = new Set(products.map((p) => p.handle));
   console.log(`  ${published} products, ${collections.length} collections`);
 
   // Drafts: not in the public feed, so kept in data/shopify-drafts.json (written
@@ -155,7 +158,6 @@ async function main() {
   // published product; their collection memberships come with them.
   try {
     const drafts = JSON.parse(await fs.readFile(DRAFTS_PATH, 'utf8')).products || [];
-    const live = new Set(products.map((p) => p.handle));
     for (const d of drafts) {
       if (live.has(d.handle)) continue;   // published since it was drafted: the feed wins
       products.push(d);
@@ -234,6 +236,7 @@ async function main() {
       edits: [...mem].map((h) => editByHandle.get(h)?.slug).filter(Boolean),
       at: (p.published_at || p.created_at || '').slice(0, 10),
       img: images,
+      ...(live.has(p.handle) ? { shop: true } : {}),
     });
   }
 

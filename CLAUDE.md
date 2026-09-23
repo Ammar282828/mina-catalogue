@@ -3,8 +3,9 @@
 House of Mina's own catalogue site: every piece from its Shopify store — name, photographs, price,
 platings, sizes, stones — presented the way taheri.shop presents Taheri's, and ending in a WhatsApp
 enquiry rather than a cart. **Separate from Shopify** by the owner's choice: it reads Shopify's public
-product feed when synced, copies the photographs onto its own server, and never links to or loads
-from the Shopify store at runtime.
+product feed when synced, copies the photographs onto its own server, and never loads from the Shopify
+store at runtime. Since 2026-09-24 (the owner's ask) a piece **published** on houseofmina.store links to its
+product page there ("Buy online"); drafts and the house's own images do not.
 
 Sibling of **taheri-site** (`~/Projects/taheri-site`, taheri.shop) — same engine ideas (particle landing,
 chapters → collections, prerendered routes, drop folder), deliberately **not** the same codebase: the
@@ -52,6 +53,10 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   was asked. Names are never rewritten. The site-wide material line says "set with simulated stones and American Diamonds".
   **The one exception is a natural stone**: a local piece marked `natural: true` skips the rewording (`worded()` in
   `catalog.js`) — the gents' natural ruby rings (owner, 2026-09-23), whose stone filter value is "Natural Ruby".
+- **Links to houseofmina.store** (the owner, 2026-09-24): the sync marks every product from the public feed `shop: true`
+  (published there; drafts from `shopify-drafts.json` never are), and `shopUrl()` in `src/lib/contact.js` gives
+  `https://houseofmina.store/products/<handle>` for those only — the piece page's "Buy online" button and a line under it,
+  and a link on the prerendered page. A product unpublished on Shopify loses its link at the next `npm run sync`.
 - **No prices** (the owner, 2026-09-24): `SHOW_PRICES = false` in `src/lib/catalog.js`. The sync writes `price: null` and
   keeps the option that decided a price (`priceBy`) without its figures, so no price reaches the pages or the app's
   script. Piece pages say "Ask us on WhatsApp for the price"; there is no price filter or sort, no `Offer` in the

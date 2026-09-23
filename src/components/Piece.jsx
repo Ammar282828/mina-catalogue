@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { imageUrls, piecePath, priceLabel, formatPKR, galleryPath, SITE, SHOW_PRICES } from '../lib/catalog.js';
-import { enquiry } from '../lib/contact.js';
+import { enquiry, shopUrl } from '../lib/contact.js';
 import { stoneLabel } from '../lib/stones.js';
 import { useFavourites, noteViewed, useRecent } from '../lib/store.js';
 import { Link, Breadcrumbs, Photo, PieceGrid, HeartIcon, ShareIcon, WhatsAppIcon, ChevronLeft, ChevronRight, CloseIcon } from './ui.jsx';
@@ -217,6 +217,12 @@ export default function Piece({ route, cat }) {
               >
                 <WhatsAppIcon className="w-4 h-4" /> Enquire on WhatsApp
               </a>
+              {shopUrl(p) && (
+                <a href={shopUrl(p)} target="_blank" rel="noopener" title="This piece on houseofmina.store"
+                  className="press inline-flex items-center gap-2 border border-line px-5 py-4 eyebrow text-ink hover:border-accent hover:text-accent">
+                  Buy online <span aria-hidden="true">&#8599;</span>
+                </a>
+              )}
               <button type="button" onClick={() => fav.toggle(p.h)} aria-pressed={saved}
                 className={`press inline-flex items-center gap-2 border px-5 py-4 eyebrow ${saved ? 'border-accent text-accent' : 'border-line text-ink hover:border-accent'}`}>
                 <HeartIcon filled={saved} className="w-4 h-4" /> {saved ? 'Saved' : 'Save'}
@@ -226,7 +232,10 @@ export default function Piece({ route, cat }) {
               </button>
               {shared && <span className="text-[12px] text-ink-2">Link copied</span>}
             </div>
-            <p className="mt-3 text-[12.5px] text-ink-2">Handcrafted to order. We reply on WhatsApp with timing and delivery.</p>
+            <p className="mt-3 text-[12.5px] text-ink-2">
+              Handcrafted to order. We reply on WhatsApp with timing and delivery.
+              {shopUrl(p) && <> Or order it online at <a href={shopUrl(p)} target="_blank" rel="noopener" className="underline underline-offset-2 hover:text-accent">houseofmina.store</a>.</>}
+            </p>
 
             {(p.story?.length > 0 || p.facts?.length > 0) && (
               <div className="mt-10 border-t border-line pt-8 space-y-4 text-[15px] leading-relaxed text-ink-2">
