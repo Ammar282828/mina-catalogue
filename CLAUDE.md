@@ -73,8 +73,6 @@ from Shopify first and commits it. rsync never deletes; `catalog-drop/` is never
   authenticated test upload was listed by `api/catalog.php` and removed. Mina's POS carries the website variables.
 - DNS **done** 2026-09-23 through the GoDaddy API: `A  catalogue  145.79.26.82` (TTL 600) on houseofmina.store,
   whose DNS stays at GoDaddy. The site answered over HTTP by name straight away.
-- SSL: Hostinger issues its free certificate on its own once the name resolves; if it has not, hPanel → the site →
-  SSL → Install, or `POST /api/hosting/v1/accounts/u870899616/websites/catalogue.houseofmina.store/ssl/setup`.
-  Once HTTPS answers, force it (hPanel's HTTPS toggle or an .htaccess redirect) — Mina's Add Photos and every
-  canonical URL use https.
+- SSL **done**: Hostinger issued a Let's Encrypt certificate on its own ~4 minutes after the name resolved
+  (renewed by the host). `.htaccess` sends plain HTTP to HTTPS.
 - Duplicate listings: the same products (and descriptions) are on houseofmina.store. Both are self-canonical.
