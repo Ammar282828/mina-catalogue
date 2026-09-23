@@ -21,7 +21,19 @@
   # Page 1 of a gallery is the bare collection path.
   RewriteRule ^([^/]+)/1$ /$1 [R=301,L]
 
-  # /rings.html and /rings are one page; send the .html form to the clean one.
+  # The catalogue was first arranged by style (Engagement Rings, Gemstone Rings,
+  # Studs…); since 2026-09-23 it is five categories by what the piece is, as on
+  # taheri.shop. Old addresses keep working: a retired collection goes to its
+  # category, a piece under it to the same piece there (piece slugs are unique
+  # site-wide, so /gemstone-rings/x is /rings-and-bands/x). Mirrors RETIRED in
+  # src/lib/taxonomy.js.
+  RewriteRule ^(?:rings|engagement-rings|gemstone-rings|cocktail-rings|everyday-rings|mens-rings)(/.*)?$ /rings-and-bands$1 [R=301,L]
+  RewriteRule ^(?:bracelets|tennis-bracelets|everyday-bracelets|bangles-and-cuffs|mens-bracelets)(/.*)?$ /wristwear$1 [R=301,L]
+  RewriteRule ^(?:necklaces|pendants|chokers|everyday-necklaces|mens-chains)(/.*)?$ /chains-and-pendants$1 [R=301,L]
+  RewriteRule ^(?:studs|hoops-and-huggies|statement-earrings|everyday-earrings)(/.*)?$ /earrings$1 [R=301,L]
+  RewriteRule ^men(/.*)?$ /for-him$1 [R=301,L]
+
+  # /rings-and-bands.html and /rings-and-bands are one page; send the .html form to the clean one.
   RewriteCond %{THE_REQUEST} \s/+([^?\s]+)\.html[\s?] [NC]
   RewriteCond %1 !^(?:index|404)$
   RewriteRule ^ /%1 [R=301,L,NE]
@@ -29,7 +41,7 @@
   RewriteRule ^ / [R=301,L]
   RewriteRule ^index\.html$ - [L]
 
-  # Every prerendered route is a file: /engagement-rings/elara-ring → .html.
+  # Every prerendered route is a file: /rings-and-bands/elara-ring → .html.
   RewriteCond %{DOCUMENT_ROOT}/$1.html -f
   RewriteRule ^(.+?)/?$ $1.html [L]
 </IfModule>

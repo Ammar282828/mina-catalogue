@@ -1,5 +1,5 @@
 {
- "_about": "The house's own ring images, not Shopify's: AI renders (Nano Banana) of the shop's DSC photographs, padded onto white at 1500px — from iCloud heroes-white-1500 (179 files, see its _REVIEW.txt). heroes: an image put first on a Shopify piece (by handle). pieces: rings known only from these images, no price (Price on request); name, collection, plating and stones were read off the image on 2026-09-23 and may be corrected. also: more images of the same piece; photoPlating: which plating an image shows. held: images deliberately not shown, with the reason. Originals live on the server at /catalog-src/local/<id>.png (never in git). Bangles and bracelets (ids bb-NNN.jpg, 2026-09-23): the photographs in ~/Downloads/House of Mina — Bangles & Bracelets 3.pdf, extracted by their No.; story is that catalogue's description. Its 20 pieces already on Shopify are not repeated, and its 25 Taheri photographs (green-backdrop shoots, 'new — Taheri' in the item list) are held.",
+ "_about": "The house's own ring images, not Shopify's: AI renders (Nano Banana) of the shop's DSC photographs, padded onto white at 1500px — from iCloud heroes-white-1500 (179 files, see its _REVIEW.txt). heroes: an image put first on a Shopify piece (by handle). pieces: rings known only from these images, no price (Price on request); name, collection, plating and stones were read off the image on 2026-09-23 and may be corrected. also: more images of the same piece; photoPlating: which plating an image shows. held: images deliberately not shown, with the reason. Originals live on the server at /catalog-src/local/<id>.png (never in git). Bangles and bracelets (ids bb-NNN.jpg, 2026-09-23): the photographs in ~/Downloads/House of Mina — Bangles & Bracelets 3.pdf, extracted by their No.; story is that catalogue's description. Its 22 pieces already on Shopify are not repeated, and its 25 Taheri photographs (green-backdrop shoots, 'new — Taheri' in the item list) are held.",
  "addedAt": "2026-09-23",
  "heroes": {
   "cosette-pearl-ring": [
@@ -43,357 +43,357 @@
   {
    "id": "DSC08987",
    "t": "Pearl Flower Halo Ring",
-   "co": "everyday-rings", "plating": ["Gold"], "stone": ["Pearl", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Pearl", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC08988",
    "t": "Canary Oval Split-Shank Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC08990",
    "t": "Golden Opal Halo Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC08991",
    "t": "Emerald Leaf Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC08992",
    "t": "Emerald Bypass Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC08993",
    "t": "Emerald Eternity Band",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC08994",
    "t": "Ruby Rosette Medallion Ring",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC08995",
    "t": "Ruby Flower Dome Ring",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC08996",
    "t": "Ruby Cushion Starburst Ring",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC08997",
    "t": "Ruby Pear Double Halo Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC08998",
    "t": "Ruby Oval Marquise Cluster Ring",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC08999",
    "t": "Ruby Oval Double Halo Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09001",
    "t": "Gold Flower Stack Rings",
-   "co": "everyday-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09002",
    "t": "Ruby Wave Band",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Ruby"], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby"], "setting": []
   },
   {
    "id": "DSC09005",
    "t": "Pink Oval Bypass Halo Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09006",
    "t": "Peacock Ring",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"], "also": ["DSC09007"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"], "also": ["DSC09007"]
   },
   {
    "id": "DSC09008",
    "t": "Ruby Baguette Bypass Ring",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["Ruby"], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby"], "setting": []
   },
   {
    "id": "DSC09009",
    "t": "Pear Three-Stone Ring",
-   "co": "engagement-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09010",
    "t": "Pink Pear Wrap Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09011",
    "t": "Pavé Dome Band",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09012",
    "t": "Round Three-Stone Ring",
-   "co": "engagement-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09013",
    "t": "Cathedral Round Solitaire",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
   },
   {
    "id": "DSC09014",
    "t": "Vintage Milgrain Solitaire",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"]
   },
   {
    "id": "DSC09015",
    "t": "Round Solitaire Pavé Ring",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
   },
   {
    "id": "DSC09017",
    "t": "Classic Round Solitaire",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"]
   },
   {
    "id": "DSC09018",
    "t": "Sapphire Oval Double-Row Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09019",
    "t": "Aqua Emerald-Cut Halo Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09022",
    "t": "Aqua Marquise Cluster Ring",
-   "co": "cocktail-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09023",
    "t": "Blue Topaz Emerald-Cut Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Blue Topaz", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Blue Topaz", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09024",
    "t": "Amethyst Emerald-Cut Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09025",
    "t": "Lavender Oval Bypass Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09026",
    "t": "Sapphire Marquise Flower Ring",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09028",
    "t": "Violet Emerald-Cut Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09029",
    "t": "Sapphire Oval Pavé Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09030",
    "t": "Sapphire Split-Shank Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09033",
    "t": "Sapphire Swirl Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09034",
    "t": "Sapphire Marquise Cluster Ring",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09035",
    "t": "Sapphire Sunburst Oval Ring",
-   "co": "cocktail-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09036",
    "t": "Midnight Sapphire Twist Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09037",
    "t": "Ice Blue Pavé Dome Ring",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09038",
    "t": "Amethyst Crossover Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09039",
    "t": "Amethyst Cluster Halo Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09040",
    "t": "Amethyst Oval Pavé Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09041",
    "t": "Lavender Solitaire Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
   },
   {
    "id": "DSC09042",
    "t": "Opal and Ruby Halo Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby"], "setting": ["Halo"]
   },
   {
    "id": "DSC09043",
    "t": "Ruby Oval Halo Pavé Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo", "Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo", "Pavé"]
   },
   {
    "id": "DSC09046",
    "t": "Ruby Oval Trilliant Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09047",
    "t": "Ruby Baguette Halo Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09048",
    "t": "Pink Round Halo Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Halo", "Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Halo", "Pavé"]
   },
   {
    "id": "DSC09049",
    "t": "Ruby Pear Leaf Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09050",
    "t": "Ruby Twist Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09052",
    "t": "Ruby Baguette Band",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby"], "setting": []
   },
   {
    "id": "DSC09053",
    "t": "Ruby Cluster Split-Shank Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09054",
    "t": "Ruby Compass Flower Ring",
-   "co": "cocktail-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09055",
    "t": "Ruby Baguette Frame Ring",
-   "co": "cocktail-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09056",
    "t": "Ruby Oval Marquise-Side Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09057",
    "t": "Pink Pear Double Halo Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09058",
    "t": "Opal Ruby Flower Ring",
-   "co": "cocktail-rings", "plating": ["Gold"], "stone": ["Ruby"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby"], "setting": []
   },
   {
    "id": "DSC09059",
    "t": "Ruby Round Halo Pavé Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo", "Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo", "Pavé"]
   },
   {
    "id": "DSC09060",
    "t": "Ruby Eternity Band",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09062",
    "t": "Ruby Oval Pavé Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09064",
    "t": "Rose Baguette Eternity Band",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09065",
    "t": "Emerald Vine Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09066",
    "t": "Emerald Baguette Burst Ring",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09067",
    "t": "Emerald Oval Marquise-Cluster Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09068",
    "t": "Emerald Oval Three-Stone Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09069",
    "t": "Emerald Square Pavé Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09071",
    "t": "Ruby and Pearl Cluster Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "Pearl", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "Pearl", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09072",
    "t": "Emerald Oval Double Halo Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09073",
    "t": "Emerald Oval Star Halo Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09074",
    "t": "Emerald Halo Split-Shank Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium", "Gold"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo", "Pavé"], "also": ["DSC09076"],
+   "co": "rings-and-bands", "plating": ["Rhodium", "Gold"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo", "Pavé"], "also": ["DSC09076"],
    "photoPlating": {
     "DSC09074": "Rhodium",
     "DSC09076": "Gold"
@@ -402,927 +402,913 @@
   {
    "id": "DSC09075",
    "t": "Emerald Starburst Ring",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09077",
    "t": "Emerald Pear Drop Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09078",
    "t": "Emerald Petal Halo Ring",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09079",
    "t": "Emerald Baguette Band Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09080",
    "t": "Emerald Oval Cluster Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09081",
    "t": "Emerald Cushion Statement Ring",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09082",
    "t": "Emerald Sunburst Halo Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09083",
    "t": "Emerald Oval Solitaire",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Emerald"], "setting": ["Solitaire"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald"], "setting": ["Solitaire"]
   },
   {
    "id": "DSC09084",
    "t": "Golden Emerald Cluster Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09085",
    "t": "Emerald Oval Trilliant Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09086",
    "t": "Emerald Baguette Wide Band",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09087",
    "t": "Emerald Vintage Halo Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09088",
    "t": "Emerald Filigree Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09089",
    "t": "Emerald Bezel Filigree Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09090",
    "t": "Emerald Triple-Row Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09091",
    "t": "Ruby Oval Filigree Cluster Ring",
-   "co": "cocktail-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09092",
    "t": "Ruby Cushion Halo Band",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo", "Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo", "Pavé"]
   },
   {
    "id": "DSC09093",
    "t": "Ruby Swirl Cocktail Ring",
-   "co": "cocktail-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09094",
    "t": "Ruby Pear Bezel Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09095",
    "t": "Ruby Oval Double-Band Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09096",
    "t": "Ruby Emerald-Cut Cluster Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09097",
    "t": "Ruby Cushion Cluster Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09098",
    "t": "Ruby Oval Bypass Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09099",
    "t": "Ruby Halo Split-Band Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo", "Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo", "Pavé"]
   },
   {
    "id": "DSC09100",
    "t": "Ruby Three-Stone Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09101",
    "t": "Ruby Emerald-Cut Halo Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09102",
    "t": "Ruby Five-Stone Band",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby"], "setting": []
   },
   {
    "id": "DSC09103",
    "t": "Ruby Crossover Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09104",
    "t": "Ruby Oval Swirl Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09105",
    "t": "Ruby Pear Halo Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09106",
    "t": "Ruby Round Baguette Halo Ring",
-   "co": "gemstone-rings", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09108",
    "t": "Ruby Pear Blossom Ring",
-   "co": "cocktail-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09110",
    "t": "Ruby Oval Scroll Ring",
-   "co": "cocktail-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09111",
    "t": "Ruby Oval Cluster Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09112",
    "t": "Baguette Band Solitaire",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"]
   },
   {
    "id": "DSC09113",
    "t": "Blush Flower Halo Ring",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09114",
    "t": "Rose Swirl Solitaire",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Halo"]
   },
   {
    "id": "DSC09115",
    "t": "Gold Twist Pavé Band",
-   "co": "everyday-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09116",
    "t": "Baguette Dome Ring",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09117",
    "t": "Gold Beaded Crossover Band",
-   "co": "everyday-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09118",
    "t": "Gold Blossom Cocktail Ring",
-   "co": "cocktail-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09119",
    "t": "Champagne Flower Band",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": [], "also": ["DSC09120"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": [], "also": ["DSC09120"]
   },
   {
    "id": "DSC09121",
    "t": "Round Halo Solitaire",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Halo"]
   },
   {
    "id": "DSC09122",
    "t": "Gold Baguette Starburst Ring",
-   "co": "cocktail-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09124",
    "t": "Gold Filigree Pearl Dome",
-   "co": "cocktail-rings", "plating": ["Gold"], "stone": ["Pearl", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Pearl", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09125",
    "t": "Gold Marquise-Link Band",
-   "co": "everyday-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09127",
    "t": "Pavé Lattice Band",
-   "co": "everyday-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09128",
    "t": "Wide Pavé Band",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09129",
    "t": "Grand Pavé Band",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09130",
    "t": "Marquise Halo Split-Shank Ring",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"], "also": ["DSC09134"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"], "also": ["DSC09134"]
   },
   {
    "id": "DSC09131",
    "t": "Gold Baguette Cage Ring",
-   "co": "cocktail-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09132",
    "t": "Gold Multi-Row Pavé Band",
-   "co": "cocktail-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09135",
    "t": "Sapphire Ring Medallion",
-   "co": "cocktail-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09136",
    "t": "Gold Oval Bypass Halo Ring",
-   "co": "engagement-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Halo"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Halo"]
   },
   {
    "id": "DSC09137",
    "t": "Gem Flower Trio Ring",
-   "co": "cocktail-rings", "plating": ["Gold"], "stone": ["Ruby", "Emerald", "American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Ruby", "Emerald", "American Diamond"], "setting": []
   },
   {
    "id": "DSC09138",
    "t": "Champagne Oval Ring",
-   "co": "gemstone-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09139",
    "t": "Tapered Pavé Solitaire",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
   },
   {
    "id": "DSC09140",
    "t": "Cluster Solitaire Ring",
-   "co": "engagement-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09141",
    "t": "Infinity Solitaire",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"]
   },
   {
    "id": "DSC09142",
    "t": "Gold Double-Band Solitaire",
-   "co": "engagement-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Solitaire"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Solitaire"]
   },
   {
    "id": "DSC09143",
    "t": "Brushed Bypass Solitaire",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"]
   },
   {
    "id": "DSC09144",
    "t": "Gold Pavé Solitaire",
-   "co": "engagement-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
   },
   {
    "id": "DSC09145",
    "t": "Ribbed Solitaire",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"]
   },
   {
    "id": "DSC09146",
    "t": "Round and Baguette Three-Stone Ring",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09147",
    "t": "Vintage Pavé Solitaire",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
   },
   {
    "id": "DSC09148",
    "t": "Open Bypass Pavé Solitaire",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
   },
   {
    "id": "DSC09149",
    "t": "Bypass Solitaire Ring",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"]
   },
   {
    "id": "DSC09150",
    "t": "Emerald-Cut Five-Stone Ring",
-   "co": "engagement-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "DSC09151",
    "t": "Wide Pavé Solitaire",
-   "co": "engagement-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
   },
   {
    "id": "DSC09152",
    "t": "Gold Chevron Cluster Ring",
-   "co": "everyday-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09153",
    "t": "Black Stone Half-Eternity Band",
-   "co": "everyday-rings", "plating": ["Rhodium"], "stone": [], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": [], "setting": []
   },
   {
    "id": "DSC09154",
    "t": "Cluster Halo Split-Shank Ring",
-   "co": "engagement-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Halo", "Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Halo", "Pavé"]
   },
   {
    "id": "DSC09155",
    "t": "Gold Flower Cluster Band",
-   "co": "everyday-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09157",
    "t": "Crossover Pavé Band",
-   "co": "everyday-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"]
   },
   {
    "id": "DSC09158",
    "t": "Pearl Chevron Band",
-   "co": "everyday-rings", "plating": ["Gold"], "stone": ["Pearl"], "setting": []
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["Pearl"], "setting": []
   },
   {
    "id": "DSC09159",
    "t": "Oval Pavé Solitaire",
-   "co": "engagement-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"]
   },
   {
    "id": "DSC09160",
    "t": "Gold Round Solitaire",
-   "co": "engagement-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Solitaire"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Solitaire"]
   },
   {
    "id": "DSC09161",
    "t": "Gold Triple-Row Solitaire",
-   "co": "engagement-rings", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"], "also": ["DSC09162"]
+   "co": "rings-and-bands", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Solitaire", "Pavé"], "also": ["DSC09162"]
   },
   {
    "id": "DSC09163",
    "t": "Eternity Band",
-   "co": "everyday-rings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": []
+   "co": "rings-and-bands", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": []
   },
   {
    "id": "bb-001.jpg",
    "t": "Ruby Honeycomb Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": [],
    "px": 1200, "story": ["Rubies and colour stones on a honeycomb gold bangle, ring included."]
   },
   {
    "id": "bb-002.jpg",
    "t": "Ruby Halo Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"],
    "px": 1200, "story": ["A ruby in a halo of American Diamonds — bangle and ring together."]
   },
   {
    "id": "bb-003.jpg",
    "t": "Ruby River Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": [],
    "px": 1200, "story": ["Rubies running through a rhodium bangle, with the ring."]
   },
   {
    "id": "bb-004.jpg",
    "t": "Pavé Ruby Band Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby"], "setting": ["Pavé"],
    "px": 1024, "story": ["A full band of pavé rubies in gold, ring to match."]
   },
   {
    "id": "bb-005.jpg",
    "t": "Ruby Scatter Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": [],
    "px": 1200, "story": ["A gold bangle set with rubies, with its matching ring."]
   },
   {
    "id": "bb-006.jpg",
    "t": "Oval Ruby Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby"], "setting": [],
    "px": 1200, "story": ["Oval rubies all the way around, with a matching ring."]
   },
   {
    "id": "bb-007.jpg",
    "t": "Ruby Cluster Emerald Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Rhodium"], "stone": ["Ruby", "Emerald", "American Diamond"], "setting": [],
    "px": 1200, "story": ["A ruby cluster bangle with an emerald at its heart, ring included."]
   },
   {
    "id": "bb-008.jpg",
    "t": "Ruby Woven Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": [],
    "px": 1080, "story": ["Rubies and American Diamonds woven through a gold bangle, with its matching ring."]
   },
   {
    "id": "bb-009.jpg",
    "t": "Ruby Line Bangle Pair & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby"], "setting": [],
    "px": 1200, "story": ["A pair of ruby line bangles with safety chains, with a matching ring."]
   },
   {
    "id": "bb-016.jpg",
    "t": "Ruby and Emerald Marquise Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Rhodium"], "stone": ["Ruby", "Emerald"], "setting": [],
    "px": 1024, "story": ["A marquise ruby-and-emerald bangle with a matching emerald ring."]
   },
   {
    "id": "bb-017.jpg",
    "t": "Multi-Stone Gold Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby", "Emerald", "American Diamond"], "setting": [],
    "px": 1200, "story": ["Rubies, emeralds and American Diamonds around a gold bangle, with its matching ring."]
   },
   {
    "id": "bb-019.jpg",
    "t": "Mother-of-Pearl Hexagon Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["Mother-of-pearl and American Diamond hexagons around a gold bangle, with its ring."]
   },
   {
    "id": "bb-020.jpg",
    "t": "Baguette Channel Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["Channel-set baguette American Diamonds on a slim gold bangle, with its ring."]
   },
   {
    "id": "bb-021.jpg",
    "t": "Diamond Flower Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["American Diamond flowers across a gold bangle, ring to match."]
   },
   {
    "id": "bb-022.jpg",
    "t": "Pavé Twist Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"],
    "px": 1200, "story": ["A pavé American Diamond twist in rhodium — bangle and ring together."]
   },
   {
    "id": "bb-023.jpg",
    "t": "Star Kite Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["Kite and baguette American Diamonds set like a star, with a ring to match."]
   },
   {
    "id": "bb-024.jpg",
    "t": "Wide Diamond Bangle & Floral Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["A wide American Diamond bangle with a floral ring."]
   },
   {
    "id": "bb-025.jpg",
    "t": "Warm Gold Diamond Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["American Diamonds set in warm gold — bangle and ring."]
   },
   {
    "id": "bb-026.jpg",
    "t": "Chained Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1080, "story": ["A custom order — an American Diamond bangle joined by a chain to its ring."]
   },
   {
    "id": "bb-027.jpg",
    "t": "Pavé Bangle Pair & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"],
    "px": 1200, "story": ["Two fine pavé bangles in gold worn together, with a pavé ring."]
   },
   {
    "id": "bb-039.jpg",
    "t": "Emerald Pavé Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": ["Pavé"],
    "px": 1200, "story": ["Emeralds in pavé sparkle — a gold bangle with its matching ring."]
   },
   {
    "id": "bb-040.jpg",
    "t": "Emerald Vine Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": [],
    "px": 1200, "story": ["An emerald vine winding through gold, with a ring to match."]
   },
   {
    "id": "bb-041.jpg",
    "t": "Emerald Solitaire Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": [],
    "px": 1200, "story": ["One emerald on an American Diamond bangle, echoed in the ring."]
   },
   {
    "id": "bb-042.jpg",
    "t": "Emerald Bypass Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": [],
    "px": 1200, "story": ["Emeralds and American Diamonds on an open bypass bangle, ring to match."]
   },
   {
    "id": "bb-043.jpg",
    "t": "Emerald Cabochon Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": [],
    "px": 1080, "story": ["A smooth emerald cabochon on an open gold bangle, with its ring."]
   },
   {
    "id": "bb-044.jpg",
    "t": "Emerald-Cut Emerald Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": [], "stone": ["Emerald"], "setting": [],
    "px": 1024, "story": ["An emerald-cut emerald on a slim bangle, with its matching ring."]
   },
   {
    "id": "bb-045.jpg",
    "t": "Emerald Leaf Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": [],
    "px": 1200, "story": ["Marquise emeralds meeting like leaves on an American Diamond bangle, with its matching ring."]
   },
   {
    "id": "bb-047.jpg",
    "t": "Sapphire Spaced Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["Sapphires spaced along an American Diamond bangle, with its ring."]
   },
   {
    "id": "bb-048.jpg",
    "t": "Sapphire Leaf Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["A sapphire leaf wrapped in white sparkle, paired with an American Diamond ring."]
   },
   {
    "id": "bb-049.jpg",
    "t": "Double-Row Sapphire Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": [], "setting": [],
    "px": 1200, "story": ["Two rows of deep blue sapphires on a bangle, with a matching ring."]
   },
   {
    "id": "bb-050.jpg",
    "t": "Sapphire Halo Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Halo"],
    "px": 1080, "story": ["Sapphires and American Diamonds on a gold bangle, with its matching ring."]
   },
   {
    "id": "bb-051.jpg",
    "t": "Sapphire Flower Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1080, "story": ["A floral bangle of sapphires and American Diamonds in gold, sold with its matching ring."]
   },
   {
    "id": "bb-052.jpg",
    "t": "Sapphire Band Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["Sapphires and American Diamonds around a gold bangle, with its matching ring."]
   },
   {
    "id": "bb-054.jpg",
    "t": "Citrine and Pearl Jhumki Bangles & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Pearl"], "setting": [],
    "px": 1080, "story": ["Pear-cut citrines edged in pearls on a pair of gold bangles with jhumki drops, with a matching ring."]
   },
   {
    "id": "bb-055.jpg",
    "t": "Amethyst Woven Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": [], "setting": [],
    "px": 1200, "story": ["An emerald-cut amethyst on a woven gold bangle, ring included."]
   },
   {
    "id": "bb-057.jpg",
    "t": "Topaz Locket Set with Bangle",
-   "co": "bangles-and-cuffs",
+   "co": "sets",
    "type": "Set", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": [],
    "px": 1080, "story": ["A boxed set in topaz and American Diamonds — locket, earrings, ring and bangle."]
   },
   {
    "id": "bb-059.jpg",
    "t": "Pearl Filigree Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Pearl", "American Diamond"], "setting": [],
    "px": 1200, "story": ["Pearls and American Diamonds on filigree gold, with a matching ring."]
   },
   {
    "id": "bb-060.jpg",
    "t": "Pearl-Beaded Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Pearl"], "setting": [],
    "px": 1200, "story": ["A pearl-beaded gold bangle with its matching ring."]
   },
   {
    "id": "bb-062.jpg",
    "t": "Opal and Ruby Bangle & Ring",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby"], "setting": [],
    "px": 1024, "story": ["A natural opal ringed in natural rubies, on a slim gold bangle with its ring."]
   },
   {
    "id": "bb-065.jpg",
    "t": "Ruby Bangle Pair",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": [],
    "px": 1080, "story": ["A pair of ruby and American Diamond bangles in gold."]
   },
   {
    "id": "bb-066.jpg",
    "t": "Beaded Gemstone Bangle Pair",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle", "plating": [], "stone": ["Ruby", "Emerald"], "setting": [],
    "px": 1024, "story": ["Two hand-beaded bangles of ruby, emerald and sapphire, worn together."]
   },
   {
    "id": "bb-067.jpg",
    "t": "Gemstone Bangle Trio",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle", "plating": ["Gold"], "stone": ["Ruby", "Emerald", "American Diamond"], "setting": [],
    "px": 1080, "story": ["A custom order of three gold bangles in sapphire, emerald and ruby with American Diamonds."]
   },
   {
    "id": "bb-068.jpg",
    "t": "Fine Diamond Bangle Pair",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": [],
    "px": 1024, "story": ["A pair of fine American Diamond bangles, worn together."]
   },
   {
    "id": "bb-069.jpg",
    "t": "Gold and Rhodium Pavé Bangle Pair",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle", "plating": ["Gold", "Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"],
    "px": 1200, "story": ["Two pavé American Diamond bangles, one gold and one rhodium — together or apart."]
   },
   {
    "id": "bb-071.jpg",
    "t": "Kite Open Bangle",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1024, "story": ["An open gold bangle with a kite motif of American Diamonds, worn on the wrist."]
   },
   {
    "id": "bb-072.jpg",
    "t": "Marquise Cluster Open Bangle",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["A rhodium open bangle with a cluster of marquise and round American Diamonds."]
   },
   {
    "id": "bb-073.jpg",
    "t": "Baguette Open Bangle",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["Baguette and round American Diamonds on an open gold bangle with a safety chain."]
   },
   {
    "id": "bb-074.jpg",
    "t": "Emerald Open Bangle",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": [],
    "px": 1024, "story": ["An open bangle with an emerald set in American Diamonds, worn on the wrist."]
   },
   {
    "id": "bb-075.jpg",
    "t": "Sapphire Bangle Pair",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": [],
    "px": 1024, "story": ["Two sapphire bangles, worn together."]
   },
   {
    "id": "bb-076.jpg",
    "t": "Pearl-Lined Bangle Pair",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle", "plating": ["Gold"], "stone": ["Pearl"], "setting": [],
    "px": 1200, "story": ["Two gold bangles lined with pearls, with safety chains, worn together."]
   },
   {
    "id": "bb-077.jpg",
    "t": "Twin Pearl Open Bangle",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle", "plating": ["Gold"], "stone": ["Pearl"], "setting": [],
    "px": 1024, "story": ["A slim gold open bangle with two pearls, worn on the wrist."], "also": ["bb-078.jpg"]
   },
   {
    "id": "bb-079.jpg",
    "t": "Silver Pearl Open Bangle",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle", "plating": ["Rhodium"], "stone": ["Pearl"], "setting": [],
    "px": 1024, "story": ["A slim gold open bangle with two pearls, worn on the wrist."]
   },
   {
    "id": "bb-080.jpg",
    "t": "Ruby and Sapphire Open Cuff",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Cuff", "plating": ["Rhodium"], "stone": ["Ruby"], "setting": [],
    "px": 1200, "story": ["An open cuff in ruby and sapphire."]
   },
   {
-   "id": "bb-084.jpg",
-   "t": "Verso Cuff",
-   "co": "mens-bracelets",
-   "type": "Cuff", "plating": ["Gold"], "stone": [], "setting": [],
-   "px": 1200, "story": ["An open-front cuff of graduated vertical bars in a gold finish — architectural and clean."]
-  },
-  {
-   "id": "bb-085.jpg",
-   "t": "Zobi Cuff",
-   "co": "mens-bracelets",
-   "type": "Cuff", "plating": ["Rhodium"], "stone": ["Lab-Grown Diamond"], "setting": [],
-   "px": 1200, "story": ["A mirror-polished open-front cuff in 925 sterling silver, set with two lab-grown diamonds."]
-  },
-  {
    "id": "bb-086.jpg",
    "t": "Ruby Line Bracelet & Ring",
-   "co": "tennis-bracelets",
+   "co": "wristwear",
    "type": "Bracelet & Ring", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": [],
    "px": 1300, "story": ["A ruby line bracelet with its matching ring."]
   },
   {
    "id": "bb-087.jpg",
    "t": "Slim Ruby Line Bracelet & Ring",
-   "co": "tennis-bracelets",
+   "co": "wristwear",
    "type": "Bracelet & Ring", "plating": ["Gold"], "stone": ["Ruby"], "setting": [],
    "px": 1024, "story": ["A slim ruby line bracelet, with its matching ring."]
   },
   {
    "id": "bb-088.jpg",
    "t": "Ruby Line Bracelet",
-   "co": "tennis-bracelets",
+   "co": "wristwear",
    "type": "Bracelet", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": [],
    "px": 1200, "story": ["A slim gold line of rubies framed in American Diamonds."]
   },
   {
    "id": "bb-089.jpg",
    "t": "Ruby and Diamond Line Bracelet Pair",
-   "co": "tennis-bracelets",
+   "co": "wristwear",
    "type": "Bracelet", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": [],
    "px": 1080, "story": ["Two rhodium line bracelets — one set with rubies, one all American Diamonds."]
   },
   {
    "id": "bb-090.jpg",
    "t": "Ruby Flower Bracelet & Ring",
-   "co": "everyday-bracelets",
+   "co": "wristwear",
    "type": "Bracelet & Ring", "plating": ["Gold"], "stone": ["Ruby"], "setting": [],
    "px": 1200, "story": ["A gold bracelet with ruby flower motifs and a matching ring."]
   },
   {
    "id": "bb-091.jpg",
    "t": "Ruby Gold Bracelet & Ring",
-   "co": "everyday-bracelets",
+   "co": "wristwear",
    "type": "Bracelet & Ring", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": [],
    "px": 1080, "story": ["Rubies and American Diamonds on a gold bracelet, with its matching ring."]
   },
   {
    "id": "bb-092.jpg",
    "t": "Ruby and Emerald Bracelet",
-   "co": "everyday-bracelets",
+   "co": "wristwear",
    "type": "Bracelet", "plating": ["Gold"], "stone": ["Ruby", "Emerald"], "setting": [],
    "px": 1200, "story": ["Rubies and emeralds alternating on a slim gold bracelet."]
   },
   {
    "id": "bb-093.jpg",
    "t": "Gemstone Line Bracelet",
-   "co": "tennis-bracelets",
+   "co": "wristwear",
    "type": "Bracelet", "plating": ["Rhodium"], "stone": [], "setting": [],
    "px": 1200, "story": ["Mixed colour stones down a gold line bracelet."]
   },
   {
    "id": "bb-094.jpg",
    "t": "Two-Tone Crossover Bracelet & Ring",
-   "co": "everyday-bracelets",
+   "co": "wristwear",
    "type": "Bracelet & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["A two-tone American Diamond crossover bracelet, with its matching ring."]
   },
   {
    "id": "bb-095.jpg",
    "t": "Marquise Bracelet & Flower Ring",
-   "co": "everyday-bracelets",
+   "co": "wristwear",
    "type": "Bracelet & Ring", "plating": [], "stone": ["American Diamond"], "setting": [],
    "px": 1300, "story": ["A marquise American Diamond bracelet with a floral ring."]
   },
   {
    "id": "bb-096.jpg",
    "t": "Double-Row Bezel Tennis Bracelet",
-   "co": "tennis-bracelets",
+   "co": "wristwear",
    "type": "Bracelet", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["A double row of round American Diamonds bezel-set in gold."]
   },
   {
    "id": "bb-109.jpg",
    "t": "Prism Trace",
-   "co": "everyday-bracelets",
+   "co": "wristwear",
    "type": "Bracelet", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["Cable chain with princess and baguette American Diamonds — worn alone or layered."]
   },
   {
    "id": "bb-110.jpg",
    "t": "Cluster Arc",
-   "co": "everyday-bracelets",
+   "co": "wristwear",
    "type": "Bracelet", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["Cable chain with a graduated arc of round American Diamonds — worn alone or layered."]
   },
   {
    "id": "bb-111.jpg",
    "t": "Star Blossom",
-   "co": "everyday-bracelets",
+   "co": "wristwear",
    "type": "Bracelet", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["Cable chain with four-point American Diamond star motifs — worn alone or layered."]
   },
   {
    "id": "bb-112.jpg",
    "t": "Twisted Gold Bracelet Pair & Ring",
-   "co": "everyday-bracelets",
+   "co": "wristwear",
    "type": "Bracelet & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1080, "story": ["A pair of twisted gold bracelets scattered with American Diamonds, with a matching ring."]
   },
   {
    "id": "bb-113.jpg",
    "t": "Bezel Line Bracelet Pair",
-   "co": "tennis-bracelets",
+   "co": "wristwear",
    "type": "Bracelet", "plating": ["Gold", "Rhodium"], "stone": ["American Diamond"], "setting": [],
    "px": 1080, "story": ["Bezel-set American Diamond line bracelets in gold and rhodium, worn alone or together."]
   },
   {
    "id": "bb-114.jpg",
    "t": "Beaded Halo Bracelet & Ring",
-   "co": "everyday-bracelets",
+   "co": "wristwear",
    "type": "Bracelet & Ring", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"],
    "px": 1080, "story": ["A beaded rhodium bracelet with halo clusters of American Diamonds, with its matching ring."]
   },
   {
    "id": "bb-115.jpg",
    "t": "Sapphire Line Bracelet & Ring",
-   "co": "tennis-bracelets",
+   "co": "wristwear",
    "type": "Bracelet & Ring", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": [],
    "px": 1300, "story": ["A sapphire line bracelet with a bold matching ring."]
   },
   {
    "id": "bb-117.jpg",
    "t": "Bar & Chain",
-   "co": "everyday-bracelets",
+   "co": "wristwear",
    "type": "Bracelet", "plating": ["Gold"], "stone": [], "setting": [],
    "px": 1200, "story": ["Cable chain alternating with polished gold bar links — worn alone or layered."]
   },
   {
    "id": "bb-121.jpg",
    "t": "Fine Stacking Bangles in Pink and Ruby",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle", "plating": ["Gold"], "stone": ["Ruby"], "setting": [],
    "px": 1024, "story": ["Delicate stacking bangles — pink, ruby and starburst motifs, worn one or many."]
   },
   {
    "id": "bb-122.jpg",
    "t": "Fine Stacking Bangles in Gold",
-   "co": "bangles-and-cuffs",
+   "co": "wristwear",
    "type": "Bangle", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1024, "story": ["Delicate stacking bangles in gold — round, floral and geometric, made to layer."]
   }
@@ -1364,6 +1350,8 @@
   "bb-058.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Blue Topaz Halo Bangle & Ring\")",
   "bb-061.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Pearl-Tipped Bypass Bangle & Ring\")",
   "bb-063.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Opal Rainbow Halo Bangle & Ring\")",
-  "bb-064.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Opal and Ruby Halo Bangle & Ring\")"
+  "bb-064.jpg": "a Taheri photograph (taheri.shop), not House of Mina's — the owner asked for them off the catalogue, 2026-09-23 (was \"Opal and Ruby Halo Bangle & Ring\")",
+  "bb-084.jpg": "already on Shopify as \"Verso - Men's Cuff\" (with its price) — a duplicate, removed 2026-09-23 (was \"Verso Cuff\")",
+  "bb-085.jpg": "already on Shopify as \"Zobi - Men's Silver Cuff\" (with its price) — a duplicate, removed 2026-09-23 (was \"Zobi Cuff\")"
  }
 }

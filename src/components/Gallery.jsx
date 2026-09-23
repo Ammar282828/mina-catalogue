@@ -111,7 +111,8 @@ export default function Gallery({ route, cat }) {
   const from = filtering || sort !== 'new' ? 1 : (page - 1) * PAGE_SIZE + 1;
 
   const set = (key, vals) => setState((s) => ({ ...s, filters: { ...s.filters, [key]: vals } }));
-  const siblings = g.kind === 'collection' ? g.parent.collections : g.kind === 'chapter' ? g.collections : null;
+  // A category offers the others beside it — one level, as on taheri.shop.
+  const siblings = g.kind === 'chapter' ? cat.chapters : null;
 
   return (
     <div className="px-5 sm:px-8 md:px-12 pt-28 md:pt-32 pb-24">
@@ -130,10 +131,7 @@ export default function Gallery({ route, cat }) {
         </header>
 
         {siblings && siblings.length > 1 && (
-          <nav aria-label="Collections" className="no-scrollbar mt-10 -mx-5 px-5 flex gap-2 overflow-x-auto">
-            {g.kind === 'collection' && (
-              <Link to={galleryPath(g.parent.slug)} className="eyebrow shrink-0 rounded-full border border-line px-4 py-2 text-ink-2 hover:text-ink">All {g.parent.title}</Link>
-            )}
+          <nav aria-label="Categories" className="no-scrollbar mt-10 -mx-5 px-5 flex gap-2 overflow-x-auto">
             {siblings.map((c) => (
               <Link key={c.slug} to={galleryPath(c.slug)} aria-current={c.slug === g.slug ? 'page' : undefined}
                 className={`eyebrow shrink-0 rounded-full border px-4 py-2 ${c.slug === g.slug ? 'border-accent bg-accent text-on-accent' : 'border-line text-ink-2 hover:text-ink'}`}>

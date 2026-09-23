@@ -1,15 +1,15 @@
 // After `vite build`: one static HTML document per route, plus the files
 // search engines and the POS read.
 //
-//   dist/index.html, dist/rings.html, dist/rings/2.html,
-//   dist/engagement-rings/elara-ring.html …   every route, each with its own
+//   dist/index.html, dist/rings-and-bands.html, dist/rings-and-bands/2.html,
+//   dist/rings-and-bands/elara-ring.html …    every route, each with its own
 //       title, description, canonical, Open Graph image, structured data, and
 //       a plain rendering of its content inside #root for crawlers and for
 //       anyone without JavaScript. The app replaces it on load.
 //   dist/404.html                             the app shell, for routes only the
 //       app knows (a photo the counter uploaded since the last build).
 //   dist/sitemap.xml, image-sitemap.xml, robots.txt, llms.txt
-//   dist/catalog-tree.json                    the chapters and collections, for the
+//   dist/catalog-tree.json                    the categories (drop folders), for the
 //       POS's Add Photos picker — the site states its own tree.
 //
 // Routes, titles and structured data come from src/lib (catalog.js, seo.js),
@@ -69,28 +69,27 @@ function body(route) {
   switch (route.kind) {
     case 'home':
       return `${nav}<h1>House of Mina</h1><p>Fine jewelry in 925 sterling silver, plated in 21k gold or rhodium and handcrafted to order in Karachi. ${cat.pieces.length} pieces.</p>
-${cat.chapters.map((ch) => `<section><h2><a href="${galleryPath(ch.slug)}">${esc(ch.title)}</a></h2><p>${esc(ch.blurb)}</p><ul>${ch.collections.map((c) => `<li><a href="${galleryPath(c.slug)}">${esc(c.title)}</a> (${c.pieces.length})</li>`).join('')}</ul></section>`).join('')}
+<section><h2>Categories</h2><ul>${cat.chapters.map((ch) => `<li><a href="${galleryPath(ch.slug)}">${esc(ch.title)}</a> (${ch.pieces.length}) — ${esc(ch.blurb)}</li>`).join('')}</ul></section>
 <section><h2>The Edits</h2><ul>${cat.edits.map((e) => `<li><a href="${galleryPath(e.slug)}">${esc(e.title)}</a> (${e.pieces.length})</li>`).join('')}</ul></section>
 <section><h2><a href="${galleryPath('new-arrivals')}">New Arrivals</a></h2>${grid(cat.newArrivals.pieces.slice(0, 12))}</section>${contact}`;
 
     case 'collections':
-      return `${nav}<h1>Collections</h1>${cat.chapters.map((ch) => `<section><h2><a href="${galleryPath(ch.slug)}">${esc(ch.title)}</a></h2><ul>${ch.collections.map((c) => `<li><a href="${galleryPath(c.slug)}">${esc(c.title)}</a> (${c.pieces.length})</li>`).join('')}</ul></section>`).join('')}
+      return `${nav}<h1>Collections</h1><section><h2>Categories</h2><ul>${cat.chapters.map((ch) => `<li><a href="${galleryPath(ch.slug)}">${esc(ch.title)}</a> (${ch.pieces.length})</li>`).join('')}</ul></section>
 <section><h2>The Edits</h2><ul>${[cat.newArrivals, ...cat.edits].map((e) => `<li><a href="${galleryPath(e.slug)}">${esc(e.title)}</a> (${e.pieces.length})</li>`).join('')}</ul></section>`;
 
     case 'gallery': {
       const g = route.gallery;
       const pages = Math.max(1, Math.ceil(g.pieces.length / PAGE_SIZE));
-      const trail = [{ title: 'Home', path: '/' }, ...(g.kind === 'collection' ? [{ title: g.parent.title, path: galleryPath(g.parent.slug) }] : []), { title: g.title, path: galleryPath(g.slug) }];
+      const trail = [{ title: 'Home', path: '/' }, { title: g.title, path: galleryPath(g.slug) }];
       const onPage = g.pieces.slice((route.page - 1) * PAGE_SIZE, route.page * PAGE_SIZE);
       const pager = pages > 1 ? `<nav aria-label="Pages">${Array.from({ length: pages }, (_, i) => i + 1).map((n) => (n === route.page ? `<strong>${n}</strong>` : `<a href="${galleryPath(g.slug, n)}">${n}</a>`)).join(' ')}</nav>` : '';
-      const subs = g.kind === 'chapter' ? `<ul>${g.collections.map((c) => `<li><a href="${galleryPath(c.slug)}">${esc(c.title)}</a> (${c.pieces.length})</li>`).join('')}</ul>` : '';
-      return `${nav}${crumbs(trail)}<h1>${esc(g.title)}${route.page > 1 ? ` — page ${route.page}` : ''}</h1><p>${esc(g.blurb || '')} ${g.pieces.length} pieces in 925 sterling silver.</p>${subs}${grid(onPage)}${pager}`;
+      return `${nav}${crumbs(trail)}<h1>${esc(g.title)}${route.page > 1 ? ` — page ${route.page}` : ''}</h1><p>${esc(g.blurb || '')} ${g.pieces.length} pieces in 925 sterling silver.</p>${grid(onPage)}${pager}`;
     }
 
     case 'piece': {
       const p = route.piece;
       const co = cat.galleries.get(p.co);
-      const trail = [{ title: 'Home', path: '/' }, ...(co?.parent ? [{ title: co.parent.title, path: galleryPath(co.parent.slug) }] : []), ...(co ? [{ title: co.title, path: galleryPath(co.slug) }] : []), { title: p.t, path: piecePath(p) }];
+      const trail = [{ title: 'Home', path: '/' }, ...(co ? [{ title: co.title, path: galleryPath(co.slug) }] : []), { title: p.t, path: piecePath(p) }];
       return `${nav}${crumbs(trail)}<article><h1>${esc(p.t)}</h1><p><strong>${esc(priceLabel(p))}</strong>${p.priceBy ? ` — ${p.priceBy.values.map((v) => `${esc(p.priceBy.name)} ${esc(v.v)}: PKR ${v.price.toLocaleString('en-US')}`).join('; ')}` : ''}</p>
 ${p.img.map((im, i) => `<img src="${esc(imageUrls(im).full)}" alt="${esc(im.alt || `${p.t}, view ${i + 1} — ${BRAND}`)}" width="${im.w || 2000}" height="${im.h || 2000}" ${i ? 'loading="lazy"' : ''} />`).join('')}
 ${p.story.map((s) => `<p>${esc(s)}</p>`).join('')}${p.facts.length ? `<ul>${p.facts.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>` : ''}
@@ -162,8 +161,8 @@ await fs.writeFile(path.join(DIST, 'llms.txt'), `# House of Mina — Catalogue
 
 > Fine jewelry in 925 sterling silver, plated in 21k gold or rhodium and handcrafted to order in Karachi, Pakistan. ${cat.pieces.length} pieces; prices in Pakistani rupees. Enquiries and orders on WhatsApp ${WHATSAPP_DISPLAY}. Instagram ${INSTAGRAM.handle}.
 
-## Chapters
-${cat.chapters.map((ch) => `- [${ch.title}](${SITE}${galleryPath(ch.slug)}): ${ch.blurb} ${ch.pieces.length} pieces — ${ch.collections.map((c) => `[${c.title}](${SITE}${galleryPath(c.slug)})`).join(', ')}`).join('\n')}
+## Categories
+${cat.chapters.map((ch) => `- [${ch.title}](${SITE}${galleryPath(ch.slug)}): ${ch.blurb} ${ch.pieces.length} pieces`).join('\n')}
 
 ## Edits
 ${[cat.newArrivals, ...cat.edits].map((e) => `- [${e.title}](${SITE}${galleryPath(e.slug)}): ${e.pieces.length} pieces`).join('\n')}
@@ -173,18 +172,22 @@ ${cat.pieces.map((p) => `- [${p.t}](${SITE}${piecePath(p)}) — ${cat.galleries.
 `);
 
 // The POS's Add Photos reads this to offer the counter exactly these folders.
+// Its drop contract is two deep (Category/Collection); a category here is its
+// own one collection, so the folder is "Rings & Bands/Rings & Bands" — as
+// taheri.shop's Watches is. `path` is where the photographs then show.
 await fs.writeFile(path.join(DIST, 'catalog-tree.json'), JSON.stringify({
   site: SITE,
-  collections: cat.chapters.flatMap((ch) => CHAPTERS.find((x) => x.slug === ch.slug).collections.map((c) => {
-    const g = cat.galleries.get(c.slug);
+  collections: CHAPTERS.map((ch) => {
+    const g = cat.galleries.get(ch.slug);
     return {
       category: ch.title,
-      collection: c.title,
-      folder: `${ch.title}/${c.title}`,
+      collection: ch.title,
+      folder: `${ch.title}/${ch.title}`,
+      path: galleryPath(ch.slug),
       count: g?.pieces.length || 0,
       sample: g?.cover ? `${SITE}${imageUrls(g.cover.img[0]).thumb}` : '',
     };
-  })),
+  }),
 }, null, 2));
 
 console.log(`Prerendered ${routes.length + 1} documents (${indexable.length} in the sitemap), ${cat.pieces.length} pieces.`);

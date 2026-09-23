@@ -36,25 +36,26 @@ export function priceLabel(p) {
 }
 
 // ── Drops ───────────────────────────────────────────────────────────────────
-// A photograph uploaded from the POS lands in catalog-drop/<Chapter>/<Collection>/<file>,
-// named by the chapter and collection TITLES (that is what the counter picks from).
+// A photograph uploaded from the POS lands in catalog-drop/<Category>/<Category>/<file>,
+// named by the category TITLE (that is what the counter picks from). The folder is two
+// deep because the POS's drop contract is Category/Collection everywhere; a category
+// here is its own one collection, as Watches is on taheri.shop.
 const slugify = (s) => String(s).toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '')
   .replace(/&/g, ' and ').replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
 const CAMERA_NAME = /^(img|dsc|dscn|pxl|photo|image|whatsapp image|screenshot)[\s_-]*\d/i;
 
 function dropPiece(d) {
-  const [chTitle, coTitle, file] = String(d.p).split('/');
+  const [chTitle, , file] = String(d.p).split('/');
   const chapter = CHAPTERS.find((c) => c.title === chTitle);
-  const collection = chapter?.collections.find((c) => c.title === coTitle);
-  if (!chapter || !collection) return null;
+  if (!chapter || !file) return null;
   const stem = file.replace(/\.[a-z0-9]+$/i, '').replace(/[-_]+\d+$/, '').trim();
   const named = stem && !CAMERA_NAME.test(stem) && !/^\d+$/.test(stem);
   return {
     h: `new-${slugify(stem || 'piece')}-${d.t}`,
-    t: named ? stem.replace(/[_]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()) : `New in ${collection.title}`,
+    t: named ? stem.replace(/[_]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()) : `New in ${chapter.title}`,
     ch: chapter.slug,
-    co: collection.slug,
+    co: chapter.slug,
     price: null,
     plating: [],
     facets: {},
@@ -95,7 +96,7 @@ export function mergeLocal(data, local) {
   const hero = (x) => (typeof x === 'string' ? localImg(x) : localImg(x.id, x.plating, x.px));
   const shopify = data.pieces.map((p) => (heroes[p.h] ? { ...p, img: [...heroes[p.h].map(hero), ...p.img] } : p));
   const own = (local.pieces || []).map((x) => {
-    const chapter = CHAPTERS.find((c) => c.collections.some((k) => k.slug === x.co));
+    const chapter = CHAPTERS.find((c) => c.slug === x.co);
     if (!chapter) return null;
     const base = slugify(x.t);
     let s = base;
@@ -106,7 +107,7 @@ export function mergeLocal(data, local) {
     const imgs = [x.id, ...(x.also || [])].map((id) => localImg(id, x.photoPlating?.[id], x.px));
     return {
       h: `local-${localKey(x.id).toLowerCase()}`, s, t: x.t, type: x.type || 'Ring', ch: chapter.slug, co: x.co,
-      price: null, plating: x.plating || [], facets, story: x.story || [], facts: x.facts || [], edits: [],
+      price: null, plating: x.plating || [], facets, story: x.story || [], facts: x.facts || [], edits: x.edits || [],
       at: x.addedAt || local.addedAt, img: imgs, local: true,
     };
   }).filter(Boolean);
@@ -125,15 +126,10 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
   const cutoff = new Date(now - NEW_DAYS * 864e5).toISOString().slice(0, 10);
 
   const galleries = new Map();
+  // One level: a category is the gallery, newest first. The style of a piece is a filter.
   const chapters = CHAPTERS.map((ch) => {
-    const collections = ch.collections
-      .map((c) => ({ ...c, kind: 'collection', parent: ch, pieces: pieces.filter((p) => p.co === c.slug) }))
-      .filter((c) => c.pieces.length);
-    for (const c of collections) c.cover = coverOf(c.pieces);
-    // A chapter lists its collections in their own order, newest first within each.
-    const chPieces = collections.flatMap((c) => c.pieces);
-    const chapter = { ...ch, kind: 'chapter', collections, pieces: chPieces, cover: coverOf(chPieces) };
-    for (const c of collections) { c.parent = chapter; galleries.set(c.slug, c); }
+    const list = pieces.filter((p) => p.co === ch.slug);
+    const chapter = { ...ch, kind: 'chapter', pieces: list, cover: coverOf(list) };
     galleries.set(ch.slug, chapter);
     return chapter;
   }).filter((c) => c.pieces.length);
@@ -141,7 +137,7 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
   const edits = EDITS.map((e) => {
     const meta = (data.edits || []).find((x) => x.slug === e.slug) || {};
     const list = pieces.filter((p) => p.edits?.includes(e.slug));
-    return { ...e, blurb: meta.blurb || '', kind: 'edit', pieces: list, cover: coverOf(list) };
+    return { ...e, blurb: meta.blurb || e.blurb || '', kind: 'edit', pieces: list, cover: coverOf(list) };
   }).filter((e) => e.pieces.length);
   for (const e of edits) galleries.set(e.slug, e);
 
@@ -191,8 +187,7 @@ export function trail(route) {
   const out = [{ title: 'Home', path: '/' }];
   const g = route.kind === 'piece' ? null : route.gallery;
   if (route.kind === 'gallery') {
-    if (g.kind === 'collection') out.push({ title: g.parent.title, path: galleryPath(g.parent.slug) });
-    else if (g.kind === 'edit') out.push({ title: 'Collections', path: '/collections' });
+    if (g.kind === 'edit') out.push({ title: 'Collections', path: '/collections' });
     out.push({ title: g.title, path: galleryPath(g.slug) });
   }
   return out;

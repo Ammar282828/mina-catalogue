@@ -201,36 +201,22 @@ export function CollectionsPage({ cat }) {
       <div className="mx-auto max-w-[1280px]">
         <h1 className="display text-[clamp(2.4rem,6vw,4.6rem)] leading-[0.95]">Collections<span className="text-rose not-italic">.</span></h1>
         <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-ink-2">
-          {cat.pieces.length} pieces in five chapters, and the edits that run across them.
+          {cat.pieces.length} pieces in {cat.chapters.length} categories, and the edits that run across them.
         </p>
 
-        {cat.chapters.map((ch, i) => (
-          <section key={ch.slug} className="mt-20 border-t border-line pt-10">
-            <div className="flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <p className="eyebrow text-accent">Chapter {String(i + 1).padStart(2, '0')}</p>
-                <h2 className="display mt-2 text-[clamp(1.9rem,4vw,3rem)] leading-none">
-                  <Link to={galleryPath(ch.slug)} className="hover:text-accent transition-colors">{ch.title}</Link>
-                </h2>
-                <p className="mt-3 text-[14px] text-ink-2">{ch.blurb}</p>
-              </div>
-              <Link to={galleryPath(ch.slug)} className="eyebrow inline-flex items-center gap-2 text-ink-2 hover:text-accent">All {ch.pieces.length} <ArrowRight className="w-3.5 h-3.5" /></Link>
-            </div>
-            <ul className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 p-0">
-              {ch.collections.map((c) => (
-                <li key={c.slug} className="list-none">
-                  <Link to={galleryPath(c.slug)} className="group block">
-                    <div className="aspect-square overflow-hidden bg-bg-2">
-                      <Photo src={cover(c)} alt="" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
-                    </div>
-                    <p className="serif mt-3 text-[17px] text-ink group-hover:text-accent transition-colors">{c.title}</p>
-                    <p className="text-[12px] text-ink-2">{c.pieces.length} {c.pieces.length === 1 ? 'piece' : 'pieces'}</p>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
+        <ul className="mt-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 p-0">
+          {cat.chapters.map((ch) => (
+            <li key={ch.slug} className="list-none">
+              <Link to={galleryPath(ch.slug)} className="group block">
+                <div className="aspect-square overflow-hidden bg-bg-2">
+                  <Photo src={cover(ch)} alt="" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                </div>
+                <p className="serif mt-3 text-[19px] text-ink group-hover:text-accent transition-colors">{ch.title}</p>
+                <p className="text-[12px] text-ink-2">{ch.pieces.length} {ch.pieces.length === 1 ? 'piece' : 'pieces'}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
 
         <section id="edits" className="mt-20 border-t border-line pt-10 scroll-mt-24">
           <p className="eyebrow text-accent">Edits &amp; drops</p>

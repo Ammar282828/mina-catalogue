@@ -23,19 +23,22 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
 
 ## How it fits together
 
-- `src/lib/taxonomy.js` — **the arrangement**: 5 chapters (Rings, Earrings, Necklaces & Pendants,
-  Bracelets & Bangles, Men's) → 18 collections, 10 edits (Shopify campaign collections), filter facets.
-  `classify()` gives every product exactly one home collection (its page lives at `/<collection>/<piece>`);
-  precedence is men's → gemstone (by tag *or* by name) → engagement → cocktail → everyday.
-  Shopify tags are hand-typed and inconsistent — fix a misfiled piece here, not in the data.
+- `src/lib/taxonomy.js` — **the arrangement**, **like taheri.shop's** (the owner's call, 2026-09-23): five
+  categories by what a piece *is* — **Rings & Bands, Wristwear, Chains & Pendants, Sets, Earrings** — one level,
+  **no sub-collections**. Style (stone, setting, occasion…) is a gallery filter, not a place. Men's pieces sit in
+  those by type and also in the **For Him** edit (`isMens()`); 10 more edits are Shopify campaign collections.
+  `classify()` gives every product exactly one category from its Shopify product type (its page lives at
+  `/<category>/<piece>`). The first arrangement (5 chapters → 18 style collections: Engagement / Gemstone /
+  Cocktail / Everyday Rings, Studs, Men's…) is retired: `RETIRED` maps each old slug to its category and
+  `public/.htaccess` 301-redirects the old addresses (piece slugs are unique, so `/gemstone-rings/x` → `/rings-and-bands/x`).
 - `scripts/sync-shopify.mjs` — reads `houseofmina.store/products.json` + `collections.json` (public, no token).
   Refuses to shrink the catalogue by >40% without `--force`. Piece URLs use a slug of the **name**
-  (`/engagement-rings/adele`), not Shopify's handle (often a stock code); a clash falls back to the handle.
+  (`/rings-and-bands/adele`), not Shopify's handle (often a stock code); a clash falls back to the handle.
 - `src/lib/catalog.js` — `buildCatalog()` and `resolvePath()`: the app and the prerender share them,
   so a crawled page and the app's page are always the same page. `src/lib/seo.js` — titles, descriptions,
   JSON-LD (Product with Offer/AggregateOffer, CollectionPage + ItemList, BreadcrumbList).
 - `src/components/` — `Landing.jsx` + `particles.js` (Three.js, lazy chunk; the cloud assembles the MINA
-  wordmark, then a ring, earrings, a pendant, bangles, a men's band, a cut stone, a heart), `Gallery.jsx`
+  wordmark, then each category's shape — a ring, bangles, a pendant, a cut stone, earrings — then the edits and a heart), `Gallery.jsx`
   (filters in the query string), `Piece.jsx` (plating chips switch to that plating's photo; size or
   option picks the exact price; all of it goes into the WhatsApp message), `Chrome.jsx` (ribbon,
   header, search, footer, Collections page), `Favourites.jsx` (send the saved list on WhatsApp).
@@ -64,18 +67,21 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   - **Bangles & bracelets, 2026-09-23:** the 122 photographs in `~/Downloads/House of Mina — Bangles & Bracelets 3.pdf`
     (built in `house-of-mina-theme/tools/catalogue/bangles/`; source images lost with a scratch folder / Work SSD 1),
     extracted from the PDF by each image's "No." label → `catalog-src/local/bb-NNN.jpg`. 20 of them are already Shopify
-    products (Raya, Aylin, Soleil, Lyra, Cuban…) and are not repeated; the 25 marked "new — Taheri" in the item list
+    products (Raya, Aylin, Soleil, Lyra, Cuban, Verso, Zobi…) and are not repeated; the 25 marked "new — Taheri" in the item list
     are **Taheri's photographs** (the green-backdrop shoots and a few on black boxes) and the owner had them taken off —
-    they are `held`, never to be shown here. 76 pieces remain (Nos. 77 and 78 are one bangle).
+    they are `held`, never to be shown here. 74 pieces remain (Nos. 77 and 78 are one bangle; Nos. 84–85, the Verso
+    and Zobi cuffs, turned out to be Shopify's "Verso - Men's Cuff" / "Zobi - Men's Silver Cuff" and are `held`).
     `story` is the PDF's description (No. 44's "rhodium" dropped — its photo is gold). Plating is left empty where the
-    text and photo disagree. Verso and Zobi cuffs → Men's Bracelets.
+    text and photo disagree.
   - **Removing a piece:** the deploy never deletes, so its old page stays on the server — delete
-    `public_html/<collection>/<slug>.html` over SSH after the deploy.
+    `public_html/<category>/<slug>.html` over SSH after the deploy.
 - **Drop folder** — photos uploaded from the POS's Add Photos land in
-  `public_html/catalog-drop/<Chapter title>/<Collection title>/` via `public/api/upload.php` (bearer
+  `public_html/catalog-drop/<Category>/<Category>/` (two deep because that is the POS's drop contract; a category is
+  its own one collection, like taheri.shop's Watches/Watches) via `public/api/upload.php` (bearer
   secret in `~/domains/catalogue.houseofmina.store/.website-upload-secret`, outside the web root).
   `api/catalog.php` lists them, `api/img.php` resizes them; the app folds them in at load as
-  "price on request" pieces. `catalog-tree.json` (written by the prerender) tells the POS which folders exist.
+  "price on request" pieces. `catalog-tree.json` (written by the prerender) tells the POS which folders exist and
+  each one's `path`, which the POS links to after an upload.
 
 ## Deploy (`.github/workflows/deploy.yml`)
 

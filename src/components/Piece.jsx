@@ -109,7 +109,6 @@ export default function Piece({ route, cat }) {
 
   const crumbs = [
     { title: 'Home', path: '/' },
-    ...(co?.parent ? [{ title: co.parent.title, path: galleryPath(co.parent.slug) }] : []),
     ...(co ? [{ title: co.title, path: galleryPath(co.slug) }] : []),
     { title: p.t, path: piecePath(p) },
   ];

@@ -17,7 +17,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { CHAPTERS, EDITS, classify, facetsOf, allGallerySlugs } from '../src/lib/taxonomy.js';
+import { CHAPTERS, EDITS, classify, isMens, facetsOf, allGallerySlugs } from '../src/lib/taxonomy.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const STORE = 'https://houseofmina.store';
@@ -162,7 +162,7 @@ async function main() {
   for (const p of products) {
     const tags = new Set((p.tags || []).map((t) => String(t).trim().toLowerCase()));
     const mem = members.get(p.handle) || new Set();
-    const [chapter, collection] = classify(p, tags, mem);
+    const home = classify(p, tags);
 
     const prices = p.variants.map((v) => Number(v.price)).filter((n) => Number.isFinite(n) && n > 0);
     const platingIdx = optIndex(p, /^plating$/i);
@@ -200,8 +200,8 @@ async function main() {
       h: p.handle,
       t: p.title.trim(),
       type: p.product_type || '',
-      ch: chapter,
-      co: collection,
+      ch: home,
+      co: home,
       price: prices.length ? [Math.min(...prices), Math.max(...prices)] : null,
       ...(priceBy(p) ? { priceBy: priceBy(p) } : {}),
       plating,
@@ -211,7 +211,7 @@ async function main() {
       facets: facetsOf(tags),
       story,
       facts,
-      edits: [...mem].map((h) => editByHandle.get(h)?.slug).filter(Boolean),
+      edits: [...[...mem].map((h) => editByHandle.get(h)?.slug).filter(Boolean), ...(isMens(tags, mem) ? ['for-him'] : [])],
       at: (p.published_at || p.created_at || '').slice(0, 10),
       img: images,
     });
@@ -220,7 +220,7 @@ async function main() {
   // Newest first — the order a gallery shows by default.
   pieces.sort((a, b) => b.at.localeCompare(a.at) || a.t.localeCompare(b.t));
 
-  // The address of a piece comes from its name (/engagement-rings/adele), not
+  // The address of a piece comes from its name (/rings-and-bands/adele), not
   // Shopify's handle, which is often a stock code. Where two pieces share a
   // name, the one whose handle already is that slug keeps it (then the
   // shortest handle); the others use their handle, which Shopify keeps unique.
@@ -237,9 +237,9 @@ async function main() {
   }
 
   const edits = EDITS.map((e) => {
-    const c = collections.find((x) => x.handle === e.handle);
+    const c = e.handle && collections.find((x) => x.handle === e.handle);
     const count = pieces.filter((p) => p.edits.includes(e.slug)).length;
-    return { slug: e.slug, title: e.title, blurb: text(c?.body_html || ''), count };
+    return { slug: e.slug, title: e.title, blurb: text(c?.body_html || '') || e.blurb || '', count };
   }).filter((e) => e.count > 0);
 
   const catalog = { syncedAt: new Date().toISOString(), source: STORE, count: pieces.length, edits, pieces };
@@ -249,9 +249,7 @@ async function main() {
 
   // A readable summary of where everything landed.
   for (const ch of CHAPTERS) {
-    const inCh = pieces.filter((p) => p.ch === ch.slug);
-    console.log(`  ${ch.title.padEnd(22)} ${String(inCh.length).padStart(4)}   ` +
-      ch.collections.map((c) => `${c.title} ${inCh.filter((p) => p.co === c.slug).length}`).join(' · '));
+    console.log(`  ${ch.title.padEnd(22)} ${String(pieces.filter((p) => p.co === ch.slug).length).padStart(4)}`);
   }
   console.log(`  Edits: ${edits.map((e) => `${e.title} ${e.count}`).join(' · ')}`);
   console.log(`Wrote ${pieces.length} pieces, ${Object.keys(sources).length} photographs.`);

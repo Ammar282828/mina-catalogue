@@ -1,67 +1,40 @@
 /**
- * How House of Mina's pieces are arranged: chapters, the collections inside
- * them, the edits that cut across them, and the facets a gallery filters by.
+ * How House of Mina's pieces are arranged: categories, the edits that cut
+ * across them, and the facets a gallery filters by.
  *
- * Shared by scripts/sync-shopify.mjs, which decides each piece's home when it
- * copies the catalogue over, and by the app, which lays the menus out. Plain
+ * Shared by scripts/sync-shopify.mjs, which decides each piece's category when
+ * it copies the catalogue over, and by the app, which lays the menus out. Plain
  * JavaScript with no imports, so both Node and Vite can load it.
  *
- * Every piece has exactly one home — a collection inside a chapter — because
- * its page lives at /<collection>/<piece>. Shopify lets a product sit in a
- * dozen collections; here those memberships become edits (Ascension, Heirloom,
- * Spring Drop '26…) and link to the piece without owning it.
+ * Arranged the way taheri.shop is: by what a piece IS (a ring, something for
+ * the wrist, a chain or pendant, a set, earrings) — one level, no style
+ * sub-collections (the owner's call, 2026-09-23; the style of a piece is a
+ * filter — stone, setting, occasion — not a place). Every piece has exactly one
+ * category and its page lives at /<category>/<piece>. Shopify lets a product sit
+ * in a dozen collections; here those memberships become edits (Ascension,
+ * Heirloom, For Him…) and link to the piece without owning it.
+ *
+ * `CHAPTERS` keeps its name: the landing scrolls through them as chapters.
  */
-
 export const CHAPTERS = [
-  {
-    slug: 'rings', title: 'Rings', shape: 'rings',
-    blurb: 'Solitaires, halos, heirloom stones and the bands worn every day.',
-    collections: [
-      { slug: 'engagement-rings', title: 'Engagement Rings', blurb: 'Solitaires and halos, set to be asked with.' },
-      { slug: 'gemstone-rings', title: 'Gemstone Rings', blurb: 'Emerald, ruby and coloured stones in heirloom settings.' },
-      { slug: 'cocktail-rings', title: 'Cocktail Rings', blurb: 'Rings meant to be noticed across the room.' },
-      { slug: 'everyday-rings', title: 'Everyday Rings', blurb: 'Bands and small stones to wear from morning to night.' },
-    ],
-  },
-  {
-    slug: 'earrings', title: 'Earrings', shape: 'earrings',
-    blurb: 'Studs, hoops, huggies and drops.',
-    collections: [
-      { slug: 'studs', title: 'Studs', blurb: 'A single stone, close to the ear.' },
-      { slug: 'hoops-and-huggies', title: 'Hoops & Huggies', blurb: 'Circles, small and large.' },
-      { slug: 'statement-earrings', title: 'Statement Earrings', blurb: 'Drops and clusters for the evening and the wedding.' },
-      { slug: 'everyday-earrings', title: 'Everyday Earrings', blurb: 'Light enough to forget you are wearing them.' },
-    ],
-  },
-  {
-    slug: 'necklaces', title: 'Necklaces & Pendants', shape: 'chains',
-    blurb: 'Pendants, chokers and fine chains.',
-    collections: [
-      { slug: 'pendants', title: 'Pendants', blurb: 'One stone, one charm, one chain.' },
-      { slug: 'chokers', title: 'Chokers', blurb: 'Pearl and pavé, close at the throat.' },
-      { slug: 'everyday-necklaces', title: 'Everyday Necklaces', blurb: 'Fine chains and collars in sterling silver.' },
-      { slug: 'sets', title: 'Sets', blurb: 'Pieces made to be worn together.' },
-    ],
-  },
-  {
-    slug: 'bracelets', title: 'Bracelets & Bangles', shape: 'bangles',
-    blurb: 'Tennis bracelets, chains, bangles and cuffs.',
-    collections: [
-      { slug: 'tennis-bracelets', title: 'Tennis Bracelets', blurb: 'An unbroken line of stones.' },
-      { slug: 'everyday-bracelets', title: 'Everyday Bracelets', blurb: 'Chains, charms and links for the wrist.' },
-      { slug: 'bangles-and-cuffs', title: 'Bangles & Cuffs', blurb: 'Solid circles in silver.' },
-    ],
-  },
-  {
-    slug: 'men', title: "Men's", shape: 'band',
-    blurb: 'Rings, chains and bracelets with clean lines.',
-    collections: [
-      { slug: 'mens-rings', title: "Men's Rings", blurb: 'Bands and signets, cut clean.' },
-      { slug: 'mens-chains', title: "Men's Chains", blurb: 'Rope, box, Cuban and curb.' },
-      { slug: 'mens-bracelets', title: "Men's Bracelets", blurb: 'Links and cuffs for the wrist.' },
-    ],
-  },
+  { slug: 'rings-and-bands', title: 'Rings & Bands', shape: 'rings', blurb: 'Solitaires, halos, coloured stones and the bands worn every day.' },
+  { slug: 'wristwear', title: 'Wristwear', shape: 'bangles', blurb: 'Bracelets, bangles and cuffs — and bangles with a ring to match.' },
+  { slug: 'chains-and-pendants', title: 'Chains & Pendants', shape: 'chains', blurb: 'Pendants, chokers and fine chains.' },
+  { slug: 'sets', title: 'Sets', shape: 'gem', blurb: 'Pieces made to be worn together.' },
+  { slug: 'earrings', title: 'Earrings', shape: 'earrings', blurb: 'Studs, hoops, huggies and drops.' },
 ];
+
+/** Where each retired style collection (and chapter) went — the .htaccess redirects say the same. */
+export const RETIRED = {
+  rings: 'rings-and-bands', 'engagement-rings': 'rings-and-bands', 'gemstone-rings': 'rings-and-bands',
+  'cocktail-rings': 'rings-and-bands', 'everyday-rings': 'rings-and-bands', 'mens-rings': 'rings-and-bands',
+  bracelets: 'wristwear', 'tennis-bracelets': 'wristwear', 'everyday-bracelets': 'wristwear',
+  'bangles-and-cuffs': 'wristwear', 'mens-bracelets': 'wristwear',
+  necklaces: 'chains-and-pendants', pendants: 'chains-and-pendants', chokers: 'chains-and-pendants',
+  'everyday-necklaces': 'chains-and-pendants', 'mens-chains': 'chains-and-pendants',
+  studs: 'earrings', 'hoops-and-huggies': 'earrings', 'statement-earrings': 'earrings', 'everyday-earrings': 'earrings',
+  men: 'for-him',
+};
 
 /**
  * Shopify collections that become edits here, in the order they are shown.
@@ -79,61 +52,28 @@ export const EDITS = [
   { handle: 'birthstone-jewelry', slug: 'birthstones', title: 'Birthstones' },
   { handle: 'campaign-valentines', slug: 'valentines-edit', title: "Valentine's Edit" },
   { handle: 'best-sellers', slug: 'best-sellers', title: 'Best Sellers' },
+  // Not a Shopify collection: every men's piece (see isMens), so they stay one
+  // tap away now that Men's is no longer a category.
+  { handle: null, slug: 'for-him', title: 'For Him', blurb: 'Rings, chains, bracelets and cuffs with clean lines.' },
 ];
 
 const lc = (s) => String(s || '').trim().toLowerCase();
 
-/**
- * The home of one Shopify product. `tags` and `memberships` are sets of
- * lower-cased tags and collection handles. The order of the tests is the
- * precedence: a men's emerald ring is a men's ring before it is a gemstone ring.
- */
-export function classify(product, tags, memberships) {
-  const has = (...xs) => xs.some((x) => tags.has(x));
-  const inCol = (...xs) => xs.some((x) => memberships.has(x));
+/** A men's piece, by Shopify's men's collections or tag. It joins the For Him edit. */
+export function isMens(tags, memberships) {
+  return ['mens-collection', 'mens-rings', 'mens-chains', 'mens-bracelets'].some((x) => memberships.has(x)) || tags.has("men's cuff");
+}
+
+/** The category of one Shopify product, by what it is. `tags` is a set of lower-cased tags. */
+export function classify(product, tags) {
   const type = lc(product.product_type);
-
-  if (inCol('mens-collection', 'mens-rings', 'mens-chains', 'mens-bracelets') || has("men's cuff")) {
-    if (type === 'ring') return ['men', 'mens-rings'];
-    if (type === 'bracelet' || type === 'bangle') return ['men', 'mens-bracelets'];
-    return ['men', 'mens-chains'];
-  }
-
-  // The name is often more exact than the tags: "Azira Sapphire Ring" carries no
-  // sapphire tag. "Emerald cut" is a shape, not a stone.
-  const namedStone = /\b(sapphire|ruby|emerald(?!\s+cut)|peridot|opal|topaz|amethyst|garnet|citrine|aquamarine|morganite|tourmaline)\b/i.test(product.title || '');
-
-  if (type === 'ring') {
-    if (inCol('heirloom-jewelry-emerald-rings', 'heirloom-jewelry-ruby-rings') || namedStone
-      || has('emerald', 'simulated emerald', 'ruby', 'sapphire', 'blue topaz')) return ['rings', 'gemstone-rings'];
-    if (has('engagement ring', 'solitaire', 'halo ring')) return ['rings', 'engagement-rings'];
-    if (has('cocktail ring', 'statement ring')) return ['rings', 'cocktail-rings'];
-    return ['rings', 'everyday-rings'];
-  }
-
-  if (type === 'earrings') {
-    if (has('studs', 'stud')) return ['earrings', 'studs'];
-    if (has('hoops', 'hoop earrings', 'huggies', 'huggie earrings', 'bali earrings', 'climber')) return ['earrings', 'hoops-and-huggies'];
-    if (has('statement', 'drop earrings', 'bridal', 'festive')) return ['earrings', 'statement-earrings'];
-    return ['earrings', 'everyday-earrings'];
-  }
-
-  if (type === 'set') return ['necklaces', 'sets'];
-  if (type === 'pendant' || has('solitaire pendant', 'pendant necklace')) return ['necklaces', 'pendants'];
-  if (type === 'necklace') {
-    if (inCol('womens-chokers') || has('choker')) return ['necklaces', 'chokers'];
-    if (inCol('womens-pendants') || has('pendant')) return ['necklaces', 'pendants'];
-    return ['necklaces', 'everyday-necklaces'];
-  }
-
-  if (type === 'bracelet' || type === 'bangle') {
-    if (has('tennis bracelet')) return ['bracelets', 'tennis-bracelets'];
-    if (type === 'bangle' || has('cuff', 'bangle')) return ['bracelets', 'bangles-and-cuffs'];
-    return ['bracelets', 'everyday-bracelets'];
-  }
-
-  // A type this list has not met yet. Better an everyday home than no page.
-  return ['rings', 'everyday-rings'];
+  if (type === 'ring') return 'rings-and-bands';
+  if (type === 'earrings') return 'earrings';
+  if (type === 'set') return 'sets';
+  if (type === 'bracelet' || type === 'bangle' || tags.has('cuff') || tags.has("men's cuff")) return 'wristwear';
+  if (type === 'necklace' || type === 'pendant' || type === 'chain') return 'chains-and-pendants';
+  // A type this list has not met yet. Better a home than no page.
+  return 'rings-and-bands';
 }
 
 /**
@@ -216,7 +156,6 @@ export const PRICE_BANDS = [
 export function allGallerySlugs() {
   return [
     ...CHAPTERS.map((c) => c.slug),
-    ...CHAPTERS.flatMap((c) => c.collections.map((x) => x.slug)),
     ...EDITS.map((e) => e.slug),
   ];
 }

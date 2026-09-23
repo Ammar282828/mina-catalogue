@@ -54,7 +54,6 @@ export function metaFor(route, cat, path = '/') {
       const suffix = route.page > 1 ? ` — Page ${route.page} of ${pages}` : '';
       const noun = g.kind === 'edit' ? g.title : `${g.title} in Sterling Silver`;
       const crumbs = [{ name: 'Home', url: abs('/') }];
-      if (g.kind === 'collection') crumbs.push({ name: g.parent.title, url: abs(galleryPath(g.parent.slug)) });
       crumbs.push({ name: g.title, url: abs(galleryPath(g.slug)) });
       const onPage = g.pieces.slice((route.page - 1) * PAGE_SIZE, route.page * PAGE_SIZE);
       return {
@@ -84,7 +83,6 @@ export function metaFor(route, cat, path = '/') {
       const lead = p.story?.[0] || `${p.t}, ${MATERIAL}.`;
       const crumbs = [
         { name: 'Home', url: abs('/') },
-        ...(co?.parent ? [{ name: co.parent.title, url: abs(galleryPath(co.parent.slug)) }] : []),
         ...(co ? [{ name: co.title, url: abs(galleryPath(co.slug)) }] : []),
         { name: p.t, url: abs(piecePath(p)) },
       ];
