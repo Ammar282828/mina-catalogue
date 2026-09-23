@@ -29,7 +29,8 @@ const shopify = JSON.parse(await fs.readFile(path.join(ROOT, 'src', 'catalog.jso
 const local = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'local.json'), 'utf8'));
 const renders = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'renders.json'), 'utf8'));
 const lead = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'lead.json'), 'utf8'));
-const cat = buildCatalog({ ...mergeLocal(shopify, local, renders), lead }, []);
+const framed = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'framed.json'), 'utf8'));
+const cat = buildCatalog({ ...mergeLocal(shopify, local, renders), lead, framed }, []);
 const template = await fs.readFile(path.join(DIST, 'index.html'), 'utf8');
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

@@ -80,6 +80,13 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
 - Never in git. `data/image-sources.json` records each photo's Shopify CDN source; `npm run images`
   (locally or in CI, with a cache) makes a 720px and a 2000px WebP. File names carry a hash of the
   source, so a photo replaced in Shopify gets a new file.
+- **Standard whitespace for rings** (the owner, 2026-09-24) — `scripts/whitespace.mjs`, run by `npm run images` on every
+  photograph of a piece in `RING_HOMES` (catalog.js): on a plain light background the ring (with its reflection) is
+  centred in a square and spans `FILL` = 78% of it, the backdrop continued from its own edges (read off all four, so a
+  vignette is not mistaken for the ring). Scenes — hands, fabric, boxes, lettering — are left alone. Which were framed
+  is in `data/framed.json` (committed; the site makes those square and adds `?v=<VERSION>` to their URLs) and in
+  `public/catalog-full/.framing.json` beside the cached variants. Raise `VERSION` after changing the rule and the next
+  build frames every ring again. 763 of 1,014 ring photographs framed on 2026-09-24.
 - **The house's own images** — `data/local.json` (committed) lists images that are not on Shopify: `heroes` puts one
   first on a Shopify piece (by handle); `pieces` are pieces known only from an image (no price → "Price on request"),
   with `also` (more images of the piece) and `photoPlating` (the plating chip then shows that image); `held` records

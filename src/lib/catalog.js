@@ -23,8 +23,15 @@ export const galleryPath = (slug, page = 1) => (page > 1 ? `/${slug}/${page}` : 
 
 export function imageUrls(img) {
   if (img.thumb) return { thumb: img.thumb, full: img.full || img.thumb };
-  return { thumb: `/catalog-thumb/${img.f}.webp`, full: `/catalog-full/${img.f}.webp` };
+  const v = img.v ? `?v=${img.v}` : '';
+  return { thumb: `/catalog-thumb/${img.f}.webp${v}`, full: `/catalog-full/${img.f}.webp${v}` };
 }
+
+/**
+ * The homes whose photographs get standard whitespace (scripts/whitespace.mjs): every
+ * ring the same size in the same square. data/framed.json lists the ones re-framed.
+ */
+export const RING_HOMES = ['rings-and-bands', 'mens-rings', 'natural-ruby-rings'];
 
 // ── Money ───────────────────────────────────────────────────────────────────
 /**
@@ -182,7 +189,12 @@ function worded(p) {
 
 export function buildCatalog(data, drops = [], now = Date.now()) {
   const dropped = drops.map(dropPiece).filter(Boolean);
-  const pieces = [...dropped, ...data.pieces].map(worded).sort((a, b) => (b.at || '').localeCompare(a.at || ''));
+  // A re-framed ring photograph is square now, and its URL carries the framing version.
+  const framed = new Set(data.framed?.framed || []);
+  const reframe = (p) => (p.img.some((im) => framed.has(im.f))
+    ? { ...p, img: p.img.map((im) => (framed.has(im.f) ? { ...im, w: 2000, h: 2000, v: data.framed.version } : im)) }
+    : p);
+  const pieces = [...dropped, ...data.pieces].map(worded).map(reframe).sort((a, b) => (b.at || '').localeCompare(a.at || ''));
   const byHandle = new Map(pieces.map((p) => [p.h, p]));
   const bySlug = new Map(pieces.map((p) => [p.s || p.h, p]));
   const cutoff = new Date(now - NEW_DAYS * 864e5).toISOString().slice(0, 10);

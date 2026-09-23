@@ -12,6 +12,9 @@
 // The hash in the name is of the source URL, so a photo replaced in Shopify
 // gets a new file rather than silently keeping the old one under a cached URL.
 // Photographs in data/local.json come from catalog-src/local/ on the server.
+// Every photograph of a ring is given standard whitespace first (scripts/whitespace.mjs):
+// which ones were re-framed is kept beside the variants (catalog-full/.framing.json, so a
+// cached variant is not framed twice) and in data/framed.json, which the site reads.
 // These folders are gitignored; CI runs this same script (with a cache) and
 // rsyncs the result, so photography never has to enter the repository.
 
@@ -20,7 +23,8 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
-import { localFile, localImageIds, renderKey } from '../src/lib/catalog.js';
+import { localFile, localImageIds, renderKey, mergeLocal, RING_HOMES } from '../src/lib/catalog.js';
+import { standardWhitespace, VERSION as FRAMING } from './whitespace.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SOURCES = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'image-sources.json'), 'utf8'));
@@ -39,6 +43,17 @@ for (const [id, r] of Object.entries(RENDERS)) {
 }
 const FORCE = process.argv.includes('--force');
 const CONCURRENCY = 6;
+
+// The photographs of rings, by variant key.
+const CATALOG = JSON.parse(await fs.readFile(path.join(ROOT, 'src', 'catalog.json'), 'utf8'));
+const RINGS = new Set(mergeLocal(CATALOG, LOCAL, RENDERS).pieces
+  .filter((p) => RING_HOMES.includes(p.co)).flatMap((p) => p.img.map((im) => im.f)).filter(Boolean));
+const RECORD = path.join(ROOT, 'public', 'catalog-full', '.framing.json');
+let record = {};
+try {
+  const r = JSON.parse(await fs.readFile(RECORD, 'utf8'));
+  if (r.version === FRAMING) record = r.framed || {};
+} catch { /* first run, or a new framing version: every ring is framed again */ }
 
 export const VARIANTS = [
   { dir: 'catalog-thumb', maxEdge: 720, quality: 74 },
@@ -65,7 +80,12 @@ async function fetchImage(src) {
 }
 
 async function build(f, src) {
-  const input = await fetchImage(src);
+  let input = await fetchImage(src);
+  if (RINGS.has(f)) {
+    const r = await standardWhitespace(input);
+    record[f] = r.framed;
+    input = r.buffer;
+  }
   for (const v of VARIANTS) {
     const out = outPath(v.dir, f);
     await fs.mkdir(path.dirname(out), { recursive: true });
@@ -77,7 +97,8 @@ async function build(f, src) {
   }
 }
 
-const todo = Object.entries(SOURCES).filter(([f]) => FORCE || VARIANTS.some((v) => !existsSync(outPath(v.dir, f))));
+const todo = Object.entries(SOURCES).filter(([f]) => FORCE || VARIANTS.some((v) => !existsSync(outPath(v.dir, f)))
+  || (RINGS.has(f) && !(f in record)));
 console.log(`${Object.keys(SOURCES).length} photographs; ${todo.length} to build.`);
 
 let done = 0, failed = 0;
@@ -91,4 +112,10 @@ await Promise.all(Array.from({ length: CONCURRENCY }, async () => {
   }
 }));
 console.log(`Built ${done}${failed ? `, ${failed} failed` : ''}.`);
+
+await fs.mkdir(path.dirname(RECORD), { recursive: true });
+await fs.writeFile(RECORD, JSON.stringify({ version: FRAMING, framed: record }));
+const framed = [...RINGS].filter((f) => record[f]).sort();
+await fs.writeFile(path.join(ROOT, 'data', 'framed.json'), `${JSON.stringify({ version: FRAMING, framed }, null, 0).replace(/","/g, '",\n"')}\n`);
+console.log(`Rings: ${framed.length} of ${RINGS.size} photographs given standard whitespace; the rest are scenes, left as they are.`);
 if (failed) process.exit(1);
