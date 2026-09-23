@@ -63,16 +63,15 @@ Push to `main` → build (photos from cache or Shopify's CDN) → sanity gate �
 Gated by the repository variable `DEPLOY_ENABLED=1`. "Run workflow" with **sync** ticked re-copies
 from Shopify first and commits it. rsync never deletes; `catalog-drop/` is never touched.
 
-## Go-live status
+## Go-live status (2026-09-23)
 
-See "Open items" — the site is built and deployable, but the host and DNS need the owner (below).
-
-## Open items
-
-- **Owner:** add `catalogue.houseofmina.store` as a website in hPanel (same account as taheri.shop), and add
-  the DNS record hPanel asks for at GoDaddy (houseofmina.store's DNS is at domaincontrol.com).
-- Then: set `DEPLOY_ENABLED=1`, run the workflow; create the upload secret (Secret Manager in
-  hom-pos-52710474-ceeea with the App Hosting SAs' access + `.website-upload-secret` on Hostinger, same
-  value, never printed); set in `taheri-shop/apphosting.mina.yaml`: `NEXT_PUBLIC_STORE_WEBSITE_URL`,
-  `WEBSITE_ORIGIN`, `WEBSITE_UPLOAD_SECRET`, `NEXT_PUBLIC_STORE_WEBSITE_WEIGHTS=0`.
+- Hostinger website **created** through the Hostinger API (Business plan, order 1008754559, beside taheri.shop):
+  `~/domains/catalogue.houseofmina.store/public_html`, server IP **145.79.26.82**. `DEPLOY_ENABLED=1`; the first
+  deploy shipped 2,319 files and all 1,025 photographs; every route verified against the server with the Host header.
+- Upload secret in place on both ends (hom-pos Secret Manager `website-upload-secret` with the App Hosting SAs'
+  access, and `~/domains/catalogue.houseofmina.store/.website-upload-secret`; sha256 prefix `c6701cb1`); an
+  authenticated test upload was listed by `api/catalog.php` and removed. Mina's POS carries the website variables.
+- **Open: DNS.** houseofmina.store's DNS is at GoDaddy, so the owner adds `A  catalogue  145.79.26.82` there.
+  Then SSL: Hostinger usually issues it once the name resolves; if not, hPanel → the site → SSL, or
+  `POST /api/hosting/v1/accounts/u870899616/websites/catalogue.houseofmina.store/ssl/setup` with an API token.
 - Duplicate listings: the same products (and descriptions) are on houseofmina.store. Both are self-canonical.
