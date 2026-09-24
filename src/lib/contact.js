@@ -20,14 +20,18 @@ export const shopUrl = (piece) => (piece?.shop ? `${SHOP}/products/${piece.h}` :
 
 export const whatsapp = (text) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 
-/** An enquiry about one piece, with the choices made on its page and the price they come to. */
-export function enquiry(piece, choices = {}, price = null) {
+/**
+ * An enquiry about one piece, with the choices made on its page and the price they come to —
+ * and any pieces ticked under "Complete the look" (`also`), in the same message.
+ */
+export function enquiry(piece, choices = {}, price = null, also = []) {
   const chosen = Object.entries(choices).filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`);
   const quoted = price || (piece.price ? priceLabel(piece) : '');
   return whatsapp([
     `Hi House of Mina, I'd like to ask about the ${piece.t}${quoted ? ` (${quoted})` : ''}.`,
     ...chosen,
     `${SITE}${piecePath(piece)}`,
+    ...(also.length ? ['', 'And to go with it:', ...also.map((p, i) => `${i + 1}. ${p.t}\n   ${SITE}${piecePath(p)}`)] : []),
   ].join('\n'));
 }
 

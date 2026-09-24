@@ -30,7 +30,9 @@ const local = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'local.json')
 const renders = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'renders.json'), 'utf8'));
 const lead = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'lead.json'), 'utf8'));
 const framed = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'framed.json'), 'utf8'));
-const cat = buildCatalog({ ...mergeLocal(shopify, local, renders), lead, framed }, []);
+const pretty = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'pretty.json'), 'utf8'));
+const recommend = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'recommend.json'), 'utf8'));
+const cat = buildCatalog({ ...mergeLocal(shopify, local, renders), lead, framed, pretty, recommend }, []);
 const template = await fs.readFile(path.join(DIST, 'index.html'), 'utf8');
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -100,11 +102,14 @@ function body(route) {
 ${p.img.map((im, i) => `<img src="${esc(imageUrls(im).full)}" alt="${esc(im.alt || `${p.t}, view ${i + 1} — ${BRAND}`)}" width="${im.w || 2000}" height="${im.h || 2000}" ${i ? 'loading="lazy"' : ''} />`).join('')}
 ${p.story.map((s) => `<p>${esc(s)}</p>`).join('')}${p.facts.length ? `<ul>${p.facts.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>` : ''}
 <p>925 sterling silver${p.plating.length ? `, ${esc(p.plating.map((x) => (x === 'Gold' ? '21k gold' : x.toLowerCase())).join(' or '))} plating` : ''}. Handcrafted to order in Karachi.</p>
-<p><a href="${esc(enquiry(p))}">Enquire about the ${esc(p.t)} on WhatsApp</a>${shopUrl(p) ? ` · <a href="${esc(shopUrl(p))}">Buy it online at houseofmina.store</a>` : ''}${co ? ` · <a href="${galleryPath(co.slug)}">More ${esc(co.title)}</a>` : ''}</p></article>`;
+<p><a href="${esc(enquiry(p))}">Enquire about the ${esc(p.t)} on WhatsApp</a>${shopUrl(p) ? ` · <a href="${esc(shopUrl(p))}">Buy it online at houseofmina.store</a>` : ''}${co ? ` · <a href="${galleryPath(co.slug)}">More ${esc(co.title)}</a>` : ''}</p></article>
+${cat.rec.pairs(p, 4).length ? `<section><h2>Complete the look</h2>${grid(cat.rec.pairs(p, 4))}</section>` : ''}${cat.rec.like(p, 8).length ? `<section><h2>More like this</h2>${grid(cat.rec.like(p, 8))}</section>` : ''}`;
     }
 
     case 'favourites':
       return `${nav}<h1>Saved pieces</h1><p>The pieces you save with the heart are kept here, on your device.</p>`;
+    case 'account':
+      return `${nav}<h1>Your account</h1><p>Sign in with Google to keep your saved pieces on every device.</p>`;
     default:
       return `${nav}<h1>This page is not in the catalogue</h1><p><a href="/collections">See the collections</a></p>`;
   }
@@ -124,7 +129,7 @@ async function emit(pathname, html) {
   await fs.writeFile(file, html);
 }
 
-const routes = ['/', '/collections', '/favourites'];
+const routes = ['/', '/collections', '/favourites', '/account'];
 for (const g of cat.galleries.values()) {
   const pages = Math.max(1, Math.ceil(g.pieces.length / PAGE_SIZE));
   for (let n = 1; n <= pages; n++) routes.push(galleryPath(g.slug, n));

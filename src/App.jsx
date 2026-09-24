@@ -6,6 +6,8 @@ import { Header, Footer, Ribbon, CollectionsPage, NotFound } from './components/
 import Gallery from './components/Gallery.jsx';
 import Piece from './components/Piece.jsx';
 import Favourites from './components/Favourites.jsx';
+import Account from './components/Account.jsx';
+import { useAccountSync } from './lib/account.js';
 
 // The landing carries Three.js; nobody arriving on a piece page should wait for it.
 const Landing = lazy(() => import('./components/Landing.jsx'));
@@ -28,6 +30,8 @@ export default function App({ cat }) {
   }, []);
 
   const route = useMemo(() => resolvePath(path, cat), [path, cat]);
+  // Signed in, saved pieces follow the account (src/lib/account.js).
+  useAccountSync();
 
   // The title and description follow the visitor; the prerender wrote the same
   // values into the page for crawlers, from the same function.
@@ -44,6 +48,7 @@ export default function App({ cat }) {
     case 'home': page = <Suspense fallback={<div className="h-screen" />}><Landing cat={cat} /></Suspense>; break;
     case 'collections': page = <CollectionsPage cat={cat} />; break;
     case 'favourites': page = <Favourites cat={cat} />; break;
+    case 'account': page = <Account cat={cat} />; break;
     case 'gallery': page = <Gallery key={route.gallery.slug} route={route} cat={cat} />; break;
     case 'piece': page = <Piece key={route.piece.h} route={route} cat={cat} />; break;
     default: page = <NotFound />;

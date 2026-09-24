@@ -47,6 +47,9 @@ export function metaFor(route, cat, path = '/') {
     case 'favourites':
       return { title: `Saved pieces | ${BRAND}`, description: 'The pieces you have saved.', canonical: abs('/favourites'), image: DEFAULT_IMAGE, noindex: true, jsonLd: [] };
 
+    case 'account':
+      return { title: `Your account | ${BRAND}`, description: 'Sign in with Google to keep your saved pieces on every device.', canonical: abs('/account'), image: DEFAULT_IMAGE, noindex: true, jsonLd: [] };
+
     case 'gallery': {
       const g = route.gallery;
       const pages = Math.max(1, Math.ceil(g.pieces.length / PAGE_SIZE));

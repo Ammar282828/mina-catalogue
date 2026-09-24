@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { galleryPath, imageUrls, piecePath, priceLabel, SHOW_PRICES } from '../lib/catalog.js';
 import { hello, WHATSAPP_DISPLAY, INSTAGRAM, TIKTOK } from '../lib/contact.js';
 import { useFavourites, useTheme } from '../lib/store.js';
+import { useUser } from '../lib/auth.js';
 import { Link, Wordmark, HeartIcon, SearchIcon, SunIcon, MoonIcon, CloseIcon, Photo, useNav, WhatsAppIcon, ArrowRight } from './ui.jsx';
 
 // ── Ribbon ──────────────────────────────────────────────────────────────────
@@ -135,6 +136,7 @@ export function Header({ cat, home }) {
               <HeartIcon filled={fav.list.length > 0} />
               {fav.list.length > 0 && <span className="absolute -right-0.5 -top-0.5 min-w-[16px] rounded-full bg-accent px-1 text-center text-[9.5px] leading-4 text-on-accent tabular-nums">{fav.list.length}</span>}
             </Link>
+            <AccountLink path={path} />
             <button type="button" onClick={toggleTheme} className="press p-1.5 sm:p-2 text-ink hover:text-accent" aria-label={theme === 'dark' ? 'Light theme' : 'Dark theme'}>
               {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
             </button>
@@ -143,6 +145,28 @@ export function Header({ cat, home }) {
       </header>
       {searching && <Search cat={cat} onClose={() => setSearching(false)} />}
     </>
+  );
+}
+
+// The account: "Sign in" in words where there is room (a person icon on a phone), the
+// customer's own photo once signed in (src/lib/auth.js; Firebase loads only when needed).
+function AccountLink({ path }) {
+  const user = useUser();
+  const here = path === '/account';
+  if (user) {
+    return (
+      <Link to="/account" aria-label="Your account" aria-current={here ? 'page' : undefined} className="press p-1.5 sm:p-2">
+        {user.photo
+          ? <img src={user.photo} alt="" referrerPolicy="no-referrer" className={`h-[22px] w-[22px] rounded-full object-cover ring-1 ${here ? 'ring-accent' : 'ring-line'}`} />
+          : <span className="flex h-[22px] w-[22px] items-center justify-center rounded-full bg-accent text-[11px] text-on-accent">{(user.name || user.email || '?')[0].toUpperCase()}</span>}
+      </Link>
+    );
+  }
+  return (
+    <Link to="/account" aria-current={here ? 'page' : undefined} className={`press inline-flex items-center gap-1.5 p-1.5 sm:px-2.5 sm:py-2 ${here ? 'text-accent' : 'text-ink hover:text-accent'}`} aria-label="Sign in">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="h-[18px] w-[18px] sm:hidden" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6" /><path d="M5 20c1.2-3.6 4-5.4 7-5.4s5.8 1.8 7 5.4" /></svg>
+      <span className="label-lg hidden sm:inline">Sign in</span>
+    </Link>
   );
 }
 

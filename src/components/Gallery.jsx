@@ -3,9 +3,10 @@ import { FACETS, PRICE_BANDS } from '../lib/taxonomy.js';
 import { PAGE_SIZE, SHOW_PRICES, galleryPath, trail } from '../lib/catalog.js';
 import { stoneLabel } from '../lib/stones.js';
 import { Link, Breadcrumbs, Headline, PieceGrid, Pagination, ChevronDown, CloseIcon } from './ui.jsx';
+import { Shelf, PickedForYou } from './Recs.jsx';
 
 const SORTS = [
-  { key: 'new', label: 'Newest' },
+  { key: 'new', label: 'New & prettiest' },
   ...(SHOW_PRICES ? [
     { key: 'low', label: 'Price: low to high' },
     { key: 'high', label: 'Price: high to low' },
@@ -113,6 +114,9 @@ export default function Gallery({ route, cat }) {
   const onPage = filtering || sort !== 'new' ? shown : shown.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
   const from = filtering || sort !== 'new' ? 1 : (page - 1) * PAGE_SIZE + 1;
 
+  // Pieces of other kinds that go with this gallery's leading pieces (recommend.js).
+  const wearWith = useMemo(() => cat.rec.pairsForList(g.pieces.slice(0, 12), 8), [cat, g]);
+
   const set = (key, vals) => setState((s) => ({ ...s, filters: { ...s.filters, [key]: vals } }));
   // A category offers the others beside it — one level, as on taheri.shop. Men's,
   // the one section with sub-categories, also offers those, under the categories.
@@ -188,6 +192,10 @@ export default function Gallery({ route, cat }) {
         </div>
 
         {!filtering && sort === 'new' && <Pagination slug={g.slug} page={page} pages={pages} />}
+
+        {/* What to wear with this gallery's pieces, and this visitor's own picks. */}
+        <Shelf eyebrow="Complete the look" title={`To wear with ${g.title}`} pieces={wearWith} cat={cat} />
+        <PickedForYou cat={cat} exclude={onPage} className="mt-20" />
       </div>
     </div>
   );

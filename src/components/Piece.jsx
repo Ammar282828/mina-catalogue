@@ -4,6 +4,7 @@ import { enquiry, shopUrl } from '../lib/contact.js';
 import { stoneLabel } from '../lib/stones.js';
 import { useFavourites, noteViewed, useRecent } from '../lib/store.js';
 import { Link, Breadcrumbs, Photo, PieceGrid, HeartIcon, ShareIcon, WhatsAppIcon, ChevronLeft, ChevronRight, CloseIcon } from './ui.jsx';
+import { Shelf, CompleteTheLook, PickedForYou, allOf } from './Recs.jsx';
 
 const PLATING_LABEL = { Gold: '21k Gold', Rhodium: 'Rhodium', 'Rose Gold': 'Rose Gold' };
 
@@ -59,6 +60,7 @@ export default function Piece({ route, cat }) {
   const [size, setSize] = useState('');
   const [option, setOption] = useState('');
   const [shared, setShared] = useState(false);
+  const [also, setAlso] = useState([]);   // handles ticked under Complete the look
   const strip = useRef(null);
 
   useEffect(() => { noteViewed(p.h); }, [p.h]);
@@ -103,13 +105,19 @@ export default function Piece({ route, cat }) {
     } catch { /* dismissed */ }
   };
 
-  const related = (co?.pieces || []).filter((x) => x.h !== p.h).slice(0, 8);
+  // Recommendations (src/lib/recommend.js): what goes with it, what looks like it, and — below —
+  // what this visitor might like, none of it repeating what is already on the page.
+  const pairs = useMemo(() => cat.rec.pairs(p, 4), [cat, p]);
+  const related = useMemo(() => cat.rec.like(p, 8), [cat, p]);
+  const shown = useMemo(() => [p, ...pairs, ...related], [p, pairs, related]);
+  const alsoPieces = also.map((h) => cat.byHandle.get(h)).filter(Boolean);
+  const toggleAlso = (h) => setAlso((xs) => (xs.includes(h) ? xs.filter((x) => x !== h) : [...xs, h]));
   const seen = recent.filter((h) => h !== p.h).map((h) => cat.byHandle.get(h)).filter(Boolean).slice(0, 4);
   const edits = cat.edits.filter((e) => p.edits?.includes(e.slug));
   const saved = fav.has(p.h);
   // A portrait photograph is shown whole, in its own shape (up to 2:3); anything else in a square.
-  const shown = p.img[index];
-  const tall = shown.w && shown.h && shown.h > shown.w * 1.02;
+  const photo = p.img[index];
+  const tall = photo.w && photo.h && photo.h > photo.w * 1.02;
 
   const crumbs = [
     { title: 'Home', path: '/' },
@@ -127,7 +135,7 @@ export default function Piece({ route, cat }) {
           {/* Photographs */}
           <div>
             <button type="button" onClick={() => setViewer(true)} aria-label="Open the photographs full screen"
-              style={tall ? { aspectRatio: `${shown.w} / ${Math.min(shown.h, shown.w * 1.5)}` } : undefined}
+              style={tall ? { aspectRatio: `${photo.w} / ${Math.min(photo.h, photo.w * 1.5)}` } : undefined}
               className={`relative block w-full overflow-hidden bg-bg-2 cursor-zoom-in ${tall ? '' : 'aspect-square'}`}>
               <Photo key={p.img[index].f || p.img[index].thumb} src={imageUrls(p.img[index]).full} alt={p.img[index].alt || p.t} eager className="h-full w-full object-cover" />
             </button>
@@ -211,11 +219,11 @@ export default function Piece({ route, cat }) {
 
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <a
-                href={enquiry(p, { Plating: plating && (PLATING_LABEL[plating] || plating), Size: size && `${size} (US)`, [extraOption?.name || 'Option']: option }, chosenPrice && formatPKR(chosenPrice))}
+                href={enquiry(p, { Plating: plating && (PLATING_LABEL[plating] || plating), Size: size && `${size} (US)`, [extraOption?.name || 'Option']: option }, chosenPrice && formatPKR(chosenPrice), alsoPieces)}
                 target="_blank" rel="noopener"
                 className="press inline-flex flex-1 sm:flex-none items-center justify-center gap-2.5 bg-accent px-7 py-4 text-on-accent eyebrow"
               >
-                <WhatsAppIcon className="w-4 h-4" /> Enquire on WhatsApp
+                <WhatsAppIcon className="w-4 h-4" /> {alsoPieces.length ? `Enquire about ${alsoPieces.length + 1} pieces` : 'Enquire on WhatsApp'}
               </a>
               {shopUrl(p) && (
                 <a href={shopUrl(p)} target="_blank" rel="noopener" title="This piece on houseofmina.store"
@@ -236,6 +244,8 @@ export default function Piece({ route, cat }) {
               Handcrafted to order. We reply on WhatsApp with timing and delivery.
               {shopUrl(p) && <> Or order it online at <a href={shopUrl(p)} target="_blank" rel="noopener" className="underline underline-offset-2 hover:text-accent">houseofmina.store</a>.</>}
             </p>
+
+            <CompleteTheLook pieces={pairs} chosen={also} onToggle={toggleAlso} />
 
             {(p.story?.length > 0 || p.facts?.length > 0) && (
               <div className="mt-10 border-t border-line pt-8 space-y-4 text-[15px] leading-relaxed text-ink-2">
@@ -268,15 +278,9 @@ export default function Piece({ route, cat }) {
           </div>
         </div>
 
-        {related.length > 0 && (
-          <section className="mt-24">
-            <div className="flex items-end justify-between gap-6">
-              <h2 className="display text-[clamp(1.8rem,3.6vw,2.6rem)] leading-none">More {co.title}<span className="text-rose not-italic">.</span></h2>
-              <Link to={galleryPath(co.slug)} className="eyebrow text-ink-2 hover:text-accent">All {co.pieces.length}</Link>
-            </div>
-            <div className="mt-8"><PieceGrid pieces={related} isNew={cat.isNew} eagerCount={0} /></div>
-          </section>
-        )}
+        <Shelf title="More like this" pieces={related} cat={cat} more={allOf(co)} />
+
+        <PickedForYou cat={cat} exclude={shown} className="mt-20" />
 
         {seen.length > 0 && (
           <section className="mt-20">

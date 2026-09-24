@@ -9,9 +9,12 @@
     "images": "node scripts/images.mjs",
     "build": "vite build && node scripts/prerender.mjs",
     "preview": "vite preview --port 5191",
-    "renders": "node scripts/sync-renders.mjs --publish"
+    "renders": "node scripts/sync-renders.mjs --publish",
+    "pretty": "node scripts/pretty.mjs",
+    "similar": "node scripts/similar.mjs"
   },
   "dependencies": {
+    "firebase": "^11.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "three": "^0.160.0"

@@ -20,6 +20,8 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
 | `npm run sync` | re-copy the catalogue from Shopify → `src/catalog.json` + `data/image-sources.json` (commit both); includes the drafts in `data/shopify-drafts.json` |
 | `npm run renders` | take any new 3D renders from iCloud onto the site (upload + `data/renders.json` + push) — owner's Mac only |
 | `npm run images` | build any missing photo variants into `public/catalog-thumb|full` (gitignored) |
+| `npm run pretty` | score new pieces' prettiness for the gallery order → `data/pretty.json` (Gemini; owner's Mac, after adding pieces) |
+| `npm run similar` | embed new pieces' photos and rank the recommendations → `data/embeddings.json` + `data/recommend.json` (owner's Mac, after `pretty`) |
 | `npm run build` | `vite build` + `scripts/prerender.mjs` (one HTML document per route, sitemaps, llms.txt, catalog-tree.json) |
 | `npm run preview` | serve `dist/` on :5191 (launch config "mina-catalogue (build)") |
 
@@ -67,14 +69,44 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   keeps the option that decided a price (`priceBy`) without its figures, so no price reaches the pages or the app's
   script. Piece pages say "Ask us on WhatsApp for the price"; there is no price filter or sort, no `Offer` in the
   JSON-LD and no `priceRange` in `index.html`. Flip the switch and run a sync to bring prices back.
-- **Opening order** — `data/lead.json` names, per gallery slug, the pieces it opens with, in order; the rest follow
-  newest first, and the first named piece is the cover. Rings & Bands opens with 36 hand-picked statement rings (the owner
-  asked for the best-looking first, 2026-09-24); edit that list to change the page. Wristwear lists all its pieces prettiest first (the
-  owner, 2026-09-24): ranked by Gemini 3.1 Pro (Vertex, project `jewelgen-mm-e3d43ecb`, mmurtaza1970's ADC) on each gallery
-  photograph, scored alone twice, then the top 48 ordered side by side three times; a Wristwear piece added later lands after
-  all 108 until it is placed in the list. Its `covers` names, per gallery, the
-  piece whose first photograph stands for it (Collections page, landing, the POS picker): all 22 chosen by hand on
-  2026-09-24, no piece twice. Collection and edit tiles are all square.
+- **Order of every gallery** (the owner, 2026-09-24: "sort by new and prettiness"): the pieces added in the last
+  30 days first (`FIRST_DAYS`; a POS drop counts as new), prettiest first, then the rest, prettiest first; newer first on
+  a tie (`orderer()` in catalog.js — categories, sub-categories, sections, edits and New Arrivals alike). Prettiness is
+  `data/pretty.json` (1–100 per piece slug): `npm run pretty` asks Gemini 3.8 Flash on Vertex (project
+  `jewelgen-mm-e3d43ecb`, mmurtaza1970's ADC — the owner's ask) to score each piece's gallery photo, only those without a
+  score, and is **run on the owner's Mac after adding pieces**, then committed (a piece with no score sorts as the median).
+  Pro was tried first and queues bulk requests on that project (20 took 108 s). `data/lead.json` now only holds `covers`:
+  the hand-picked Rings & Bands opening and the Wristwear ranking (Gemini 3.1 Pro, side by side) were superseded by the
+  rule. Its `covers` names, per gallery, the piece whose first photograph stands for it (Collections page, landing, the
+  POS picker): all 22 chosen by hand on 2026-09-24, no piece twice; a gallery not listed uses its first piece. The sort
+  menu's default reads "New & prettiest". Collection and edit tiles are all square.
+- **Recommendations** (the owner, 2026-09-25: "heavily add recommendation, upselling algorithms"): `npm run similar`
+  (`scripts/similar.mjs`) embeds each piece's gallery photograph with Vertex `multimodalembedding@001` (256 numbers, project
+  `jewelgen-mm-e3d43ecb`, mmurtaza1970's ADC; ~$0.0001 a photo; kept in `data/embeddings.json`, re-embedded only when a
+  piece's lead photo changes) and ranks, per piece, **`like`** (same kind — `KIND` in `src/lib/recommend.js` — by how alike the
+  photos look, then stones, plating, style, prettiness; greedy MMR so a list is not one design twelve times) and **`pair`**
+  (other kinds per `GOES_WITH`: earrings/pendant/bracelet/set for a ring…, men's only with men's; plating must match — gold with
+  gold; a piece that looks like everything is discounted (CSLS) and each use of a piece makes it a little dearer (`LOAD`), so
+  a dozen crowd-pleasers do not stand beside everything) into `data/recommend.json`, which `buildCatalog` reads (`cat.rec`).
+  Where they show: the piece page — **Complete the look** (four pairs, each with "Ask about this too", which puts it in the same
+  WhatsApp message: `enquiry(…, also)`), **More like this** (replacing "More <gallery>"), **Picked for you**; the foot of every
+  gallery ("To wear with <gallery>" and Picked for you); the Saved page ("Goes with what you saved"); the front page (a
+  "Welcome back" shelf before the Edits); the account page. **Picked for you** (`forYou`) is item-based from this device's
+  saved pieces (double weight) and recent views, plus a nudge for pretty and new pieces, at most a third from one gallery;
+  nothing on a first visit. The prerendered piece pages link their pairs and look-alikes too. A piece the ranking has not
+  seen (a POS drop, a piece added since) falls back to its kind's prettiest. Run `npm run pretty` then `npm run similar`
+  after adding pieces, and commit both.
+- **Accounts** (the owner, 2026-09-25: "add accounts … like taheri.shop"): Google sign-in through **Mina's POS's own Firebase
+  project** (hom-pos; public web config in `src/lib/auth.js`, Firebase loaded only on Sign in or for a browser that signed in
+  before), the record on **pos.houseofmina.store `/api/public/me`** — the same route and Firestore collection
+  (`website_customers`) taheri.shop uses, served by Mina's POS, whose `WEBSITE_ORIGIN` already allows this site. Saved pieces
+  follow the account: the POS only keeps three-part keys, so a piece travels as `mina/piece/<handle>` and the POS needed no
+  change; on sign-in both lists are merged once, then every change is saved 800 ms after the last tap
+  (`useAccountSync()` in `src/lib/account.js`). `/account` (noindex): a sign-in card, then saved pieces, details (name,
+  WhatsApp number, city, address) and Picked for you. The header says "Sign in" (a person icon on phones), then shows the
+  customer's photo. `catalogue.houseofmina.store` was added to hom-pos's authorised domains on 2026-09-25 (Identity Toolkit
+  `admin/v2/projects/hom-pos-52710474-ceeea/config`, PATCH `authorizedDomains` with the whole list). Locally the POS refuses
+  localhost (CORS), so the record only loads on the live site.
 - `src/lib/catalog.js` — `buildCatalog()` and `resolvePath()`: the app and the prerender share them,
   so a crawled page and the app's page are always the same page. `src/lib/seo.js` — titles, descriptions,
   JSON-LD (Product with Offer/AggregateOffer, CollectionPage + ItemList, BreadcrumbList).

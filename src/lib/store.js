@@ -49,6 +49,10 @@ export function useFavourites() {
   };
 }
 
+/** The whole saved list at once — for the account merge (src/lib/account.js). */
+export const getFavourites = () => favourites.get();
+export const setFavourites = (list) => favourites.set(list);
+
 export function useRecent() {
   return useSyncExternalStore(recent.subscribe, recent.get, () => []);
 }

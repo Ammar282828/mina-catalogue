@@ -9,6 +9,7 @@
 
 import { CHAPTERS, EDITS, chapterOf, homeOf, wristwearHome } from './taxonomy.js';
 import { houseWording } from './stones.js';
+import { recommender } from './recommend.js';
 
 export const SITE = 'https://catalogue.houseofmina.store';
 export const PAGE_SIZE = 36;
@@ -165,17 +166,25 @@ export function mergeLocal(data, local, renders = {}) {
 
 // ── Build ───────────────────────────────────────────────────────────────────
 /** The piece that stands for a collection: a best seller where there is one, else the newest. */
-const coverOf = (pieces) => pieces.find((p) => p.edits?.includes('best-sellers')) || pieces.find((p) => !p.drop) || pieces[0];
 
 /**
- * A gallery's own order: the pieces data/lead.json names for it first, in that
- * order, then the rest as they were (newest first). Its first piece is then the cover.
+ * A gallery's order (the owner, 2026-09-24, for every collection): the pieces added in the
+ * last FIRST_DAYS days first, prettiest first, then the rest, prettiest first; newer first
+ * where two score the same. Prettiness is data/pretty.json (scripts/pretty.mjs, Gemini);
+ * a piece without a score counts as the median. The cover is the first piece, unless
+ * data/lead.json `covers` names one.
  */
-function led(list, slugs) {
-  if (!slugs?.length) return { pieces: list, cover: coverOf(list) };
-  const at = new Map(slugs.map((s, i) => [s, i]));
-  const pieces = [...list].sort((a, b) => (at.get(a.s || a.h) ?? Infinity) - (at.get(b.s || b.h) ?? Infinity));
-  return { pieces, cover: at.has(pieces[0]?.s || pieces[0]?.h) ? pieces[0] : coverOf(pieces) };
+export const FIRST_DAYS = 30;
+function orderer(pretty = {}, now = Date.now()) {
+  const vals = Object.values(pretty).filter((n) => typeof n === 'number').sort((a, b) => a - b);
+  const median = vals.length ? vals[vals.length >> 1] : 50;
+  const since = new Date(now - FIRST_DAYS * 864e5).toISOString().slice(0, 10);
+  const score = (p) => pretty[p.s || p.h] ?? median;
+  const fresh = (p) => (p.drop || (p.at || '') >= since ? 1 : 0);
+  return (list) => {
+    const pieces = [...list].sort((a, b) => (fresh(b) - fresh(a)) || (score(b) - score(a)) || (b.at || '').localeCompare(a.at || ''));
+    return { pieces, cover: pieces.find((p) => !p.drop) || pieces[0] };
+  };
 }
 
 /**
@@ -214,21 +223,22 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
   const bySlug = new Map(pieces.map((p) => [p.s || p.h, p]));
   const cutoff = new Date(now - NEW_DAYS * 864e5).toISOString().slice(0, 10);
 
+  const order = orderer(data.pretty?.pieces, now);
   const galleries = new Map();
   // One level: a category is the gallery, newest first. The style of a piece is a filter.
   // Men's is a section: each sub-category a gallery, and the section's own page lists
   // them one after another, in their order.
   const chapters = CHAPTERS.map((ch) => {
     if (!ch.collections) {
-      const chapter = { ...ch, kind: 'chapter', ...led(pieces.filter((p) => p.co === ch.slug), data.lead?.[ch.slug]) };
+      const chapter = { ...ch, kind: 'chapter', ...order(pieces.filter((p) => p.co === ch.slug)) };
       galleries.set(ch.slug, chapter);
       return chapter;
     }
     const collections = ch.collections
-      .map((k) => ({ ...k, kind: 'collection', ...led(pieces.filter((p) => p.co === k.slug), data.lead?.[k.slug] || data.lead?.[ch.slug]) }))
+      .map((k) => ({ ...k, kind: 'collection', ...order(pieces.filter((p) => p.co === k.slug)) }))
       .filter((k) => k.pieces.length);
     const list = collections.flatMap((k) => k.pieces);
-    const chapter = { ...ch, kind: 'chapter', collections, ...led(list, data.lead?.[ch.slug]) };
+    const chapter = { ...ch, kind: 'chapter', collections, ...order(list) };
     for (const k of collections) { k.parent = chapter; galleries.set(k.slug, k); }
     galleries.set(ch.slug, chapter);
     return chapter;
@@ -237,7 +247,7 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
   const edits = EDITS.map((e) => {
     const meta = (data.edits || []).find((x) => x.slug === e.slug) || {};
     const list = pieces.filter((p) => p.edits?.includes(e.slug));
-    return { ...e, blurb: meta.blurb || e.blurb || '', kind: 'edit', pieces: list, cover: coverOf(list) };
+    return { ...e, blurb: meta.blurb || e.blurb || '', kind: 'edit', ...order(list) };
   }).filter((e) => e.pieces.length);
   for (const e of edits) galleries.set(e.slug, e);
 
@@ -245,7 +255,7 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
   const newArrivals = {
     ...NEW_ARRIVALS, kind: 'edit',
     // Never an empty shelf: when nothing is recent, the newest twenty-four.
-    pieces: fresh.length >= 8 ? fresh : pieces.slice(0, 24),
+    pieces: order(fresh.length >= 8 ? fresh : pieces.slice(0, 24)).pieces,
   };
   newArrivals.cover = newArrivals.pieces[0];
   galleries.set(newArrivals.slug, newArrivals);
@@ -257,7 +267,10 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
     if (p) g.cover = p;
   }
 
-  return { pieces, byHandle, bySlug, galleries, chapters, edits, newArrivals, syncedAt: data.syncedAt, isNew: (p) => p.at >= cutoff };
+  const isNew = (p) => p.at >= cutoff;
+  // More like this, Complete the look, Picked for you (src/lib/recommend.js, data/recommend.json).
+  const rec = recommender(pieces, bySlug, data.recommend, data.pretty?.pieces, isNew);
+  return { pieces, byHandle, bySlug, galleries, chapters, edits, newArrivals, syncedAt: data.syncedAt, isNew, rec };
 }
 
 // ── Routes ──────────────────────────────────────────────────────────────────
@@ -270,6 +283,7 @@ export function resolvePath(pathname, cat) {
   if (clean === '/') return { kind: 'home' };
   if (clean === '/collections') return { kind: 'collections' };
   if (clean === '/favourites') return { kind: 'favourites' };
+  if (clean === '/account') return { kind: 'account' };
 
   const [a, b, ...rest] = clean.slice(1).split('/');
   if (rest.length) return { kind: 'notfound' };

@@ -4,6 +4,7 @@ import { Link, Wordmark, ArrowRight, WhatsAppIcon, Photo, PieceGrid } from './ui
 import { imageUrls, piecePath, galleryPath } from '../lib/catalog.js';
 import { hello, WHATSAPP_DISPLAY, INSTAGRAM } from '../lib/contact.js';
 import { useTheme } from '../lib/store.js';
+import { PickedForYou } from './Recs.jsx';
 
 /**
  * The front page: a tall scroll through the house's chapters. A particle
@@ -169,6 +170,9 @@ export default function Landing({ cat }) {
           </div>
         </div>
       </div>
+
+      {/* A returning visitor's own shelf, before the plain listings. */}
+      <PickedForYou cat={cat} band eyebrow="Welcome back" title="Picked for you" />
 
       {/* Laid out plainly, for anyone who scrolled past the show. */}
       <section id="edits" className="px-5 sm:px-8 md:px-12 py-20 md:py-28 border-t border-line">
