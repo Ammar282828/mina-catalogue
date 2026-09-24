@@ -1,13 +1,17 @@
 {
- "_about": "The pieces a category opens with, in this order; everything else follows, newest first. Rings & Bands: the best-looking rings first (the owner, 2026-09-24), chosen for statement designs and clean studio photographs, colours alternating row by row. Wristwear: every piece, prettiest first (the owner, 2026-09-24), ranked by Gemini 3.1 Pro on the gallery photograph — each scored alone twice, then the top 48 ordered side by side three times; a piece added later follows them, newest first. covers: the piece whose first photograph stands for each gallery on the Collections page, the landing and the POS (the owner asked for all of them to be chosen, 2026-09-24); a gallery not listed uses its first named piece, else a best seller, else its newest.",
+ "_about": "The pieces a category opens with, in this order; everything else follows, newest first. Rings & Bands: the best-looking rings first (the owner, 2026-09-24), chosen for statement designs and clean studio photographs, colours alternating row by row; four renders added on 2026-09-24 were placed among them by Gemini 3.1 Pro, compared side by side with the 36 (three runs), the existing order kept. Wristwear: every piece, prettiest first (the owner, 2026-09-24), ranked by Gemini 3.1 Pro on the gallery photograph — each scored alone twice, then the top 48 ordered side by side three times; a piece added later follows them, newest first. covers: the piece whose first photograph stands for each gallery on the Collections page, the landing and the POS (the owner asked for all of them to be chosen, 2026-09-24); a gallery not listed uses its first named piece, else a best seller, else its newest.",
  "rings-and-bands": [
   "canary-radiant-starburst-ring",
   "ruby-cushion-starburst-ring",
   "amethyst-pearl-blossom-ring",
   "emerald-starburst-ring",
+  "ocean-blue-oval-leaf-spray-ring",
   "pink-cushion-floral-halo-ring",
+  "blue-radiant-floating-halo-ring",
+  "peach-radiant-baguette-ring",
   "sapphire-marquise-cluster-ring",
   "emerald-petal-halo-ring",
+  "canary-oval-leaf-spray-ring",
   "ruby-sunburst-halo-ring",
   "azira-sapphire-ring",
   "emerald-double-halo-ring",
