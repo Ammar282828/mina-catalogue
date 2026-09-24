@@ -24,8 +24,8 @@ export default function Landing({ cat }) {
   const sections = useMemo(() => [
     { key: 'intro', shape: 'wordmark' },
     { key: 'new', shape: 'sparkle', eyebrow: 'Just arrived', title: 'New Arrivals', desc: 'The latest pieces to join the house.', path: galleryPath('new-arrivals'), pieces: cat.newArrivals.pieces },
-    ...cat.chapters.map((c, i) => ({
-      key: c.slug, shape: c.shape, eyebrow: `Chapter ${String(i + 1).padStart(2, '0')}`,
+    ...cat.chapters.map((c) => ({
+      key: c.slug, shape: c.shape, eyebrow: `${c.pieces.length} pieces`,
       title: c.title, desc: c.blurb, path: galleryPath(c.slug), pieces: c.pieces,
     })),
     { key: 'edits', shape: 'gem', eyebrow: 'Edits & drops', title: 'The Edits', desc: cat.edits.slice(0, 4).map((e) => e.title).join(' · '), path: '/collections#edits', pieces: cat.edits.map((e) => e.cover).filter(Boolean) },
@@ -100,7 +100,7 @@ export default function Landing({ cat }) {
               <button key={x.key} type="button" onClick={() => jump(i)} className="group flex items-center gap-3"
                 aria-label={x.title || 'House of Mina'} aria-current={i === state.active ? 'step' : undefined}>
                 <span className={`block h-px transition-all duration-500 ${i === state.active ? 'w-8 bg-accent' : 'w-4 bg-ink-2/35 group-hover:w-6 group-hover:bg-ink-2'}`} />
-                <span className={`eyebrow text-[9px] transition-opacity duration-300 ${i === state.active ? 'opacity-100 text-accent' : 'opacity-0 group-hover:opacity-100 text-ink-2'}`}>
+                <span className={`label-lg !text-[11px] transition-opacity duration-300 ${i === state.active ? 'opacity-100 text-accent' : 'opacity-60 group-hover:opacity-100 text-ink-2'}`}>
                   {x.title || 'Mina'}
                 </span>
               </button>
@@ -110,22 +110,35 @@ export default function Landing({ cat }) {
           <div className="absolute inset-x-0 bottom-0 pb-[max(env(safe-area-inset-bottom),5vh)] px-6 text-center pointer-events-none"
             style={{ opacity: state.textOpacity }}>
             {state.active === 0 ? (
-              <div className="pointer-events-auto mb-[9vh] md:mb-[11vh]">
-                <h1 className="sr-only">House of Mina — fine jewelry in 925 sterling silver</h1>
-                <p className="serif italic text-[clamp(1.15rem,2.6vw,1.6rem)] font-light text-ink">Fine jewelry in sterling silver, made in Karachi.</p>
-                <p className="eyebrow mt-4 text-ink-2">925 silver · 21k gold &amp; rhodium plating</p>
-                <button type="button" onClick={() => jump(1)} className="eyebrow mt-10 inline-flex flex-col items-center gap-3 text-ink-2 hover:text-accent transition-colors">
-                  Scroll <span className="block h-10 w-px bg-current opacity-50" />
+              // What to do, said plainly on the first screen (the owner, 2026-09-24: easy for
+              // older visitors): the words first, then the two things to do, in big buttons.
+              <div className="pointer-events-auto mx-auto mb-[4vh] md:mb-[7vh] max-w-xl border border-line bg-bg/90 px-5 py-6 md:px-9 md:py-8 backdrop-blur-sm">
+                <h1 className="serif text-[27px] md:text-[34px] leading-tight text-ink">Welcome to House of Mina</h1>
+                <p className="mt-3 text-[17px] md:text-[18px] leading-relaxed text-ink">
+                  Fine jewellery in sterling silver, made in Karachi. Look through the pieces, tap one you like,
+                  then message us on WhatsApp for the price or to order.
+                </p>
+                <div className="mt-6 flex flex-col sm:flex-row items-stretch justify-center gap-3">
+                  <Link to="/collections" className="press btn-big bg-accent text-on-accent hover:opacity-90">
+                    See the jewellery <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <a href={hello()} target="_blank" rel="noopener" className="press btn-big border-2 border-accent text-accent hover:bg-accent/5">
+                    <WhatsAppIcon className="w-5 h-5" /> Ask us on WhatsApp
+                  </a>
+                </div>
+                <p className="mt-4 text-[15px] text-ink-2">WhatsApp <span className="select-all whitespace-nowrap text-ink">{WHATSAPP_DISPLAY}</span></p>
+                <button type="button" onClick={() => jump(1)} className="mt-4 inline-flex items-center gap-2 text-[15px] text-ink-2 underline underline-offset-4 hover:text-accent transition-colors">
+                  Or scroll down to see more <span aria-hidden="true">↓</span>
                 </button>
               </div>
             ) : (
               <div key={s.key} className="pointer-events-auto mx-auto max-w-2xl">
-                <p className="eyebrow text-accent">{s.eyebrow}</p>
+                <p className="label-lg text-accent">{s.eyebrow}</p>
                 <h2 className="display mt-3 text-[clamp(2.6rem,7vw,5rem)] leading-[0.95] text-ink">
                   {s.path ? <Link to={s.path} className="hover:text-accent transition-colors">{s.title}</Link> : s.title}
                   <span className="text-rose not-italic">.</span>
                 </h2>
-                <p className="mt-4 text-[14.5px] md:text-[15.5px] leading-relaxed text-ink-2">{s.desc}</p>
+                <p className="mt-4 text-[17px] md:text-[18px] leading-relaxed text-ink">{s.desc}</p>
 
                 {s.pieces?.length > 0 && (
                   <div className="mt-6 flex items-center justify-center gap-2 md:gap-3">
@@ -139,16 +152,16 @@ export default function Landing({ cat }) {
 
                 {s.key === 'hello' ? (
                   <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3">
-                    <a href={hello()} target="_blank" rel="noopener" className="press inline-flex items-center gap-2.5 bg-accent text-on-accent px-6 py-3.5 eyebrow">
-                      <WhatsAppIcon className="w-4 h-4" /> {WHATSAPP_DISPLAY}
+                    <a href={hello()} target="_blank" rel="noopener" className="press btn-big bg-accent text-on-accent">
+                      <WhatsAppIcon className="w-5 h-5" /> WhatsApp {WHATSAPP_DISPLAY}
                     </a>
-                    <a href={INSTAGRAM.url} target="_blank" rel="noopener" className="press eyebrow px-6 py-3.5 border border-line text-ink hover:border-accent hover:text-accent">
+                    <a href={INSTAGRAM.url} target="_blank" rel="noopener" className="press btn-big border-2 border-line text-ink hover:border-accent hover:text-accent">
                       Instagram {INSTAGRAM.handle}
                     </a>
                   </div>
                 ) : s.path && (
-                  <Link to={s.path} className="eyebrow mt-6 inline-flex items-center gap-2 text-ink hover:text-accent transition-colors">
-                    Explore {s.title} <ArrowRight className="w-3.5 h-3.5" />
+                  <Link to={s.path} className="press btn-big mt-6 bg-accent text-on-accent hover:opacity-90">
+                    See all {s.title} <ArrowRight className="w-4 h-4" />
                   </Link>
                 )}
               </div>

@@ -17,13 +17,13 @@ export function Ribbon({ cat }) {
   ].filter(Boolean), [latest]);
   const [i, setI] = useState(0);
   useEffect(() => {
-    const t = setInterval(() => setI((n) => (n + 1) % messages.length), 4500);
+    const t = setInterval(() => setI((n) => (n + 1) % messages.length), 7000); // slow enough to read
     return () => clearInterval(t);
   }, [messages.length]);
   const m = messages[i];
   return (
     <div className="fixed inset-x-0 top-0 z-50 h-8 bg-accent text-on-accent">
-      <div key={i} className="ribbon-in flex h-full items-center justify-center px-4 eyebrow whitespace-nowrap text-[8.5px] tracking-[0.2em] sm:text-[9.5px] sm:tracking-[0.28em]">
+      <div key={i} className="ribbon-in flex h-full items-center justify-center px-4 label-lg whitespace-nowrap !text-[11px] sm:!text-[12px] !tracking-[0.12em]">
         {m.to ? <Link to={m.to} className="inline-flex items-center gap-2 hover:opacity-80">{m.text} <ArrowRight className="w-3 h-3" /></Link> : m.text}
       </div>
     </div>
@@ -128,13 +128,13 @@ export function Header({ cat, home }) {
           </Link>
           <nav className="flex items-center gap-0.5 sm:gap-2" aria-label="Site">
             <Link to="/collections" aria-current={path === '/collections' ? 'page' : undefined}
-              className={`eyebrow px-2 sm:px-2.5 py-2 transition-colors ${path === '/collections' ? 'text-accent' : 'text-ink hover:text-accent'}`}>
+              className={`label-lg px-2 sm:px-2.5 py-2 transition-colors ${path === '/collections' ? 'text-accent' : 'text-ink hover:text-accent'}`}>
               Collections
             </Link>
             {/* Men's is a section of its own, one tap from anywhere. */}
             {mens && (
               <Link to={galleryPath(mens.slug)} aria-current={inMens ? 'page' : undefined}
-                className={`eyebrow px-1.5 sm:px-2.5 py-2 transition-colors ${inMens ? 'text-accent' : 'text-ink hover:text-accent'}`}>
+                className={`label-lg px-1.5 sm:px-2.5 py-2 transition-colors ${inMens ? 'text-accent' : 'text-ink hover:text-accent'}`}>
                 {mens.title}
               </Link>
             )}

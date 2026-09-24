@@ -257,7 +257,7 @@ export async function mountParticles(container, { shapes, getProgress, theme = '
   camera.position.z = f.cameraZ;
   // The words sit in the lower third of the screen, so the sculpture is drawn
   // a little above centre: the view is shifted, not every shape.
-  const LIFT = 0.075;
+  const LIFT = mobile ? 0.2 : 0.09; // phones: the sculpture in the top half, the words below it
   const frame = () => camera.setViewOffset(window.innerWidth, window.innerHeight, 0, window.innerHeight * LIFT, window.innerWidth, window.innerHeight);
   frame();
   let renderer;

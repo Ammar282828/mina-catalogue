@@ -45,6 +45,28 @@ body { transition: background-color .35s ease, color .35s ease; }
 }
 @media (min-width: 768px) { .eyebrow { font-size: 10.5px; } }
 
+/* Readable at arm's length (the owner asked for the site to be easy for older visitors,
+   2026-09-24): the header's links, the ribbon and the front page's calls to action. */
+.label-lg {
+  font-family: "Red Hat Text", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.btn-big {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  min-height: 54px;
+  padding: 0 1.6rem;
+  font-family: "Red Hat Text", system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: .01em;
+}
+
 .serif { font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; }
 .display { font-family: Newsreader, Georgia, serif; font-weight: 300; font-style: italic; letter-spacing: -.02em; }
 
