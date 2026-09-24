@@ -63,7 +63,10 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   JSON-LD and no `priceRange` in `index.html`. Flip the switch and run a sync to bring prices back.
 - **Opening order** — `data/lead.json` names, per gallery slug, the pieces it opens with, in order; the rest follow
   newest first, and the first named piece is the cover. Rings & Bands opens with 36 hand-picked statement rings (the owner
-  asked for the best-looking first, 2026-09-24); edit that list to change the page. Its `covers` names, per gallery, the
+  asked for the best-looking first, 2026-09-24); edit that list to change the page. Wristwear lists all its pieces prettiest first (the
+  owner, 2026-09-24): ranked by Gemini 3.1 Pro (Vertex, project `jewelgen-mm-e3d43ecb`, mmurtaza1970's ADC) on each gallery
+  photograph, scored alone twice, then the top 48 ordered side by side three times; a Wristwear piece added later lands after
+  all 108 until it is placed in the list. Its `covers` names, per gallery, the
   piece whose first photograph stands for it (Collections page, landing, the POS picker): all 22 chosen by hand on
   2026-09-24, no piece twice. Collection and edit tiles are all square.
 - `src/lib/catalog.js` — `buildCatalog()` and `resolvePath()`: the app and the prerender share them,
