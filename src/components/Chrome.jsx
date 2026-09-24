@@ -117,7 +117,7 @@ export function Header({ cat, home }) {
   }, []);
 
   const solid = !home || scrolled;
-  const mens = cat.chapters.find((c) => c.collections);
+  const mens = cat.chapters.find((c) => c.slug === 'men');
   const inMens = !!mens && [mens, ...mens.collections].some((g) => path === galleryPath(g.slug) || path.startsWith(`${galleryPath(g.slug)}/`));
   return (
     <>

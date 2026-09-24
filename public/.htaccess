@@ -23,12 +23,12 @@
 
   # The catalogue was first arranged by style (Engagement Rings, Gemstone Rings,
   # Studs…); since 2026-09-23 it is five categories by what the piece is, as on
-  # taheri.shop, and a Men's section. Old addresses keep working: a retired
+  # taheri.shop, and a Men's section (and, from 2026-09-24, Wristwear's sub-categories). Old addresses keep working: a retired
   # collection goes to its category, a piece under it to the same piece there
   # (piece slugs are unique site-wide, so /gemstone-rings/x is /rings-and-bands/x).
   # Mirrors RETIRED in src/lib/taxonomy.js.
   RewriteRule ^(?:rings|engagement-rings|gemstone-rings|cocktail-rings|everyday-rings)(/.*)?$ /rings-and-bands$1 [R=301,L]
-  RewriteRule ^(?:bracelets|tennis-bracelets|everyday-bracelets|bangles-and-cuffs)(/.*)?$ /wristwear$1 [R=301,L]
+  RewriteRule ^(?:tennis-bracelets|everyday-bracelets)(/.*)?$ /bracelets$1 [R=301,L]
   RewriteRule ^(?:necklaces|pendants|chokers|everyday-necklaces)(/.*)?$ /chains-and-pendants$1 [R=301,L]
   RewriteRule ^(?:studs|hoops-and-huggies|statement-earrings|everyday-earrings)(/.*)?$ /earrings$1 [R=301,L]
 
@@ -41,6 +41,14 @@
   RewriteRule ^rings-and-bands/(natural-ruby-ring-no-[0-9]+)$ /natural-ruby-rings/$1 [R=301,L]
   RewriteRule ^chains-and-pendants/(box-chain|cuban-chain|curb-diamond-cut-chain|rope-chain|snake-chain)$ /mens-chains/$1 [R=301,L]
   RewriteRule ^wristwear/(verso-mens-cuff|zobi-mens-silver-cuff|cuban-bracelet|link-bracelet|rope-bracelet)$ /mens-bracelets/$1 [R=301,L]
+
+  # Wristwear became a section on 2026-09-24 (the owner), with sub-categories — Bangle & Ring
+  # Sets, Bangles & Cuffs, Bracelets (Bracelets and Bangles & Cuffs are live again, so the two
+  # retired addresses above no longer point at /wristwear); each piece moved from
+  # /wristwear/<slug> to the same slug under its sub-category. /wristwear is the section page.
+  RewriteRule ^wristwear/(sapphire-flower-bangle-and-ring|emerald-vine-bangle-and-ring|mother-of-pearl-hexagon-bangle-and-ring|amethyst-woven-bangle-and-ring|pearl-filigree-bangle-and-ring|citrine-and-pearl-jhumki-bangles-and-ring|emerald-cut-emerald-bangle-and-ring|emerald-halo-set|sapphire-leaf-bangle-and-ring|ruby-river-bangle-and-ring|wide-diamond-bangle-and-floral-ring|ruby-cluster-emerald-bangle-and-ring|ruby-gold-bracelet-and-ring|emerald-leaf-bangle-and-ring|emerald-solitaire-bangle-and-ring|ruby-stack-set|ruby-cluster-set|ruby-mosaic-set|baguette-channel-bangle-and-ring|ruby-woven-bangle-and-ring|twist-cuff-set|mesh-link-set|ruby-line-bracelet-and-ring|pave-ruby-band-bangle-and-ring|pearl-beaded-bangle-and-ring|pave-bangle-pair-and-ring|pearl-cluster-set|emerald-bypass-bangle-and-ring|slim-ruby-line-bracelet-and-ring|pave-bloom-set|ruby-and-emerald-marquise-bangle-and-ring|star-kite-bangle-and-ring|warm-gold-diamond-bangle-and-ring|amethyst-mesh-set|sapphire-halo-bangle-and-ring|ruby-scatter-bangle-and-ring|sapphire-line-bracelet-and-ring|two-tone-crossover-bracelet-and-ring|opal-and-ruby-bangle-and-ring|oval-ruby-bangle-and-ring|sapphire-cluster-set|emerald-pave-bangle-and-ring|black-pave-set|ruby-honeycomb-bangle-and-ring|ruby-line-bangle-pair-and-ring|beaded-halo-bracelet-and-ring|ruby-halo-bangle-and-ring|pave-vine-set|sapphire-tile-set|multi-stone-gold-bangle-and-ring|ruby-flower-bracelet-and-ring|sapphire-band-bangle-and-ring|pave-twist-bangle-and-ring|emerald-cabochon-bangle-and-ring|diamond-flower-bangle-and-ring|sapphire-spaced-bangle-and-ring|double-row-sapphire-bangle-and-ring|ruby-pave-set|chained-bangle-and-ring|sapphire-baguette-bangles-and-ring|twisted-gold-bracelet-pair-and-ring|marquise-bracelet-and-flower-ring)$ /bangle-and-ring-sets/$1 [R=301,L]
+  RewriteRule ^wristwear/(fine-stacking-bangles-in-gold|sapphire-bangle-pair|twin-pearl-open-bangle|ruby-bangle-pair|silver-pearl-open-bangle|marquise-cluster-open-bangle|raya-bangle|kite-open-bangle|emerald-open-bangle|fine-diamond-bangle-pair|pearl-orbit-cuff|gold-and-rhodium-pave-bangle-pair|ruby-and-sapphire-open-cuff|eclipse-cuff|fine-stacking-bangles-in-pink-and-ruby|baguette-open-bangle|aylin-cuff|lina-bangle|gemstone-bangle-trio|beaded-gemstone-bangle-pair|pearl-lined-bangle-pair)$ /bangles-and-cuffs/$1 [R=301,L]
+  RewriteRule ^wristwear/(fizza|gemstone-line-bracelet|leaf-bracelet|sana|timeless|marquise-muse-tennis-bracelet|ruby-and-emerald-bracelet|double-row-bezel-tennis-bracelet|halo-bracelet|elina|lyra-tennis-bracelet|arya-bracelet|gold-tennis-bracelet|alira|star-blossom|stackables|ruby-line-bracelet|cluster-arc|soleil-tennis-bracelet|prism-trace|pearl-bracelet|ruby-and-diamond-line-bracelet-pair|bezel-line-bracelet-pair|bar-and-chain|emerald-and-ruby-square-halo-bracelets)$ /bracelets/$1 [R=301,L]
 
   # Two photos first listed as two lockets are the front and back of one (the owner, 2026-09-24).
   RewriteRule ^lockets/enamel-floral-locket$ /lockets/engraved-calligraphy-oval-locket [R=301,L]

@@ -33,7 +33,13 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   campaign collections. **Men's is a sixth, separate section with sub-categories** (the owner, later on 2026-09-23;
   it replaced the For Him edit): **Men's Rings, Natural Ruby Rings, Men's Chains, Men's Bracelets & Cuffs**
   (`/mens-rings`, `/natural-ruby-rings`, `/mens-chains`, `/mens-bracelets`; `/men` lists them all, and the header
-  links to it). A chapter with `collections` is such a section; `chapterOf()` finds a home's chapter. A men's piece
+  links to it). **Wristwear is a section too since 2026-09-24** (the owner): **Bangle & Ring Sets, Bangles & Cuffs,
+  Bracelets** (`/bangle-and-ring-sets`, `/bangles-and-cuffs`, `/bracelets`; `/wristwear` lists all 108 in the prettiest
+  order, and each sub-category follows that order unless `lead.json` names its own). `wristwearHome()` in taxonomy.js
+  sorts a piece by type and name (sold with a ring → sets; a bangle or cuff → bangles; the rest → bracelets); the Shopify
+  sync, `data/local.json` (`co: "wristwear"` stays valid) and POS drops (`Wristwear/<Sub>/`, and the old
+  `Wristwear/Wristwear/` by file name) all go through it. The old `/wristwear/<piece>` addresses 301 to the sub-category
+  (`public/.htaccess`). A chapter with `collections` is such a section; `chapterOf()` finds a home's chapter. A men's piece
   (`isMens()`: Shopify's men's collections or the "men's cuff" tag) lives in Men's, **not** in the category of its
   type. `classify()` gives every product exactly one home (its page lives at `/<home>/<piece>`). The first arrangement (5 chapters → 18 style collections: Engagement / Gemstone /
   Cocktail / Everyday Rings, Studs, Men's…) is retired: `RETIRED` maps each old slug to its category and

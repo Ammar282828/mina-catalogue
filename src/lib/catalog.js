@@ -7,7 +7,7 @@
  * scripts/prerender.mjs builds every page from the very same function.
  */
 
-import { CHAPTERS, EDITS, chapterOf } from './taxonomy.js';
+import { CHAPTERS, EDITS, chapterOf, homeOf, wristwearHome } from './taxonomy.js';
 import { houseWording } from './stones.js';
 
 export const SITE = 'https://catalogue.houseofmina.store';
@@ -67,8 +67,8 @@ export function priceLabel(p) {
 // A photograph uploaded from the POS lands in catalog-drop/<Category>/<Category>/<file>,
 // named by the category TITLE (that is what the counter picks from). The folder is two
 // deep because the POS's drop contract is Category/Collection everywhere; a category
-// here is its own one collection, as Watches is on taheri.shop. Men's has real
-// sub-categories: Men's/Men's Rings/<file>.
+// here is its own one collection, as Watches is on taheri.shop. Men's and Wristwear have
+// real sub-categories: Men's/Men's Rings/<file>, Wristwear/Bracelets/<file>.
 const slugify = (s) => String(s).toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '')
   .replace(/&/g, ' and ').replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
@@ -77,7 +77,11 @@ const CAMERA_NAME = /^(img|dsc|dscn|pxl|photo|image|whatsapp image|screenshot)[\
 function dropPiece(d) {
   const [chTitle, coTitle, file] = String(d.p).split('/');
   const chapter = CHAPTERS.find((c) => c.title === chTitle);
-  const home = chapter?.collections ? chapter.collections.find((k) => k.title === coTitle) : chapter;
+  let home = chapter?.collections ? chapter.collections.find((k) => k.title === coTitle) : chapter;
+  // Wristwear/Wristwear/ was its drop folder before it had sub-categories: sort by the file's name.
+  if (!home && chapter?.slug === 'wristwear' && coTitle === chapter.title && file) {
+    home = chapter.collections.find((k) => k.slug === wristwearHome({ t: file }));
+  }
   if (!home || !file) return null;
   const stem = file.replace(/\.[a-z0-9]+$/i, '').replace(/[-_]+\d+$/, '').trim();
   const named = stem && !CAMERA_NAME.test(stem) && !/^\d+$/.test(stem);
@@ -140,7 +144,8 @@ export function mergeLocal(data, local, renders = {}) {
   const hero = (x) => (typeof x === 'string' ? localImg(x) : localImg(x.id, x.plating, x.px));
   const shopify = data.pieces.map((p) => (heroes[p.h] ? { ...p, img: [...heroes[p.h].map(hero), ...p.img] } : p));
   const own = (local.pieces || []).map((x) => {
-    const chapter = chapterOf(x.co);
+    const co = homeOf(x.co, x);
+    const chapter = chapterOf(co);
     if (!chapter) return null;
     const base = slugify(x.t);
     let s = base;
@@ -150,7 +155,7 @@ export function mergeLocal(data, local, renders = {}) {
     for (const k of ['stone', 'setting', 'cut', 'occasion', 'style']) if (x[k]?.length) facets[k] = x[k];
     const imgs = [x.id, ...(x.also || [])].map((id) => localImg(id, x.photoPlating?.[id], x.px));
     return {
-      h: `local-${localKey(x.id).toLowerCase()}`, s, t: x.t, type: x.type || 'Ring', ch: chapter.slug, co: x.co,
+      h: `local-${localKey(x.id).toLowerCase()}`, s, t: x.t, type: x.type || 'Ring', ch: chapter.slug, co,
       price: null, plating: x.plating || [], facets, story: x.story || [], facts: x.facts || [], edits: x.edits || [],
       at: x.addedAt || local.addedAt, img: imgs, local: true, ...(x.natural ? { natural: true } : {}),
     };
@@ -202,7 +207,9 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
   const reframe = (p) => (p.img.some((im) => framed.has(im.f))
     ? { ...p, img: p.img.map((im) => (framed.has(im.f) ? { ...im, w: 2000, h: 2000, v: data.framed.version } : im)) }
     : p);
-  const pieces = [...dropped, ...data.pieces].map(worded).map(reframe).sort((a, b) => (b.at || '').localeCompare(a.at || ''));
+  // A catalogue synced before Wristwear had sub-categories still says "wristwear".
+  const rehome = (p) => (p.co === 'wristwear' ? { ...p, co: homeOf(p.co, p) } : p);
+  const pieces = [...dropped, ...data.pieces].map(rehome).map(worded).map(reframe).sort((a, b) => (b.at || '').localeCompare(a.at || ''));
   const byHandle = new Map(pieces.map((p) => [p.h, p]));
   const bySlug = new Map(pieces.map((p) => [p.s || p.h, p]));
   const cutoff = new Date(now - NEW_DAYS * 864e5).toISOString().slice(0, 10);
@@ -218,7 +225,7 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
       return chapter;
     }
     const collections = ch.collections
-      .map((k) => ({ ...k, kind: 'collection', ...led(pieces.filter((p) => p.co === k.slug), data.lead?.[k.slug]) }))
+      .map((k) => ({ ...k, kind: 'collection', ...led(pieces.filter((p) => p.co === k.slug), data.lead?.[k.slug] || data.lead?.[ch.slug]) }))
       .filter((k) => k.pieces.length);
     const list = collections.flatMap((k) => k.pieces);
     const chapter = { ...ch, kind: 'chapter', collections, ...led(list, data.lead?.[ch.slug]) };

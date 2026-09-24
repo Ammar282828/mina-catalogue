@@ -23,7 +23,16 @@
  */
 export const CHAPTERS = [
   { slug: 'rings-and-bands', title: 'Rings & Bands', shape: 'rings', blurb: 'Solitaires, halos, coloured stones and the bands worn every day.' },
-  { slug: 'wristwear', title: 'Wristwear', shape: 'bangles', blurb: 'Bracelets, bangles and cuffs — and bangles with a ring to match.' },
+  {
+    // A section since 2026-09-24 (the owner): each piece's home is one of these, sorted by
+    // wristwearHome() below — the Shopify sync, data/local.json and the POS drops all go through it.
+    slug: 'wristwear', title: 'Wristwear', shape: 'bangles', blurb: 'Bracelets, bangles and cuffs — and bangles with a ring to match.',
+    collections: [
+      { slug: 'bangle-and-ring-sets', title: 'Bangle & Ring Sets', blurb: 'Bangles and bracelets, each with its matching ring.' },
+      { slug: 'bangles-and-cuffs', title: 'Bangles & Cuffs', blurb: 'Single bangles and pairs, open bangles and cuffs.' },
+      { slug: 'bracelets', title: 'Bracelets', blurb: 'Tennis, line and chain bracelets, and the Stackables.' },
+    ],
+  },
   { slug: 'chains-and-pendants', title: 'Chains & Pendants', shape: 'chains', blurb: 'Pendants, chokers and fine chains.' },
   // Calligraphy pendants and lockets that open (the owner, 2026-09-24): a category of their own.
   { slug: 'lockets', title: 'Lockets', shape: 'heart', blurb: 'Allah, the Kalma, Ali and calligraphy coins — pendants and lockets that open.' },
@@ -43,6 +52,21 @@ export const CHAPTERS = [
   },
 ];
 
+/**
+ * Where a wrist piece lives in Wristwear, from its type and name: sold with a ring (a
+ * "Bangle & Ring", "Bracelet & Ring", or a bangle-and-ring "Set") → Bangle & Ring Sets; a
+ * bangle or a cuff → Bangles & Cuffs; anything else — tennis, line, chain → Bracelets.
+ */
+export function wristwearHome(p) {
+  const type = lc(p.type || p.product_type), title = lc(p.t || p.title);
+  if (/\bring\b/.test(type) || type === 'set' || /\bring\b/.test(title)) return 'bangle-and-ring-sets';
+  if (/\bcuffs?\b/.test(`${type} ${title}`) || /\bbangles?\b/.test(type) || /\bbangles?\b/.test(title)) return 'bangles-and-cuffs';
+  return 'bracelets';
+}
+
+/** A home as data may still name it: "wristwear" is a section now, so it becomes one of its sub-categories. */
+export const homeOf = (co, p) => (co === 'wristwear' ? wristwearHome(p) : co);
+
 /** The chapter a home belongs to: a category, or the section a sub-category sits in. */
 export const chapterOf = (slug) => CHAPTERS.find((c) => (c.collections ? c.collections.some((k) => k.slug === slug) : c.slug === slug));
 
@@ -50,8 +74,8 @@ export const chapterOf = (slug) => CHAPTERS.find((c) => (c.collections ? c.colle
 export const RETIRED = {
   rings: 'rings-and-bands', 'engagement-rings': 'rings-and-bands', 'gemstone-rings': 'rings-and-bands',
   'cocktail-rings': 'rings-and-bands', 'everyday-rings': 'rings-and-bands',
-  bracelets: 'wristwear', 'tennis-bracelets': 'wristwear', 'everyday-bracelets': 'wristwear',
-  'bangles-and-cuffs': 'wristwear',
+  // Bracelets and Bangles & Cuffs are Wristwear's own sub-categories again (2026-09-24).
+  'tennis-bracelets': 'bracelets', 'everyday-bracelets': 'bracelets',
   necklaces: 'chains-and-pendants', pendants: 'chains-and-pendants', chokers: 'chains-and-pendants',
   'everyday-necklaces': 'chains-and-pendants',
   studs: 'earrings', 'hoops-and-huggies': 'earrings', 'statement-earrings': 'earrings', 'everyday-earrings': 'earrings',
@@ -100,9 +124,9 @@ export function classify(product, tags, memberships = new Set()) {
   if (type === 'earrings') return 'earrings';
   // A bracelet (or bangle) with its ring is worn on the wrist — taheri.shop files
   // "Bangle & Ring" under Wristwear too. Sets proper are necklace sets.
-  if (type === 'set' && (product.options || []).some((o) => /bracelet|bangle/i.test(o.name))) return 'wristwear';
+  if (type === 'set' && (product.options || []).some((o) => /bracelet|bangle/i.test(o.name))) return wristwearHome(product);
   if (type === 'set') return 'sets';
-  if (type === 'bracelet' || type === 'bangle' || tags.has('cuff') || tags.has("men's cuff")) return 'wristwear';
+  if (type === 'bracelet' || type === 'bangle' || tags.has('cuff') || tags.has("men's cuff")) return wristwearHome(product);
   if (tags.has('locket') || /\blockets?\b/i.test(product.title || '')) return 'lockets';
   if (type === 'necklace' || type === 'pendant' || type === 'chain') return 'chains-and-pendants';
   // A type this list has not met yet. Better a home than no page.
