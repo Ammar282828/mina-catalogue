@@ -161,6 +161,10 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     Gemini segmentation mask (dilated 4 px, feathered), colour-matched to the retouched velvet around it — the model
     redraws a natural ruby's inclusions otherwise. Output at the photo's own 1333×2000 → `catalog-src/local/DSC075NN-v3.jpg`.
     Masks, raw renders and the v2 originals: `~/Projects/house-of-mina-photo-backups/natural-ruby-rings-retouch-2026-09-24/`.
+    **Then the rings too** (the owner, same evening: "retouch the rings themselves also") → `DSC075NN-v4.jpg`: GPT 2.5 on
+    each v3 — metal polished bright, scratches/dust/fingerprints off, the beaded bezel crisp, surface dust off the stone,
+    keeping each ring's design and each ruby's shape, cut and natural inclusions; the retouched ring (mask dilated 14 px,
+    feathered 6 px, velvet-matched) set back into the v3 frame so the approved background is untouched.
   - **Sets from Instagram posts (2026-09-23):** seven "Full Set" posts (1080px, `~/Downloads/PHOTO-2026-….jpg`); four
     were already on the site (Ruby Line, Pavé Fan Bridal, Aqua Bloom, and Sapphire Two-Row — that post shows it gold
     with darker stones) and were not repeated. The other three are local pieces under their file names: Sapphire
