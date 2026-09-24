@@ -1252,6 +1252,34 @@
    "px": 2048, "story": ["An oval simulated emerald in a double halo of American Diamonds."], "src": "Gemini render, ring-06-green-oval.png"
   },
   {
+   "id": "ring-07-blue-radiant-floating-halo.jpg",
+   "t": "Blue Radiant Floating Halo Ring",
+   "co": "rings-and-bands", "addedAt": "2026-09-24",
+   "type": "Ring", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"],
+   "px": 2048, "story": ["A radiant-cut simulated azure stone floating inside an open halo of American Diamonds, with half-moon side stones, on a split shank."], "src": "3D render (gemini-3-pro-image) of DSC09171.JPG, iCloud album 03-Sep-2020"
+  },
+  {
+   "id": "ring-08-canary-oval-leaf-spray.jpg",
+   "t": "Canary Oval Leaf Spray Ring",
+   "co": "rings-and-bands", "addedAt": "2026-09-24",
+   "type": "Ring", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": [],
+   "px": 2048, "story": ["A large oval simulated canary stone between two sprays of marquise and round American Diamonds."], "src": "3D render (gemini-3-pro-image) of DSC09172.JPG, iCloud album 03-Sep-2020"
+  },
+  {
+   "id": "ring-09-ocean-blue-oval-leaf-spray.jpg",
+   "t": "Ocean Blue Oval Leaf Spray Ring",
+   "co": "rings-and-bands", "addedAt": "2026-09-24",
+   "type": "Ring", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": [],
+   "px": 2048, "story": ["A large oval simulated ocean-blue stone between two sprays of marquise and round American Diamonds."], "src": "3D render (gemini-3-pro-image) of DSC09173.JPG, iCloud album 03-Sep-2020"
+  },
+  {
+   "id": "ring-10-peach-radiant-baguette.jpg",
+   "t": "Peach Radiant Baguette Ring",
+   "co": "rings-and-bands", "addedAt": "2026-09-24",
+   "type": "Ring", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": [],
+   "px": 2048, "story": ["A radiant-cut simulated peach stone with stepped baguette American Diamonds down each shoulder, on a slim band."], "src": "3D render (gemini-3-pro-image) of DSC09174.JPG, iCloud album 03-Sep-2020"
+  },
+  {
    "id": "lk-01.jpg",
    "t": "Allah Square Filigree Locket",
    "co": "lockets",

@@ -156,6 +156,12 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
     Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.
+  - **3D renders from an iCloud shared album (2026-09-24):** the owner's album "03-Sep-2020" (4 photos, DSC09171–74,
+    Sony A6400, only 311×552 in the share) → e-commerce 3D product renders with `gemini-3-pro-image` on Vertex
+    (project `jewelgen-mm-e3d43ecb`, mmurtaza1970's ADC): pure white, mirror reflection, bright rhodium, the stones as
+    photographed. Two to four rolls each, the closest kept → `ring-07`…`ring-10-….jpg` (2048², `catalog-src/local/`),
+    each its own piece in Rings & Bands. The shared album's originals come from CloudKit
+    (`shared/changes/zone` with the share's `publicAccessAuthToken` and the owner record from `public/records/resolve`).
   - **Lockets (2026-09-24):** 34 images from `~/Downloads/New Folder With Items 4` → `lk-NN.jpg` (`src` on each piece
     names its file), 30 pieces (repeat photos folded into `also`). All are AI-drawn, including the May "photos"
     (1024², no camera data), so small inscriptions (verse coins, the engraved locket, filigree cells) are not legible
