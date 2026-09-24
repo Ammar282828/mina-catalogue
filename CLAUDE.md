@@ -32,8 +32,8 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   **no sub-collections**. Style (stone, setting, occasion…) is a gallery filter, not a place. 10 edits are Shopify
   campaign collections. **Men's is a sixth, separate section with sub-categories** (the owner, later on 2026-09-23;
   it replaced the For Him edit): **Men's Rings, Natural Ruby Rings, Men's Chains, Men's Bracelets & Cuffs**
-  (`/mens-rings`, `/natural-ruby-rings`, `/mens-chains`, `/mens-bracelets`; `/men` lists them all, and the header
-  links to it). **Wristwear is a section too since 2026-09-24** (the owner): **Bangle & Ring Sets, Bangles & Cuffs,
+  (`/mens-rings`, `/natural-ruby-rings`, `/mens-chains`, `/mens-bracelets`; `/men` lists them all; the header no longer links to it — the owner took Men's off
+  the header on 2026-09-24, it is reached from Collections and the front page). **Wristwear is a section too since 2026-09-24** (the owner): **Bangle & Ring Sets, Bangles & Cuffs,
   Bracelets** (`/bangle-and-ring-sets`, `/bangles-and-cuffs`, `/bracelets`; `/wristwear` lists all 108 in the prettiest
   order, and each sub-category follows that order unless `lead.json` names its own). `wristwearHome()` in taxonomy.js
   sorts a piece by type and name (sold with a ring → sets; a bangle or cuff → bangles; the rest → bracelets); the Shopify

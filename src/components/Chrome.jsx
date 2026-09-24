@@ -117,8 +117,6 @@ export function Header({ cat, home }) {
   }, []);
 
   const solid = !home || scrolled;
-  const mens = cat.chapters.find((c) => c.slug === 'men');
-  const inMens = !!mens && [mens, ...mens.collections].some((g) => path === galleryPath(g.slug) || path.startsWith(`${galleryPath(g.slug)}/`));
   return (
     <>
       <header className={`fixed inset-x-0 z-40 transition-colors duration-300 ${home ? 'top-8' : 'top-0'} ${solid ? 'bg-bg/90 backdrop-blur-md border-b border-line' : 'bg-transparent border-b border-transparent'}`}>
@@ -131,13 +129,6 @@ export function Header({ cat, home }) {
               className={`label-lg px-2 sm:px-2.5 py-2 transition-colors ${path === '/collections' ? 'text-accent' : 'text-ink hover:text-accent'}`}>
               Collections
             </Link>
-            {/* Men's is a section of its own, one tap from anywhere. */}
-            {mens && (
-              <Link to={galleryPath(mens.slug)} aria-current={inMens ? 'page' : undefined}
-                className={`label-lg px-1.5 sm:px-2.5 py-2 transition-colors ${inMens ? 'text-accent' : 'text-ink hover:text-accent'}`}>
-                {mens.title}
-              </Link>
-            )}
             <span className="mx-1 hidden h-4 w-px bg-line sm:block" aria-hidden="true" />
             <button type="button" onClick={() => setSearching(true)} className="press p-1.5 sm:p-2 text-ink hover:text-accent" aria-label="Search (press /)"><SearchIcon /></button>
             <Link to="/favourites" className="press relative p-1.5 sm:p-2 text-ink hover:text-accent" aria-label={`Saved pieces${fav.list.length ? `, ${fav.list.length}` : ''}`}>
