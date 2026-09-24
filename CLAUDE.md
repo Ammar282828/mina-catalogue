@@ -155,6 +155,12 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     square crops (`DSC075NN.jpg`) are unused. Named **Natural Ruby Ring No. 1–13** in shoot order (a longer name hides
     the number on a gallery card), in Men's → Natural Ruby Rings, `natural: true`, plating left empty (silver band,
     gold-plated bezel). A portrait photo shows whole on a piece page (frame up to 2:3); tiles stay square.
+    **Retouched (2026-09-24, the owner: "retouch all gents ruby rings … using open ai"):** GPT Image 2.5 (OpenAI's model,
+    via Magnific `gpt-2-mini`, flare, high, 2k, 2:3; this Mac has no OpenAI key) cleaned the velvet box, the maroon
+    backdrop and the fingertips and neutralised the colour; then each ring's **own pixels were pasted back** through a
+    Gemini segmentation mask (dilated 4 px, feathered), colour-matched to the retouched velvet around it — the model
+    redraws a natural ruby's inclusions otherwise. Output at the photo's own 1333×2000 → `catalog-src/local/DSC075NN-v3.jpg`.
+    Masks, raw renders and the v2 originals: `~/Projects/house-of-mina-photo-backups/natural-ruby-rings-retouch-2026-09-24/`.
   - **Sets from Instagram posts (2026-09-23):** seven "Full Set" posts (1080px, `~/Downloads/PHOTO-2026-….jpg`); four
     were already on the site (Ruby Line, Pavé Fan Bridal, Aqua Bloom, and Sapphire Two-Row — that post shows it gold
     with darker stones) and were not repeated. The other three are local pieces under their file names: Sapphire
