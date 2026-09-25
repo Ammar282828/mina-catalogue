@@ -204,4 +204,22 @@ await fs.writeFile(path.join(DIST, 'catalog-tree.json'), JSON.stringify({
   collections: CHAPTERS.flatMap((ch) => (ch.collections ? ch.collections.map((k) => folder(ch.title, k)) : [folder(ch.title, ch)])),
 }, null, 2));
 
+// Every piece with its page, photograph and words, for the POS: it posts a piece
+// from here to the House of Mina community with its link (Posts → From the catalogue).
+// `id` is the key the accounts already use (mina/piece/<handle>).
+await fs.writeFile(path.join(DIST, 'catalog-pieces.json'), JSON.stringify({
+  site: SITE,
+  pieces: cat.pieces.filter((p) => p.img?.length).map((p) => ({
+    id: `mina/piece/${p.h}`,
+    name: p.t,
+    path: piecePath(p),
+    image: imageUrls(p.img[0]).full,
+    thumb: imageUrls(p.img[0]).thumb,
+    collection: cat.galleries.get(p.co)?.title || '',
+    stones: p.facets?.stone || [],
+    plating: p.plating || [],
+    about: (p.story || [])[0] || '',
+  })),
+}));
+
 console.log(`Prerendered ${routes.length + 1} documents (${indexable.length} in the sitemap), ${cat.pieces.length} pieces.`);
