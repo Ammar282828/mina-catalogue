@@ -207,6 +207,7 @@ await fs.writeFile(path.join(DIST, 'catalog-tree.json'), JSON.stringify({
 // Every piece with its page, photograph and words, for the POS: it posts a piece
 // from here to the House of Mina community with its link (Posts → From the catalogue).
 // `id` is the key the accounts already use (mina/piece/<handle>).
+const arrivals = new Set(cat.newArrivals.pieces.map((p) => p.h));
 await fs.writeFile(path.join(DIST, 'catalog-pieces.json'), JSON.stringify({
   site: SITE,
   pieces: cat.pieces.filter((p) => p.img?.length).map((p) => ({
@@ -219,6 +220,9 @@ await fs.writeFile(path.join(DIST, 'catalog-pieces.json'), JSON.stringify({
     stones: p.facets?.stone || [],
     plating: p.plating || [],
     about: (p.story || [])[0] || '',
+    // When it joined the house (YYYY-MM-DD), and whether it is on the New Arrivals shelf now.
+    added: p.at || null,
+    ...(arrivals.has(p.h) ? { newArrival: true } : {}),
   })),
 }));
 
