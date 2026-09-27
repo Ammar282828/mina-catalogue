@@ -1189,6 +1189,76 @@
    "px": [1333, 2000], "story": ["A gents' ring: a tall oval natural ruby in a gold-plated crown bezel, on a silver band with ribbed shoulders."]
   },
   {
+   "id": "DSC09289.jpg",
+   "t": "Natural Ruby Ring No. 14",
+   "co": "natural-ruby-rings", "addedAt": "2026-09-27",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"],
+   "px": [2160, 3840], "story": ["A gents' ring: an oval natural ruby in a gold-plated crown bezel, on a silver band with ribbed shoulders."]
+  },
+  {
+   "id": "DSC09290.jpg",
+   "t": "Natural Ruby Ring No. 15",
+   "co": "natural-ruby-rings", "addedAt": "2026-09-27",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"],
+   "px": [2160, 3840], "story": ["A gents' ring: a large oval natural ruby in a gold-plated crown bezel, on a silver band with wide ribbed shoulders."]
+  },
+  {
+   "id": "DSC09291.jpg",
+   "t": "Natural Ruby Ring No. 16",
+   "co": "natural-ruby-rings", "addedAt": "2026-09-27",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"],
+   "px": [2160, 3840], "story": ["A gents' ring: an oval natural ruby in a gold-plated crown bezel, on a silver band with finely reeded shoulders."]
+  },
+  {
+   "id": "DSC09292.jpg",
+   "t": "Natural Ruby Ring No. 17",
+   "co": "natural-ruby-rings", "addedAt": "2026-09-27",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby", "American Diamond"], "setting": ["Solitaire"], "cut": ["Oval"],
+   "px": [2160, 3840], "story": ["A gents' ring: an oval natural ruby in a gold-plated crown bezel, on a silver band whose shoulders carry two rows of small white stones."]
+  },
+  {
+   "id": "DSC09293.jpg",
+   "t": "Natural Ruby Ring No. 18",
+   "co": "natural-ruby-rings", "addedAt": "2026-09-27",
+   "type": "Ring", "natural": true, "plating": [], "stone": ["Natural Ruby"], "setting": ["Solitaire"], "cut": ["Oval"],
+   "px": [2160, 3840], "story": ["A gents' ring: an oval natural ruby in a gold-plated crown bezel, on a silver band with deep-fluted shoulders."]
+  },
+  {
+   "id": "DSC09284.jpg",
+   "t": "Sapphire Halo Line Bracelet",
+   "co": "wristwear", "addedAt": "2026-09-27",
+   "type": "Bracelet", "plating": ["Rhodium"], "stone": ["Sapphire", "American Diamond"], "setting": ["Halo"],
+   "px": [2160, 3840], "story": ["Five blue stones, each in a halo of American Diamonds, in a line on a fine silver chain."]
+  },
+  {
+   "id": "DSC09285.jpg",
+   "t": "Pink Halo Line Bracelet",
+   "co": "wristwear", "addedAt": "2026-09-27",
+   "type": "Bracelet", "plating": ["Rhodium"], "stone": ["Pink Sapphire", "American Diamond"], "setting": ["Halo"],
+   "px": [2160, 3840], "story": ["Five pink stones, each in a halo of American Diamonds, in a line on a fine silver chain."]
+  },
+  {
+   "id": "DSC09286.jpg",
+   "t": "Pavé Buckle Bracelet",
+   "co": "wristwear", "addedAt": "2026-09-27",
+   "type": "Bracelet", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"],
+   "px": [2160, 3840], "story": ["Two buckle links, each with a bar of pavé American Diamonds, joined on a silver chain."]
+  },
+  {
+   "id": "DSC09287.jpg",
+   "t": "Triple Flower Bracelet",
+   "co": "wristwear", "addedAt": "2026-09-27",
+   "type": "Bracelet", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"],
+   "px": [2160, 3840], "story": ["Three open flowers outlined in American Diamonds, on a fine silver chain."]
+  },
+  {
+   "id": "DSC09288.jpg",
+   "t": "Gold Station Bracelet",
+   "co": "wristwear", "addedAt": "2026-09-27",
+   "type": "Bracelet", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": [2160, 3840], "story": ["A gold-plated chain with small bezel-set American Diamonds spaced along it."]
+  },
+  {
    "id": "PHOTO-2026-09-21-14-32-09.jpg",
    "t": "Sapphire Pearl Choker Set",
    "co": "sets",

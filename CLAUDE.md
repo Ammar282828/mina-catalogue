@@ -197,6 +197,10 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     each v3 — metal polished bright, scratches/dust/fingerprints off, the beaded bezel crisp, surface dust off the stone,
     keeping each ring's design and each ruby's shape, cut and natural inclusions; the retouched ring (mask dilated 14 px,
     feathered 6 px, velvet-matched) set back into the v3 frame so the approved background is untouched.
+    **Nos. 14–18 and five bracelets (2026-09-27):** a later shoot (DSC09284–93, maroon backdrop), retouched the same way on
+    Magnific (GPT 2.5; each piece's own pixels kept, its polish set back by frequency separation so metals keep their colour),
+    whole frame 2160×3840 → `catalog-src/local/DSC092NN.jpg`. The bracelets are local pieces in Wristwear → Bracelets
+    (Sapphire / Pink Halo Line, Pavé Buckle, Triple Flower, Gold Station; named off the photo — the owner may rename).
   - **Sets from Instagram posts (2026-09-23):** seven "Full Set" posts (1080px, `~/Downloads/PHOTO-2026-….jpg`); four
     were already on the site (Ruby Line, Pavé Fan Bridal, Aqua Bloom, and Sapphire Two-Row — that post shows it gold
     with darker stones) and were not repeated. The other three are local pieces under their file names: Sapphire
