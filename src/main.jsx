@@ -29,8 +29,8 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-loadDrops().then((drops) => {
-  const cat = buildCatalog({ ...mergeLocal(shopify, local, renders), lead, framed, pretty, recommend }, drops);
+loadDrops().then(({ images, overrides }) => {
+  const cat = buildCatalog({ ...mergeLocal(shopify, local, renders), lead, framed, pretty, recommend, overrides }, images);
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
       <ErrorBoundary><App cat={cat} /></ErrorBoundary>

@@ -231,13 +231,24 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   `api/catalog.php` lists them, `api/img.php` resizes them; the app folds them in at load as
   "price on request" pieces. `catalog-tree.json` (written by the prerender) tells the POS which folders exist and
   each one's `path`, which the POS links to after an upload.
+- **Changes from the counter** (2026-09-27) — the POS's Website → Edit a piece re-makes a piece's photograph (crop, the
+  weight and the mark, AI enhance) or changes its name, words (`story`, blank line = paragraph) and facts, or hides it,
+  through `public/api/override.php` (same secret as upload.php; the same two files as taheri.shop's, `api/_overrides.php`).
+  Words: `public_html/catalog-overrides.json`, keyed `mina/piece/<handle>`, handed to the app by `api/catalog.php` and applied
+  in `buildCatalog` (`data.overrides`; a hidden piece leaves every page, the address stays). A photograph is written over
+  its own `catalog-thumb/`/`catalog-full/` files (original kept in `catalog-edit/originals/`), with `photo.v` (and its new
+  `w`/`h`) on the image. The prerender reads the live list (`/api/override.php`) for the pages; `catalog-pieces.json` lists
+  the site's **own** words (plus `story` and `facts` for the editor) and the POS lays the changes over them, live. Weights
+  typed at the counter live in the change (`weightGrams`), not shown on the catalogue.
 
 ## Deploy (`.github/workflows/deploy.yml`)
 
 Push to `main` → build (photos from cache or Shopify's CDN) → sanity gate → rsync over SSH to
 `~/domains/catalogue.houseofmina.store/public_html` on the same Hostinger account as taheri.shop.
 Gated by the repository variable `DEPLOY_ENABLED=1`. "Run workflow" with **sync** ticked re-copies
-from Shopify first and commits it. rsync never deletes; `catalog-drop/` is never touched.
+from Shopify first and commits it. rsync never deletes; `catalog-drop/` is never touched, nor any photograph the counter
+re-made (the deploy reads the server's `catalog-overrides.json` first and excludes each `photo.edited` file; if it can't
+read it, it stops rather than put the old photographs back).
 
 ## Go-live status (2026-09-23)
 

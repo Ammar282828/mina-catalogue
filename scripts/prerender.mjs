@@ -32,7 +32,16 @@ const lead = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'lead.json'), 
 const framed = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'framed.json'), 'utf8'));
 const pretty = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'pretty.json'), 'utf8'));
 const recommend = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'recommend.json'), 'utf8'));
-const cat = buildCatalog({ ...mergeLocal(shopify, local, renders), lead, framed, pretty, recommend }, []);
+// The counter's changes since pieces were built (api/_overrides.php), from the live
+// site's endpoint (never cached), so the pages and catalog-pieces.json carry them.
+const live = await fetch(`${SITE}/api/override.php`, { signal: AbortSignal.timeout(8000), headers: { 'User-Agent': 'mina-catalogue-build' } })
+  .then((r) => (r.ok ? r.json() : null)).catch(() => null);
+if (!live?.ok) console.warn('The counter\'s changes could not be read: the pages leave them out until the next build (the app still applies them).');
+const overrides = live?.overrides && typeof live.overrides === 'object' && !Array.isArray(live.overrides) ? live.overrides : {};
+const cat = buildCatalog({ ...mergeLocal(shopify, local, renders), lead, framed, pretty, recommend, overrides }, []);
+// The site's own words, before the counter's: what catalog-pieces.json lists (the POS
+// applies the counter's changes itself, live, so putting a piece back is exact at once).
+const own = Object.keys(overrides).length ? buildCatalog({ ...mergeLocal(shopify, local, renders), lead, framed, pretty, recommend }, []) : cat;
 const template = await fs.readFile(path.join(DIST, 'index.html'), 'utf8');
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -205,25 +214,31 @@ await fs.writeFile(path.join(DIST, 'catalog-tree.json'), JSON.stringify({
 }, null, 2));
 
 // Every piece with its page, photograph and words, for the POS: it posts a piece
-// from here to the House of Mina community with its link (Posts → From the catalogue).
-// `id` is the key the accounts already use (mina/piece/<handle>).
-const arrivals = new Set(cat.newArrivals.pieces.map((p) => p.h));
+// from here to the House of Mina community with its link (Posts → From the catalogue),
+// and edits one (Website → Edit a piece). `id` is the key the accounts already use
+// (mina/piece/<handle>). The site's own words and photographs, pieces hidden at the
+// counter included: the POS lays the counter's changes over them itself.
+const arrivals = new Set(own.newArrivals.pieces.map((p) => p.h));
 await fs.writeFile(path.join(DIST, 'catalog-pieces.json'), JSON.stringify({
   site: SITE,
-  pieces: cat.pieces.filter((p) => p.img?.length).map((p) => ({
+  pieces: own.pieces.filter((p) => p.img?.length).map((p) => ({
     id: `mina/piece/${p.h}`,
     name: p.t,
     path: piecePath(p),
     image: imageUrls(p.img[0]).full,
     thumb: imageUrls(p.img[0]).thumb,
-    collection: cat.galleries.get(p.co)?.title || '',
+    collection: own.galleries.get(p.co)?.title || '',
     stones: p.facets?.stone || [],
     plating: p.plating || [],
     about: (p.story || [])[0] || '',
+    // Every paragraph and fact, for the POS's piece editor.
+    story: p.story || [],
+    facts: p.facts || [],
     // When it joined the house (YYYY-MM-DD), and whether it is on the New Arrivals shelf now.
     added: p.at || null,
     ...(arrivals.has(p.h) ? { newArrival: true } : {}),
   })),
 }));
 
+console.log(`${Object.keys(overrides).length} pieces changed at the counter.`);
 console.log(`Prerendered ${routes.length + 1} documents (${indexable.length} in the sitemap), ${cat.pieces.length} pieces.`);

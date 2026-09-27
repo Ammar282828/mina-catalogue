@@ -109,12 +109,32 @@ jobs:
             elif [ \$(ls -A | grep -vE '^(default\.php|index\.php|index\.html|\.htaccess|\.well-known|cgi-bin)\$' | wc -l) -eq 0 ]; then echo 'ok: fresh site folder'; \
             else echo 'refusing: this folder is not the catalogue'; ls -A | head; exit 1; fi"
 
+      # A photograph re-made at the counter (POS → Website → Edit a piece) was written
+      # over its file on the server (api/_overrides.php); this build's copy is the
+      # old one, so those files are left alone. A failed read stops the deploy
+      # rather than put the old photographs back.
+      - name: Keep the counter's re-made photographs
+        run: |
+          set -e
+          ssh site "cd '$SITE_DIR' && cat catalog-overrides.json 2>/dev/null || true" > overrides.json
+          node -e '
+            const fs = require("fs");
+            let all;
+            try { all = JSON.parse(fs.readFileSync("overrides.json", "utf8").trim() || "{}"); }
+            catch { console.error("catalog-overrides.json on the server did not read as JSON; refusing to deploy over it"); process.exit(1); }
+            const keep = Object.values(all).filter((o) => o && o.photo && o.photo.edited && o.photo.image)
+              .flatMap((o) => ["thumb", "full"].map((v) => `/catalog-${v}/${o.photo.image}`));
+            fs.writeFileSync("keep.txt", keep.map((k) => k + "\n").join(""));
+            console.log(`${keep.length / 2} re-made photographs kept as they are`);
+          '
+
       # No --delete: the server keeps what the build does not carry — the
-      # counter's uploads in catalog-drop/ and their cache.
+      # counter's uploads in catalog-drop/ and their cache, its changes
+      # (catalog-overrides.json, catalog-edit/) and the photographs it re-made.
       - name: Sync to the live site
         run: |
           rsync -rlptz --no-perms --no-owner --no-group --omit-dir-times --itemize-changes \
-            --exclude 'catalog-drop/' --exclude 'catalog-drop-cache/' \
+            --exclude 'catalog-drop/' --exclude 'catalog-drop-cache/' --exclude-from keep.txt \
             -e "ssh" dist/ "site:$SITE_DIR/" \
           | tee rsync.log | grep -cE '^[<>]f' | xargs echo "files written:"
           # The host's placeholder page, if hPanel left one, would shadow ours.

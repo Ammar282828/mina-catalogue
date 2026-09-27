@@ -209,6 +209,36 @@ function worded(p) {
   };
 }
 
+// ── The counter's changes ───────────────────────────────────────────────────
+// A piece corrected from the POS (Website → Edit a piece) after the build: its
+// name, its words, its facts, hidden (off every page), or a re-made photograph
+// written over the old file (api/_overrides.php). `data.overrides` is { "mina/piece/<handle>": change },
+// from api/catalog.php in the app and from the live site in the prerender. The
+// piece keeps its address: only what it says and shows changes.
+export const pieceKey = (p) => `mina/piece/${p.h}`;
+const paragraphs = (text) => String(text || '').split(/\n\s*\n/).map((x) => x.replace(/\s+/g, ' ').trim()).filter(Boolean);
+
+function counterChanges(overrides) {
+  const all = overrides && typeof overrides === 'object' ? overrides : {};
+  if (!Object.keys(all).length) return (p) => p;
+  return (p) => {
+    const o = all[pieceKey(p)];
+    if (!o) return p;
+    const out = { ...p, ...(o.hidden ? { hidden: true } : {}) };
+    if (typeof o.name === 'string' && o.name.trim()) out.t = o.name.trim();
+    if (typeof o.about === 'string') out.story = paragraphs(o.about);
+    if (Array.isArray(o.facts)) out.facts = o.facts.filter((f) => typeof f === 'string' && f.trim());
+    // The photograph was replaced in place: a new version on its address, so nobody keeps the old one.
+    const ph = o.photo;
+    if (ph?.image && ph.v) {
+      // Re-made in another shape (square from portrait): its size says so, for the page's layout.
+      const size = ph.w > 0 && ph.h > 0 ? { w: ph.w, h: ph.h } : {};
+      out.img = p.img.map((im) => (im.f && `${im.f}.webp` === ph.image ? { ...im, ...size, v: im.v ? `${im.v}.${ph.v}` : ph.v } : im));
+    }
+    return out;
+  };
+}
+
 export function buildCatalog(data, drops = [], now = Date.now()) {
   const dropped = drops.map(dropPiece).filter(Boolean);
   // A re-framed ring photograph is square now, and its URL carries the framing version.
@@ -218,7 +248,9 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
     : p);
   // A catalogue synced before Wristwear had sub-categories still says "wristwear".
   const rehome = (p) => (p.co === 'wristwear' ? { ...p, co: homeOf(p.co, p) } : p);
-  const pieces = [...dropped, ...data.pieces].map(rehome).map(worded).map(reframe).sort((a, b) => (b.at || '').localeCompare(a.at || ''));
+  const changed = counterChanges(data.overrides);
+  const pieces = [...dropped, ...data.pieces].map(rehome).map(worded).map(reframe).map(changed).filter((p) => !p.hidden)
+    .sort((a, b) => (b.at || '').localeCompare(a.at || ''));
   const byHandle = new Map(pieces.map((p) => [p.h, p]));
   const bySlug = new Map(pieces.map((p) => [p.s || p.h, p]));
   const cutoff = new Date(now - NEW_DAYS * 864e5).toISOString().slice(0, 10);

@@ -30,7 +30,8 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/_drops.php';
+require_once __DIR__ . '/_drops.php';
+require_once __DIR__ . '/_overrides.php';
 
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
@@ -41,10 +42,12 @@ header('Cache-Control: public, max-age=30');
 $root = drops_dir();
 if (!is_dir($root)) {
     echo json_encode([
-        'ok'     => true,
-        'images' => [],
-        'note'   => 'catalog-drop folder not found',
-    ]);
+        'ok'        => true,
+        'images'    => [],
+        // The counter's changes to pieces already on the site (_overrides.php), in the same request.
+        'overrides' => (object) overrides_read(),
+        'note'      => 'catalog-drop folder not found',
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -77,4 +80,6 @@ echo json_encode([
     'engine' => drops_engine(),
     'count'  => count($images),
     'images' => $images,
+    // The counter's changes to pieces already on the site (_overrides.php).
+    'overrides' => (object) overrides_read(),
 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
