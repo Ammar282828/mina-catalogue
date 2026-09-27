@@ -4,6 +4,7 @@ import { hello, WHATSAPP_DISPLAY, INSTAGRAM, TIKTOK } from '../lib/contact.js';
 import { useFavourites, useTheme } from '../lib/store.js';
 import { useUser } from '../lib/auth.js';
 import { Link, Wordmark, HeartIcon, SearchIcon, SunIcon, MoonIcon, CloseIcon, Photo, useNav, WhatsAppIcon, ArrowRight } from './ui.jsx';
+import TileMark from './TileMark.jsx';
 
 // ── Ribbon ──────────────────────────────────────────────────────────────────
 /** The house's promises, one at a time, above the front page. */
@@ -86,7 +87,7 @@ function Search({ cat, onClose }) {
           {hits.map((p) => (
             <li key={p.h} className="list-none">
               <Link to={piecePath(p)} onClick={onClose} className="group block">
-                <div className="aspect-square overflow-hidden bg-bg-2"><Photo src={imageUrls(p.img[0]).thumb} alt="" className="h-full w-full object-cover" /></div>
+                <div className="relative aspect-square overflow-hidden bg-bg-2"><Photo src={imageUrls(p.img[0]).thumb} alt="" className="h-full w-full object-cover" /><TileMark branded={!!p.img[0].f} /></div>
                 <p className="serif mt-2 text-[14.5px] text-ink group-hover:text-accent truncate">{p.t}</p>
                 {priceLabel(p) && <p className="text-[12px] text-ink-2">{priceLabel(p)}</p>}
               </Link>

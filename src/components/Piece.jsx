@@ -4,6 +4,7 @@ import { enquiry, shopUrl } from '../lib/contact.js';
 import { stoneLabel } from '../lib/stones.js';
 import { useFavourites, noteViewed, useRecent } from '../lib/store.js';
 import { Link, Breadcrumbs, Photo, PieceGrid, HeartIcon, ShareIcon, WhatsAppIcon, ChevronLeft, ChevronRight, CloseIcon } from './ui.jsx';
+import TileMark from './TileMark.jsx';
 import { Shelf, CompleteTheLook, PickedForYou, allOf } from './Recs.jsx';
 
 const PLATING_LABEL = { Gold: '21k Gold', Rhodium: 'Rhodium', 'Rose Gold': 'Rose Gold' };
@@ -116,8 +117,6 @@ export default function Piece({ route, cat }) {
   const edits = cat.edits.filter((e) => p.edits?.includes(e.slug));
   const saved = fav.has(p.h);
   // A portrait photograph is shown whole, in its own shape (up to 2:3); anything else in a square.
-  const photo = p.img[index];
-  const tall = photo.w && photo.h && photo.h > photo.w * 1.02;
 
   const crumbs = [
     { title: 'Home', path: '/' },
@@ -135,9 +134,10 @@ export default function Piece({ route, cat }) {
           {/* Photographs */}
           <div>
             <button type="button" onClick={() => setViewer(true)} aria-label="Open the photographs full screen"
-              style={tall ? { aspectRatio: `${photo.w} / ${Math.min(photo.h, photo.w * 1.5)}` } : undefined}
-              className={`relative block w-full overflow-hidden bg-bg-2 cursor-zoom-in ${tall ? '' : 'aspect-square'}`}>
+              className="relative block w-full aspect-square overflow-hidden bg-bg-2 cursor-zoom-in">
               <Photo key={p.img[index].f || p.img[index].thumb} src={imageUrls(p.img[index]).full} alt={p.img[index].alt || p.t} eager className="h-full w-full object-cover" />
+              {/* Square first, with the mark, like every tile; the viewer shows the whole photograph (the owner, 2026-09-27). */}
+              <TileMark key={`m-${p.img[index].f || p.img[index].thumb}`} branded={!!p.img[index].f} />
             </button>
             {p.img.length > 1 && (
               <div ref={strip} className="no-scrollbar mt-3 flex gap-2 overflow-x-auto">

@@ -3,6 +3,7 @@ import { imageUrls, piecePath, galleryPath } from '../lib/catalog.js';
 import { kindOf, KIND_LABEL } from '../lib/recommend.js';
 import { useFavourites, useRecent } from '../lib/store.js';
 import { Link, Photo, PieceGrid, ArrowRight } from './ui.jsx';
+import TileMark from './TileMark.jsx';
 
 /**
  * The recommendation shelves (src/lib/recommend.js): a titled grid, "Complete the look" with
@@ -66,8 +67,9 @@ export function CompleteTheLook({ pieces, chosen, onToggle, title = 'Complete th
           return (
             <li key={x.h} className="list-none">
               <Link to={piecePath(x)} className="group block">
-                <div className="aspect-square overflow-hidden bg-bg-2">
+                <div className="relative aspect-square overflow-hidden bg-bg-2">
                   <Photo src={imageUrls(x.img[0]).thumb} alt={x.t} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                  <TileMark branded={!!x.img[0].f} />
                 </div>
                 <p className="mt-2 text-[11px] uppercase tracking-[0.14em] text-ink-2">{KIND_LABEL[kindOf(x)] || ''}</p>
                 <p className="serif mt-0.5 text-[14.5px] leading-snug text-ink line-clamp-2 group-hover:text-accent">{x.t}</p>

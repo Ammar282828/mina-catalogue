@@ -142,6 +142,13 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   owner's Mac only). `PHOTO_VERSION` in catalog.js goes into every photo URL (`?v=1`, rings `?v=1.4`); raise it after
   changing the mark. `public/catalog-full/.branding.json` records which cached variants carry it. Photos the counter
   uploads from the POS (catalog-drop) are resized by the server and are not branded.
+- **The mark on every square** (2026-09-27, the owner, both sites: "keep them their og size, however add the overlay on the 1x1
+  thumbnail so its uniform in collections and on viewing before opening full pic"): photographs keep their shape; every square
+  tile of a piece (grids, recommendations, search) and the piece page's photo draw the MINA mark themselves — `TileMark.jsx`,
+  brand.mjs's geometry and colours (19% across, 4.8% in, 3.7% down; maroon on a light corner, white on a dark one, read off the
+  pixels) — when the photo is not square (the crop cut its burned-in mark off) or is a POS drop (never branded). A square
+  built photo already shows its mark and gets none. The viewer shows the photograph whole. Taheri's site does the same with
+  its wordmark (taheri-site `TileMark.jsx`).
 - **The house's own images** — `data/local.json` (committed) lists images that are not on Shopify: `heroes` puts one
   first on a Shopify piece (by handle); `pieces` are pieces known only from an image (no price → "Price on request"),
   with `also` (more images of the piece) and `photoPlating` (the plating chip then shows that image); `held` records
@@ -186,7 +193,8 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     (`px: [1333, 2000]`; a replaced photo needs a new name, since the photo cache keeps the old one). The first
     square crops (`DSC075NN.jpg`) are unused. Named **Natural Ruby Ring No. 1–13** in shoot order (a longer name hides
     the number on a gallery card), in Men's → Natural Ruby Rings, `natural: true`, plating left empty (silver band,
-    gold-plated bezel). A portrait photo shows whole on a piece page (frame up to 2:3); tiles stay square.
+    gold-plated bezel). Since 2026-09-27 a piece page shows its photo square like every tile, with the mark; the viewer shows it whole
+    (it used to show a portrait whole, up to 2:3).
     **Retouched (2026-09-24, the owner: "retouch all gents ruby rings … using open ai"):** GPT Image 2.5 (OpenAI's model,
     via Magnific `gpt-2-mini`, flare, high, 2k, 2:3; this Mac has no OpenAI key) cleaned the velvet box, the maroon
     backdrop and the fingertips and neutralised the colour; then each ring's **own pixels were pasted back** through a

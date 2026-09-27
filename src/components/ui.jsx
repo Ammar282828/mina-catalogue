@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import { imageUrls, piecePath, priceLabel, galleryPath } from '../lib/catalog.js';
 import { useFavourites } from '../lib/store.js';
+import TileMark from './TileMark.jsx';
 
 // ── Navigation ──────────────────────────────────────────────────────────────
 export const NavContext = createContext({ navigate: () => {}, path: '/' });
@@ -93,6 +94,8 @@ export function PieceTile({ piece, isNew = false, eager = false }) {
       <Link to={piecePath(piece)} className="block" aria-label={priceLabel(piece) ? `${piece.t}, ${priceLabel(piece)}` : piece.t}>
         <div className="relative aspect-square overflow-hidden bg-bg-2">
           <Photo src={imageUrls(a).thumb} alt={a.alt || piece.t} eager={eager} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+          {/* The MINA mark on the square when the crop cut the photograph's own off (TileMark). */}
+          <TileMark branded={!!a.f} />
           {/* The second photograph on hover — usually the piece worn, or the other plating. */}
           {b && (
             <img src={imageUrls(b).thumb} alt="" aria-hidden="true" loading="lazy" decoding="async"
