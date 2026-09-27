@@ -1,0 +1,48 @@
+# A Claude Code cloud session (claude.ai/code) goes live by itself.
+#
+# A cloud session may push only its own branch (claude/…), never main. This brings main into
+# that branch, puts the result on main, and starts "Deploy to Hostinger" by name — a push made
+# with the workflow's own token starts no workflow by itself (owner, 2026-09-27: cloud work goes
+# live without a review). The deploy's own checks still guard the live site. Nothing is ever
+# force-pushed; a branch that doesn't merge cleanly stops here — rebase it on main and push again.
+name: Deploy a cloud session
+
+on:
+  push:
+    branches: ['claude/**']
+
+concurrency:
+  group: cloud-to-main
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Merge main in and put the result on main
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --quiet origin main
+          if ! git merge-base --is-ancestor origin/main HEAD; then
+            git merge --no-edit -m "Merge main into ${GITHUB_REF_NAME}" origin/main \
+              || { echo "::error::main does not merge cleanly into ${GITHUB_REF_NAME}; rebase the branch on main and push again"; exit 1; }
+          fi
+          git push origin HEAD:refs/heads/main
+
+      - name: Start the deploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run deploy.yml --ref main -R "$GITHUB_REPOSITORY"
+          echo "::notice::$(git rev-parse --short HEAD) is on main; Deploy to Hostinger started"

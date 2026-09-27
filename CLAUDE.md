@@ -256,6 +256,10 @@ from Shopify first and commits it. rsync never deletes; `catalog-drop/` is never
 re-made (the deploy reads the server's `catalog-overrides.json` first and excludes each `photo.edited` file; if it can't
 read it, it stops rather than put the old photographs back).
 
+**Cloud sessions** (claude.ai/code) can push only their own `claude/…` branch; `cloud-deploy.yml` merges main into it,
+puts it on main and starts this deploy — no review (owner, 2026-09-27). A branch that doesn't merge cleanly fails there:
+rebase on main and push again. The ERP's CLAUDE.md (taheri-pos), "Cloud sessions", has the rest.
+
 ## Go-live status (2026-09-23)
 
 - Hostinger website **created** through the Hostinger API (Business plan, order 1008754559, beside taheri.shop):
