@@ -18,7 +18,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { buildCatalog, mergeLocal, resolvePath, trail as trailOf, piecePath, galleryPath, imageUrls, priceLabel, PAGE_SIZE, SITE, SHOW_PRICES } from '../src/lib/catalog.js';
+import { buildCatalog, mergeLocal, resolvePath, trail as trailOf, piecePath, galleryPath, imageUrls, priceLabel, PAGE_SIZE, SITE, SHOW_PRICES, localFile, localImageIds, renderKey } from '../src/lib/catalog.js';
 import { metaFor, BRAND } from '../src/lib/seo.js';
 import { CHAPTERS } from '../src/lib/taxonomy.js';
 import { WHATSAPP_DISPLAY, INSTAGRAM, enquiry, shopUrl } from '../src/lib/contact.js';
@@ -213,6 +213,18 @@ await fs.writeFile(path.join(DIST, 'catalog-tree.json'), JSON.stringify({
   collections: CHAPTERS.flatMap((ch) => (ch.collections ? ch.collections.map((k) => folder(ch.title, k)) : [folder(ch.title, ch)])),
 }, null, 2));
 
+// Where each photograph comes from before this site frames and marks it — as
+// scripts/images.mjs builds its list — so the POS's editor starts from a photo
+// without the MINA mark (it puts the mark back itself, where brand.mjs does).
+const sourceOf = await (async () => {
+  const sources = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'image-sources.json'), 'utf8'));
+  for (const id of localImageIds(local)) sources[`local/${id.replace(/\.[a-z0-9]+$/i, '')}`] = `${SITE}/catalog-src/local/${localFile(id)}`;
+  const used = new Set(localImageIds(local).map((id) => id.replace(/\.[a-z0-9]+$/i, '')));
+  for (const [id, r] of Object.entries(renders)) if (used.has(id)) sources[renderKey(id, r)] = `${SITE}/catalog-src/local-3d/${id}.png?v=${r.v}`;
+  return (f) => sources[f] || null;
+})();
+const marked = new Set(JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'marked.json'), 'utf8')).marked);
+
 // Every piece with its page, photograph and words, for the POS: it posts a piece
 // from here to the House of Mina community with its link (Posts → From the catalogue),
 // and edits one (Website → Edit a piece). `id` is the key the accounts already use
@@ -231,9 +243,12 @@ await fs.writeFile(path.join(DIST, 'catalog-pieces.json'), JSON.stringify({
     stones: p.facets?.stone || [],
     plating: p.plating || [],
     about: (p.story || [])[0] || '',
-    // Every paragraph and fact, for the POS's piece editor.
+    // Every paragraph and fact, for the POS's piece editor, and the photograph before
+    // the site framed and marked it (`marked`: it carried a mark of its own already).
     story: p.story || [],
     facts: p.facts || [],
+    ...(sourceOf(p.img[0].f) ? { source: sourceOf(p.img[0].f) } : {}),
+    ...(marked.has(p.img[0].f) ? { marked: true } : {}),
     // When it joined the house (YYYY-MM-DD), and whether it is on the New Arrivals shelf now.
     added: p.at || null,
     ...(arrivals.has(p.h) ? { newArrival: true } : {}),

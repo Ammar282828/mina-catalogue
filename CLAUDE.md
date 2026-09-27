@@ -238,7 +238,9 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   in `buildCatalog` (`data.overrides`; a hidden piece leaves every page, the address stays). A photograph is written over
   its own `catalog-thumb/`/`catalog-full/` files (original kept in `catalog-edit/originals/`), with `photo.v` (and its new
   `w`/`h`) on the image. The prerender reads the live list (`/api/override.php`) for the pages; `catalog-pieces.json` lists
-  the site's **own** words (plus `story` and `facts` for the editor) and the POS lays the changes over them, live. Weights
+  the site's **own** words (plus `story`, `facts`, the first photo's `source` before framing and the MINA mark — Shopify's CDN
+  or `catalog-src/` — and `marked` when the source carries a mark already) and the POS lays the changes over them, live. The
+  POS edits from `source` and puts the MINA mark back where brand.mjs does (`/brand/mina-wordmark.svg` in the POS). Weights
   typed at the counter live in the change (`weightGrams`), not shown on the catalogue.
 
 ## Deploy (`.github/workflows/deploy.yml`)
