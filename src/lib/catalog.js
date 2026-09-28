@@ -105,8 +105,8 @@ function dropPiece(d) {
 
 // ── The house's own images ──────────────────────────────────────────────────
 // data/local.json: images that are not on Shopify. `heroes` puts one first on a
-// Shopify piece, `extras` after its own photographs (the house's photo of a piece
-// Shopify already shows); `pieces` are pieces known only from an image (no price —
+// Shopify piece, `instead` shows the house's own photographs in place of Shopify's
+// (the white product shots); `pieces` are pieces known only from an image (no price —
 // "Price on request"), with `also` for more images of the same piece and
 // `photoPlating` for which plating an image shows. An image id is a file under
 // the server's catalog-src/local/ — "DSC08985" means DSC08985.png, anything with
@@ -115,12 +115,12 @@ function dropPiece(d) {
 export const localFile = (id) => (/\.[a-z0-9]+$/i.test(id) ? id : `${id}.png`);
 const localKey = (id) => id.replace(/\.[a-z0-9]+$/i, '');
 
-/** Every image id data/local.json uses (heroes, extras and pieces, not `held`). */
+/** Every image id data/local.json uses (heroes, instead and pieces, not `held`). */
 export function localImageIds(local) {
   const ids = (xs) => (xs || []).map((x) => (typeof x === 'string' ? x : x.id));
   return [
     ...Object.values(local?.heroes || {}).flatMap(ids),
-    ...Object.values(local?.extras || {}).flatMap(ids),
+    ...Object.values(local?.instead || {}).flatMap(ids),
     ...(local?.pieces || []).flatMap((p) => [p.id, ...(p.also || [])]),
   ];
 }
@@ -143,11 +143,11 @@ export function mergeLocal(data, local, renders = {}) {
       : { f: `local/${localKey(id)}`, w, h, ...(plating ? { plating } : {}) };
   };
   const heroes = local.heroes || {};
-  const extras = local.extras || {};
+  const instead = local.instead || {};
   const taken = new Set(data.pieces.map((p) => p.s || p.h));
   const hero = (x) => (typeof x === 'string' ? localImg(x) : localImg(x.id, x.plating, x.px));
-  const shopify = data.pieces.map((p) => (heroes[p.h] || extras[p.h]
-    ? { ...p, img: [...(heroes[p.h] || []).map(hero), ...p.img, ...(extras[p.h] || []).map(hero)] }
+  const shopify = data.pieces.map((p) => (heroes[p.h] || instead[p.h]
+    ? { ...p, img: [...(heroes[p.h] || []).map(hero), ...(instead[p.h] ? instead[p.h].map(hero) : p.img)] }
     : p));
   const own = (local.pieces || []).map((x) => {
     const co = homeOf(x.co, x);
