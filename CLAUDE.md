@@ -156,6 +156,9 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   ("DSC08985" = DSC08985.png; an id with an extension is that file), uploaded by rsync + `chmod 644` (macOS rsync has
   no `--chmod`; iCloud files arrive 600 → HTTP 403). Never in git; rsync never deletes them. `mergeLocal()` in
   `catalog.js` folds them in for the app, the prerender and the deploy gate (`scripts/check-build.mjs`).
+  **Without SSH** (a cloud session, 2026-09-28): `api/upload.php` with `to=local`, `name=<file>` and the image (same
+  bearer secret as a drop) writes `catalog-src/local/<name>` at 644 — never over an existing file (409), on no page until
+  `data/local.json` names it. Upload first, then commit `local.json`: the build fetches the original over HTTPS.
   - **Rings, 2026-09-23:** iCloud `heroes-white-1500`, 179 files. These are **AI renders** (Nano Banana) of the shop's
     DSC photos, not photographs; the folder's `_REVIEW.txt` flags ten that differ from the real piece — those are
     `held`. 150 ring pieces, 12 Shopify rings with a new lead image. Names, collections, platings and stones were read

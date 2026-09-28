@@ -19,6 +19,9 @@
 //
 // Response: { ok, rel, bytes, thumb, full } or { ok:false, error }.
 //
+// to=local + name (instead of rel) puts one of the house's own originals in
+// catalog-src/local/ for the build — see below.
+//
 // Path safety is not re-invented here: drops_clean_rel() is the same
 // sanitiser catalog.php and img.php use, and it rejects "..", absolute paths,
 // wrong depths and anything outside DROP_EXTS. A name that survives it can
@@ -93,10 +96,24 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
 }
 
 // ── What is being uploaded ─────────────────────────────────────────────────
-$rel = isset($_POST['rel']) ? (string) $_POST['rel'] : '';
-$clean = drops_clean_rel($rel);
-if ($clean === null) {
-    upload_fail(400, 'rel must be "Category/Sub-category/name.jpg" and end in ' . implode(', ', DROP_EXTS) . '.');
+// to=local + name: one of the house's own originals (data/local.json), written to
+// catalog-src/local/<name> for the next build to fetch — what an rsync from the Mac
+// does, for a session with no SSH. Never overwrites (the file name is the build's
+// id), and on no page until data/local.json names it. The POS never sends it.
+$toLocal = ($_POST['to'] ?? '') === 'local';
+if ($toLocal) {
+    $name = (string) ($_POST['name'] ?? '');
+    if (!preg_match('/^[A-Za-z0-9][A-Za-z0-9 ._-]{0,120}\.(jpe?g|png|webp)$/i', $name)) {
+        upload_fail(400, 'name must be a plain file name ending .jpg, .png or .webp.');
+    }
+    $local = drops_site_root() . '/catalog-src/local/' . $name;
+    if (file_exists($local)) upload_fail(409, 'catalog-src/local/' . $name . ' is already there.');
+} else {
+    $rel = isset($_POST['rel']) ? (string) $_POST['rel'] : '';
+    $clean = drops_clean_rel($rel);
+    if ($clean === null) {
+        upload_fail(400, 'rel must be "Category/Sub-category/name.jpg" and end in ' . implode(', ', DROP_EXTS) . '.');
+    }
 }
 
 if (!isset($_FILES['file'])) upload_fail(400, 'No file was received.');
@@ -127,6 +144,16 @@ if ($info === false || !in_array($info[2], [IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGE
 }
 
 // ── Write it ───────────────────────────────────────────────────────────────
+if ($toLocal) {
+    if (!is_dir(dirname($local)) && !@mkdir(dirname($local), 0755, true) && !is_dir(dirname($local))) {
+        upload_fail(500, 'Could not create catalog-src/local/.');
+    }
+    if (!@move_uploaded_file($file['tmp_name'], $local)) upload_fail(500, 'Could not save the photograph.');
+    @chmod($local, 0644);   // the build fetches it over HTTPS; 600 answers 403
+    echo json_encode(['ok' => true, 'local' => 'catalog-src/local/' . $name, 'bytes' => filesize($local) ?: 0]);
+    exit;
+}
+
 $dest = drops_dir() . '/' . $clean;
 $dir  = dirname($dest);
 if (!is_dir($dir) && !@mkdir($dir, 0755, true) && !is_dir($dir)) {
