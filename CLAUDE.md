@@ -216,6 +216,14 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     were already on the site (Ruby Line, Pavé Fan Bridal, Aqua Bloom, and Sapphire Two-Row — that post shows it gold
     with darker stones) and were not repeated. The other three are local pieces under their file names: Sapphire
     Pearl Choker Set, Emerald Swirl Set, Emerald Cascade Set.
+  - **Boxed sets, 2026-09-28** (the owner's Drive folder "HOM SETS": 19 retouched shots, DSC09345–64 without 09346, sets in
+    the maroon Mina box, 1254² PNG; uploaded from a cloud session with upload.php `to=local`). Eight designs were already
+    here, so their photographs were added to those pieces, never repeated as new ones: `extras` (after Shopify's own photo)
+    on Aqua Bloom (09358 + 09359, one set shot twice), Ruby Line (09352), Ruby Vine (09353), Sapphire Scroll (09351),
+    Pavé Fan Bridal (09347); `also` on the local Sapphire Pearl Choker (09354), Emerald Swirl (09363), Emerald Cascade
+    (09355). The other ten are new local sets named off the photo (the owner may rename): Amethyst Fringe, Pavé Wave, Pavé
+    Scroll Drop, Emerald Marquise Halo (necklace and earrings only), Petite Teardrop, Marquise Leaf, Ruby Marquise Drop,
+    Pavé Ripple, Pavé Lattice Bib, Emerald Blossom. Not on taheri.shop (the owner: "house of mina catalogue only").
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
     Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.
