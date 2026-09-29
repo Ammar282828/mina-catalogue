@@ -113,24 +113,38 @@ export default function Landing({ cat }) {
             {state.active === 0 ? (
               // What to do, said plainly on the first screen (the owner, 2026-09-24: easy for
               // older visitors): the words first, then the two things to do, in big buttons.
-              <div className="pointer-events-auto mx-auto mb-[4vh] md:mb-[7vh] max-w-xl border border-line bg-bg/90 px-5 py-6 md:px-9 md:py-8 backdrop-blur-sm">
-                <h1 className="serif text-[27px] md:text-[34px] leading-tight text-ink">Welcome to House of Mina</h1>
-                <p className="mt-3 text-[17px] md:text-[18px] leading-relaxed text-ink">
-                  Fine jewellery in sterling silver, made in Karachi. Look through the pieces, tap one you like,
-                  then message us on WhatsApp for the price or to order.
-                </p>
-                <div className="mt-6 flex flex-col sm:flex-row items-stretch justify-center gap-3">
-                  <Link to="/collections" className="press btn-big bg-accent text-on-accent hover:opacity-90">
-                    See the jewellery <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <a href={hello()} target="_blank" rel="noopener" className="press btn-big border-2 border-accent text-accent hover:bg-accent/5">
-                    <WhatsAppIcon className="w-5 h-5" /> Ask us on WhatsApp
-                  </a>
+              // No box since 2026-09-29 (the owner: "aesthetically improve the front page pop up"):
+              // the page's own ground rises from the foot, the words sit on it below the wordmark
+              // (the boxed card covered the foot of the letters), set like the chapters' titles. On a
+              // computer the ground fades at its sides too, so the chapter rail stays clear.
+              <div className="relative mx-auto max-w-[35rem]">
+                <div aria-hidden="true" className="pointer-events-none absolute left-1/2 -translate-x-1/2 w-screen sm:w-[62rem] sm:[mask-image:linear-gradient(to_right,transparent,#000_24%,#000_76%,transparent)] -bottom-[12vh] h-[calc(100%+22vh)] bg-gradient-to-t from-bg from-45% via-bg/85 via-75% to-transparent" />
+                <div className="pointer-events-auto relative">
+                  <p className="label-lg text-accent flex items-center justify-center gap-3">
+                    <span aria-hidden="true" className="h-px w-7 md:w-12 bg-gradient-to-l from-accent/60 to-transparent" />
+                    Sterling silver · Karachi
+                    <span aria-hidden="true" className="h-px w-7 md:w-12 bg-gradient-to-r from-accent/60 to-transparent" />
+                  </p>
+                  <h1 className="display mt-3 text-[34px] md:text-[50px] leading-[1.02] text-ink">
+                    Welcome to House of Mina<span className="text-rose not-italic">.</span>
+                  </h1>
+                  <p className="mx-auto mt-3 max-w-[31rem] text-[17px] md:text-[18px] leading-relaxed text-ink/85">
+                    Fine jewellery in sterling silver, made in Karachi. Look through the pieces, tap one you like,
+                    then message us on WhatsApp for the price or to order.
+                  </p>
+                  <div className="mx-auto mt-6 grid max-w-[35rem] grid-cols-1 gap-3 sm:grid-cols-2 [&>a]:whitespace-nowrap">
+                    <Link to="/collections" className="press btn-big bg-accent text-on-accent shadow-[0_12px_28px_-14px_rgb(var(--accent)/0.9)] hover:opacity-90">
+                      See the jewellery <ArrowRight className="w-4 h-4" />
+                    </Link>
+                    <a href={hello()} target="_blank" rel="noopener" className="press btn-big border border-accent/70 bg-bg/50 text-accent backdrop-blur-sm hover:bg-accent/5">
+                      <WhatsAppIcon className="w-5 h-5" /> Ask us on WhatsApp
+                    </a>
+                  </div>
+                  <p className="mt-5 text-[15px] text-ink-2">WhatsApp <span className="select-all whitespace-nowrap text-ink">{WHATSAPP_DISPLAY}</span></p>
+                  <button type="button" onClick={() => jump(1)} className="mt-2 inline-flex items-center gap-2 py-1 text-[15px] text-ink-2 hover:text-accent transition-colors">
+                    Or scroll down to see more <span aria-hidden="true" className="motion-safe:animate-bounce">↓</span>
+                  </button>
                 </div>
-                <p className="mt-4 text-[15px] text-ink-2">WhatsApp <span className="select-all whitespace-nowrap text-ink">{WHATSAPP_DISPLAY}</span></p>
-                <button type="button" onClick={() => jump(1)} className="mt-4 inline-flex items-center gap-2 text-[15px] text-ink-2 underline underline-offset-4 hover:text-accent transition-colors">
-                  Or scroll down to see more <span aria-hidden="true">↓</span>
-                </button>
               </div>
             ) : (
               <div key={s.key} className="pointer-events-auto mx-auto max-w-2xl">
