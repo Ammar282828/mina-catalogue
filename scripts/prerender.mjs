@@ -150,7 +150,9 @@ for (const r of routes) {
   const route = resolvePath(r, cat);
   if (route.kind === 'notfound') throw new Error(`Route ${r} does not resolve — the prerender and the app disagree.`);
   await emit(r, render(route, r));
-  if (!metaFor(route, cat, r).noindex) indexable.push({ path: r, route });
+  const m = metaFor(route, cat, r);
+  // A page whose original is the shop's (seo.js, `elsewhere`) is not this site's to list.
+  if (!m.noindex && !m.elsewhere) indexable.push({ path: r, route });
 }
 await emit('/404', render({ kind: 'notfound' }, '/404').replace('</title>', '</title>\n    <meta name="robots" content="noindex" />'));
 
@@ -165,7 +167,7 @@ ${indexable.map((r) => `  <url><loc>${SITE}${r.path === '/' ? '/' : r.path}</loc
 
 await fs.writeFile(path.join(DIST, 'image-sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-${cat.pieces.map((p) => `  <url><loc>${SITE}${piecePath(p)}</loc>${p.img.map((im) => `<image:image><image:loc>${SITE}${imageUrls(im).full}</image:loc></image:image>`).join('')}</url>`).join('\n')}
+${indexable.filter((r) => r.route.kind === 'piece').map(({ route: { piece: p } }) => `  <url><loc>${SITE}${piecePath(p)}</loc>${p.img.map((im) => `<image:image><image:loc>${SITE}${imageUrls(im).full}</image:loc></image:image>`).join('')}</url>`).join('\n')}
 </urlset>
 `);
 

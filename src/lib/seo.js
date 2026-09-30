@@ -6,6 +6,7 @@
  */
 
 import { SITE, PAGE_SIZE, SHOW_PRICES, piecePath, galleryPath, imageUrls, priceLabel } from './catalog.js';
+import { shopUrl } from './contact.js';
 
 export const BRAND = 'House of Mina';
 const MATERIAL = '925 sterling silver with 21k gold or rhodium plating, set with simulated stones and American Diamonds';
@@ -20,7 +21,7 @@ const DEFAULT_IMAGE = abs('/logo.png');
 
 function collectionOf(piece, cat) { return cat.galleries.get(piece.co); }
 
-/** { title, description, canonical, image, noindex, jsonLd[] } for a resolved route. */
+/** { title, description, canonical, elsewhere?, image, noindex, jsonLd[] } for a resolved route (`elsewhere`: the canonical is the shop's page). */
 export function metaFor(route, cat, path = '/') {
   switch (route.kind) {
     case 'home':
@@ -95,6 +96,23 @@ export function metaFor(route, cat, path = '/') {
       const offers = !p.price ? undefined : p.price[0] === p.price[1]
         ? { '@type': 'Offer', price: p.price[0], priceCurrency: 'PKR', availability: 'https://schema.org/InStock', url: abs(piecePath(p)), seller: { '@id': `${SITE}/#store` } }
         : { '@type': 'AggregateOffer', lowPrice: p.price[0], highPrice: p.price[1], priceCurrency: 'PKR', offerCount: 1, availability: 'https://schema.org/InStock', url: abs(piecePath(p)) };
+      // A piece the shop sells has the same name, photographs and words on houseofmina.store, and
+      // Google keeps one of two such pages. The shop's is the one to find — it has the price and
+      // the checkout — so this page names it as the original and carries no Product of its own
+      // (the shop's page has one). Its link to the shop stays; the sitemap leaves it out.
+      const shop = shopUrl(p);
+      if (shop) {
+        return {
+          title: `${p.t}${co ? ` — ${co.title}` : ''} | ${BRAND}`,
+          description: clip(`${lead} ${p.price ? `${priceLabel(p)}.` : ''}`),
+          canonical: shop,
+          elsewhere: true,
+          image: images[0] || DEFAULT_IMAGE,
+          imageAlt: `${p.t}, ${BRAND}`,
+          ogType: 'product',
+          jsonLd: [breadcrumbs(crumbs)],
+        };
+      }
       return {
         title: `${p.t}${co ? ` — ${co.title}` : ''} | ${BRAND}`,
         description: clip(`${lead} ${p.price ? `${priceLabel(p)}.` : ''}`),

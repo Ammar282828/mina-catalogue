@@ -73,6 +73,11 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   The link uses the shop's current handle (`sh || h`): a stale one still works through Shopify's 301, but every visit —
   and every crawl, which is how Google finds the shop's product pages from here — pays a redirect. Sync after the shop
   renames products.
+  **The shop's page is the original** (2026-09-30, the owner asked why Google finds no houseofmina.store product pages): a
+  `shop` piece carries the shop's name, photographs and words here too, and Google keeps only one of two such pages — the
+  catalogue's fast, marked-up copy could win. So its canonical (and og:url) is `shopUrl()`, it carries no Product JSON-LD
+  (breadcrumbs only), and `sitemap.xml` / `image-sitemap.xml` leave it out (`elsewhere` in `seo.js`): 209 pieces, the
+  sitemap 672 → 463. The page still shows and links as before; the other 410 pieces stay this site's own.
 - **No prices** (the owner, 2026-09-24): `SHOW_PRICES = false` in `src/lib/catalog.js`. The sync writes `price: null` and
   keeps the option that decided a price (`priceBy`) without its figures, so no price reaches the pages or the app's
   script. Piece pages say "Ask us on WhatsApp for the price"; there is no price filter or sort, no `Offer` in the
