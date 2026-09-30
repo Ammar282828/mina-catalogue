@@ -19,12 +19,14 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { CHAPTERS, EDITS, classify, chapterOf, facetsOf, allGallerySlugs } from '../src/lib/taxonomy.js';
 import { SHOW_PRICES } from '../src/lib/catalog.js';
+import { keptHandles, photoHash } from './identity.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const STORE = 'https://houseofmina.store';
 const CATALOG_PATH = path.join(ROOT, 'src', 'catalog.json');
 const SOURCES_PATH = path.join(ROOT, 'data', 'image-sources.json');
 const DRAFTS_PATH = path.join(ROOT, 'data', 'shopify-drafts.json');
+const IDS_PATH = path.join(ROOT, 'data', 'shopify-ids.json');
 const FORCE = process.argv.includes('--force');
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -167,19 +169,31 @@ async function main() {
   } catch (e) { if (e.code !== 'ENOENT') throw e; }
 
   // A feed that suddenly returns far fewer pieces is an outage, not a clearance.
+  let prev = null;
   try {
-    const prev = JSON.parse(await fs.readFile(CATALOG_PATH, 'utf8'));
-    const before = prev.published ?? prev.pieces?.length;
-    if (!FORCE && before && published < before * 0.6) {
-      throw new Error(`Shopify returned ${published} published products; the catalogue had ${before}. Refusing to shrink it by that much — run with --force if this is real.`);
-    }
+    prev = JSON.parse(await fs.readFile(CATALOG_PATH, 'utf8'));
   } catch (e) { if (e.code !== 'ENOENT' && !/SyntaxError/.test(e.name)) throw e; }
+  const before = prev?.published ?? prev?.pieces?.length;
+  if (!FORCE && before && published < before * 0.6) {
+    throw new Error(`Shopify returned ${published} published products; the catalogue had ${before}. Refusing to shrink it by that much — run with --force if this is real.`);
+  }
+
+  // A product Shopify renamed stays the piece it was (scripts/identity.mjs).
+  let ids = {};
+  try { ids = JSON.parse(await fs.readFile(IDS_PATH, 'utf8')); } catch (e) { if (e.code !== 'ENOENT') throw e; }
+  const kept = keptHandles(
+    products.map((p) => ({ id: Number(p.id), handle: p.handle, photos: (p.images || []).map((img) => hash6(bareSrc(img.src))) })),
+    (prev?.pieces || []).map((x) => ({ h: x.h, photos: (x.img || []).map((im) => photoHash(im.f)) })),
+    ids,
+  );
+  if (kept.size) console.log(`  ${kept.size} renamed on Shopify, kept as the pieces they were: ${[...kept].slice(0, 5).map(([now, was]) => `${was} → ${now}`).join(', ')}${kept.size > 5 ? ' …' : ''}`);
 
   const editByHandle = new Map(EDITS.map((e) => [e.handle, e]));
   const sources = {};
   const pieces = [];
 
   for (const p of products) {
+    const h = kept.get(p.handle) || p.handle;
     const tags = new Set((p.tags || []).map((t) => String(t).trim().toLowerCase()));
     const mem = members.get(p.handle) || new Set();
     const home = classify(p, tags, mem);
@@ -201,7 +215,7 @@ async function main() {
     const variantPlating = new Map(p.variants.map((v) => [v.id, platingOf(variantValue(v, platingIdx))]));
 
     const images = [...p.images].sort((a, b) => a.position - b.position).map((img, i) => {
-      const f = `${p.handle}/${i + 1}-${hash6(bareSrc(img.src))}`;
+      const f = `${h}/${i + 1}-${hash6(bareSrc(img.src))}`;
       sources[f] = img.src;
       const plates = new Set((img.variant_ids || []).map((id) => variantPlating.get(id)).filter(Boolean));
       return {
@@ -217,7 +231,9 @@ async function main() {
     const nickelFree = finishIdx >= 0 && p.options[finishIdx].values.some((v) => /nickel/i.test(v));
 
     pieces.push({
-      h: p.handle,
+      h,
+      // The shop's own handle, when it has moved on from the piece's: the link to houseofmina.store.
+      ...(h !== p.handle ? { sh: p.handle } : {}),
       t: p.title.trim(),
       type: p.product_type || '',
       ch: chapterOf(home).slug,
@@ -255,7 +271,7 @@ async function main() {
     bySlug.get(s).push(piece);
   }
   for (const [s, group] of bySlug) {
-    const winner = group.find((x) => x.h === s) || [...group].sort((a, b) => a.h.length - b.h.length || a.h.localeCompare(b.h))[0];
+    const winner = group.find((x) => x.h === s || x.sh === s) || [...group].sort((a, b) => a.h.length - b.h.length || a.h.localeCompare(b.h))[0];
     for (const piece of group) piece.s = piece === winner ? s : piece.h;
   }
 
@@ -269,6 +285,10 @@ async function main() {
   await fs.mkdir(path.dirname(SOURCES_PATH), { recursive: true });
   await fs.writeFile(CATALOG_PATH, JSON.stringify(catalog) + '\n');
   await fs.writeFile(SOURCES_PATH, JSON.stringify(sources, null, 0).replace(/","/g, '",\n"') + '\n');
+  // Each piece's Shopify product id, so a rename is recognised next time without the photos.
+  const idsNow = Object.fromEntries(products.filter((p) => Number(p.id) > 0)
+    .map((p) => [kept.get(p.handle) || p.handle, Number(p.id)]).sort(([a], [b]) => a.localeCompare(b)));
+  await fs.writeFile(IDS_PATH, JSON.stringify(idsNow, null, 0).replace(/,"/g, ',\n"') + '\n');
 
   // A readable summary of where everything landed.
   for (const ch of CHAPTERS) {

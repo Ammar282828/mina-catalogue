@@ -49,6 +49,11 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
 - `scripts/sync-shopify.mjs` — reads `houseofmina.store/products.json` + `collections.json` (public, no token).
   Refuses to shrink the catalogue by >40% without `--force`. Piece URLs use a slug of the **name**
   (`/rings-and-bands/adele`), not Shopify's handle (often a stock code); a clash falls back to the handle.
+  **A piece keeps its handle when Shopify renames the product** (`scripts/identity.mjs`, 2026-09-30): the handle is a
+  piece's identity here (favourites and the POS's `mina/piece/<handle>`, `catalog-overrides.json`, photo file names), and
+  Shopify changes it on a rename — 50 of 209 had been (`adele-er-single-round1ct-halo-pave` → `adele`). The sync matches each
+  product to the piece it was by Shopify's product id (`data/shopify-ids.json`, written every sync; commit it) or, before
+  that, by its photographs, keeps the old `h`, and puts the shop's handle in `sh`; `byHandle` finds a piece by either.
 - **Drafts are on the site too** (owner, 2026-09-23). Shopify's public feed has only published products, so
   `data/shopify-drafts.json` holds the drafts in the feed's shape, written by `scripts/drafts-from-admin.mjs` from an
   Admin GraphQL export (the owner's Shopify connector; CI has no Admin token). Refresh: export `status:draft` products
@@ -65,6 +70,9 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   (published there; drafts from `shopify-drafts.json` never are), and `shopUrl()` in `src/lib/contact.js` gives
   `https://houseofmina.store/products/<handle>` for those only — the piece page's "Buy online" button and a line under it,
   and a link on the prerendered page. A product unpublished on Shopify loses its link at the next `npm run sync`.
+  The link uses the shop's current handle (`sh || h`): a stale one still works through Shopify's 301, but every visit —
+  and every crawl, which is how Google finds the shop's product pages from here — pays a redirect. Sync after the shop
+  renames products.
 - **No prices** (the owner, 2026-09-24): `SHOW_PRICES = false` in `src/lib/catalog.js`. The sync writes `price: null` and
   keeps the option that decided a price (`priceBy`) without its figures, so no price reaches the pages or the app's
   script. Piece pages say "Ask us on WhatsApp for the price"; there is no price filter or sort, no `Offer` in the
@@ -118,7 +126,8 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
 - Brand: cream `#FAF7F2` / maroon `#3A0000` / rose `#E8A5AE`, Newsreader + Red Hat Text — taken from the
   Shopify theme (`~/Projects/house-of-mina-theme`). The wordmark is an inline SVG redrawn from
   `public/logo.png`'s strokes. Light is the default theme; dark is maroon-black with rose accents.
-- Contact: WhatsApp **+92 316 1930960** (from the Shopify theme), Instagram @houseofmina__, TikTok @houseofmina.
+- Contact: WhatsApp **+92 316 1930960** (from the Shopify theme), Instagram @houseofmina__. **No TikTok:** @houseofmina is
+  someone else's account (owner, 2026-09-30: "the tiktok isnt hers"); the footer link and `sameAs` were removed.
   Copy says **Karachi**, never "Saddar" (the owner's rule for Taheri, applied here too).
 
 ## Photography

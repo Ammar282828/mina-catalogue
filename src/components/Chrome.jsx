@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { galleryPath, imageUrls, piecePath, priceLabel, SHOW_PRICES } from '../lib/catalog.js';
-import { hello, WHATSAPP_DISPLAY, INSTAGRAM, TIKTOK } from '../lib/contact.js';
+import { hello, WHATSAPP_DISPLAY, INSTAGRAM } from '../lib/contact.js';
 import { useFavourites, useTheme } from '../lib/store.js';
 import { useUser } from '../lib/auth.js';
 import { Link, Wordmark, HeartIcon, SearchIcon, SunIcon, MoonIcon, CloseIcon, Photo, useNav, WhatsAppIcon, ArrowRight } from './ui.jsx';
@@ -203,7 +203,6 @@ export function Footer({ cat }) {
             </a>
             <ul className="mt-5 space-y-2.5 p-0 text-[14px]">
               <li className="list-none"><a href={INSTAGRAM.url} target="_blank" rel="noopener" className="text-ink hover:text-accent">Instagram <span className="text-ink-2">{INSTAGRAM.handle}</span></a></li>
-              <li className="list-none"><a href={TIKTOK.url} target="_blank" rel="noopener" className="text-ink hover:text-accent">TikTok <span className="text-ink-2">{TIKTOK.handle}</span></a></li>
             </ul>
           </div>
         </div>

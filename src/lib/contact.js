@@ -8,15 +8,16 @@ import { SITE, piecePath, priceLabel } from './catalog.js';
 export const WHATSAPP_NUMBER = '923161930960';
 export const WHATSAPP_DISPLAY = '+92 316 1930960';
 export const INSTAGRAM = { handle: '@houseofmina__', url: 'https://www.instagram.com/houseofmina__' };
-export const TIKTOK = { handle: '@houseofmina', url: 'https://www.tiktok.com/@houseofmina' };
 
 /**
  * A piece's own page on houseofmina.store — only for pieces published there
  * (`shop`, set by the sync from Shopify's public feed; drafts and the house's
- * own images have none). The owner's ask, 2026-09-24.
+ * own images have none). The owner's ask, 2026-09-24. `sh` is the shop's
+ * handle where Shopify renamed the product (scripts/identity.mjs) — linking the
+ * old one would cost every visit, and Google, a redirect.
  */
 export const SHOP = 'https://houseofmina.store';
-export const shopUrl = (piece) => (piece?.shop ? `${SHOP}/products/${piece.h}` : null);
+export const shopUrl = (piece) => (piece?.shop ? `${SHOP}/products/${piece.sh || piece.h}` : null);
 
 export const whatsapp = (text) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 

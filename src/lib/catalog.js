@@ -257,6 +257,8 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
   const pieces = [...dropped, ...data.pieces].map(rehome).map(worded).map(reframe).map(changed).filter((p) => !p.hidden)
     .sort((a, b) => (b.at || '').localeCompare(a.at || ''));
   const byHandle = new Map(pieces.map((p) => [p.h, p]));
+  // A product Shopify renamed is also found by the shop's handle (`sh`, scripts/identity.mjs).
+  for (const p of pieces) if (p.sh && !byHandle.has(p.sh)) byHandle.set(p.sh, p);
   const bySlug = new Map(pieces.map((p) => [p.s || p.h, p]));
   const cutoff = new Date(now - NEW_DAYS * 864e5).toISOString().slice(0, 10);
 
