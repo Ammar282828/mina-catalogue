@@ -78,6 +78,12 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   catalogue's fast, marked-up copy could win. So its canonical (and og:url) is `shopUrl()`, it carries no Product JSON-LD
   (breadcrumbs only), and `sitemap.xml` / `image-sitemap.xml` leave it out (`elsewhere` in `seo.js`): 209 pieces, the
   sitemap 672 → 463. The page still shows and links as before; the other 410 pieces stay this site's own.
+  **Search Console** (2026-09-30): the ERP's service account (`claude-cloud@gemstrack-pos`) is a full user on the domain
+  property `sc-domain:houseofmina.store`, which covers the shop and this site. That day it submitted both sites' sitemaps
+  (none had ever been submitted) and **`public/shop-moved.xml`**: the shop's 129 old product and collection addresses
+  that now redirect, so Google re-reads them and moves to the new pages. Before, 69% of the shop's product impressions
+  landed on old addresses, and Google had never heard of 110 of its 209 products. **Temporary: delete
+  `shop-moved.xml` after mid-November 2026** (and remove it in Search Console).
 - **No prices** (the owner, 2026-09-24): `SHOW_PRICES = false` in `src/lib/catalog.js`. The sync writes `price: null` and
   keeps the option that decided a price (`priceBy`) without its figures, so no price reaches the pages or the app's
   script. Piece pages say "Ask us on WhatsApp for the price"; there is no price filter or sort, no `Offer` in the
