@@ -46,6 +46,9 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   type. `classify()` gives every product exactly one home (its page lives at `/<home>/<piece>`). The first arrangement (5 chapters → 18 style collections: Engagement / Gemstone /
   Cocktail / Everyday Rings, Studs, Men's…) is retired: `RETIRED` maps each old slug to its category and
   `public/.htaccess` 301-redirects the old addresses (piece slugs are unique, so `/gemstone-rings/x` → `/rings-and-bands/x`).
+  Every old address is **one hop** from its page (2026-10-01): the men's piece rules come first and take the oldest
+  prefixes too (`/necklaces/box-chain` → `/mens-chains/box-chain`, not via `/chains-and-pendants`), all before the
+  trailing-slash rule; `/for-him/…` goes to `/men`; a gallery's `/x/` 301s to `/x` even though `x/` is a folder.
 - `scripts/sync-shopify.mjs` — reads `houseofmina.store/products.json` + `collections.json` (public, no token).
   Refuses to shrink the catalogue by >40% without `--force`. Piece URLs use a slug of the **name**
   (`/rings-and-bands/adele`), not Shopify's handle (often a stock code); a clash falls back to the handle.
@@ -128,7 +131,12 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   localhost (CORS), so the record only loads on the live site.
 - `src/lib/catalog.js` — `buildCatalog()` and `resolvePath()`: the app and the prerender share them,
   so a crawled page and the app's page are always the same page. `src/lib/seo.js` — titles, descriptions,
-  JSON-LD (Product with Offer/AggregateOffer, CollectionPage + ItemList, BreadcrumbList).
+  JSON-LD (CollectionPage + ItemList, BreadcrumbList; a piece is an ItemPage with its photographs as ImageObjects while
+  prices are off, a Product with Offer/AggregateOffer once they are on — a Product with no offer, review or rating is an
+  invalid rich result, and Search Console flagged all 410 piece pages for it on 2026-10-01). Titles stay within 65
+  characters (a long one drops its gallery); two pieces with one name (a render named like a Shopify piece) are told apart
+  by the address's number ("Ruby Twist Ring No. 2"); a piece's description leads with its name; a gallery's later pages
+  name the pieces on them, so no two pages share a title or a description.
 - `src/components/` — `Landing.jsx` + `particles.js` (Three.js, lazy chunk; the cloud assembles the MINA
   wordmark, then each category's shape — a ring, bangles, a pendant, a cut stone, earrings — then the edits and a heart), `Gallery.jsx`
   (filters in the query string), `Piece.jsx` (plating chips switch to that plating's photo; size or

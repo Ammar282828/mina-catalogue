@@ -14,33 +14,40 @@
   RewriteCond %{HTTP:X-Forwarded-Proto} !=https
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE]
 
-  # One URL shape for every document route: no trailing slash.
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.+)/$ /$1 [R=301,L]
-
-  # Page 1 of a gallery is the bare collection path.
-  RewriteRule ^([^/]+)/1$ /$1 [R=301,L]
-
   # The catalogue was first arranged by style (Engagement Rings, Gemstone Rings,
   # Studs…); since 2026-09-23 it is five categories by what the piece is, as on
   # taheri.shop, and a Men's section (and, from 2026-09-24, Wristwear's sub-categories). Old addresses keep working: a retired
   # collection goes to its category, a piece under it to the same piece there
   # (piece slugs are unique site-wide, so /gemstone-rings/x is /rings-and-bands/x).
   # Mirrors RETIRED in src/lib/taxonomy.js.
-  RewriteRule ^(?:rings|engagement-rings|gemstone-rings|cocktail-rings|everyday-rings)(/.*)?$ /rings-and-bands$1 [R=301,L]
-  RewriteRule ^(?:tennis-bracelets|everyday-bracelets)(/.*)?$ /bracelets$1 [R=301,L]
-  RewriteRule ^(?:necklaces|pendants|chokers|everyday-necklaces)(/.*)?$ /chains-and-pendants$1 [R=301,L]
-  RewriteRule ^(?:studs|hoops-and-huggies|statement-earrings|everyday-earrings)(/.*)?$ /earrings$1 [R=301,L]
-
+  #
   # Men's became a section of its own later on 2026-09-23, with sub-categories
   # (/men, /mens-rings, /natural-ruby-rings, /mens-chains, /mens-bracelets); the
-  # For Him edit it replaces goes there, and each men's piece moved out of the
-  # category of its type to the same slug under its sub-category.
-  RewriteRule ^for-him(/.*)?$ /men$1 [R=301,L]
-  RewriteRule ^rings-and-bands/(emblem-ring|grooved-baguette-band|metro-ring|ridge-ring|tri-channel-ring)$ /mens-rings/$1 [R=301,L]
-  RewriteRule ^rings-and-bands/(natural-ruby-ring-no-[0-9]+)$ /natural-ruby-rings/$1 [R=301,L]
-  RewriteRule ^chains-and-pendants/(box-chain|cuban-chain|curb-diamond-cut-chain|rope-chain|snake-chain)$ /mens-chains/$1 [R=301,L]
-  RewriteRule ^wristwear/(verso-mens-cuff|zobi-mens-silver-cuff|cuban-bracelet|link-bracelet|rope-bracelet)$ /mens-bracelets/$1 [R=301,L]
+  # For Him edit it replaces goes there (an edit's pages, /for-him/2, to the section),
+  # and each men's piece moved out of the category of its type to the same slug under
+  # its sub-category. These come first and take the older addresses too, so every old
+  # address is one hop from its page (2026-10-01: /necklaces/box-chain took two). Before
+  # the trailing-slash rule, which would otherwise be a hop of its own.
+  RewriteRule ^for-him(?:/.*)?$ /men [R=301,L]
+  RewriteRule ^(?:rings|engagement-rings|gemstone-rings|cocktail-rings|everyday-rings|rings-and-bands)/(emblem-ring|grooved-baguette-band|metro-ring|ridge-ring|tri-channel-ring)/?$ /mens-rings/$1 [R=301,L]
+  RewriteRule ^(?:rings|engagement-rings|gemstone-rings|cocktail-rings|everyday-rings|rings-and-bands)/(natural-ruby-ring-no-[0-9]+)/?$ /natural-ruby-rings/$1 [R=301,L]
+  RewriteRule ^(?:necklaces|pendants|chokers|everyday-necklaces|chains-and-pendants)/(box-chain|cuban-chain|curb-diamond-cut-chain|rope-chain|snake-chain)/?$ /mens-chains/$1 [R=301,L]
+  RewriteRule ^(?:tennis-bracelets|everyday-bracelets|wristwear)/(verso-mens-cuff|zobi-mens-silver-cuff|cuban-bracelet|link-bracelet|rope-bracelet)/?$ /mens-bracelets/$1 [R=301,L]
+  RewriteRule ^(?:rings|engagement-rings|gemstone-rings|cocktail-rings|everyday-rings)(/.+?)?/?$ /rings-and-bands$1 [R=301,L]
+  RewriteRule ^(?:tennis-bracelets|everyday-bracelets)(/.+?)?/?$ /bracelets$1 [R=301,L]
+  RewriteRule ^(?:necklaces|pendants|chokers|everyday-necklaces)(/.+?)?/?$ /chains-and-pendants$1 [R=301,L]
+  RewriteRule ^(?:studs|hoops-and-huggies|statement-earrings|everyday-earrings)(/.+?)?/?$ /earrings$1 [R=301,L]
+
+  # One URL shape for every document route: no trailing slash. A gallery with
+  # more pages is also a folder (rings-and-bands/2.html), so "is a folder" alone
+  # let /rings-and-bands/ through as a second copy of the page; a folder that is
+  # also a page goes to the page.
+  RewriteCond %{REQUEST_FILENAME} !-d [OR]
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+  # Page 1 of a gallery is the bare collection path.
+  RewriteRule ^([^/]+)/1$ /$1 [R=301,L]
 
   # Wristwear became a section on 2026-09-24 (the owner), with sub-categories — Bangle & Ring
   # Sets, Bangles & Cuffs, Bracelets (Bracelets and Bangles & Cuffs are live again, so the two
