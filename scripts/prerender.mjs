@@ -174,9 +174,13 @@ ${indexable.filter((r) => r.route.kind === 'piece').map(({ route: { piece: p } }
 </urlset>
 `);
 
+// The app reads the drop list (and the counter's changes) before it draws, and a drop's photographs
+// come from img.php: those two stay open to crawlers, or Google renders pages without them.
 await fs.writeFile(path.join(DIST, 'robots.txt'), `User-agent: *
 Allow: /
 Disallow: /api/
+Allow: /api/catalog.php
+Allow: /api/img.php
 
 Sitemap: ${SITE}/sitemap.xml
 Sitemap: ${SITE}/image-sitemap.xml
