@@ -14,7 +14,7 @@
 /** What a piece is, by its home. */
 export const KIND = {
   'rings-and-bands': 'ring', 'bangle-and-ring-sets': 'wrist-set', 'bangles-and-cuffs': 'bangle', bracelets: 'bracelet',
-  'chains-and-pendants': 'pendant', lockets: 'locket', sets: 'set', earrings: 'earring',
+  'chains-and-pendants': 'pendant', lockets: 'locket', sets: 'set', 'locket-sets': 'locket-set', earrings: 'earring',
   'mens-rings': 'mens-ring', 'natural-ruby-rings': 'mens-ring', 'mens-chains': 'mens-chain', 'mens-bracelets': 'mens-bracelet',
 };
 
@@ -24,6 +24,7 @@ export const GOES_WITH = {
   earring: ['ring', 'pendant', 'set', 'bracelet'],
   pendant: ['earring', 'ring', 'bracelet'],
   locket: ['pendant'],
+  'locket-set': ['bracelet', 'bangle', 'ring'],
   bangle: ['ring', 'earring', 'bracelet'],
   bracelet: ['ring', 'earring', 'pendant'],
   'wrist-set': ['earring', 'pendant', 'set'],
@@ -35,7 +36,7 @@ export const GOES_WITH = {
 
 /** What a kind is called beside a recommendation ("Earrings to match"). */
 export const KIND_LABEL = {
-  ring: 'Ring', earring: 'Earrings', pendant: 'Pendant', locket: 'Locket', bangle: 'Bangle', bracelet: 'Bracelet',
+  ring: 'Ring', earring: 'Earrings', pendant: 'Pendant', locket: 'Locket', 'locket-set': 'Locket set', bangle: 'Bangle', bracelet: 'Bracelet',
   'wrist-set': 'Bangle & ring', set: 'Set', 'mens-ring': "Men's ring", 'mens-chain': "Men's chain", 'mens-bracelet': "Men's bracelet",
 };
 

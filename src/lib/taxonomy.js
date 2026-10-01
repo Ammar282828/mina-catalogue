@@ -37,6 +37,8 @@ export const CHAPTERS = [
   // Calligraphy pendants and lockets that open (the owner, 2026-09-24): a category of their own.
   { slug: 'lockets', title: 'Lockets', shape: 'heart', blurb: 'Allah, the Kalma, Ali and calligraphy coins — pendants and lockets that open.' },
   { slug: 'sets', title: 'Sets', shape: 'gem', blurb: 'Pieces made to be worn together.' },
+  // A locket with earrings to match, often a ring, once a bangle (the owner, 2026-10-01: "make a new locket set category").
+  { slug: 'locket-sets', title: 'Locket Sets', shape: 'chains', blurb: 'A locket and earrings to match — many with a ring.' },
   { slug: 'earrings', title: 'Earrings', shape: 'earrings', blurb: 'Studs, hoops, huggies and drops.' },
   {
     slug: 'men', title: "Men's", noun: "Men's Jewelry", shape: 'band',

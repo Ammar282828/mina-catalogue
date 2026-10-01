@@ -256,6 +256,14 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     shot) on the local Sapphire Pearl Choker (09354), Emerald Swirl (09363), Emerald Cascade (09355). The other ten are new local sets named off the photo (the owner may rename): Amethyst Fringe, Pavé Wave, Pavé
     Scroll Drop, Emerald Marquise Halo (necklace and earrings only), Petite Teardrop, Marquise Leaf, Ruby Marquise Drop,
     Pavé Ripple, Pavé Lattice Bib, Emerald Blossom. Not on taheri.shop (the owner: "house of mina catalogue only").
+  - **Earrings and Locket Sets, 2026-10-01** (the owner's Drive folder "Retouched-imagegen", "catalogue hom earrings" and
+    "catalogue hom locket sets": 26 retouched shots, DSC09417–42, 1254² PNG, on the cream velvet trays and in the maroon Mina
+    box; uploaded from a cloud session with upload.php `to=local`). **Locket Sets is a category of its own** (the owner: "make a
+    new locket set category"; `locket-sets` in CHAPTERS after Sets, kind `locket-set` in recommend.js): 17 new local sets — a
+    locket with earrings, many with a ring — named off the photo, plus the Topaz Locket Set with Bangle (bb-057), moved from
+    Sets (`/sets/topaz-locket-set-with-bangle` 301s). Earrings: DSC09442 is **Bianca Butterfly Drop Earrings** (Shopify),
+    put first on it (`heroes`); the other eight are new local earrings. DSC09440 (Emerald Oval Double-Halo Studs) looks like
+    Shopify's **Minerva Emerald Double-Halo Studs** (white renders) — left its own piece until the owner says they are one.
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
     Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.

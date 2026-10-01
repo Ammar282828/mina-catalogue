@@ -1,7 +1,9 @@
 {
  "_about": "The house's own ring images, not Shopify's: AI renders (Nano Banana) of the shop's DSC photographs, padded onto white at 1500px — from iCloud heroes-white-1500 (179 files, see its _REVIEW.txt). heroes: an image put first on a Shopify piece (by handle). instead: the house's own images shown in place of a Shopify piece's (by handle) — its box photographs of sets Shopify shows on white (the owner, 2026-09-28). pieces: rings known only from these images, no price (Price on request); name, collection, plating and stones were read off the image on 2026-09-23 and may be corrected. also: more images of the same piece; photoPlating: which plating an image shows. held: images deliberately not shown, with the reason. Originals live on the server at /catalog-src/local/<id>.png (never in git). Bangles and bracelets (ids bb-NNN.jpg, 2026-09-23): the photographs in ~/Downloads/House of Mina — Bangles & Bracelets 3.pdf, extracted by their No.; story is that catalogue's description. Its 22 pieces already on Shopify are not repeated, and its 25 Taheri photographs (green-backdrop shoots, 'new — Taheri' in the item list) are held. Shopify products and drafts: on 2026-09-23 renders here were paired with 42 of them as lead images (heroes); the owner said those were different pieces (2026-09-24), so every render is its own piece again and heroes is empty. Gents' natural ruby rings (ids DSC075NN-v2.jpg, 2026-09-23): the owner's own photographs (Sony RAW, ~/Downloads/New Folder With Items 3), the whole frame (1333×2000, portrait), brightened (shadows and midtones lifted, the warm cast eased) because the owner found them too dark; the first, square crops (DSC075NN.jpg) are no longer used; 13 rings, each its own stone, named Natural Ruby Ring No. 1–13 in shoot order (short enough that the number shows on a desktop card). They are set with natural rubies (the owner's words), so `natural: true` keeps their text as written, with no 'simulated'. Sets from Instagram posts (ids PHOTO-2026-….jpg, 1080px, 2026-09-23): the three not already on the site; four more from the same batch were here already (Ruby Line, Pavé Fan Bridal, Aqua Bloom, Sapphire Two-Row) and are not repeated. Rings from Gemini renders (ids ring-0N-….jpg, 2026-09-23; output/imagegen/mina-catalogue-2026-09-23 in taheri-shop): six, each its own piece (the owner, when some looked like Shopify rings). Lockets (ids lk-NN.jpg, 2026-09-24; ~/Downloads/New Folder With Items 4, `src` gives each file): 34 images, 30 pieces, in the Lockets category. Every one is AI-drawn, so fine inscriptions (the verse coins, the engraved locket, the filigree cells) are not legible Arabic; the large Allah, Kalma and Ali calligraphy reads true. Verse coins are named 'Calligraphy Coin' until the owner says which verse each carries.",
  "addedAt": "2026-09-23",
- "heroes": {},
+ "heroes": {
+  "bianca-butterfly-drop-earrings": [{"id": "DSC09442", "px": 1254}]
+ },
  "instead": {
   "aqua-bloom-set": [{"id": "DSC09358", "px": 1254}, {"id": "DSC09359", "px": 1254}],
   "ruby-line-set": [{"id": "DSC09352", "px": 1254}],
@@ -841,7 +843,7 @@
   {
    "id": "bb-057.jpg",
    "t": "Topaz Locket Set with Bangle",
-   "co": "sets",
+   "co": "locket-sets",
    "type": "Set", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": [],
    "px": 1080, "story": ["A boxed set in topaz and American Diamonds — locket, earrings, ring and bangle."]
   },
@@ -1358,6 +1360,181 @@
    "co": "sets", "addedAt": "2026-09-28",
    "type": "Set", "plating": ["Rhodium"], "stone": ["Emerald", "Pink Sapphire", "American Diamond"], "setting": [],
    "px": 1254, "story": ["Pink blossoms with green-stone leaves around a large oval simulated emerald — oval emerald earrings under a flower, and a ring set the same way."]
+  },
+  {
+   "id": "DSC09434",
+   "t": "Tricolour Halo Drop Earrings",
+   "co": "earrings", "addedAt": "2026-10-01",
+   "type": "Earrings", "plating": ["Rhodium"], "stone": ["Sapphire", "Emerald", "Ruby", "American Diamond"], "setting": ["Halo"],
+   "px": 1254, "story": ["Three round stones hung one below the other — a simulated sapphire, a simulated emerald and a simulated ruby — each in a halo of American Diamonds."]
+  },
+  {
+   "id": "DSC09435",
+   "t": "Ruby Halo Kite Drop Earrings",
+   "co": "earrings", "addedAt": "2026-10-01",
+   "type": "Earrings", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"],
+   "px": 1254, "story": ["Two round simulated rubies in halos of American Diamonds above a kite-shaped drop with a third at its centre."]
+  },
+  {
+   "id": "DSC09436",
+   "t": "Gemstone Octagon Drop Earrings",
+   "co": "earrings", "addedAt": "2026-10-01",
+   "type": "Earrings", "plating": ["Rhodium"], "stone": ["Emerald", "Ruby", "Sapphire", "American Diamond"], "setting": ["Halo"],
+   "px": 1254, "story": ["A round simulated emerald, then an emerald-cut simulated ruby and an emerald-cut simulated sapphire, each framed in American Diamonds, linked in a drop."]
+  },
+  {
+   "id": "DSC09437",
+   "t": "Sapphire Star Hexagon Drop Earrings",
+   "co": "earrings", "addedAt": "2026-10-01",
+   "type": "Earrings", "plating": ["Rhodium"], "stone": ["Sapphire", "American Diamond"], "setting": ["Halo"],
+   "px": 1254, "story": ["A pear-cut simulated sapphire, a star of American Diamonds around a round sapphire, and a hexagon halo with a sapphire at its heart."]
+  },
+  {
+   "id": "DSC09438",
+   "t": "Canary Leaf Vine Earrings",
+   "co": "earrings", "addedAt": "2026-10-01",
+   "type": "Earrings", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"],
+   "px": 1254, "story": ["Canary-yellow marquise and pear stones laid like leaves along a vine of round American Diamonds."]
+  },
+  {
+   "id": "DSC09439",
+   "t": "Pear Crown Pearl Drop Earrings",
+   "co": "earrings", "addedAt": "2026-10-01",
+   "type": "Earrings", "plating": ["Rhodium"], "stone": ["American Diamond", "Pearl"], "setting": [],
+   "px": 1254, "story": ["A pear-cut American Diamond crowned with baguettes and marquises, with a teardrop pearl hanging below."]
+  },
+  {
+   "id": "DSC09440",
+   "t": "Emerald Oval Double-Halo Studs",
+   "co": "earrings", "addedAt": "2026-10-01",
+   "type": "Earrings", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"],
+   "px": 1254, "story": ["A large oval simulated emerald in a double halo of American Diamonds."]
+  },
+  {
+   "id": "DSC09441",
+   "t": "Aqua Emerald-Cut Halo Studs",
+   "co": "earrings", "addedAt": "2026-10-01",
+   "type": "Earrings", "plating": ["Rhodium"], "stone": ["Blue Topaz", "American Diamond"], "setting": ["Halo"],
+   "px": 1254, "story": ["An emerald-cut simulated blue topaz in a halo of American Diamonds, held at the corners in gold-tipped claws."]
+  },
+  {
+   "id": "DSC09417",
+   "t": "Pearl Blossom Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Gold"], "stone": ["Pearl", "American Diamond"], "setting": ["Halo"],
+   "px": 1254, "story": ["A pearl in a ring of American Diamonds, set in a gold-plated flower — a locket and a pair of studs."]
+  },
+  {
+   "id": "DSC09418",
+   "t": "Amethyst Blossom Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Gold"], "stone": ["Amethyst", "American Diamond"], "setting": ["Halo"],
+   "px": 1254, "story": ["A round simulated amethyst in a gold-plated flower edged with American Diamonds — a locket and a pair of studs."]
+  },
+  {
+   "id": "DSC09419",
+   "t": "Petite Flower Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1254, "story": ["A small flower of American Diamonds in gold — a locket and a pair of studs, light enough for every day."]
+  },
+  {
+   "id": "DSC09420",
+   "t": "Emerald Oval Halo Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Gold"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"],
+   "px": 1254, "story": ["An oval simulated emerald in a halo of American Diamonds, in gold — a locket and a pair of studs."]
+  },
+  {
+   "id": "DSC09421",
+   "t": "Emerald Trillion Clover Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Rhodium"], "stone": ["Emerald", "American Diamond"], "setting": ["Halo"],
+   "px": 1254, "story": ["A trillion-cut simulated emerald framed in American Diamonds above three trillion-cut petals — a locket and a pair of earrings."]
+  },
+  {
+   "id": "DSC09422",
+   "t": "Ruby Pear Swirl Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Gold"], "stone": ["Ruby", "American Diamond"], "setting": [],
+   "px": 1254, "story": ["A pear-cut simulated ruby under a swirl of American Diamonds, in gold — a locket and a pair of earrings."]
+  },
+  {
+   "id": "DSC09423",
+   "t": "Marquise Fan Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1254, "story": ["Three marquise American Diamonds fanned out on gold — a locket and a pair of studs."]
+  },
+  {
+   "id": "DSC09424",
+   "t": "Peridot Halo Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Gold"], "stone": ["Peridot", "American Diamond"], "setting": ["Halo"],
+   "px": 1254, "story": ["A round simulated peridot in a halo of American Diamonds, in gold — a locket and a pair of studs."]
+  },
+  {
+   "id": "DSC09425",
+   "t": "Peach Crescent Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Pavé"],
+   "px": 1254, "story": ["Peach-toned marquise stones fanned around a curl of pavé American Diamonds — a locket, a pair of earrings and a ring."]
+  },
+  {
+   "id": "DSC09426",
+   "t": "Round Solitaire Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"],
+   "px": 1254, "story": ["A round American Diamond held in four claws — a locket, a pair of studs and a ring on an engraved band."]
+  },
+  {
+   "id": "DSC09427",
+   "t": "Cushion Solitaire Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Solitaire"],
+   "px": 1254, "story": ["A cushion-cut American Diamond under a small round stone — a locket, a pair of drop earrings and a ring on a filigree band."]
+  },
+  {
+   "id": "DSC09428",
+   "t": "Pink Princess Ribbon Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Rhodium"], "stone": ["Pink Sapphire", "American Diamond"], "setting": ["Pavé"],
+   "px": 1254, "story": ["A princess-cut simulated pink sapphire beside a folded ribbon of pavé American Diamonds — a locket, a pair of earrings and a ring."]
+  },
+  {
+   "id": "DSC09429",
+   "t": "Baguette Starburst Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Rhodium"], "stone": ["American Diamond"], "setting": ["Halo"],
+   "px": 1254, "story": ["Baguette American Diamonds at the centre of a starburst of pear, marquise and round stones — a locket, a pair of earrings and a ring."]
+  },
+  {
+   "id": "DSC09430",
+   "t": "Ruby Baguette Starburst Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Rhodium"], "stone": ["Ruby", "American Diamond"], "setting": ["Halo"],
+   "px": 1254, "story": ["A round simulated ruby in a halo of American Diamonds, framed by a starburst of baguettes — a locket, a pair of earrings and a ring."]
+  },
+  {
+   "id": "DSC09431",
+   "t": "Gold Spray Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1254, "story": ["Sprays of round American Diamonds between ribbed gold blades — a locket and a pair of earrings."]
+  },
+  {
+   "id": "DSC09432",
+   "t": "Pinwheel Flower Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
+   "px": 1254, "story": ["A pinwheel flower of gold petals and American Diamonds — a locket, a pair of studs and a ring."]
+  },
+  {
+   "id": "DSC09433",
+   "t": "Pearl Swirl Blossom Locket Set",
+   "co": "locket-sets", "addedAt": "2026-10-01",
+   "type": "Set", "plating": ["Rhodium"], "stone": ["Pearl", "Ruby", "American Diamond"], "setting": [],
+   "px": 1254, "story": ["A pearl at the heart of a swirling flower of American Diamonds, dotted with small red stones — a locket and a pair of earrings."]
   },
   {
    "id": "ring-01-pink-floral.jpg",

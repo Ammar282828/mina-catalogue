@@ -60,6 +60,9 @@
   # Two photos first listed as two lockets are the front and back of one (the owner, 2026-09-24).
   RewriteRule ^lockets/enamel-floral-locket$ /lockets/engraved-calligraphy-oval-locket [R=301,L]
 
+  # Locket Sets became a category of its own (the owner, 2026-10-01); the one locket set filed under Sets moved there.
+  RewriteRule ^sets/topaz-locket-set-with-bangle$ /locket-sets/topaz-locket-set-with-bangle [R=301,L]
+
   # /rings-and-bands.html and /rings-and-bands are one page; send the .html form to the clean one.
   RewriteCond %{THE_REQUEST} \s/+([^?\s]+)\.html[\s?] [NC]
   RewriteCond %1 !^(?:index|404)$
