@@ -147,6 +147,11 @@ jobs:
             && test -s rings-and-bands.html && test -d catalog-thumb && test -d catalog-full \
             && echo \"ok: pages, api, tree and \$(find catalog-full -name '*.webp' | wc -l) photographs on the server\""
 
+      # Advisory: tell IndexNow (Bing, and the assistants that search with it) which pages changed.
+      - name: Tell IndexNow what changed (advisory)
+        continue-on-error: true
+        run: node scripts/indexnow.mjs
+
       # Advisory: what the world sees. A miss here is a warning, not a failure —
       # the files are already verified on the server.
       - name: Verify what the server serves (advisory)

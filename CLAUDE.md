@@ -81,6 +81,9 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   catalogue's fast, marked-up copy could win. So its canonical (and og:url) is `shopUrl()`, it carries no Product JSON-LD
   (breadcrumbs only), and `sitemap.xml` / `image-sitemap.xml` leave it out (`elsewhere` in `seo.js`): 209 pieces, the
   sitemap 672 → 463. The page still shows and links as before; the other 410 pieces stay this site's own.
+  **Crawlers** (2026-10-01): robots.txt (written by the prerender) keeps `/api/` closed except `catalog.php` and
+  `img.php`, which the app reads before it draws. Each deploy tells IndexNow (Bing, and ChatGPT / Copilot / DuckDuckGo
+  search through it) which addresses changed in three days (`scripts/indexnow.mjs`, key `public/indexnow.txt`).
   **Search Console** (2026-09-30): the ERP's service account (`claude-cloud@gemstrack-pos`) is a full user on the domain
   property `sc-domain:houseofmina.store`, which covers the shop and this site. That day it submitted both sites' sitemaps
   (none had ever been submitted) and **`public/shop-moved.xml`**: the shop's 129 old product and collection addresses
