@@ -72,11 +72,14 @@ function head(m) {
 // ── Body: the page, plainly ─────────────────────────────────────────────────
 const nav = `<nav aria-label="Site"><a href="/">House of Mina</a><a href="/collections">Collections</a>${CHAPTERS.map((c) => `<a href="${galleryPath(c.slug)}">${esc(c.title)}</a>`).join('')}</nav>`;
 const crumbs = (items) => `<nav aria-label="Breadcrumb"><ol style="list-style:none;padding:0;display:flex;gap:.5rem;flex-wrap:wrap">${items.map((c) => `<li><a href="${esc(c.path)}">${esc(c.title)}</a></li>`).join('<li aria-hidden="true">/</li>')}</ol></nav>`;
-const tile = (p) => {
+// A gallery's first row is on screen before the app is, and is the page's largest paint: fetched at
+// once, the first at high priority; the rest wait until they are scrolled to (the app's tiles are the
+// same files). Other grids (a piece's recommendations, a section's) stay lazy.
+const tile = (p, i = 99) => {
   const co = cat.galleries.get(p.co);
-  return `<li><a href="${esc(piecePath(p))}"><img src="${esc(imageUrls(p.img[0]).thumb)}" alt="${esc(`${p.t} — ${co?.title || ''}, ${BRAND}`)}" width="720" height="720" loading="lazy" /><strong>${esc(p.t)}</strong>${priceLabel(p) ? `<br /><span>${esc(priceLabel(p))}</span>` : ''}</a></li>`;
+  return `<li><a href="${esc(piecePath(p))}"><img src="${esc(imageUrls(p.img[0]).thumb)}" alt="${esc(`${p.t} — ${co?.title || ''}, ${BRAND}`)}" width="720" height="720" ${i === 0 ? 'fetchpriority="high"' : i < 4 ? '' : 'loading="lazy"'} /><strong>${esc(p.t)}</strong>${priceLabel(p) ? `<br /><span>${esc(priceLabel(p))}</span>` : ''}</a></li>`;
 };
-const grid = (pieces) => `<ul class="grid">${pieces.map(tile).join('')}</ul>`;
+const grid = (pieces, first = false) => `<ul class="grid">${pieces.map((p, i) => tile(p, first ? i : 99)).join('')}</ul>`;
 // A category, and — for Men's — the sub-categories inside it.
 const subs = (ch) => (ch.collections ? `<ul>${ch.collections.map((k) => `<li><a href="${galleryPath(k.slug)}">${esc(k.title)}</a> (${k.pieces.length})</li>`).join('')}</ul>` : '');
 const contact = `<p>Enquire on WhatsApp: <a href="https://wa.me/923161930960">${WHATSAPP_DISPLAY}</a> · Instagram <a href="${INSTAGRAM.url}">${INSTAGRAM.handle}</a></p>`;
@@ -100,7 +103,7 @@ function body(route) {
       const onPage = g.pieces.slice((route.page - 1) * PAGE_SIZE, route.page * PAGE_SIZE);
       const pager = pages > 1 ? `<nav aria-label="Pages">${Array.from({ length: pages }, (_, i) => i + 1).map((n) => (n === route.page ? `<strong>${n}</strong>` : `<a href="${galleryPath(g.slug, n)}">${n}</a>`)).join(' ')}</nav>` : '';
       const inside = g.collections ? `<nav aria-label="${esc(g.title)} categories">${g.collections.map((k) => `<a href="${galleryPath(k.slug)}">${esc(k.title)}</a>`).join(' · ')}</nav>` : '';
-      return `${nav}${crumbs(trail)}<h1>${esc(g.title)}${route.page > 1 ? ` — page ${route.page}` : ''}</h1><p>${esc(g.blurb || '')} ${g.pieces.length} pieces in 925 sterling silver.</p>${inside}${grid(onPage)}${pager}`;
+      return `${nav}${crumbs(trail)}<h1>${esc(g.title)}${route.page > 1 ? ` — page ${route.page}` : ''}</h1><p>${esc(g.blurb || '')} ${g.pieces.length} pieces in 925 sterling silver.</p>${inside}${grid(onPage, true)}${pager}`;
     }
 
     case 'piece': {
@@ -108,7 +111,7 @@ function body(route) {
       const co = cat.galleries.get(p.co);
       const trail = [{ title: 'Home', path: '/' }, ...(co?.parent ? [{ title: co.parent.title, path: galleryPath(co.parent.slug) }] : []), ...(co ? [{ title: co.title, path: galleryPath(co.slug) }] : []), { title: p.t, path: piecePath(p) }];
       return `${nav}${crumbs(trail)}<article><h1>${esc(p.t)}</h1><p><strong>${esc(priceLabel(p) || 'Ask us on WhatsApp for the price.')}</strong>${SHOW_PRICES && p.priceBy ? ` — ${p.priceBy.values.map((v) => `${esc(p.priceBy.name)} ${esc(v.v)}: PKR ${v.price.toLocaleString('en-US')}`).join('; ')}` : ''}</p>
-${p.img.map((im, i) => `<img src="${esc(imageUrls(im).full)}" alt="${esc(im.alt || `${p.t}, view ${i + 1} — ${BRAND}`)}" width="${im.w || 2000}" height="${im.h || 2000}" ${i ? 'loading="lazy"' : ''} />`).join('')}
+${p.img.map((im, i) => `<img src="${esc(imageUrls(im).full)}" alt="${esc(im.alt || `${p.t}, view ${i + 1} — ${BRAND}`)}" width="${im.w || 2000}" height="${im.h || 2000}" ${i ? 'loading="lazy"' : 'fetchpriority="high"'} />`).join('')}
 ${p.story.map((s) => `<p>${esc(s)}</p>`).join('')}${p.facts.length ? `<ul>${p.facts.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>` : ''}
 <p>925 sterling silver${p.plating.length ? `, ${esc(p.plating.map((x) => (x === 'Gold' ? '21k gold' : x.toLowerCase())).join(' or '))} plating` : ''}. Handcrafted to order in Karachi.</p>
 <p><a href="${esc(enquiry(p))}">Enquire about the ${esc(p.t)} on WhatsApp</a>${shopUrl(p) ? ` · <a href="${esc(shopUrl(p))}">Buy it online at houseofmina.store</a>` : ''}${co ? ` · <a href="${galleryPath(co.slug)}">More ${esc(co.title)}</a>` : ''}</p></article>
