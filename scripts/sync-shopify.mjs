@@ -245,6 +245,9 @@ async function main() {
       };
     });
 
+    // Nothing to show it with (every photograph gone, or none ever): off the catalogue until Shopify has one.
+    if (!images.length) { console.warn(`  ! left out, no photograph that loads: ${p.title.trim()} (${p.handle})`); continue; }
+
     const { story, facts } = describe(p.body_html);
     const nickelFree = finishIdx >= 0 && p.options[finishIdx].values.some((v) => /nickel/i.test(v));
 
