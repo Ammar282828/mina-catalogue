@@ -192,6 +192,24 @@ async function main() {
   const sources = {};
   const pieces = [];
 
+  // A photograph Shopify still lists but its CDN no longer serves (404 — "grace", 2026-10-12) is left out, with a
+  // warning, so one dead file can't stop every deploy (images.mjs fails the build on any photo it can't fetch).
+  const dead = new Set();
+  {
+    const all = [...new Set(products.flatMap((p) => (p.images || []).map((img) => img.src)))];
+    const queue = [...all];
+    await Promise.all(Array.from({ length: 24 }, async () => {
+      while (queue.length) {
+        const src = queue.shift();
+        try {
+          const r = await fetch(src, { method: 'HEAD', signal: AbortSignal.timeout(20000) });
+          if (r.status === 404 || r.status === 410) dead.add(src);
+        } catch { /* a network blip is not a dead photo */ }
+      }
+    }));
+    for (const src of dead) console.warn(`  ! left out, Shopify's CDN answers 404: ${src}`);
+  }
+
   for (const p of products) {
     const h = kept.get(p.handle) || p.handle;
     const tags = new Set((p.tags || []).map((t) => String(t).trim().toLowerCase()));
@@ -214,7 +232,7 @@ async function main() {
     // that all share one plating. Lets the piece page switch photos with the chip.
     const variantPlating = new Map(p.variants.map((v) => [v.id, platingOf(variantValue(v, platingIdx))]));
 
-    const images = [...p.images].sort((a, b) => a.position - b.position).map((img, i) => {
+    const images = [...p.images].filter((img) => !dead.has(img.src)).sort((a, b) => a.position - b.position).map((img, i) => {
       const f = `${h}/${i + 1}-${hash6(bareSrc(img.src))}`;
       sources[f] = img.src;
       const plates = new Set((img.variant_ids || []).map((id) => variantPlating.get(id)).filter(Boolean));
