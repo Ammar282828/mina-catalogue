@@ -2118,6 +2118,37 @@
    "t": "Peridot Oval Swirl Ring",
    "co": "rings-and-bands",
    "type": "Ring", "plating": ["Rhodium"], "stone": ["Peridot", "American Diamond"], "setting": [], "story": ["An oval simulated peridot in a swirling bypass of American Diamonds."]
+  },
+  {
+   "id": "DSC09548",
+   "t": "Gold Bead & Pavé Cluster Bangle Pair",
+   "co": "wristwear", "addedAt": "2026-10-12",
+   "type": "Bangle", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"],
+   "px": 1254, "story": ["Polished gold-plated beads alternating with round clusters of American Diamonds, all the way around — a pair of bangles, each with a hinged clasp."],
+   "also": ["DSC09549", "DSC09550"]
+  },
+  {
+   "id": "DSC09551",
+   "t": "Faceted Pavé Bar Bangle Pair",
+   "co": "wristwear", "addedAt": "2026-10-12",
+   "type": "Bangle", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"],
+   "px": 1254, "story": ["Gold-plated links cut into faceted diamond shapes that catch the light, broken by short bars of American Diamonds — a pair of bangles."],
+   "also": ["DSC09552"]
+  },
+  {
+   "id": "DSC09553",
+   "t": "Pavé Bar Double-Rail Bangle Pair",
+   "co": "wristwear", "addedAt": "2026-10-12",
+   "type": "Bangle", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"],
+   "px": 1254, "story": ["Two slim gold-plated rails joined by rectangular bars and studs of American Diamonds — an open, airy pair of bangles with a hinged clasp."]
+  },
+  {
+   "id": "DSC09554",
+   "t": "Pavé Twist Bangle Pair",
+   "co": "wristwear", "addedAt": "2026-10-12",
+   "type": "Bangle", "plating": ["Gold"], "stone": ["American Diamond"], "setting": ["Pavé"],
+   "px": 1254, "story": ["Slanted stripes of American Diamonds wound around a smooth gold-plated bangle like a twist — a pair, each with a hinged clasp."],
+   "also": ["DSC09555"]
   }
  ],
  "held": {

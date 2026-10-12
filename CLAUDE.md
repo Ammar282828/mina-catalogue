@@ -264,6 +264,10 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     Sets (`/sets/topaz-locket-set-with-bangle` 301s). Earrings: DSC09442 is **Bianca Butterfly Drop Earrings** (Shopify),
     put first on it (`heroes`); the other eight are new local earrings. DSC09440 (Emerald Oval Double-Halo Studs) looks like
     Shopify's **Minerva Emerald Double-Halo Studs** (white renders) — left its own piece until the owner says they are one.
+  - **Bangle pairs, 2026-10-12** (the owner's Drive folder "retouched-red-bangles-v2": 8 retouched shots, DSC09548–55, 1254²
+    PNG, on the maroon cloth; uploaded from a cloud session with upload.php `to=local`): four new local pairs in Wristwear →
+    Bangles & Cuffs, named off the photo (the owner may rename) — Gold Bead & Pavé Cluster (09548, `also` 09549–50), Faceted
+    Pavé Bar (09551, 09552), Pavé Bar Double-Rail (09553), Pavé Twist (09554, 09555). No burned-in mark; brand.mjs adds it.
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
     Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.
