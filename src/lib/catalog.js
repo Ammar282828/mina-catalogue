@@ -164,6 +164,9 @@ export function mergeLocal(data, local, renders = {}) {
       h: `local-${localKey(x.id).toLowerCase()}`, s, t: x.t, type: x.type || 'Ring', ch: chapter.slug, co,
       price: null, plating: x.plating || [], facets, story: x.story || [], facts: x.facts || [], edits: x.edits || [],
       at: x.addedAt || local.addedAt, img: imgs, local: true, ...(x.natural ? { natural: true } : {}),
+      // No date of its own: it came in with the launch import (local.addedAt, 2026-09-23, 288 pieces), and is
+      // stock the site opened with, not an arrival. Counting it new filled New Arrivals with the launch for 60 days.
+      ...(x.addedAt ? {} : { launch: true }),
     };
   }).filter(Boolean);
   return { ...data, pieces: [...shopify, ...own] };
@@ -185,7 +188,7 @@ function orderer(pretty = {}, now = Date.now()) {
   const median = vals.length ? vals[vals.length >> 1] : 50;
   const since = new Date(now - FIRST_DAYS * 864e5).toISOString().slice(0, 10);
   const score = (p) => pretty[p.s || p.h] ?? median;
-  const fresh = (p) => (p.drop || (p.at || '') >= since ? 1 : 0);
+  const fresh = (p) => (p.drop || (!p.launch && (p.at || '') >= since) ? 1 : 0);
   return (list) => {
     const pieces = [...list].sort((a, b) => (fresh(b) - fresh(a)) || (score(b) - score(a)) || (b.at || '').localeCompare(a.at || ''));
     return { pieces, cover: pieces.find((p) => !p.drop) || pieces[0] };
@@ -290,11 +293,17 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
   }).filter((e) => e.pieces.length);
   for (const e of edits) galleries.set(e.slug, e);
 
-  const fresh = pieces.filter((p) => p.at >= cutoff);
+  // New Arrivals is the newest first (owner, 2026-10-12: "why are new arrivals hardcoded"). Ordered by
+  // prettiness, the shelf showed the same launch pieces for two months, and a piece added today, with no
+  // score yet, sat in the middle of it. Prettiness only breaks a tie within one day.
+  const isNew = (p) => p.drop || (!p.launch && p.at >= cutoff);
+  const score = (p) => data.pretty?.pieces?.[p.s || p.h] ?? 0;
+  const newestFirst = (list) => [...list].sort((a, b) => (b.at || '').localeCompare(a.at || '') || (score(b) - score(a)));
+  const fresh = pieces.filter(isNew);
   const newArrivals = {
     ...NEW_ARRIVALS, kind: 'edit',
-    // Never an empty shelf: when nothing is recent, the newest twenty-four.
-    pieces: order(fresh.length >= 8 ? fresh : pieces.slice(0, 24)).pieces,
+    // Never an empty shelf: when little is recent, the newest twenty-four that are not launch stock.
+    pieces: newestFirst(fresh.length >= 8 ? fresh : pieces.filter((p) => !p.launch).slice(0, 24)),
   };
   newArrivals.cover = newArrivals.pieces[0];
   galleries.set(newArrivals.slug, newArrivals);
@@ -306,7 +315,6 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
     if (p) g.cover = p;
   }
 
-  const isNew = (p) => p.at >= cutoff;
   // More like this, Complete the look, Picked for you (src/lib/recommend.js, data/recommend.json).
   const rec = recommender(pieces, bySlug, data.recommend, data.pretty?.pieces, isNew);
   return { pieces, byHandle, bySlug, galleries, chapters, edits, newArrivals, syncedAt: data.syncedAt, isNew, rec };

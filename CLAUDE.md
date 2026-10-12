@@ -96,7 +96,12 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   JSON-LD and no `priceRange` in `index.html`. Flip the switch and run a sync to bring prices back.
 - **Order of every gallery** (the owner, 2026-09-24: "sort by new and prettiness"): the pieces added in the last
   30 days first (`FIRST_DAYS`; a POS drop counts as new), prettiest first, then the rest, prettiest first; newer first on
-  a tie (`orderer()` in catalog.js — categories, sub-categories, sections, edits and New Arrivals alike). Prettiness is
+  a tie (`orderer()` in catalog.js — categories, sub-categories, sections and edits).
+  **New Arrivals is newest first** (2026-10-12, the owner: "why are new arrivals hardcoded"): ordered by prettiness it
+  showed the same launch pieces for two months while a piece added that day, unscored, sat ~130th. Prettiness now only
+  breaks a tie within a day. **Launch stock is never new:** a `local.json` piece with no `addedAt` of its own came in with the
+  2026-09-23 import (`launch: true`) and counts as neither an arrival nor fresh in a gallery, nor gets the New badge (288
+  pieces; 371 of 647 had counted as new). **Give every piece added to `local.json` its own `addedAt`**, or it is launch stock. Prettiness is
   `data/pretty.json` (1–100 per piece slug): `npm run pretty` asks Gemini 3.8 Flash on Vertex (project
   `jewelgen-mm-e3d43ecb`, mmurtaza1970's ADC — the owner's ask) to score each piece's gallery photo, only those without a
   score, and is **run on the owner's Mac after adding pieces**, then committed (a piece with no score sorts as the median).
