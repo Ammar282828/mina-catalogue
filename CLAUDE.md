@@ -282,6 +282,11 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     DSC09613 is the Emerald Bypass design in rhodium (`plating` on the hero). Six are new local sets named off the photo:
     Emerald Marquise Leaf, Pavé Leaf Bypass, Slim Pavé Link, Sapphire Marquise Vine, Multi-Colour Flower Bypass, Pearl
     Emerald Halo. DSC09638 had not reached the folder.
+    `pretty` and `similar` were run from the cloud session the same day: **billing is off on `jewelgen-mm-e3d43ecb`**
+    (403 "requires billing"), and both scripts swallow the error — `pretty` still prints "Scored N" and writes nothing.
+    They ran on gemstrack-pos instead (`PRETTY_PROJECT=gemstrack-pos`, `SIMILAR_PROJECT=gemstrack-pos`), which bills;
+    93 pieces scored (the 38 re-led ones rescored on the box photo), 101 photos embedded. On the Mac, add those two
+    variables until jewelgen's billing is back.
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
     Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.
