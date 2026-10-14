@@ -159,9 +159,12 @@ export function mergeLocal(data, local, renders = {}) {
     taken.add(s);
     const facets = {};
     for (const k of ['stone', 'setting', 'cut', 'occasion', 'style']) if (x[k]?.length) facets[k] = x[k];
-    const imgs = [x.id, ...(x.also || [])].map((id) => localImg(id, x.photoPlating?.[id], x.px));
+    const h = `local-${localKey(x.id).toLowerCase()}`;
+    // heroes work for the house's own pieces too (by handle): a box photograph put first on a
+    // bangle the PDF showed (2026-10-14), without changing the piece's id, address or saves.
+    const imgs = [...(heroes[h] || []).map(hero), ...[x.id, ...(x.also || [])].map((id) => localImg(id, x.photoPlating?.[id], x.px))];
     return {
-      h: `local-${localKey(x.id).toLowerCase()}`, s, t: x.t, type: x.type || 'Ring', ch: chapter.slug, co,
+      h, s, t: x.t, type: x.type || 'Ring', ch: chapter.slug, co,
       price: null, plating: x.plating || [], facets, story: x.story || [], facts: x.facts || [], edits: x.edits || [],
       at: x.addedAt || local.addedAt, img: imgs, local: true, ...(x.natural ? { natural: true } : {}),
       // No date of its own: it came in with the launch import (local.addedAt, 2026-09-23, 288 pieces), and is

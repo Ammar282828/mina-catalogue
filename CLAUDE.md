@@ -273,6 +273,15 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     PNG, on the maroon cloth; uploaded from a cloud session with upload.php `to=local`): four new local pairs in Wristwear →
     Bangles & Cuffs, named off the photo (the owner may rename) — Gold Bead & Pavé Cluster (09548, `also` 09549–50), Faceted
     Pavé Bar (09551, 09552), Pavé Bar Double-Rail (09553), Pavé Twist (09554, 09555). No burned-in mark; brand.mjs adds it.
+  - **Box photographs of bangle sets, 2026-10-14** (the owner's Drive folder "hom bracelet and ring sets": DSC09597–09642,
+    retouched 1254² PNGs in the maroon Mina box; uploaded with upload.php `to=local`). They first went to taheri.shop by
+    mistake (the maroon box is Mina's) and were taken off there (held, words reverted). 38 photos are new shots of bangle sets
+    already here, all `bb-NNN` pieces from the bangles PDF: each is now that piece's **lead** (the owner: "keep the box photos
+    as the hero") through `heroes`, which since this batch also takes a local piece's handle (`local-bb-021`) — `mergeLocal`
+    puts them first without changing the piece's id, address or saves. DSC09599 is DSC09597's set from another angle;
+    DSC09613 is the Emerald Bypass design in rhodium (`plating` on the hero). Six are new local sets named off the photo:
+    Emerald Marquise Leaf, Pavé Leaf Bypass, Slim Pavé Link, Sapphire Marquise Vine, Multi-Colour Flower Bypass, Pearl
+    Emerald Halo. DSC09638 had not reached the folder.
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
     Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.
