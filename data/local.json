@@ -2451,6 +2451,58 @@
    "setting": ["Pavé"],
    "px": 1254,
    "story": ["A slim gold-plated bangle that ties into an open heart knot paved in American Diamonds, with a safety chain."]
+  },
+  {
+   "id": "DSC09799-sq",
+   "t": "Pavé Scale Collar Necklace",
+   "co": "chains-and-pendants",
+   "addedAt": "2026-10-22",
+   "type": "Necklace",
+   "plating": ["Gold"],
+   "stone": ["American Diamond"],
+   "setting": ["Pavé"],
+   "also": ["DSC09798-sq", "DSC09800-sq", "DSC09801-sq"],
+   "px": 941,
+   "story": ["A rigid gold-plated collar of overlapping scale links, with panels of American Diamonds set between them, on a hinged clasp."]
+  },
+  {
+   "id": "DSC09796-sq",
+   "t": "Pavé Flower Cut-Out Bangles",
+   "co": "wristwear",
+   "addedAt": "2026-10-22",
+   "type": "Bangle",
+   "plating": ["Gold"],
+   "stone": ["American Diamond"],
+   "setting": ["Pavé"],
+   "also": ["DSC09794-sq", "DSC09795-sq", "DSC09797-sq"],
+   "px": 941,
+   "story": ["A pair of gold-plated bangles, five fine rails each, with a row of American Diamond flowers across the top and clover shapes cut through the inside."]
+  },
+  {
+   "id": "DSC09790-sq",
+   "t": "Pavé Crescent Hoop Earrings",
+   "co": "earrings",
+   "addedAt": "2026-10-22",
+   "type": "Earrings",
+   "plating": ["Rhodium"],
+   "stone": ["American Diamond"],
+   "setting": ["Pavé"],
+   "also": ["DSC09792-sq"],
+   "px": 941,
+   "story": ["Wide rhodium-plated hoops with a smooth outer ring and an inner crescent paved in American Diamonds."]
+  },
+  {
+   "id": "DSC09787-sq",
+   "t": "Hexagon Link Bangles",
+   "co": "wristwear",
+   "addedAt": "2026-10-22",
+   "type": "Bangle",
+   "plating": ["Gold"],
+   "stone": ["American Diamond"],
+   "setting": ["Bezel"],
+   "also": ["DSC09789-sq"],
+   "px": 941,
+   "story": ["A pair of gold-plated bangles made of faceted hexagon links, every other link set with an American Diamond."]
   }
  ],
  "held": {
