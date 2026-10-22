@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import { imageUrls, piecePath, priceLabel, galleryPath } from '../lib/catalog.js';
 import { useFavourites } from '../lib/store.js';
+import { noteHeart } from '../lib/interest.js';
 import TileMark from './TileMark.jsx';
 
 // ── Navigation ──────────────────────────────────────────────────────────────
@@ -110,7 +111,7 @@ export function PieceTile({ piece, isNew = false, eager = false }) {
       </Link>
       <button
         type="button"
-        onClick={() => fav.toggle(piece.h)}
+        onClick={() => { noteHeart(piece.h, saved); fav.toggle(piece.h); }}
         aria-pressed={saved}
         aria-label={saved ? `Remove ${piece.t} from saved` : `Save ${piece.t}`}
         className={`press absolute right-0 bottom-[22px] p-1.5 ${saved ? 'text-accent' : 'text-ink-2 hover:text-accent'}`}

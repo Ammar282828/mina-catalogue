@@ -3,6 +3,7 @@ import { imageUrls, piecePath, priceLabel, formatPKR, galleryPath, SITE, SHOW_PR
 import { enquiry, shopUrl } from '../lib/contact.js';
 import { stoneLabel } from '../lib/stones.js';
 import { useFavourites, noteViewed, useRecent } from '../lib/store.js';
+import { noteOpened, noteHeart, noteEnquiry, startDwell } from '../lib/interest.js';
 import { Link, Breadcrumbs, Photo, PieceGrid, HeartIcon, ShareIcon, WhatsAppIcon, ChevronLeft, ChevronRight, CloseIcon } from './ui.jsx';
 import TileMark from './TileMark.jsx';
 import { Shelf, CompleteTheLook, PickedForYou, allOf } from './Recs.jsx';
@@ -64,7 +65,7 @@ export default function Piece({ route, cat }) {
   const [also, setAlso] = useState([]);   // handles ticked under Complete the look
   const strip = useRef(null);
 
-  useEffect(() => { noteViewed(p.h); }, [p.h]);
+  useEffect(() => { noteViewed(p.h); noteOpened(p.h); return startDwell(p.h); }, [p.h]);
 
   // Choosing a plating shows a photograph of the piece in it, where there is one.
   const choosePlating = (v) => {
@@ -220,7 +221,7 @@ export default function Piece({ route, cat }) {
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <a
                 href={enquiry(p, { Plating: plating && (PLATING_LABEL[plating] || plating), Size: size && `${size} (US)`, [extraOption?.name || 'Option']: option }, chosenPrice && formatPKR(chosenPrice), alsoPieces)}
-                target="_blank" rel="noopener"
+                target="_blank" rel="noopener" onClick={() => noteEnquiry([p.h, ...alsoPieces.map((x) => x.h)])}
                 className="press inline-flex flex-1 sm:flex-none items-center justify-center gap-2.5 bg-accent px-7 py-4 text-on-accent eyebrow"
               >
                 <WhatsAppIcon className="w-4 h-4" /> {alsoPieces.length ? `Enquire about ${alsoPieces.length + 1} pieces` : 'Enquire on WhatsApp'}
@@ -231,7 +232,7 @@ export default function Piece({ route, cat }) {
                   Buy online <span aria-hidden="true">&#8599;</span>
                 </a>
               )}
-              <button type="button" onClick={() => fav.toggle(p.h)} aria-pressed={saved}
+              <button type="button" onClick={() => { noteHeart(p.h, saved); fav.toggle(p.h); }} aria-pressed={saved}
                 className={`press inline-flex items-center gap-2 border px-5 py-4 eyebrow ${saved ? 'border-accent text-accent' : 'border-line text-ink hover:border-accent'}`}>
                 <HeartIcon filled={saved} className="w-4 h-4" /> {saved ? 'Saved' : 'Save'}
               </button>

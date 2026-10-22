@@ -3,6 +3,7 @@ import { useUser, signIn, signOut } from '../lib/auth.js';
 import { useAccount, saveAccount } from '../lib/account.js';
 import { useFavourites } from '../lib/store.js';
 import { enquireList } from '../lib/contact.js';
+import { noteEnquiry } from '../lib/interest.js';
 import { Headline, PieceGrid, Link, WhatsAppIcon, ArrowRight } from './ui.jsx';
 import { PickedForYou } from './Recs.jsx';
 
@@ -77,7 +78,7 @@ export default function Account({ cat }) {
                 </div>
                 {saved.length > 0 && (
                   <div className="flex flex-wrap gap-3">
-                    <a href={enquireList(saved)} target="_blank" rel="noopener" className="press btn-big bg-accent text-on-accent">
+                    <a href={enquireList(saved)} target="_blank" rel="noopener" onClick={() => noteEnquiry(saved.map((x) => x.h))} className="press btn-big bg-accent text-on-accent">
                       <WhatsAppIcon className="w-5 h-5" /> Send them on WhatsApp
                     </a>
                     <Link to="/favourites" className="press btn-big border border-line text-ink hover:border-accent hover:text-accent">See all <ArrowRight className="w-4 h-4" /></Link>

@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useFavourites } from '../lib/store.js';
 import { useUser } from '../lib/auth.js';
 import { enquireList } from '../lib/contact.js';
+import { noteEnquiry } from '../lib/interest.js';
 import { Headline, PieceGrid, Link, WhatsAppIcon, ArrowRight } from './ui.jsx';
 import { Shelf, PickedForYou } from './Recs.jsx';
 
@@ -25,7 +26,7 @@ export default function Favourites({ cat }) {
               <p className="text-[15px] text-ink-2">
                 {pieces.length} {pieces.length === 1 ? 'piece' : 'pieces'}, {user ? 'kept in your account, on every device you sign in on.' : <>kept on this device. <Link to="/account" className="text-ink underline underline-offset-4 hover:text-accent">Sign in</Link> to keep them on every device.</>}
               </p>
-              <a href={enquireList(pieces)} target="_blank" rel="noopener" className="press inline-flex items-center gap-2.5 bg-accent px-5 py-3 text-on-accent eyebrow">
+              <a href={enquireList(pieces)} target="_blank" rel="noopener" onClick={() => noteEnquiry(pieces.map((x) => x.h))} className="press inline-flex items-center gap-2.5 bg-accent px-5 py-3 text-on-accent eyebrow">
                 <WhatsAppIcon className="w-4 h-4" /> Send the list on WhatsApp
               </a>
               <button type="button" onClick={fav.clear} className="eyebrow text-ink-2 hover:text-accent">Clear</button>

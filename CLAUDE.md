@@ -126,6 +126,10 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   nothing on a first visit. The prerendered piece pages link their pairs and look-alikes too. A piece the ranking has not
   seen (a POS drop, a piece added since) falls back to its kind's prettiest. Run `npm run pretty` then `npm run similar`
   after adding pieces, and commit both.
+- **Interest** (the owner, 2026-10-22: "which ones are saved, inquired about, looked at for the longest"): `src/lib/interest.js`
+  counts, anonymously per piece (`mina/piece/<handle>`), a piece page opened, time on it while visible, the heart on and off,
+  and a WhatsApp enquiry naming it (Enquire, and both "send the list" buttons). Batched and sent with `sendBeacon` as
+  text/plain to the POS's `POST /api/public/events`; the POS's Website → Interest ranks them. Browser-only.
 - **Accounts** (the owner, 2026-09-25: "add accounts … like taheri.shop"): Google sign-in through **Mina's POS's own Firebase
   project** (hom-pos; public web config in `src/lib/auth.js`, Firebase loaded only on Sign in or for a browser that signed in
   before), the record on **pos.houseofmina.store `/api/public/me`** — the same route and Firestore collection
