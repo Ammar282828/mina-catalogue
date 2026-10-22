@@ -8,6 +8,7 @@ import Piece from './components/Piece.jsx';
 import Favourites from './components/Favourites.jsx';
 import Account from './components/Account.jsx';
 import { useAccountSync } from './lib/account.js';
+import { trackPageView } from './lib/analytics.js';
 
 // The landing carries Three.js; nobody arriving on a piece page should wait for it.
 const Landing = lazy(() => import('./components/Landing.jsx'));
@@ -41,6 +42,9 @@ export default function App({ cat }) {
     document.querySelector('meta[name="description"]')?.setAttribute('content', m.description);
     document.querySelector('link[rel="canonical"]')?.setAttribute('href', m.canonical);
   }, [route, cat, path]);
+
+  // One page view per address (GA4 and the pixel, lib/analytics.js).
+  useEffect(() => { trackPageView(path, document.title); }, [path]);
 
   const home = route.kind === 'home';
   let page;

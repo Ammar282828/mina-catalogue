@@ -9,6 +9,7 @@
  */
 
 import { POS_API } from './account.js';
+import { trackPiece } from './analytics.js';
 
 const key = (h) => `mina/piece/${h}`;
 const queue = [];
@@ -37,11 +38,11 @@ if (typeof window !== 'undefined') {
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flush(); });
 }
 
-export const noteOpened = (h) => note('view', h);
+export const noteOpened = (h) => { note('view', h); trackPiece('view', h); };
 /** The heart: pass whether it was saved before the tap. */
-export const noteHeart = (h, wasSaved) => note(wasSaved ? 'unsave' : 'save', h);
+export const noteHeart = (h, wasSaved) => { note(wasSaved ? 'unsave' : 'save', h); if (!wasSaved) trackPiece('save', h); };
 /** A WhatsApp message naming these pieces (one, or a saved list). */
-export const noteEnquiry = (handles) => { for (const h of handles) note('enquire', h); flush(); };
+export const noteEnquiry = (handles) => { for (const h of handles) note('enquire', h); flush(); trackPiece('enquire', handles); };
 
 /**
  * Time on a piece page while the tab is visible: started on open, paused while hidden,

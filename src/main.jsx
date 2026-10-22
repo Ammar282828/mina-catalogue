@@ -11,6 +11,9 @@ import recommend from '../data/recommend.json';
 import { buildCatalog, mergeLocal } from './lib/catalog.js';
 import { loadDrops } from './lib/drops.js';
 import App from './App.jsx';
+import { initAnalytics } from './lib/analytics.js';
+
+initAnalytics();
 
 /** If anything throws while drawing, a legible page with a way to reach the house, never a blank one. */
 class ErrorBoundary extends React.Component {
