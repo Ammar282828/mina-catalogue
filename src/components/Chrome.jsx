@@ -4,6 +4,7 @@ import { hello, WHATSAPP_DISPLAY, INSTAGRAM } from '../lib/contact.js';
 import { useFavourites, useTheme } from '../lib/store.js';
 import { useUser } from '../lib/auth.js';
 import { Link, Wordmark, HeartIcon, SearchIcon, SunIcon, MoonIcon, CloseIcon, Photo, useNav, WhatsAppIcon, ArrowRight } from './ui.jsx';
+import { noteSearch } from '../lib/visits.js';
 import TileMark from './TileMark.jsx';
 
 // ── Ribbon ──────────────────────────────────────────────────────────────────
@@ -36,6 +37,10 @@ export function Ribbon({ cat }) {
 function Search({ cat, onClose }) {
   const [q, setQ] = useState('');
   const input = useRef(null);
+  // What was searched for goes to the ERP (lib/visits.js) once, when the search closes: not every keystroke.
+  const typed = useRef('');
+  useEffect(() => { typed.current = q; }, [q]);
+  useEffect(() => () => noteSearch(typed.current), []);
   useEffect(() => {
     input.current?.focus();
     const esc = (e) => { if (e.key === 'Escape') onClose(); };

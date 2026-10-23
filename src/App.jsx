@@ -9,6 +9,7 @@ import Favourites from './components/Favourites.jsx';
 import Account from './components/Account.jsx';
 import { useAccountSync } from './lib/account.js';
 import { trackPageView } from './lib/analytics.js';
+import { notePage } from './lib/visits.js';
 
 // The landing carries Three.js; nobody arriving on a piece page should wait for it.
 const Landing = lazy(() => import('./components/Landing.jsx'));
@@ -43,8 +44,11 @@ export default function App({ cat }) {
     document.querySelector('link[rel="canonical"]')?.setAttribute('href', m.canonical);
   }, [route, cat, path]);
 
-  // One page view per address (GA4 and the pixel, lib/analytics.js).
-  useEffect(() => { trackPageView(path, document.title); }, [path]);
+  // One page view per address (GA4 and the pixel, lib/analytics.js; the ERP's count, lib/visits.js).
+  useEffect(() => {
+    trackPageView(path, document.title);
+    notePage(path, { home: 'home', gallery: 'collection', piece: 'piece', collections: 'info', favourites: 'info', account: 'info' }[route.kind] || '404');
+  }, [path]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const home = route.kind === 'home';
   let page;
