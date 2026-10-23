@@ -103,7 +103,8 @@ function flush(heartbeat = false) {
   const any = out.e.length || out.p.length || out.q.length || out.f.length || opens;
   if (!any && !heartbeat) return;
   const body = {
-    v: visitor.id, s: session.id, c: session.c, n: session.n, pp: session.pp,
+    // The browser's own agent: the ERP's front end replaces the header with "Google", so devices and bots are told from this.
+    v: visitor.id, s: session.id, ua: navigator.userAgent, c: session.c, n: session.n, pp: session.pp,
     at: window.location.pathname, t,
     ...(opens ? { o: 1 } : {}), ...(firstToday ? { d: 1 } : {}),
     ...(out.p.length ? { p: out.p.splice(0, 30) } : {}), ...(out.q.length ? { q: out.q.splice(0, 10) } : {}),
