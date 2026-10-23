@@ -248,6 +248,9 @@ await fs.writeFile(path.join(DIST, 'catalog-pieces.json'), JSON.stringify({
     path: piecePath(p),
     image: imageUrls(p.img[0]).full,
     thumb: imageUrls(p.img[0]).thumb,
+    // Every photograph of the piece in the page's order, the first included: the POS's Posts hub sends them together
+    // with the one caption (2026-10-23, the owner: "if a piece has multiples").
+    ...(p.img.length > 1 ? { images: p.img.map((i) => ({ image: imageUrls(i).full, thumb: imageUrls(i).thumb })) } : {}),
     collection: own.galleries.get(p.co)?.title || '',
     stones: p.facets?.stone || [],
     plating: p.plating || [],
