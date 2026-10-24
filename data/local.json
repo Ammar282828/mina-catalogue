@@ -2503,6 +2503,32 @@
    "also": ["DSC09789-sq"],
    "px": 941,
    "story": ["A pair of gold-plated bangles made of faceted hexagon links, every other link set with an American Diamond."]
+  },
+  {
+   "id": "DSC09808",
+   "t": "Tri-Tone Scattered Stone Bangles",
+   "co": "wristwear",
+   "addedAt": "2026-10-24",
+   "type": "Bangle",
+   "plating": ["Gold", "Rose Gold", "Rhodium"],
+   "stone": ["American Diamond"],
+   "setting": [],
+   "also": ["DSC09809", "DSC09802", "DSC09803", "DSC09805", "DSC09807"],
+   "px": 1254,
+   "story": ["A pair of slim bangles in gold, rose gold and rhodium plating, each band dotted with small American Diamonds set into the metal."]
+  },
+  {
+   "id": "DSC09813",
+   "t": "Tri-Tone Textured Bangles",
+   "co": "wristwear",
+   "addedAt": "2026-10-24",
+   "type": "Bangle",
+   "plating": ["Gold", "Rose Gold", "Rhodium"],
+   "stone": [],
+   "setting": [],
+   "also": ["DSC09814", "DSC09815", "DSC09810", "DSC09811"],
+   "px": 1254,
+   "story": ["A pair of bangles with sparkling textured bands in gold, rhodium and rose gold plating, between polished rims."]
   }
  ],
  "held": {
