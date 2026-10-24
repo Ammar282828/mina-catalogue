@@ -291,6 +291,12 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     They ran on gemstrack-pos instead (`PRETTY_PROJECT=gemstrack-pos`, `SIMILAR_PROJECT=gemstrack-pos`), which bills;
     93 pieces scored (the 38 re-led ones rescored on the box photo), 101 photos embedded. On the Mac, add those two
     variables until jewelgen's billing is back.
+  - **Tri-tone bangle pairs, 2026-10-24** (the owner's Drive folder of two pairs: DSC09802–09815, retouched on the maroon cloth;
+    uploaded with upload.php `to=local`): Tri-Tone Scattered Stone Bangles (09808, `also` 09809/02/03/05/07) and Tri-Tone
+    Textured Bangles (09813, `also` 09814/15/10/11) in Wristwear → Bangles & Cuffs, plating Gold, Rose Gold and Rhodium. The three
+    portrait frames (941×1672) were cropped 1:1 on the bangles before upload (the owner wants every photo square). Actions did
+    not start that day (`runner_id` 0), so each pair went up first as a POS drop (`Wristwear/Bangles & Cuffs/<name>.png`, words
+    through override.php); once this build is live the two drops are taken off (upload.php `action=remove`, then `revert`).
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
     Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.
