@@ -348,7 +348,7 @@ from Shopify first and commits it. rsync never deletes; `catalog-drop/` is never
 re-made (the deploy reads the server's `catalog-overrides.json` first and excludes each `photo.edited` file; if it can't
 read it, it stops rather than put the old photographs back).
 
-GitHub Actions ran out of minutes in October 2026 (runs failed at once, `runner_id` 0); the owner raised the spending limit on 2026-10-12. A run that failed that way is not re-runnable from a cloud session (403): push again.
+GitHub Actions ran out of minutes in October 2026 (runs failed at once, `runner_id` 0); the owner raised the spending limit on 2026-10-12. They stopped again on 2026-10-24 (every run in this repo and taheri-pos failed at once); the owner raised the budget on 2026-10-26. A run that failed that way is not re-runnable from a cloud session (403): push again.
 **Cloud sessions** (claude.ai/code) can push only their own `claude/…` branch; `cloud-deploy.yml` merges main into it,
 puts it on main and starts this deploy — no review (owner, 2026-09-27). A branch that doesn't merge cleanly fails there:
 rebase on main and push again. The ERP's CLAUDE.md (taheri-pos), "Cloud sessions", has the rest.
