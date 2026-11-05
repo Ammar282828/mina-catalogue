@@ -297,6 +297,11 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     portrait frames (941×1672) were cropped 1:1 on the bangles before upload (the owner wants every photo square). Actions did
     not start that day (`runner_id` 0), so each pair went up first as a POS drop (`Wristwear/Bangles & Cuffs/<name>.png`, words
     through override.php); once this build is live the two drops are taken off (upload.php `action=remove`, then `revert`).
+  - **Shoot of 2026-11-05** (the owner's Drive folder "add to hom and taheri", retouched 1254² PNGs; uploaded with upload.php `to=local`):
+    27 rings on white ("white ecommerce house of mina rings": DSC09896–09923, 09902 + 09903 one ring) and, from "textured-photos/HOM" on the
+    maroon cloth, five bracelets, two bangles, a pair of bangles and three Locket Sets (DSC09926–09945; one folder = one piece, its
+    photos in `also`). All new local pieces named off the photo (the owner may rename); the stones are worded simulated. The
+    same folder's "taheri" half went to taheri.shop.
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
     Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.
