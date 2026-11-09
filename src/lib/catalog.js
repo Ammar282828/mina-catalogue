@@ -58,10 +58,30 @@ export const formatPKR = (n) => `PKR ${Math.round(n).toLocaleString('en-US')}`;
  * has not priced — "Price on request". Nothing at all while prices are off.
  */
 export function priceLabel(p) {
-  if (!SHOW_PRICES) return '';
+  if (!SHOW_PRICES && !p.byWeight) return '';
   if (!p.price) return 'Price on request';
   const [lo, hi] = p.price;
   return lo === hi ? formatPKR(lo) : `From ${formatPKR(lo)}`;
+}
+
+/**
+ * Rings priced by weight (the owner, 2026-11-09: "for rings that have weights start showing their
+ * prices — multiply the weight by 3000 and round to the nearest 500 or 1000"): a ring the counter has
+ * weighed (Mina's ERP links an inventory product to the piece, data/weights.json, `npm run weights`)
+ * shows PKR 3,000 a gram, to the nearest 500 — even while SHOW_PRICES is off. Not a ring the shop
+ * sells: houseofmina.store has its price ("skip this for rings with website prices present").
+ */
+export const RATE_PER_GRAM = 3000;
+export const weightPrice = (g) => Math.round((g * RATE_PER_GRAM) / 500) * 500;
+
+function byWeight(weights) {
+  const all = weights?.pieces || {};
+  return (p) => {
+    if (p.shop || p.price || !RING_HOMES.includes(p.co)) return p;
+    const w = all[p.h] || (p.sh && all[p.sh]);
+    const price = w?.g > 0 ? weightPrice(w.g) : 0;
+    return price > 0 ? { ...p, price: [price, price], byWeight: true, grams: w.g } : p;
+  };
 }
 
 // ── Drops ───────────────────────────────────────────────────────────────────
@@ -260,7 +280,8 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
   // A catalogue synced before Wristwear had sub-categories still says "wristwear".
   const rehome = (p) => (p.co === 'wristwear' ? { ...p, co: homeOf(p.co, p) } : p);
   const changed = counterChanges(data.overrides);
-  const pieces = [...dropped, ...data.pieces].map(rehome).map(worded).map(reframe).map(changed).filter((p) => !p.hidden)
+  const priced = byWeight(data.weights);
+  const pieces = [...dropped, ...data.pieces].map(rehome).map(worded).map(reframe).map(changed).map(priced).filter((p) => !p.hidden)
     .sort((a, b) => (b.at || '').localeCompare(a.at || ''));
   const byHandle = new Map(pieces.map((p) => [p.h, p]));
   // A product Shopify renamed is also found by the shop's handle (`sh`, scripts/identity.mjs).

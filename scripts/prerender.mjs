@@ -32,16 +32,17 @@ const lead = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'lead.json'), 
 const framed = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'framed.json'), 'utf8'));
 const pretty = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'pretty.json'), 'utf8'));
 const recommend = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'recommend.json'), 'utf8'));
+const weights = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'weights.json'), 'utf8'));
 // The counter's changes since pieces were built (api/_overrides.php), from the live
 // site's endpoint (never cached), so the pages and catalog-pieces.json carry them.
 const live = await fetch(`${SITE}/api/override.php`, { signal: AbortSignal.timeout(8000), headers: { 'User-Agent': 'mina-catalogue-build' } })
   .then((r) => (r.ok ? r.json() : null)).catch(() => null);
 if (!live?.ok) console.warn('The counter\'s changes could not be read: the pages leave them out until the next build (the app still applies them).');
 const overrides = live?.overrides && typeof live.overrides === 'object' && !Array.isArray(live.overrides) ? live.overrides : {};
-const cat = buildCatalog({ ...mergeLocal(shopify, local, renders), lead, framed, pretty, recommend, overrides }, []);
+const cat = buildCatalog({ ...mergeLocal(shopify, local, renders), lead, framed, pretty, recommend, weights, overrides }, []);
 // The site's own words, before the counter's: what catalog-pieces.json lists (the POS
 // applies the counter's changes itself, live, so putting a piece back is exact at once).
-const own = Object.keys(overrides).length ? buildCatalog({ ...mergeLocal(shopify, local, renders), lead, framed, pretty, recommend }, []) : cat;
+const own = Object.keys(overrides).length ? buildCatalog({ ...mergeLocal(shopify, local, renders), lead, framed, pretty, recommend, weights }, []) : cat;
 const template = await fs.readFile(path.join(DIST, 'index.html'), 'utf8');
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -188,7 +189,7 @@ Sitemap: ${SITE}/image-sitemap.xml
 
 await fs.writeFile(path.join(DIST, 'llms.txt'), `# House of Mina — Catalogue
 
-> Fine jewelry in 925 sterling silver, plated in 21k gold or rhodium, set with simulated stones and American Diamonds, and handcrafted to order in Karachi, Pakistan. ${cat.pieces.length} pieces; ${SHOW_PRICES ? 'prices in Pakistani rupees' : 'prices on request'}. Enquiries and orders on WhatsApp ${WHATSAPP_DISPLAY}. Instagram ${INSTAGRAM.handle}.
+> Fine jewelry in 925 sterling silver, plated in 21k gold or rhodium, set with simulated stones and American Diamonds, and handcrafted to order in Karachi, Pakistan. ${cat.pieces.length} pieces; ${SHOW_PRICES ? 'prices in Pakistani rupees' : 'rings weighed at the counter priced in Pakistani rupees, the rest on request'}. Enquiries and orders on WhatsApp ${WHATSAPP_DISPLAY}. Instagram ${INSTAGRAM.handle}.
 
 ## Categories
 ${cat.chapters.map((ch) => [`- [${ch.title}](${SITE}${galleryPath(ch.slug)}): ${ch.blurb} ${ch.pieces.length} pieces`,

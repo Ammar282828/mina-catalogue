@@ -1,0 +1,874 @@
+{
+  "source": "hom-pos products (catalogueId → metalWeightG)",
+  "syncedAt": "2026-11-09T22:19:26.479Z",
+  "pieces": {
+    "aeris-ring": {
+      "g": 2.44,
+      "sku": "RIN-000248"
+    },
+    "atlas-ring": {
+      "g": 5.241,
+      "sku": "RIN-000279"
+    },
+    "aurora-eternity-band": {
+      "g": 3.795,
+      "sku": "RIN-000277"
+    },
+    "axis": {
+      "g": 3.997,
+      "sku": "RIN-000285"
+    },
+    "belle-bow-ring": {
+      "g": 2.287,
+      "sku": "RIN-000268"
+    },
+    "celine-eternity-band": {
+      "g": 4.339,
+      "sku": "RIN-000280"
+    },
+    "coronet-pave-band": {
+      "g": 3.111,
+      "sku": "RIN-000252"
+    },
+    "durra-pear-ruby-halo-ring": {
+      "g": 3.266,
+      "sku": "RIN-000251"
+    },
+    "echelon-ring": {
+      "g": 3.05,
+      "sku": "RIN-000256"
+    },
+    "eden-band": {
+      "g": 4.106,
+      "sku": "RIN-000267"
+    },
+    "elise-bypass-ring": {
+      "g": 4.246,
+      "sku": "RIN-000253"
+    },
+    "emerald-halo-ring": {
+      "g": 4.48,
+      "sku": "RIN-000241"
+    },
+    "fleur": {
+      "g": 2.707,
+      "sku": "RIN-000245"
+    },
+    "fluted-dome-band": {
+      "g": 2.893,
+      "sku": "RIN-000264"
+    },
+    "grooved-baguette-band": {
+      "g": 7.325,
+      "sku": "RIN-000281"
+    },
+    "iris-er-single-marquise1ct-6prong": {
+      "g": 1.789,
+      "sku": "RIN-000254"
+    },
+    "juno-knot-ring": {
+      "g": 3.92,
+      "sku": "RIN-000261"
+    },
+    "kiana-single-princess1ct-fancyprong-plainband": {
+      "g": 2.38,
+      "sku": "RIN-000250"
+    },
+    "laura-single-emerald1ct-doubleband": {
+      "g": 2.769,
+      "sku": "RIN-000260"
+    },
+    "linda-single-princess1ct-hiddenhalo-pave": {
+      "g": 1.913,
+      "sku": "RIN-000272"
+    },
+    "local-dsc07562-v4": {
+      "g": 3.7,
+      "sku": "RIN-000195"
+    },
+    "local-dsc07563-v4": {
+      "g": 5,
+      "sku": "RIN-000196"
+    },
+    "local-dsc07565-v4": {
+      "g": 3.26,
+      "sku": "RIN-000197"
+    },
+    "local-dsc07566-v4": {
+      "g": 5,
+      "sku": "RIN-000198"
+    },
+    "local-dsc07567-v4": {
+      "g": 5,
+      "sku": "RIN-000199"
+    },
+    "local-dsc07569-v4": {
+      "g": 3.36,
+      "sku": "RIN-000200"
+    },
+    "local-dsc07570-v4": {
+      "g": 5,
+      "sku": "RIN-000201"
+    },
+    "local-dsc07572-v4": {
+      "g": 3.5,
+      "sku": "RIN-000202"
+    },
+    "local-dsc07573-v4": {
+      "g": 5.56,
+      "sku": "RIN-000203"
+    },
+    "local-dsc08985": {
+      "g": 2.97,
+      "sku": "RIN-000231"
+    },
+    "local-dsc08987": {
+      "g": 4.183,
+      "sku": "RIN-000086"
+    },
+    "local-dsc08988": {
+      "g": 3.001,
+      "sku": "RIN-000087"
+    },
+    "local-dsc08990": {
+      "g": 2.271,
+      "sku": "RIN-000088"
+    },
+    "local-dsc08991": {
+      "g": 4.21,
+      "sku": "RIN-000089"
+    },
+    "local-dsc08992": {
+      "g": 2.15,
+      "sku": "RIN-000090"
+    },
+    "local-dsc08993": {
+      "g": 3.3,
+      "sku": "RIN-000091"
+    },
+    "local-dsc08994": {
+      "g": 1.83,
+      "sku": "RIN-000092"
+    },
+    "local-dsc08995": {
+      "g": 3.6,
+      "sku": "RIN-000093"
+    },
+    "local-dsc08996": {
+      "g": 6.57,
+      "sku": "RIN-000094"
+    },
+    "local-dsc08997": {
+      "g": 5.32,
+      "sku": "RIN-000207"
+    },
+    "local-dsc08998": {
+      "g": 5.41,
+      "sku": "RIN-000205"
+    },
+    "local-dsc08999": {
+      "g": 6.57,
+      "sku": "RIN-000095"
+    },
+    "local-dsc09001": {
+      "g": 7.449,
+      "sku": "RIN-000096"
+    },
+    "local-dsc09002": {
+      "g": 4.53,
+      "sku": "RIN-000097"
+    },
+    "local-dsc09005": {
+      "g": 3.686,
+      "sku": "RIN-000098"
+    },
+    "local-dsc09006": {
+      "g": 6.407,
+      "sku": "RIN-000099"
+    },
+    "local-dsc09008": {
+      "g": 5.66,
+      "sku": "RIN-000100"
+    },
+    "local-dsc09009": {
+      "g": 4.261,
+      "sku": "RIN-000101"
+    },
+    "local-dsc09010": {
+      "g": 2.504,
+      "sku": "RIN-000102"
+    },
+    "local-dsc09011": {
+      "g": 2.784,
+      "sku": "RIN-000103"
+    },
+    "local-dsc09012": {
+      "g": 3.421,
+      "sku": "RIN-000104"
+    },
+    "local-dsc09013": {
+      "g": 2.33,
+      "sku": "RIN-000105"
+    },
+    "local-dsc09014": {
+      "g": 1.928,
+      "sku": "RIN-000106"
+    },
+    "local-dsc09015": {
+      "g": 2.27,
+      "sku": "RIN-000107"
+    },
+    "local-dsc09017": {
+      "g": 1.92,
+      "sku": "RIN-000108"
+    },
+    "local-dsc09018": {
+      "g": 4.992,
+      "sku": "RIN-000109"
+    },
+    "local-dsc09019": {
+      "g": 3.11,
+      "sku": "RIN-000110"
+    },
+    "local-dsc09020": {
+      "g": 2.46,
+      "sku": "RIN-000232"
+    },
+    "local-dsc09022": {
+      "g": 4.106,
+      "sku": "RIN-000111"
+    },
+    "local-dsc09023": {
+      "g": 3.54,
+      "sku": "RIN-000112"
+    },
+    "local-dsc09024": {
+      "g": 3.079,
+      "sku": "RIN-000113"
+    },
+    "local-dsc09025": {
+      "g": 3.561,
+      "sku": "RIN-000114"
+    },
+    "local-dsc09026": {
+      "g": 3.11,
+      "sku": "RIN-000208"
+    },
+    "local-dsc09027": {
+      "g": 3.141,
+      "sku": "RIN-000233"
+    },
+    "local-dsc09028": {
+      "g": 2.69,
+      "sku": "RIN-000115"
+    },
+    "local-dsc09029": {
+      "g": 3.515,
+      "sku": "RIN-000116"
+    },
+    "local-dsc09030": {
+      "g": 4.417,
+      "sku": "RIN-000209"
+    },
+    "local-dsc09032": {
+      "g": 2.519,
+      "sku": "RIN-000234"
+    },
+    "local-dsc09033": {
+      "g": 3.577,
+      "sku": "RIN-000117"
+    },
+    "local-dsc09034": {
+      "g": 5.536,
+      "sku": "RIN-000118"
+    },
+    "local-dsc09035": {
+      "g": 2.846,
+      "sku": "RIN-000119"
+    },
+    "local-dsc09036": {
+      "g": 3.857,
+      "sku": "RIN-000120"
+    },
+    "local-dsc09037": {
+      "g": 3.841,
+      "sku": "RIN-000121"
+    },
+    "local-dsc09038": {
+      "g": 4.666,
+      "sku": "RIN-000122"
+    },
+    "local-dsc09039": {
+      "g": 4.463,
+      "sku": "RIN-000123"
+    },
+    "local-dsc09040": {
+      "g": 5.07,
+      "sku": "RIN-000124"
+    },
+    "local-dsc09041": {
+      "g": 1.788,
+      "sku": "RIN-000125"
+    },
+    "local-dsc09042": {
+      "g": 2.66,
+      "sku": "RIN-000126"
+    },
+    "local-dsc09043": {
+      "g": 3.44,
+      "sku": "RIN-000127"
+    },
+    "local-dsc09048": {
+      "g": 2.737,
+      "sku": "RIN-000128"
+    },
+    "local-dsc09049": {
+      "g": 3.88,
+      "sku": "RIN-000129"
+    },
+    "local-dsc09050": {
+      "g": 2.77,
+      "sku": "RIN-000130"
+    },
+    "local-dsc09051": {
+      "g": 3.22,
+      "sku": "RIN-000235"
+    },
+    "local-dsc09052": {
+      "g": 2.68,
+      "sku": "RIN-000210"
+    },
+    "local-dsc09053": {
+      "g": 3.55,
+      "sku": "RIN-000211"
+    },
+    "local-dsc09055": {
+      "g": 7.65,
+      "sku": "RIN-000131"
+    },
+    "local-dsc09056": {
+      "g": 4.28,
+      "sku": "RIN-000132"
+    },
+    "local-dsc09057": {
+      "g": 4.012,
+      "sku": "RIN-000133"
+    },
+    "local-dsc09058": {
+      "g": 3.62,
+      "sku": "RIN-000212"
+    },
+    "local-dsc09059": {
+      "g": 4.12,
+      "sku": "RIN-000134"
+    },
+    "local-dsc09060": {
+      "g": 2.48,
+      "sku": "RIN-000213"
+    },
+    "local-dsc09061": {
+      "g": 3.11,
+      "sku": "RIN-000236"
+    },
+    "local-dsc09062": {
+      "g": 4.83,
+      "sku": "RIN-000135"
+    },
+    "local-dsc09065": {
+      "g": 3.76,
+      "sku": "RIN-000136"
+    },
+    "local-dsc09066": {
+      "g": 4.28,
+      "sku": "RIN-000214"
+    },
+    "local-dsc09067": {
+      "g": 5.08,
+      "sku": "RIN-000137"
+    },
+    "local-dsc09068": {
+      "g": 3,
+      "sku": "RIN-000138"
+    },
+    "local-dsc09069": {
+      "g": 3.19,
+      "sku": "RIN-000215"
+    },
+    "local-dsc09070": {
+      "g": 3.29,
+      "sku": "RIN-000237"
+    },
+    "local-dsc09071": {
+      "g": 5.13,
+      "sku": "RIN-000139"
+    },
+    "local-dsc09073": {
+      "g": 3.1,
+      "sku": "RIN-000216"
+    },
+    "local-dsc09074": {
+      "g": 3.46,
+      "sku": "RIN-000217"
+    },
+    "local-dsc09075": {
+      "g": 3.28,
+      "sku": "RIN-000140"
+    },
+    "local-dsc09077": {
+      "g": 3.69,
+      "sku": "RIN-000141"
+    },
+    "local-dsc09078": {
+      "g": 6.91,
+      "sku": "RIN-000142"
+    },
+    "local-dsc09079": {
+      "g": 4.47,
+      "sku": "RIN-000143"
+    },
+    "local-dsc09080": {
+      "g": 7.93,
+      "sku": "RIN-000218"
+    },
+    "local-dsc09081": {
+      "g": 4.2,
+      "sku": "RIN-000144"
+    },
+    "local-dsc09082": {
+      "g": 3.79,
+      "sku": "RIN-000219"
+    },
+    "local-dsc09083": {
+      "g": 2.53,
+      "sku": "RIN-000145"
+    },
+    "local-dsc09084": {
+      "g": 4.32,
+      "sku": "RIN-000220"
+    },
+    "local-dsc09085": {
+      "g": 3.22,
+      "sku": "RIN-000146"
+    },
+    "local-dsc09086": {
+      "g": 4.21,
+      "sku": "RIN-000147"
+    },
+    "local-dsc09087": {
+      "g": 3.18,
+      "sku": "RIN-000221"
+    },
+    "local-dsc09088": {
+      "g": 2.16,
+      "sku": "RIN-000222"
+    },
+    "local-dsc09089": {
+      "g": 1.25,
+      "sku": "RIN-000148"
+    },
+    "local-dsc09091": {
+      "g": 3.74,
+      "sku": "RIN-000223"
+    },
+    "local-dsc09092": {
+      "g": 5.29,
+      "sku": "RIN-000149"
+    },
+    "local-dsc09093": {
+      "g": 4,
+      "sku": "RIN-000150"
+    },
+    "local-dsc09094": {
+      "g": 2.71,
+      "sku": "RIN-000151"
+    },
+    "local-dsc09095": {
+      "g": 3.3,
+      "sku": "RIN-000152"
+    },
+    "local-dsc09097": {
+      "g": 3.13,
+      "sku": "RIN-000224"
+    },
+    "local-dsc09098": {
+      "g": 3.6,
+      "sku": "RIN-000225"
+    },
+    "local-dsc09099": {
+      "g": 3.6,
+      "sku": "RIN-000153"
+    },
+    "local-dsc09100": {
+      "g": 2.86,
+      "sku": "RIN-000154"
+    },
+    "local-dsc09101": {
+      "g": 3.48,
+      "sku": "RIN-000226"
+    },
+    "local-dsc09102": {
+      "g": 3.02,
+      "sku": "RIN-000155"
+    },
+    "local-dsc09103": {
+      "g": 5.86,
+      "sku": "RIN-000227"
+    },
+    "local-dsc09104": {
+      "g": 5.06,
+      "sku": "RIN-000156"
+    },
+    "local-dsc09105": {
+      "g": 1.79,
+      "sku": "RIN-000157"
+    },
+    "local-dsc09106": {
+      "g": 2.64,
+      "sku": "RIN-000158"
+    },
+    "local-dsc09108": {
+      "g": 2.44,
+      "sku": "RIN-000228"
+    },
+    "local-dsc09109": {
+      "g": 4,
+      "sku": "RIN-000238"
+    },
+    "local-dsc09110": {
+      "g": 4.6,
+      "sku": "RIN-000159"
+    },
+    "local-dsc09111": {
+      "g": 2.56,
+      "sku": "RIN-000229"
+    },
+    "local-dsc09112": {
+      "g": 5.87,
+      "sku": "RIN-000160"
+    },
+    "local-dsc09114": {
+      "g": 3.11,
+      "sku": "RIN-000206"
+    },
+    "local-dsc09115": {
+      "g": 3.36,
+      "sku": "RIN-000161"
+    },
+    "local-dsc09117": {
+      "g": 3.111,
+      "sku": "RIN-000162"
+    },
+    "local-dsc09118": {
+      "g": 2.613,
+      "sku": "RIN-000230"
+    },
+    "local-dsc09119": {
+      "g": 3.484,
+      "sku": "RIN-000163"
+    },
+    "local-dsc09122": {
+      "g": 3.997,
+      "sku": "RIN-000164"
+    },
+    "local-dsc09124": {
+      "g": 2.83,
+      "sku": "RIN-000165"
+    },
+    "local-dsc09125": {
+      "g": 1.59,
+      "sku": "RIN-000166"
+    },
+    "local-dsc09126": {
+      "g": 5.055,
+      "sku": "RIN-000239"
+    },
+    "local-dsc09127": {
+      "g": 6,
+      "sku": "RIN-000167"
+    },
+    "local-dsc09128": {
+      "g": 7.776,
+      "sku": "RIN-000168"
+    },
+    "local-dsc09129": {
+      "g": 6.19,
+      "sku": "RIN-000169"
+    },
+    "local-dsc09131": {
+      "g": 6.034,
+      "sku": "RIN-000170"
+    },
+    "local-dsc09132": {
+      "g": 5.148,
+      "sku": "RIN-000171"
+    },
+    "local-dsc09133": {
+      "g": 3.48,
+      "sku": "RIN-000240"
+    },
+    "local-dsc09135": {
+      "g": 4.526,
+      "sku": "RIN-000172"
+    },
+    "local-dsc09136": {
+      "g": 3.53,
+      "sku": "RIN-000173"
+    },
+    "local-dsc09137": {
+      "g": 2.75,
+      "sku": "RIN-000174"
+    },
+    "local-dsc09138": {
+      "g": 3.31,
+      "sku": "RIN-000175"
+    },
+    "local-dsc09140": {
+      "g": 3.903,
+      "sku": "RIN-000176"
+    },
+    "local-dsc09141": {
+      "g": 2.1,
+      "sku": "RIN-000177"
+    },
+    "local-dsc09142": {
+      "g": 3.686,
+      "sku": "RIN-000178"
+    },
+    "local-dsc09143": {
+      "g": 2.224,
+      "sku": "RIN-000179"
+    },
+    "local-dsc09145": {
+      "g": 1.79,
+      "sku": "RIN-000180"
+    },
+    "local-dsc09146": {
+      "g": 3.375,
+      "sku": "RIN-000181"
+    },
+    "local-dsc09147": {
+      "g": 2.224,
+      "sku": "RIN-000182"
+    },
+    "local-dsc09148": {
+      "g": 2.846,
+      "sku": "RIN-000183"
+    },
+    "local-dsc09149": {
+      "g": 1.56,
+      "sku": "RIN-000184"
+    },
+    "local-dsc09150": {
+      "g": 2.893,
+      "sku": "RIN-000185"
+    },
+    "local-dsc09151": {
+      "g": 3.686,
+      "sku": "RIN-000186"
+    },
+    "local-dsc09152": {
+      "g": 3.935,
+      "sku": "RIN-000187"
+    },
+    "local-dsc09153": {
+      "g": 2.18,
+      "sku": "RIN-000188"
+    },
+    "local-dsc09154": {
+      "g": 4.215,
+      "sku": "RIN-000189"
+    },
+    "local-dsc09155": {
+      "g": 3.484,
+      "sku": "RIN-000190"
+    },
+    "local-dsc09158": {
+      "g": 2.411,
+      "sku": "RIN-000191"
+    },
+    "local-dsc09159": {
+      "g": 4,
+      "sku": "RIN-000192"
+    },
+    "local-dsc09161": {
+      "g": 3.11,
+      "sku": "RIN-000193"
+    },
+    "local-dsc09163": {
+      "g": 1.975,
+      "sku": "RIN-000194"
+    },
+    "local-dsc09289": {
+      "g": 3.68,
+      "sku": "RIN-000079"
+    },
+    "local-dsc09291": {
+      "g": 3.36,
+      "sku": "RIN-000080"
+    },
+    "local-dsc09292": {
+      "g": 2.84,
+      "sku": "RIN-000081"
+    },
+    "local-dsc09293": {
+      "g": 4.7,
+      "sku": "RIN-000082"
+    },
+    "local-dsc09665": {
+      "g": 2.768,
+      "sku": "RIN-000069"
+    },
+    "local-dsc09666": {
+      "g": 5.023,
+      "sku": "RIN-000070"
+    },
+    "local-dsc09667": {
+      "g": 4.73,
+      "sku": "RIN-000071"
+    },
+    "local-dsc09668": {
+      "g": 0.98,
+      "sku": "RIN-000072"
+    },
+    "local-dsc09669": {
+      "g": 1.073,
+      "sku": "RIN-000073"
+    },
+    "local-dsc09670": {
+      "g": 1.073,
+      "sku": "RIN-000074"
+    },
+    "local-dsc09671": {
+      "g": 0.995,
+      "sku": "RIN-000075"
+    },
+    "local-dsc09672": {
+      "g": 1.213,
+      "sku": "RIN-000076"
+    },
+    "local-dsc09673": {
+      "g": 1.073,
+      "sku": "RIN-000077"
+    },
+    "local-dsc09674": {
+      "g": 0.98,
+      "sku": "RIN-000078"
+    },
+    "local-ring-05-purple-pearl": {
+      "g": 7.776,
+      "sku": "RIN-000282"
+    },
+    "local-ring-06-green-oval": {
+      "g": 3.37,
+      "sku": "RIN-000204"
+    },
+    "local-ring-07-blue-radiant-floating-halo": {
+      "g": 7.045,
+      "sku": "RIN-000083"
+    },
+    "local-ring-08-canary-oval-leaf-spray": {
+      "g": 8.73,
+      "sku": "RIN-000084"
+    },
+    "local-ring-09-ocean-blue-oval-leaf-spray": {
+      "g": 8.461,
+      "sku": "RIN-000258"
+    },
+    "local-ring-10-peach-radiant-baguette-v2": {
+      "g": 3.872,
+      "sku": "RIN-000085"
+    },
+    "luna-pearl-halo-ring": {
+      "g": 3.795,
+      "sku": "RIN-000257"
+    },
+    "marea": {
+      "g": 4.713,
+      "sku": "RIN-000273"
+    },
+    "metro-ring": {
+      "g": 6.423,
+      "sku": "RIN-000274"
+    },
+    "nova-pearl-ring": {
+      "g": 2.878,
+      "sku": "RIN-000275"
+    },
+    "odile-pearl-band": {
+      "g": 2.473,
+      "sku": "RIN-000269"
+    },
+    "pear-emerald-pave-ring": {
+      "g": 7.97,
+      "sku": "RIN-000242"
+    },
+    "pearl-solitaire-ring": {
+      "g": 2.489,
+      "sku": "RIN-000243"
+    },
+    "regal": {
+      "g": 4.775,
+      "sku": "RIN-000265"
+    },
+    "rhea-er-single-round1ct-hiddenhalo-sixprong": {
+      "g": 1.944,
+      "sku": "RIN-000263"
+    },
+    "ridge-ring": {
+      "g": 2.364,
+      "sku": "RIN-000270"
+    },
+    "rosalind-round-ruby-pave-ring": {
+      "g": 2.32,
+      "sku": "RIN-000244"
+    },
+    "sahar-emerald-filigree-cocktail-ring": {
+      "g": 9.114,
+      "sku": "RIN-000284"
+    },
+    "sienna-marquise-illusion-ring": {
+      "g": 3.64,
+      "sku": "RIN-000246"
+    },
+    "solara-sapphire-ring": {
+      "g": 3.92,
+      "sku": "RIN-000283"
+    },
+    "solene": {
+      "g": 5.444,
+      "sku": "RIN-000259"
+    },
+    "sorbet-band": {
+      "g": 4.044,
+      "sku": "RIN-000255"
+    },
+    "the-gilded-ring": {
+      "g": 3.36,
+      "sku": "RIN-000266"
+    },
+    "trellis-vine-band": {
+      "g": 2.52,
+      "sku": "RIN-000262"
+    },
+    "tri-channel-ring": {
+      "g": 6.563,
+      "sku": "RIN-000271"
+    },
+    "vera": {
+      "g": 4.075,
+      "sku": "RIN-000276"
+    },
+    "vivienne-oval-halo-ring": {
+      "g": 2.13,
+      "sku": "RIN-000247"
+    },
+    "wren-wishbone-band": {
+      "g": 2.053,
+      "sku": "RIN-000249"
+    },
+    "x-ring": {
+      "g": 4.666,
+      "sku": "RIN-000278"
+    }
+  }
+}

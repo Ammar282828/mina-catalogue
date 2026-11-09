@@ -94,6 +94,14 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   keeps the option that decided a price (`priceBy`) without its figures, so no price reaches the pages or the app's
   script. Piece pages say "Ask us on WhatsApp for the price"; there is no price filter or sort, no `Offer` in the
   JSON-LD and no `priceRange` in `index.html`. Flip the switch and run a sync to bring prices back.
+  **Except rings weighed at the counter** (the owner, 2026-11-09: "for rings that have weights start showing their prices —
+  multiply the weight by 3000 and round to nearest 500 or 1000"; "skip this for rings with website prices present"): Mina's
+  ERP links an inventory product (hom-pos Firestore `products`) to a piece by `catalogueId` (the piece's handle) with its
+  `metalWeightG`. `npm run weights` (`scripts/weights.mjs`, gcloud's login; works from a cloud session) writes
+  `data/weights.json` — commit it. `byWeight()` in catalog.js prices a ring (`RING_HOMES`) that is not on houseofmina.store
+  (`shop`) at PKR 3,000 a gram to the nearest 500 (`weightPrice`), `byWeight: true`: the price shows on its tile, page,
+  WhatsApp message and prerendered page, and the page is a Product with an Offer. 184 rings on 2026-11-09 (171 Rings & Bands,
+  13 Natural Ruby Rings; the 33 shop rings skipped). **Re-run `npm run weights` after the counter links more rings.**
 - **Order of every gallery** (the owner, 2026-09-24: "sort by new and prettiness"): the pieces added in the last
   30 days first (`FIRST_DAYS`; a POS drop counts as new), prettiest first, then the rest, prettiest first; newer first on
   a tie (`orderer()` in catalog.js — categories, sub-categories, sections and edits).

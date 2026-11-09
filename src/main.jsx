@@ -8,6 +8,7 @@ import lead from '../data/lead.json';
 import framed from '../data/framed.json';
 import pretty from '../data/pretty.json';
 import recommend from '../data/recommend.json';
+import weights from '../data/weights.json';
 import { buildCatalog, mergeLocal } from './lib/catalog.js';
 import { loadDrops } from './lib/drops.js';
 import App from './App.jsx';
@@ -33,7 +34,7 @@ class ErrorBoundary extends React.Component {
 }
 
 loadDrops().then(({ images, overrides }) => {
-  const cat = buildCatalog({ ...mergeLocal(shopify, local, renders), lead, framed, pretty, recommend, overrides }, images);
+  const cat = buildCatalog({ ...mergeLocal(shopify, local, renders), lead, framed, pretty, recommend, weights, overrides }, images);
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
       <ErrorBoundary><App cat={cat} /></ErrorBoundary>

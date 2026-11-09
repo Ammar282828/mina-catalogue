@@ -11,7 +11,8 @@
     "preview": "vite preview --port 5191",
     "renders": "node scripts/sync-renders.mjs --publish",
     "pretty": "node scripts/pretty.mjs",
-    "similar": "node scripts/similar.mjs"
+    "similar": "node scripts/similar.mjs",
+    "weights": "node scripts/weights.mjs"
   },
   "dependencies": {
     "firebase": "^11.10.0",

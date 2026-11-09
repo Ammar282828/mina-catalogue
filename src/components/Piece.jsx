@@ -156,7 +156,7 @@ export default function Piece({ route, cat }) {
           <div className="lg:pt-2">
             {co && <Link to={galleryPath(co.slug)} className="eyebrow text-accent hover:underline underline-offset-4">{co.title}</Link>}
             <h1 className="display mt-3 text-[clamp(2.2rem,4.6vw,3.6rem)] leading-[0.98] text-ink">{p.t}</h1>
-            {SHOW_PRICES ? (
+            {SHOW_PRICES || p.byWeight ? (
               <p className="mt-4 text-[20px] tabular-nums text-ink">
                 {chosenPrice ? formatPKR(chosenPrice) : priceLabel(p)}
               </p>
@@ -164,7 +164,7 @@ export default function Piece({ route, cat }) {
               <p className="mt-4 text-[15px] text-ink-2">Ask us on WhatsApp for the price.</p>
             )}
             {p.drop && <p className={`${SHOW_PRICES ? 'mt-1 text-[13px]' : 'mt-4 text-[15px]'} text-ink-2`}>Newly photographed at the counter — ask us for the price and details.</p>}
-            {p.local && <p className={`${SHOW_PRICES ? 'mt-1 text-[13px]' : 'mt-4 text-[15px]'} text-ink-2`}>New to the house — ask us on WhatsApp for the price, platings and sizes.</p>}
+            {p.local && <p className={`${SHOW_PRICES || p.byWeight ? 'mt-1 text-[13px]' : 'mt-4 text-[15px]'} text-ink-2`}>{p.byWeight ? 'New to the house — ask us on WhatsApp for platings and sizes.' : 'New to the house — ask us on WhatsApp for the price, platings and sizes.'}</p>}
 
             {/* Choices, carried into the WhatsApp message */}
             <div className="mt-8 space-y-6">
