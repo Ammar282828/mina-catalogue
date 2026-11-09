@@ -73,13 +73,15 @@ export function priceLabel(p) {
  */
 export const RATE_PER_GRAM = 3000;
 export const weightPrice = (g) => Math.round((g * RATE_PER_GRAM) / 500) * 500;
+/** A natural ruby ring's stone, on top of its weight (the owner, 2026-11-09: "add 10000 stone price to each for now"). */
+export const NATURAL_STONE_PRICE = 10000;
 
 function byWeight(weights) {
   const all = weights?.pieces || {};
   return (p) => {
     if (p.shop || p.price || !RING_HOMES.includes(p.co)) return p;
     const w = all[p.h] || (p.sh && all[p.sh]);
-    const price = w?.g > 0 ? weightPrice(w.g) : 0;
+    const price = w?.g > 0 ? weightPrice(w.g) + (p.natural ? NATURAL_STONE_PRICE : 0) : 0;
     return price > 0 ? { ...p, price: [price, price], byWeight: true, grams: w.g } : p;
   };
 }

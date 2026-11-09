@@ -101,7 +101,8 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   `data/weights.json` — commit it. `byWeight()` in catalog.js prices a ring (`RING_HOMES`) that is not on houseofmina.store
   (`shop`) at PKR 3,000 a gram to the nearest 500 (`weightPrice`), `byWeight: true`: the price shows on its tile, page,
   WhatsApp message and prerendered page, and the page is a Product with an Offer. 184 rings on 2026-11-09 (171 Rings & Bands,
-  13 Natural Ruby Rings; the 33 shop rings skipped). **Re-run `npm run weights` after the counter links more rings.**
+  13 Natural Ruby Rings; the 33 shop rings skipped). A `natural` piece (the natural ruby rings) adds PKR 10,000 for the
+  stone (`NATURAL_STONE_PRICE`, the owner, 2026-11-09: "add 10000 stone price to each for now"). **Re-run `npm run weights` after the counter links more rings.**
 - **Order of every gallery** (the owner, 2026-09-24: "sort by new and prettiness"): the pieces added in the last
   30 days first (`FIRST_DAYS`; a POS drop counts as new), prettiest first, then the rest, prettiest first; newer first on
   a tie (`orderer()` in catalog.js — categories, sub-categories, sections and edits).
