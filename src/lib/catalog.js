@@ -58,31 +58,36 @@ export const formatPKR = (n) => `PKR ${Math.round(n).toLocaleString('en-US')}`;
  * has not priced — "Price on request". Nothing at all while prices are off.
  */
 export function priceLabel(p) {
-  if (!SHOW_PRICES && !p.byWeight) return '';
+  if (!SHOW_PRICES && !p.priced) return '';
   if (!p.price) return 'Price on request';
   const [lo, hi] = p.price;
   return lo === hi ? formatPKR(lo) : `From ${formatPKR(lo)}`;
 }
 
 /**
- * Rings priced by weight (the owner, 2026-11-09: "for rings that have weights start showing their
- * prices — multiply the weight by 3000 and round to the nearest 500 or 1000"): a ring the counter has
- * weighed (Mina's ERP links an inventory product to the piece, data/weights.json, `npm run weights`)
- * shows PKR 3,000 a gram, to the nearest 500 — even while SHOW_PRICES is off. Not a ring the shop
- * sells: houseofmina.store has its price ("skip this for rings with website prices present").
+ * Pieces priced by weight, even while SHOW_PRICES is off. The counter weighs a piece and Mina's ERP links
+ * the inventory product to it (data/weights.json, `npm run weights`); the price is the weight times the
+ * rate of its kind, to the nearest 500. Rings PKR 3,000 a gram (the owner, 2026-11-09: "multiply the
+ * weight by 3000 and round to nearest 500 or 1000"), wristwear PKR 2,600 ("multiply by 2600 for
+ * wristwear"). Not a piece the shop sells: houseofmina.store has its price ("skip this for rings with
+ * website prices present"). A natural ruby ring adds its stone ("add 10000 stone price to each").
  */
-export const RATE_PER_GRAM = 3000;
-export const weightPrice = (g) => Math.round((g * RATE_PER_GRAM) / 500) * 500;
+export const RATE_PER_GRAM = {
+  'rings-and-bands': 3000, 'mens-rings': 3000, 'natural-ruby-rings': 3000,
+  'bangle-and-ring-sets': 2600, 'bangles-and-cuffs': 2600, 'bracelets': 2600, 'mens-bracelets': 2600,
+};
+export const weightPrice = (g, rate) => Math.round((g * rate) / 500) * 500;
 /** A natural ruby ring's stone, on top of its weight (the owner, 2026-11-09: "add 10000 stone price to each for now"). */
 export const NATURAL_STONE_PRICE = 10000;
 
 function byWeight(weights) {
   const all = weights?.pieces || {};
   return (p) => {
-    if (p.shop || p.price || !RING_HOMES.includes(p.co)) return p;
+    const rate = RATE_PER_GRAM[p.co];
+    if (p.shop || p.price || !rate) return p;
     const w = all[p.h] || (p.sh && all[p.sh]);
-    const price = w?.g > 0 ? weightPrice(w.g) + (p.natural ? NATURAL_STONE_PRICE : 0) : 0;
-    return price > 0 ? { ...p, price: [price, price], byWeight: true, grams: w.g } : p;
+    const price = w?.g > 0 ? weightPrice(w.g, rate) + (p.natural ? NATURAL_STONE_PRICE : 0) : 0;
+    return price > 0 ? { ...p, price: [price, price], priced: true, grams: w.g } : p;
   };
 }
 
@@ -155,6 +160,19 @@ export function localImageIds(local) {
  */
 export const renderKey = (id, r) => `local-3d/${localKey(id)}-${r.v}`;
 
+/**
+ * A price the owner set on one of the house's own pieces (data/local.json `price`): a number, or the
+ * choice that decides it, { name, values: [{ v, price }] } — the Opal and Ruby Bangle & Ring, natural or
+ * simulated stones (the owner, 2026-11-09). Shown even while SHOW_PRICES is off.
+ */
+function housePrice(x) {
+  if (typeof x === 'number' && x > 0) return { price: [x, x], priced: true };
+  const values = (x?.values || []).filter((r) => r?.v && r.price > 0);
+  if (!values.length) return {};
+  const all = values.map((r) => r.price);
+  return { price: [Math.min(...all), Math.max(...all)], priceBy: { name: x.name || 'Option', values }, priced: true };
+}
+
 export function mergeLocal(data, local, renders = {}) {
   if (!local) return data;
   const localImg = (id, plating, px = 1500) => {
@@ -188,6 +206,7 @@ export function mergeLocal(data, local, renders = {}) {
     return {
       h, s, t: x.t, type: x.type || 'Ring', ch: chapter.slug, co,
       price: null, plating: x.plating || [], facets, story: x.story || [], facts: x.facts || [], edits: x.edits || [],
+      ...housePrice(x.price),
       at: x.addedAt || local.addedAt, img: imgs, local: true, ...(x.natural ? { natural: true } : {}),
       // No date of its own: it came in with the launch import (local.addedAt, 2026-09-23, 288 pieces), and is
       // stock the site opened with, not an arrival. Counting it new filled New Arrivals with the launch for 60 days.

@@ -720,6 +720,7 @@
   {
    "id": "bb-019.jpg",
    "t": "Mother-of-Pearl Hexagon Bangle & Ring",
+   "price": 85000,
    "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["American Diamond"], "setting": [],
    "px": 1200, "story": ["Mother-of-pearl and American Diamond hexagons around a gold bangle, with its ring."]
@@ -902,9 +903,10 @@
   {
    "id": "bb-062.jpg",
    "t": "Opal and Ruby Bangle & Ring",
+   "price": {"name": "Stones", "values": [{"v": "Simulated opal & rubies", "price": 75000}, {"v": "Natural opal & rubies", "price": 200000}]},
    "co": "wristwear",
    "type": "Bangle & Ring", "plating": ["Gold"], "stone": ["Ruby"], "setting": [],
-   "px": 1024, "story": ["A natural opal ringed in natural rubies, on a slim gold bangle with its ring."]
+   "px": 1024, "natural": true, "story": ["An opal ringed in rubies, on a slim gold bangle with its ring — made in natural opal and rubies, or in simulated stones."]
   },
   {
    "id": "bb-065.jpg",

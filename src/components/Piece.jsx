@@ -85,7 +85,7 @@ export default function Piece({ route, cat }) {
 
   // The price for what is chosen, when one option decides it.
   const chosenPrice = useMemo(() => {
-    if (!SHOW_PRICES || !p.priceBy) return null;
+    if (!(SHOW_PRICES || p.priced) || !p.priceBy) return null;
     const isSize = /size/i.test(p.priceBy.name);
     const pick = isSize ? size : option;
     if (!pick) return null;
@@ -156,7 +156,7 @@ export default function Piece({ route, cat }) {
           <div className="lg:pt-2">
             {co && <Link to={galleryPath(co.slug)} className="eyebrow text-accent hover:underline underline-offset-4">{co.title}</Link>}
             <h1 className="display mt-3 text-[clamp(2.2rem,4.6vw,3.6rem)] leading-[0.98] text-ink">{p.t}</h1>
-            {SHOW_PRICES || p.byWeight ? (
+            {SHOW_PRICES || p.priced ? (
               <p className="mt-4 text-[20px] tabular-nums text-ink">
                 {chosenPrice ? formatPKR(chosenPrice) : priceLabel(p)}
               </p>
@@ -164,7 +164,7 @@ export default function Piece({ route, cat }) {
               <p className="mt-4 text-[15px] text-ink-2">Ask us on WhatsApp for the price.</p>
             )}
             {p.drop && <p className={`${SHOW_PRICES ? 'mt-1 text-[13px]' : 'mt-4 text-[15px]'} text-ink-2`}>Newly photographed at the counter — ask us for the price and details.</p>}
-            {p.local && <p className={`${SHOW_PRICES || p.byWeight ? 'mt-1 text-[13px]' : 'mt-4 text-[15px]'} text-ink-2`}>{p.byWeight ? 'New to the house — ask us on WhatsApp for platings and sizes.' : 'New to the house — ask us on WhatsApp for the price, platings and sizes.'}</p>}
+            {p.local && <p className={`${SHOW_PRICES || p.priced ? 'mt-1 text-[13px]' : 'mt-4 text-[15px]'} text-ink-2`}>{p.priced ? 'New to the house — ask us on WhatsApp for platings and sizes.' : 'New to the house — ask us on WhatsApp for the price, platings and sizes.'}</p>}
 
             {/* Choices, carried into the WhatsApp message */}
             <div className="mt-8 space-y-6">
@@ -201,7 +201,7 @@ export default function Piece({ route, cat }) {
                     {extraOption.values.map((o) => (
                       <button key={o.v} type="button" onClick={() => setOption(o.v)} aria-pressed={option === o.v}
                         className={`press border px-4 py-2.5 text-[13.5px] ${option === o.v ? 'border-accent text-accent' : 'border-line text-ink hover:border-ink-2/50'}`}>
-                        {o.v}{SHOW_PRICES && o.price != null && <span className="ml-1.5 text-ink-2 tabular-nums">{formatPKR(o.price)}</span>}
+                        {o.v}{(SHOW_PRICES || p.priced) && o.price != null && <span className="ml-1.5 text-ink-2 tabular-nums">{formatPKR(o.price)}</span>}
                       </button>
                     ))}
                   </div>
