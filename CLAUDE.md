@@ -315,6 +315,9 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     maroon cloth, five bracelets, two bangles, a pair of bangles and three Locket Sets (DSC09926–09945; one folder = one piece, its
     photos in `also`). All new local pieces named off the photo (the owner may rename); the stones are worded simulated. The
     same folder's "taheri" half went to taheri.shop.
+  - **Boxed sets, 2026-11-12** (the owner's Drive folder "photos/hom sets": DSC09961–09968 without 09966, retouched 1254² PNGs in the
+    maroon Mina box; uploaded with upload.php `to=local`): seven new local sets in Sets, named off the photo (the owner may rename). The
+    same folder's "taheri rings" (DSC09969–09999) went to taheri.shop's Rings as drops.
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
     Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.

@@ -2994,6 +2994,90 @@
    "setting": [],
    "px": 1254,
    "story": ["A round simulated ruby in a sunburst of baguette American Diamonds on matte gold-plated discs — a locket and a pair of earrings."]
+  },
+  {
+   "id": "DSC09961",
+   "t": "Peach and Peridot Halo Set",
+   "co": "sets",
+   "addedAt": "2026-11-12",
+   "type": "Set",
+   "plating": ["Gold"],
+   "stone": ["Morganite", "Peridot", "American Diamond"],
+   "setting": ["Halo"],
+   "px": 1254,
+   "story": ["Oval peach simulated stones, each in a halo of American Diamonds, strung with small pear-cut simulated peridots and pear drops — a necklace, a pair of drop earrings and a ring."]
+  },
+  {
+   "id": "DSC09962",
+   "t": "Gold Mesh Choker Set",
+   "co": "sets",
+   "addedAt": "2026-11-12",
+   "type": "Set",
+   "plating": ["Gold"],
+   "stone": [],
+   "setting": [],
+   "px": 1254,
+   "story": ["A broad gold-plated choker woven as a fine mesh, tied with a gold cord and tassel, with long mesh earrings to match."]
+  },
+  {
+   "id": "DSC09963",
+   "t": "Blue Topaz Pavé Pendant Set",
+   "co": "sets",
+   "addedAt": "2026-11-12",
+   "type": "Set",
+   "plating": ["Gold"],
+   "stone": ["Blue Topaz", "American Diamond"],
+   "setting": [],
+   "px": 1254,
+   "story": ["A gold-plated necklace thick with American Diamonds, falling to a pendant set with a round blue simulated topaz, and earrings to match."]
+  },
+  {
+   "id": "DSC09964",
+   "t": "Sapphire Pear Station Set",
+   "co": "sets",
+   "addedAt": "2026-11-12",
+   "type": "Set",
+   "plating": ["Gold"],
+   "stone": ["Sapphire", "American Diamond"],
+   "setting": [],
+   "px": 1254,
+   "story": ["A gold-plated necklace of pear-cut simulated sapphires between flowers of American Diamonds, a pear drop at the centre, on a gold cord — with earrings and a ring."]
+  },
+  {
+   "id": "DSC09965",
+   "t": "Blush Cluster Line Set",
+   "co": "sets",
+   "addedAt": "2026-11-12",
+   "type": "Set",
+   "plating": ["Rhodium"],
+   "stone": ["Pink Sapphire", "American Diamond"],
+   "setting": [],
+   "px": 1254,
+   "story": ["A line necklace of blush-pink simulated stones in clusters of American Diamonds, with drop earrings and a ring to match."]
+  },
+  {
+   "id": "DSC09967",
+   "t": "Pavé Cluster Set with Bangle",
+   "co": "sets",
+   "addedAt": "2026-11-12",
+   "type": "Set",
+   "plating": ["Rhodium"],
+   "stone": ["American Diamond"],
+   "setting": [],
+   "px": 1254,
+   "story": ["A necklace of clustered American Diamonds, with a bangle, a pair of earrings and a ring in the same clusters."]
+  },
+  {
+   "id": "DSC09968",
+   "t": "Pavé Fringe Necklace Set",
+   "co": "sets",
+   "addedAt": "2026-11-12",
+   "type": "Set",
+   "plating": ["Rhodium"],
+   "stone": ["American Diamond"],
+   "setting": [],
+   "px": 1254,
+   "story": ["A fringe of American Diamond clusters on a gold cord, graduating to the centre, with spray earrings and a ring."]
   }
  ],
  "held": {
