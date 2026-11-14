@@ -115,7 +115,15 @@ export function isMens(tags, memberships) {
  * other in the category of what it is. `tags` is a set of lower-cased tags,
  * `memberships` the handles of its Shopify collections.
  */
+/**
+ * Pieces Shopify types wrongly, filed by hand (the owner, 2026-11-14: "mina classics are earrings and rania set
+ * are rings, shouldnt be in sets"). Keyed by the piece's handle here and the shop's; the sync and the build both
+ * read it, so a later sync keeps them where they belong.
+ */
+export const HOME_OF = { 'the-rania-set': 'rings-and-bands', 'mina-classics': 'earrings' };
+
 export function classify(product, tags, memberships = new Set()) {
+  if (HOME_OF[product.handle]) return HOME_OF[product.handle];
   const type = lc(product.product_type);
   if (isMens(tags, memberships)) {
     if (type === 'ring') return 'mens-rings';

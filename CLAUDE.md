@@ -49,6 +49,8 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   Every old address is **one hop** from its page (2026-10-01): the men's piece rules come first and take the oldest
   prefixes too (`/necklaces/box-chain` → `/mens-chains/box-chain`, not via `/chains-and-pendants`), all before the
   trailing-slash rule; `/for-him/…` goes to `/men`; a gallery's `/x/` 301s to `/x` even though `x/` is a folder.
+  **Filed by hand** (`HOME_OF` in taxonomy.js, read by `classify()` and the build): Shopify types The Rania Set and Mina Classics
+  "Set"; the owner (2026-11-14) filed The Rania Set under Rings & Bands and Mina Classics under Earrings; their `/sets/` addresses 301.
 - `scripts/sync-shopify.mjs` — reads `houseofmina.store/products.json` + `collections.json` (public, no token).
   Refuses to shrink the catalogue by >40% without `--force`. Piece URLs use a slug of the **name**
   (`/rings-and-bands/adele`), not Shopify's handle (often a stock code); a clash falls back to the handle.

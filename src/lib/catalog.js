@@ -7,7 +7,7 @@
  * scripts/prerender.mjs builds every page from the very same function.
  */
 
-import { CHAPTERS, EDITS, chapterOf, homeOf, wristwearHome } from './taxonomy.js';
+import { CHAPTERS, EDITS, HOME_OF, chapterOf, homeOf, wristwearHome } from './taxonomy.js';
 import { houseWording } from './stones.js';
 import { recommender } from './recommend.js';
 
@@ -299,7 +299,11 @@ export function buildCatalog(data, drops = [], now = Date.now()) {
     ? { ...p, img: p.img.map((im) => (framed.has(im.f) ? { ...im, w: 2000, h: 2000, v: data.framed.version } : im)) }
     : p);
   // A catalogue synced before Wristwear had sub-categories still says "wristwear".
-  const rehome = (p) => (p.co === 'wristwear' ? { ...p, co: homeOf(p.co, p) } : p);
+  const rehome = (p) => {
+    const by = HOME_OF[p.h] || (p.sh && HOME_OF[p.sh]);
+    if (by && p.co !== by) return { ...p, co: by, ch: chapterOf(by)?.slug || by };
+    return p.co === 'wristwear' ? { ...p, co: homeOf(p.co, p) } : p;
+  };
   const changed = counterChanges(data.overrides);
   const priced = byWeight(data.weights);
   const pieces = [...dropped, ...data.pieces].map(rehome).map(worded).map(reframe).map(changed).map(priced).filter((p) => !p.hidden)
