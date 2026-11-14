@@ -318,6 +318,11 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   - **Boxed sets, 2026-11-12** (the owner's Drive folder "photos/hom sets": DSC09961–09968 without 09966, retouched 1254² PNGs in the
     maroon Mina box; uploaded with upload.php `to=local`): seven new local sets in Sets, named off the photo (the owner may rename). The
     same folder's "taheri rings" (DSC09969–09999) went to taheri.shop's Rings as drops.
+  - **Diamond-style sets and meena bangles, 2026-11-14** (the owner's Drive folder "photos": "hom sets one pic per set" and "hom bangles";
+    retouched 1254² PNGs; the camera's numbers repeat the 2026-11-12 sets, so every file went up as `DSC0NNNN-b.png`): nine sets in Sets,
+    each "an exclusive diamond-style design" (the owner: "the diamond style sets are very exclusive diamond style designs") — the
+    words never say diamond alone, the stones stay American Diamond; in Bangles & Cuffs a zircon bamboo pair, four meenakari pairs (sky
+    blue, white, navy, pink; each with the group photo 09976-b second) and the four pairs together (09975-b + 09976/77/74-b).
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
     Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.
