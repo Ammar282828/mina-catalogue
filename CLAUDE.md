@@ -325,6 +325,10 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     each "an exclusive diamond-style design" (the owner: "the diamond style sets are very exclusive diamond style designs") — the
     words never say diamond alone, the stones stay American Diamond; in Bangles & Cuffs a zircon bamboo pair, four meenakari pairs (sky
     blue, white, navy, pink; each with the group photo 09976-b second) and the four pairs together (09975-b + 09976/77/74-b).
+  - **New products, 2026-11-23** (the owner's Drive folder "NEW PRODUCTS HOM": DSC09980–09997 without 09983, retouched 1254² PNGs, gold plated;
+    uploaded with upload.php `to=local`): a chevron set (Sets), two bangle and ring sets (Wristwear → Bangle & Ring Sets; the Ruby Channel
+    set's photo shows only the bangle) and nine opal and pearl rings in Rings & Bands (a folder of two photos = one piece, the second in
+    `also`). All named off the photo (the owner may rename); coloured stones worded simulated.
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
     Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.
