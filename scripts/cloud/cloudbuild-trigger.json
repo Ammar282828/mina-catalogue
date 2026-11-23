@@ -1,0 +1,69 @@
+{
+  "name": "deploy-mina-catalogue",
+  "description": "A push to main or claude/** of mina-catalogue goes live on catalogue.houseofmina.store (scripts/cloud/deploy.sh)",
+  "developerConnectEventConfig": {
+    "gitRepositoryLink": "__GIT_REPOSITORY_LINK__",
+    "push": {
+      "branch": "^(main|claude/.*)$"
+    }
+  },
+  "serviceAccount": "projects/gemstrack-pos/serviceAccounts/cloud-deploy@gemstrack-pos.iam.gserviceaccount.com",
+  "build": {
+    "timeout": "2700s",
+    "options": {
+      "logging": "CLOUD_LOGGING_ONLY"
+    },
+    "availableSecrets": {
+      "secretManager": [
+        {
+          "versionName": "projects/gemstrack-pos/secrets/github-deploy-token/versions/latest",
+          "env": "DEPLOY_TOKEN"
+        },
+        {
+          "versionName": "projects/gemstrack-pos/secrets/hostinger-deploy-key/versions/latest",
+          "env": "SSH_KEY"
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "photos-down",
+        "name": "gcr.io/google.com/cloudsdktool/cloud-sdk:slim",
+        "entrypoint": "bash",
+        "args": [
+          "-c",
+          "mkdir -p /workspace/photos; gcloud storage rsync -r gs://gemstrack-pos-site-builds/mina/ /workspace/photos/ --quiet || echo 'no photo cache yet'"
+        ]
+      },
+      {
+        "id": "deploy",
+        "name": "mirror.gcr.io/library/node:22",
+        "entrypoint": "bash",
+        "secretEnv": [
+          "DEPLOY_TOKEN",
+          "SSH_KEY"
+        ],
+        "env": [
+          "COMMIT=$COMMIT_SHA",
+          "BRANCH=$BRANCH_NAME",
+          "BUILD=$BUILD_ID",
+          "WORKDIR=/workspace/site",
+          "PHOTOS=/workspace/photos"
+        ],
+        "args": [
+          "-c",
+          "set -euo pipefail; git clone --quiet https://github.com/Ammar282828/mina-catalogue.git $$WORKDIR; cd $$WORKDIR; git fetch --quiet origin $$COMMIT; if git cat-file -e origin/main:scripts/cloud/deploy.sh 2>/dev/null; then git show origin/main:scripts/cloud/deploy.sh > /workspace/deploy.sh; else git show $$COMMIT:scripts/cloud/deploy.sh > /workspace/deploy.sh; fi; exec bash /workspace/deploy.sh"
+        ]
+      },
+      {
+        "id": "photos-up",
+        "name": "gcr.io/google.com/cloudsdktool/cloud-sdk:slim",
+        "entrypoint": "bash",
+        "args": [
+          "-c",
+          "gcloud storage rsync -r /workspace/photos/ gs://gemstrack-pos-site-builds/mina/ --quiet"
+        ]
+      }
+    ]
+  }
+}

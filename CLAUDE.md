@@ -328,8 +328,8 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   - **New products, 2026-11-23** (the owner's Drive folder "NEW PRODUCTS HOM": DSC09980–09997 without 09983, retouched 1254² PNGs, gold plated;
     uploaded with upload.php `to=local`): a chevron set (Sets), two bangle and ring sets (Wristwear → Bangle & Ring Sets; the Ruby Channel
     set's photo shows only the bangle) and nine opal and pearl rings in Rings & Bands (a folder of two photos = one piece, the second in
-    `also`). All named off the photo (the owner may rename); coloured stones worded simulated. Actions would not start that day (`startup_failure`: the repo is private now, so its
-    runs draw on the account's spent minutes), so each lead photo went up first as a POS drop named after the piece (words through
+    `also`). All named off the photo (the owner may rename); coloured stones worded simulated. Actions would not start that day (`startup_failure`; the deploy moved to Cloud Build
+    the same day), so each lead photo went up first as a POS drop named after the piece (words through
     override.php, key `mina/piece/new-<slug>-<t>`); once this build is live, take the 12 drops off (upload.php `action=remove`, then `revert`).
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
@@ -373,9 +373,20 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   POS edits from `source` and puts the MINA mark back where brand.mjs does (`/brand/mina-wordmark.svg` in the POS). Weights
   typed at the counter live in the change (`weightGrams`), not shown on the catalogue.
 
-## Deploy (`.github/workflows/deploy.yml`)
+## Deploy (Google Cloud Build, `scripts/cloud/deploy.sh`)
 
-Push to `main` → build (photos from cache or Shopify's CDN) → sanity gate → rsync over SSH to
+**Since 2026-11-23 every push deploys from Google Cloud Build** (owner: "move it to cloud build"): GitHub stopped giving the
+account's Actions a runner at all (`runner_id` 0, then `startup_failure`) with the budget unspent and the repo public. The
+trigger `deploy-mina-catalogue` (gemstrack-pos, us-central1, `scripts/cloud/cloudbuild-trigger.json`) takes a push to `main` or
+`claude/**` and runs `deploy.sh` as main has it: a branch gets main merged in, the build (photos from the cache bucket
+`gs://gemstrack-pos-site-builds/mina/`, the rest from their sources) and `check-build.mjs`, then the result goes to `main` and
+is rsynced to Hostinger with the same guards as below; a push to main that a branch build already shipped is skipped. Its
+result is the commit's **`deploy (Cloud Build)`** status; the log is `gcloud builds list --region us-central1 --project gemstrack-pos`.
+It runs as `cloud-deploy@gemstrack-pos` with `github-deploy-token` (the ERP's) and `hostinger-deploy-key` (Secret Manager).
+Set up once on the owner's Mac by `scripts/cloud/cloudbuild-setup.sh` (it also does taheri.shop's). `DRY_RUN=1` builds and
+checks without pushing or uploading. The Actions workflows below now run only by hand.
+
+The old path (`.github/workflows/deploy.yml`), kept: push to `main` → build (photos from cache or Shopify's CDN) → sanity gate → rsync over SSH to
 `~/domains/catalogue.houseofmina.store/public_html` on the same Hostinger account as taheri.shop.
 Gated by the repository variable `DEPLOY_ENABLED=1`. "Run workflow" with **sync** ticked re-copies
 from Shopify first and commits it. rsync never deletes; `catalog-drop/` is never touched, nor any photograph the counter
@@ -384,8 +395,8 @@ read it, it stops rather than put the old photographs back).
 
 GitHub Actions ran out of minutes in October 2026 (runs failed at once, `runner_id` 0); the owner raised the spending limit on 2026-10-12. They stopped again on 2026-10-24 (every run in this repo and taheri-pos failed at once); the owner raised the budget on 2026-10-26. A run that failed that way is not re-runnable from a cloud session (403): push again. On 2026-11-23 runs failed at startup (`startup_failure`, path `BuildFailed`) with the budget unspent: the repo had
 become private; the owner made it public again that day (public repos' Actions are free). Keep it public.
-**Cloud sessions** (claude.ai/code) can push only their own `claude/…` branch; `cloud-deploy.yml` merges main into it,
-puts it on main and starts this deploy — no review (owner, 2026-09-27). A branch that doesn't merge cleanly fails there:
+**Cloud sessions** (claude.ai/code) can push only their own `claude/…` branch; Cloud Build (above) merges main into it,
+puts it on main and deploys it — no review (owner, 2026-09-27). A branch that doesn't merge cleanly fails there:
 rebase on main and push again. The ERP's CLAUDE.md (taheri-pos), "Cloud sessions", has the rest.
 
 ## Go-live status (2026-09-23)
