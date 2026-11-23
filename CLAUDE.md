@@ -330,7 +330,10 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     set's photo shows only the bangle) and nine opal and pearl rings in Rings & Bands (a folder of two photos = one piece, the second in
     `also`). All named off the photo (the owner may rename); coloured stones worded simulated. Actions would not start that day (`startup_failure`; the deploy moved to Cloud Build
     the same day), so each lead photo went up first as a POS drop named after the piece (words through
-    override.php, key `mina/piece/new-<slug>-<t>`); once this build is live, take the 12 drops off (upload.php `action=remove`, then `revert`).
+    override.php, key `mina/piece/new-<slug>-<t>`). Drops are never branded, so the ERP and posts showed them without the MINA mark
+    (the owner: "why dont any of the images have my logo"): each went up again branded by `scripts/brand.mjs` as `<name>-2.png`, its words
+    moved to the new key and the unmarked first copy hidden (this repo's upload.php has no `action=remove`). Once this build is live, hide
+    all 24 drops (override.php `hidden`) and send each drop address to its piece's page (`public/.htaccess`).
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
     Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.
