@@ -3413,6 +3413,18 @@
    "also": ["DSC09997"],
    "px": 1254,
    "story": ["A round pearl in a halo of American Diamonds with a cluster of three stones at each side."]
+  },
+  {
+   "id": "IMG_3835",
+   "t": "Ruby Emerald Choker Set with Tikka",
+   "co": "sets",
+   "addedAt": "2026-11-23",
+   "type": "Set",
+   "plating": ["Gold"],
+   "stone": ["Ruby", "Emerald", "Pearl", "American Diamond"],
+   "setting": [],
+   "px": 1254,
+   "story": ["A gold-plated choker of three rows of simulated rubies edged with uncut-style stones, falling to an openwork pendant set with an emerald-cut simulated emerald and fringed with green beads and pearls — with matching drop earrings and a maang tikka."]
   }
  ],
  "held": {

@@ -334,6 +334,9 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
     (the owner: "why dont any of the images have my logo"): each went up again branded by `scripts/brand.mjs` as `<name>-2.png`, its words
     moved to the new key and the unmarked first copy hidden (this repo's upload.php has no `action=remove`). Once this build is live, hide
     all 24 drops (override.php `hidden`) and send each drop address to its piece's page (`public/.htaccess`).
+  - **Ruby Emerald Choker Set with Tikka, 2026-11-23** (the owner's Drive file `IMG_3835-retouched.png`, 1086×1448 on a grey tray):
+    cropped square on the set and sized to 1254² → `catalog-src/local/IMG_3835.png`, a local piece in Sets; up first as a branded drop
+    like the batch above (`Sets/Sets/Ruby Emerald Choker Set with Tikka.png`), to be hidden the same way once this build is live.
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
     Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.
