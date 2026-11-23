@@ -328,7 +328,9 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   - **New products, 2026-11-23** (the owner's Drive folder "NEW PRODUCTS HOM": DSC09980–09997 without 09983, retouched 1254² PNGs, gold plated;
     uploaded with upload.php `to=local`): a chevron set (Sets), two bangle and ring sets (Wristwear → Bangle & Ring Sets; the Ruby Channel
     set's photo shows only the bangle) and nine opal and pearl rings in Rings & Bands (a folder of two photos = one piece, the second in
-    `also`). All named off the photo (the owner may rename); coloured stones worded simulated.
+    `also`). All named off the photo (the owner may rename); coloured stones worded simulated. Actions would not start that day (`startup_failure`: the repo is private now, so its
+    runs draw on the account's spent minutes), so each lead photo went up first as a POS drop named after the piece (words through
+    override.php, key `mina/piece/new-<slug>-<t>`); once this build is live, take the 12 drops off (upload.php `action=remove`, then `revert`).
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
     Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.
