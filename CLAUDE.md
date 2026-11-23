@@ -337,6 +337,9 @@ The POS both houses share is **taheri-shop** (`~/Projects/taheri-shop`); read it
   - **Ruby Emerald Choker Set with Tikka, 2026-11-23** (the owner's Drive file `IMG_3835-retouched.png`, 1086×1448 on a grey tray):
     cropped square on the set and sized to 1254² → `catalog-src/local/IMG_3835.png`, a local piece in Sets; up first as a branded drop
     like the batch above (`Sets/Sets/Ruby Emerald Choker Set with Tikka.png`), to be hidden the same way once this build is live.
+  - **Two more sets, 2026-11-23** (the owner's Drive files `IMG_6133.PNG`, 1024² on a maroon bust, and `IMG_2750-retouched.png`, 1086×1448 in
+    the red box, cropped square on the set to 1254²): Gold Filigree Leaf Drop Set and Pearl Fringe Jhumka Choker Set (rhodium) in Sets, named
+    off the photo; up first as branded drops like the batch above, to be hidden the same way once this build is live.
   - **Rings from Gemini renders (2026-09-23):** six renders in taheri-shop `output/imagegen/mina-catalogue-2026-09-23/`
     (its `final-manifest.json` names each source photo) → `ring-0N-….jpg`, **each its own piece** — three looked like
     Shopify rings (Ruby Wishbone, Azzura, Emerald Double Halo) and the owner said they are not the same.

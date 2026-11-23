@@ -3425,6 +3425,30 @@
    "setting": [],
    "px": 1254,
    "story": ["A gold-plated choker of three rows of simulated rubies edged with uncut-style stones, falling to an openwork pendant set with an emerald-cut simulated emerald and fringed with green beads and pearls — with matching drop earrings and a maang tikka."]
+  },
+  {
+   "id": "IMG_6133",
+   "t": "Gold Filigree Leaf Drop Set",
+   "co": "sets",
+   "addedAt": "2026-11-23",
+   "type": "Set",
+   "plating": ["Gold"],
+   "stone": ["American Diamond"],
+   "setting": ["Pavé"],
+   "px": 1024,
+   "story": ["A gold-plated necklace of pavé filigree leaves set with pear and marquise American Diamonds, gathered to a halo centre with a pear drop — with long chandelier earrings and a cluster ring."]
+  },
+  {
+   "id": "IMG_2750",
+   "t": "Pearl Fringe Jhumka Choker Set",
+   "co": "sets",
+   "addedAt": "2026-11-23",
+   "type": "Set",
+   "plating": ["Rhodium"],
+   "stone": ["American Diamond", "Pearl"],
+   "setting": ["Pavé"],
+   "px": 1254,
+   "story": ["A rhodium-plated choker of pavé American Diamond drops over a fringe of pearls, tied with a silk cord and tassel — with pavé jhumkas edged in pearls and a second pavé band to layer with it."]
   }
  ],
  "held": {
