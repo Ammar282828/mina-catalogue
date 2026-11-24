@@ -8,8 +8,8 @@
 name: Deploy a cloud session
 
 on:
-  # Pushes deploy through Google Cloud Build since 2026-11-23 (scripts/cloud/deploy.sh); this runs only by hand.
-  workflow_dispatch:
+  push:
+    branches: ['claude/**']
 
 concurrency:
   group: cloud-to-main

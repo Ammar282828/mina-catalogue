@@ -18,7 +18,8 @@
 name: Deploy to Hostinger
 
 on:
-  # Pushes deploy through Google Cloud Build since 2026-11-23 (scripts/cloud/deploy.sh); this runs only by hand.
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       sync:
